@@ -1,0 +1,11 @@
+---
+interface Props {
+  category: string;
+}
+
+const { category } = Astro.props;
+---
+
+<span class="text-sm text-gray-700 font-medium group-hover:text-primary transition-colors duration-300 mr-2">
+  #{category.toLowerCase().replace(/\s+/g, '')}
+</span> 

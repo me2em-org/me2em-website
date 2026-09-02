@@ -1,0 +1,58 @@
+---
+import Contact from "@components/forms/Contact.astro"
+import { getBackgroundColor, getTextColor, getPaddingClass } from '@utils/styleUtils';
+import type { ThemeColor, PaddingSize } from '@utils/styleUtils';
+import { siteConfig } from '@data/config';
+import { Mail, Phone, MapPin } from 'lucide-astro';
+export interface Props {
+    content?: {
+        title?: string;
+        description?: string;
+        contactInfo?: {
+            email?: string;
+            phone?: string;
+            address?: string;
+        };
+    };
+    background?: ThemeColor;
+    padding?: PaddingSize;
+    paddingTop?: PaddingSize;
+    paddingBottom?: PaddingSize;
+}
+const {
+    content,
+    background = 'base',
+    padding,
+    paddingTop,
+    paddingBottom
+} = Astro.props;
+
+const bgColor = getBackgroundColor(background);
+const textColor = getTextColor(background);
+const paddingClass = getPaddingClass({ padding, paddingTop, paddingBottom });
+
+---
+
+<section class:list={[bgColor, paddingClass]}>
+    <div class="site-container px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <h2 class:list={[textColor]}>Contact Information</h2>
+                <p class:list={[textColor]}>
+                    We're here to help you with your questions and concerns.
+                </p>
+                <p class:list={[textColor]}>
+                    You can contact us via email or phone.
+                </p>
+                <div class:list={["flex flex-col gap-2 mt-4", textColor]}>
+                    <div class:list={["flex items-center gap-2"]}><Mail aria-hidden="true" /> <a href={`mailto:${siteConfig.Socials.Email}`}>{siteConfig.Socials.Email}</a></div>
+                    <div class:list={["flex items-center gap-2"]}><Phone aria-hidden="true" /> <a href={`tel:${siteConfig.Socials.Phone}`}>{siteConfig.Socials.Phone}</a></div>
+                    <div class:list={["flex items-center gap-2"]}><MapPin aria-hidden="true" /> <a href={`https://maps.google.com/?q=${siteConfig.Socials.Location}`}>{siteConfig.Socials.Location}</a></div>
+                </div>
+            </div>
+            <div>
+                <Contact />
+            </div>
+        </div>
+    </div>
+</section>

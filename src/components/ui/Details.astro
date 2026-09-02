@@ -1,0 +1,92 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import { Plus, Minus } from 'lucide-astro'
+
+type Props = HTMLAttributes<'div'> & {
+  open?: boolean
+}
+const { open } = Astro.props
+---
+<titan-details open={open} {...Astro.props}>
+    <h3 class="w-full text-left">
+        <button class="group w-full flex items-center justify-between cursor-pointer" aria-expanded={!!open}>
+            <slot name="heading"/>
+            <Plus class="w-6 h-6 flex-shrink-0 transition-transform duration-200 ease-out group-hover:scale-110" aria-hidden="true"/>
+            <Minus class="w-6 h-6 flex-shrink-0 transition-transform duration-200 ease-out group-hover:scale-110" aria-hidden="true"/>
+        </button>
+    </h3>
+    <div class="content grid grid-rows-[0fr] transition-all duration-200 ease-out" aria-hidden={!open}>
+        <slot/>
+    </div>
+</titan-details>
+
+<style>
+    titan-details {
+        display: block;
+    }
+
+    titan-details[open] button svg.lucide-plus, titan-details:not([open]) button svg.lucide-minus {
+        display: none;
+    }
+
+    button:hover svg {
+        color: var(--color-primary-600);
+    }
+
+    .content {
+        grid-template-rows: 0fr;
+    }
+
+    titan-details[open] .content {
+        grid-template-rows: 1fr;
+    }
+</style>
+
+<script>
+  // noinspection JSUnusedGlobalSymbols
+  class TitanDetails extends HTMLElement {
+    get open () {
+      return this.hasAttribute('open')
+    }
+
+    set open (val) {
+      if (val) {
+        this.setAttribute('open', '')
+      } else {
+        this.removeAttribute('open')
+      }
+    }
+
+    $button: HTMLButtonElement
+    $content: HTMLElement
+
+    constructor () {
+      super()
+      this.$button = this.querySelector('button') as HTMLButtonElement
+      this.$content = this.querySelector('.content') as HTMLButtonElement
+      this.$button.addEventListener('click', () => {
+        this.open = !this.open
+      })
+    }
+
+    static get observedAttributes () { return ['open'] }
+
+    attributeChangedCallback (name: string) {
+      if (name === 'open') {
+        this.toggleContent()
+      }
+    }
+
+    toggleContent () {
+      if (this.open) {
+        this.$button.setAttribute('aria-expanded', 'true')
+        this.$content.removeAttribute('aria-hidden')
+      } else {
+        this.$button.setAttribute('aria-expanded', 'false')
+        this.$content.setAttribute('aria-hidden', 'true')
+      }
+    }
+  }
+
+  customElements.define('titan-details', TitanDetails)
+</script>

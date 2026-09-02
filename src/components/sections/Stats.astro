@@ -1,0 +1,165 @@
+---
+import type { Stat } from '@data/stats';
+import Button from '@components/ui/Button.astro';
+import Eyebrow from '@components/ui/Eyebrow.astro';
+import { getBackgroundColor, getTextColor, getPaddingClass } from '@utils/styleUtils';
+import type { ThemeColor, PaddingSize } from '@utils/styleUtils';
+
+export interface Props {
+    content: {
+        eyebrow?: string;
+        title?: string;
+        description?: string;
+        variant?: 'default' | 'side-by-side';
+        stats: Stat[];
+        content?: {
+            title: string;
+            description: string;
+            button?: {
+                text: string;
+                link: string;
+                variant?: 'primary' | 'secondary' | 'ghostLight' | 'ghostDark';
+            };
+        };
+    };
+    background?: ThemeColor;
+    padding?: PaddingSize;
+    paddingTop?: PaddingSize;
+    paddingBottom?: PaddingSize;
+}
+
+const {
+    content,
+    background = 'base',
+    padding,
+    paddingTop,
+    paddingBottom
+} = Astro.props;
+
+const variant = content.variant || 'default';
+const {
+    eyebrow,
+    title,
+    description,
+    stats,
+    content: contentContent
+} = content;
+
+const bgColor = getBackgroundColor(background);
+const textColor = getTextColor(background);
+const paddingClass = getPaddingClass({ padding, paddingTop, paddingBottom });
+---
+
+<section class:list={["overflow-hidden", bgColor, paddingClass]}>
+    <div class="site-container px-4">
+        {variant === 'default' && (title || description) && (
+            <div class="text-center mb-16">
+                {eyebrow && (
+                    <Eyebrow 
+                        text={eyebrow} 
+                        background={background} 
+                    />
+                )}
+                {title && (
+                    <h2 class:list={[textColor]} data-aos="fade-up">
+                        {title}
+                    </h2>
+                )}
+                {description && (
+                    <p class:list={["mt-4", textColor, "opacity-90"]} data-aos="fade-up" data-aos-delay="100">
+                        {description}
+                    </p>
+                )}
+            </div>
+        )}
+
+        <div class:list={[
+            variant === 'side-by-side' ? 'grid md:grid-cols-2 gap-12 items-center' : '',
+        ]}>
+            {variant === 'side-by-side' && contentContent && (
+                <div class="content-section" data-aos="fade-right">
+                    {eyebrow && (
+                        <Eyebrow 
+                            text={eyebrow} 
+                            background={background} 
+                        />
+                    )}
+                    <h2 class:list={[textColor]}>{contentContent.title}</h2>
+                    <p class:list={["mt-4", textColor, "opacity-90"]}>{contentContent.description}</p>
+                    {contentContent.button && (
+                        <div class="mt-8">
+                            <Button
+                                href={contentContent.button.link}
+                                variant={contentContent.button.variant || 'primary'}
+                            >
+                                {contentContent.button.text}
+                            </Button>
+                        </div>
+                    )}
+                </div>
+            )}
+
+            <div class:list={[
+                variant === 'default' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8' : 'grid grid-cols-2 gap-8',
+            ]}>
+                {stats.map((stat, index) => (
+                    <div 
+                        class="text-center"
+                        data-aos={variant === 'side-by-side' ? 'fade-left' : 'fade-up'}
+                        data-aos-delay={index * 100}
+                    >
+                        <div class:list={["text-4xl font-bold mb-2", textColor]}>
+                            <span class="stat-number" data-target={stat.value}>
+                                {stat.prefix || ''}{0}{stat.suffix || ''}
+                            </span>
+                        </div>
+                        <p class:list={["text-lg", textColor, "opacity-90"]}>
+                            {stat.label}
+                        </p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function animateStats() {
+        const stats = document.querySelectorAll('.stat-number');
+        
+        stats.forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-target') || '0');
+            const prefix = stat.textContent?.match(/^[^0-9]*/)?.[0] || '';
+            const suffix = stat.textContent?.match(/[^0-9]*$/)?.[0] || '';
+            let current = 0;
+            const increment = target / 50; // Adjust for animation speed
+            
+            const updateCounter = () => {
+                if (current < target) {
+                    current += increment;
+                    if (current > target) current = target;
+                    stat.textContent = `${prefix}${Math.floor(current)}${suffix}`;
+                    requestAnimationFrame(updateCounter);
+                }
+            };
+            
+            updateCounter();
+        });
+    }
+
+    // Create an Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateStats();
+                observer.disconnect(); // Only animate once
+            }
+        });
+    });
+
+    // Observe the stats section
+    const statsSection = document.querySelector('.stat-number');
+    if (statsSection) {
+        observer.observe(statsSection);
+    }
+</script>

@@ -1,0 +1,91 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogList from './BlogList.astro';
+import InnerHero from '../sections/InnerHero.astro';
+import Button from '../ui/Button.astro';
+import { ChevronLeft, ChevronRight } from 'lucide-astro';
+
+import blogHeroImage from '@assets/images/blog-hero-2.jpg';
+
+const seoTitle = "Blog";
+const seoDescription = "Our blog is where we share our thoughts and ideas about the latest trends in the web development industry.";
+
+interface Props {
+    posts: any[];
+    currentPage: number;
+    totalPages: number;
+    baseUrl: string;  // e.g., '/blog' or '/category/some-category'
+    title: string;
+    subtitle: string;
+    currentCategory?: string;
+}
+
+const { 
+    posts: paginatedPosts, 
+    currentPage, 
+    totalPages, 
+    baseUrl,
+    title,
+    subtitle,
+    currentCategory 
+} = Astro.props;
+
+    // Generate pagination URLs
+const nextPage = currentPage < totalPages ? `${baseUrl}/${currentPage + 1}` : null;
+const prevPage = currentPage > 1 
+? currentPage - 1 === 1 
+? baseUrl
+: `${baseUrl}/${currentPage - 1}`
+: null;
+
+const heroContent = {
+    title: title,
+    description: subtitle,
+    backgroundImage: blogHeroImage,
+    overlayOpacity: 0.2
+}
+---
+<Layout title={seoTitle} description={seoDescription}>
+    <main>
+    <InnerHero content={heroContent}/>
+    <BlogList posts={paginatedPosts} currentCategory={currentCategory} />
+
+    {totalPages > 1 && (
+        <nav class="pagination-nav" aria-label="Blog pagination" data-aos="fade-in">
+            <div class="container mx-auto px-4 py-12">
+                <div class="flex items-center justify-center gap-6">
+                    {prevPage && (
+                        <Button href={prevPage} variant="primary" class="flex items-center gap-2">
+                            <ChevronLeft size={20} />
+                            Previous
+                        </Button>
+                    )}
+                    
+                    <div class="flex items-center gap-2">
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                            <a
+                                href={pageNum === 1 ? baseUrl : `${baseUrl}/${pageNum}`}
+                                class={`w-10 h-10 flex items-center justify-center rounded-full transition-colors ${
+                                    currentPage === pageNum
+                                        ? 'bg-primary text-white'
+                                        : 'hover:bg-white hover:text-body-base'
+                                }`}
+                                aria-current={currentPage === pageNum ? 'page' : undefined}
+                            >
+                                {pageNum}
+                            </a>
+                        ))}
+                    </div>
+
+                    {nextPage && (
+                        <Button href={nextPage} variant="primary">
+                            Next
+                            <ChevronRight size={20} />
+                        </Button>
+                    )}
+                </div>
+            </div>
+        </nav>
+    )}
+    </main>
+</Layout> 

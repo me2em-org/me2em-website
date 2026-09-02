@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+
+interface HeroContent {
+    title: string;
+    description: string;
+    backgroundImage?: any;
+    overlayOpacity?: number; // Value between 0 and 1
+}
+
+interface Props {
+    content: HeroContent;
+}
+
+const { content } = Astro.props;
+const opacity = content.overlayOpacity ?? 1;
+---
+
+<section class="w-full border-b pt-38 pb-18 relative">
+    <div class="absolute inset-0 left-0 top-0 w-full h-full overflow-hidden">
+            {content.backgroundImage && (
+                <Image
+                    src={content.backgroundImage}
+                    alt=""
+                    width={1920}
+                    height={1080}
+                    class="w-full h-full object-cover"
+                    quality={70}
+                    format="webp"
+                />
+            )}
+            <div
+                class="hero-background absolute inset-0 left-0 top-0 w-full h-full overflow-hidden"
+                style={`opacity: ${opacity};`}
+            ></div>
+        </div>
+
+    <div class="site-container mx-auto px-4 relative z-10">
+        <div>
+            <h1 class="text-white" data-aos="fade-up">{content.title}</h1>
+            {content.description && <p class="subtitle text-white" data-aos="fade-up" data-aos-delay="100">{content.description}</p>}
+        </div>
+    </div>
+</section>

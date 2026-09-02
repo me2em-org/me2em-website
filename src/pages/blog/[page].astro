@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import { blogSetting } from '../../data/config';
+import PaginatedBlogLayout from '../../components/blog/PaginatedBlogLayout.astro';
+export const prerender = true;
+
+// Get static paths for all possible pages
+export async function getStaticPaths() {
+    const allPosts = await getCollection('blog');
+
+    // Filter posts
+    const filteredPosts = allPosts.filter((post) => {
+        return import.meta.env.DEV || post.data.publish !== false;
+    });
+
+    // Sort posts by date
+    const sortedPosts = filteredPosts.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+    const totalPosts = sortedPosts.length;
+    const totalPages = Math.ceil(totalPosts / blogSetting.postsPerPage);
+
+    // Create paths for all pages except page 1 (which is handled by index.astro)
+    return Array.from({ length: totalPages - 1 }, (_, i) => {
+        const page = i + 2; // Start from page 2
+        const start = (page - 1) * blogSetting.postsPerPage;
+        const end = start + blogSetting.postsPerPage;
+
+        return {
+            params: { page: String(page) },
+            props: {
+                page,
+                totalPages,
+                posts: sortedPosts.slice(start, end),
+            },
+        };
+    });
+}
+
+const { page, totalPages, posts } = Astro.props;
+
+// Redirect page 1 to the main blog page
+if (page === 1) {
+    return Astro.redirect('/blog');
+}
+---
+
+<PaginatedBlogLayout
+    {posts}
+    currentPage={page}
+    {totalPages}
+    baseUrl="/blog"
+    title="Blog"
+    subtitle="Latest articles and news from the team"
+/>
+

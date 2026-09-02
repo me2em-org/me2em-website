@@ -1,0 +1,115 @@
+---
+import type { Feature } from '@data/features';
+import Button from '@components/ui/Button.astro';
+import Eyebrow from '@components/ui/Eyebrow.astro';
+import { getPaddingClass, getBackgroundColor, getTextColor } from '@utils/styleUtils';
+import type { PaddingSize, ThemeColor } from '@utils/styleUtils';
+
+export interface Props {
+    content: {
+        eyebrow?: string;
+        title?: string;
+        description?: string;
+        button?: {
+            text: string;
+            link: string;
+            variant?: 'primary' | 'secondary' | 'ghostLight' | 'ghostDark';
+        };
+        features: Feature[];
+    };
+    background?: ThemeColor;
+    padding?: PaddingSize;
+    paddingTop?: PaddingSize;
+    paddingBottom?: PaddingSize;
+}
+
+const {
+    content: {
+        eyebrow,
+        title,
+        description,
+        button,
+        features
+    },
+    background = 'base'
+} = Astro.props;
+
+const bgColor = getBackgroundColor(background);
+const textColor = getTextColor(background);
+const paddingClass = getPaddingClass({ 
+    padding: Astro.props.padding,
+    paddingTop: Astro.props.paddingTop,
+    paddingBottom: Astro.props.paddingBottom 
+});
+---
+
+<section class:list={["relative", bgColor, paddingClass]}>
+    <div class="site-container px-4">
+        {(title || description) && (
+            <div class="text-center mb-16 max-w-3xl mx-auto">
+                {eyebrow && (
+                    <Eyebrow 
+                        text={eyebrow} 
+                        background={background} 
+                    />
+                )}
+                {title && (
+                    <h2 class:list={[textColor]} data-aos="fade-up">
+                        {title}
+                    </h2>
+                )}
+                {description && (
+                    <p class:list={["mt-4", textColor, "opacity-90"]} data-aos="fade-up" data-aos-delay="100">
+                        {description}
+                    </p>
+                )}
+                {button && (
+                    <div class="mt-8" data-aos="fade-up" data-aos-delay="200">
+                        <Button
+                            href={button.link}
+                            variant={button.variant || 'primary'}
+                        >
+                            {button.text}
+                        </Button>
+                    </div>
+                )}
+            </div>
+        )}
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-auto-fit gap-8 auto-rows-fr">
+            {features.map((feature, index) => (
+                <div 
+                    class:list={[
+                        "p-6 rounded-lg border border-black",
+                        background === 'dark' ? 'bg-background-base/10' : 'bg-background/90',
+                        "flex flex-col"
+                    ]}
+                    data-aos="fade-up"
+                    data-aos-delay={index * 100}
+                >
+                    <div class:list={[
+                        "w-12 h-12 flex items-center justify-center rounded-lg mb-4",
+                        "bg-primary"
+                    ]}>
+                        <feature.icon
+                            size={24}
+                            class="text-white"
+                        />
+                    </div>
+                    <h3 class:list={["text-h4 mb-2", textColor]}>
+                        {feature.title}
+                    </h3>
+                    <p class:list={["text-base", textColor, "opacity-90"]}>
+                        {feature.description}
+                    </p>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .grid-cols-auto-fit {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+</style>

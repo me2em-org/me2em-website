@@ -1,0 +1,62 @@
+---
+export interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'accent' | 'ghostLight' | 'ghostDark';
+  size?: 'sm' | 'md' | 'lg';
+  disabled?: boolean;
+  class?: string;
+  type?: 'button' | 'submit' | 'reset';
+  target?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  disabled = false,
+  class: className = '',
+  type = 'button',
+  target,
+  ...rest
+} = Astro.props;
+
+const baseStyles = 'group relative inline-flex overflow-hidden items-center justify-center rounded-border-small font-medium transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 rounded-md flex items-center gap-2';
+
+
+const variants = {
+  primary: 'bg-primary text-white hover:bg-primary-light focus-visible:ring-primary hover:ring-2 hover:ring-primary hover:ring-offset-2',
+  secondary: 'bg-secondary text-white hover:bg-secondary-light focus-visible:ring-secondary hover:ring-2 hover:ring-secondary hover:ring-offset-2',
+  accent: 'bg-accent text-white hover:opacity-90 focus-visible:ring-accent hover:ring-2 hover:ring-accent hover:ring-offset-2',
+  ghostLight: 'text-white ring-2 ring-white focus-visible:ring-white hover:ring-2 hover:ring-black hover:ring-offset-2',
+  ghostDark: 'text-body-base ring-2 ring-text focus-visible:ring-text hover:ring-2 hover:ring-black hover:ring-offset-2',
+};
+
+const sizes = {
+  sm: 'h-9 px-3 text-xsmall',
+  md: 'h-10 px-4 py-2 text-small',
+  lg: 'h-11 px-8 text-base'
+};
+
+const classes = [
+  baseStyles,
+  variants[variant],
+  sizes[size],
+  className
+].join(' ');
+
+const Element = href ? 'a' : 'button';
+---
+
+<Element
+  {...rest}
+  href={href}
+  type={!href ? type : undefined}
+  class={classes}
+  disabled={disabled}
+  aria-disabled={disabled}
+  {...(target && { target, rel: target === '_blank' ? 'noopener noreferrer' : undefined })}
+>
+  <span class="absolute left-0 -mt-12 h-32 w-1/2 translate-x-[250%] rotate-12 bg-white opacity-20 transition-all duration-250 ease-out group-hover:translate-x-[2%]"></span>
+  <slot />
+</Element>
+

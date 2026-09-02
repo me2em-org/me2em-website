@@ -1,0 +1,101 @@
+---
+import { footerMenu, legalMenu } from '@data/menu';
+import Logo from '@components/Logo.astro';
+import Button from '@components/ui/Button.astro';
+import { siteConfig } from '@data/config';
+
+interface ButtonProps {
+  text: string;
+  link: string;
+  target?: string;
+}
+
+interface Props {
+  footerCta?: {
+    title: string;
+    description: string;
+    hideCta: boolean;
+    button: ButtonProps;
+  };
+}
+
+const { footerCta } = Astro.props;
+
+const defaultCta = {
+  title: "Ready to get started?",
+  description: "Join us today and transform your digital presence with our innovative solutions.",
+  hideCta: false,
+  button: {
+    text: "Contact Us",
+    link: "/contact",
+    target: "_self"
+  }
+};
+
+const cta = footerCta || defaultCta;
+const currentYear = new Date().getFullYear();
+---
+
+<footer class={`bg-black text-white pb-small ${cta.hideCta ? 'pt-large' : ''}`}>
+  <div class="site-container mx-auto px-4">
+    {!cta.hideCta && (
+      <div class="text-center border-b border-background-light mb-12 py-small">
+        <h2 class="text-3xl font-bold mb-4" data-aos="fade-up">{cta.title}</h2>
+        <p class="text-white mb-6 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+          {cta.description}
+        </p>
+        <Button 
+          href={cta.button.link} 
+          variant="ghostLight"
+          size="lg"
+          data-aos="fade-up"
+          data-aos-delay="200"
+          {...(cta.button.target && { target: cta.button.target })}
+        >
+          {cta.button.text}
+        </Button>
+      </div>
+    )}
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-background-light">
+      <div class="col-span-1">
+        <Logo variant="footer" />
+        <p class="mt-4 text-white">
+          Empowering your digital journey with innovative solutions.
+        </p>
+      </div>
+      
+      <div class="col-span-1">
+        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+        <nav>
+          <ul class="space-y-2">
+            {footerMenu.map(item => (
+              <li><a href={item.link} class="text-body-dark hover:text-white transition-colors">{item.name}</a></li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="mt-8 flex flex-col md:flex-row justify-between items-center">
+      <div class="text-body-dark text-sm">
+        © {currentYear} {siteConfig.companyName}. All rights reserved.
+      </div>
+      
+      <nav class="mt-4 md:mt-0">
+        <ul class="flex flex-wrap gap-6">
+          {legalMenu.map(item => (
+            <li>
+              <a 
+                href={item.link} 
+                class="text-sm text-body-dark hover:text-white transition-colors"
+              >
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</footer>

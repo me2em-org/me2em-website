@@ -1,0 +1,33 @@
+---
+import { getEyebrowColor } from '@utils/styleUtils';
+import type { ThemeColor } from '@utils/styleUtils';
+
+export interface Props {
+    text: string;
+    background?: ThemeColor;
+    className?: string;
+    dataAos?: string;
+    dataAosDelay?: string;
+}
+
+const {
+    text,
+    background = 'base',
+    className = '',
+    dataAos = 'fade-up',
+    dataAosDelay
+} = Astro.props;
+
+const eyebrowColor = getEyebrowColor(background);
+---
+<div 
+    class:list={[
+        eyebrowColor, 
+        "font-medium mb-4 uppercase tracking-wider text-sm",
+        className
+    ]} 
+    data-aos={dataAos}
+    {...dataAosDelay && { 'data-aos-delay': dataAosDelay }}
+>
+    {text}
+</div> 
