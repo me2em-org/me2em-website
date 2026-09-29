@@ -1,100 +1,85 @@
 /**
  * Favicon generation — the SVG half.
  *
- * The brand mark is the first letter of the site name on a rounded square.
- * Historically it was emitted as an SVG `<text>` element relying on the
- * "Outfit" web font. Search-engine crawlers (and other renderers) do not load
- * external fonts, so the letter never drew and Google fell back to its default
- * globe icon in the SERP. The letter is outlined to a real vector `<path>`
- * against an embedded Outfit subset instead, so the SVG is self-contained.
+ * The brand mark is pure geometry on a 16-unit grid:
+ *   - a rounded-square badge (accent fill, rx = 3),
+ *   - the Identity square at the centre (4×4),
+ *   - four Handle dots in the corners (r = 1.5).
  *
- * This file imports nothing native, but it is still not workerd-safe: it
- * decodes the embedded font with `Buffer` and parses it with fontkit, neither
- * of which exists there without `nodejs_compat`. So it belongs in the build
- * hook alongside `raster.ts`, not in a route — as a route it emitted a 0-byte
- * favicon on Cloudflare while the build reported success.
+ * No edges are drawn: Me2em derivation is stateless — nothing is stored
+ * between an Identity and its Handles, the relationship is recomputed from
+ * the seed every time. The empty space is the protocol, not a missing graph.
  *
- * `sharp` still lives in `raster.ts` and must stay there. Keeping the halves
- * apart — with no barrel re-exporting both — is what stops a layout pulling a
- * native module into every page, which is how #600 happened.
+ * Invariants (BACKLOG BL-7):
+ * - rx = 3 exactly. The corner dots (centres at 3|13) sit concentric with
+ *   the badge's corner arcs, so the dot-to-edge gap stays even around the
+ *   arc. Moving rx without moving the dots breaks that.
+ * - All coordinates are integers or half-units; at 16 px the centre square
+ *   rasterises pixel-exact.
+ *
+ * There is no font path here — and must not be one. The previous monogram
+ * outlined a letter against an embedded font subset because crawlers do not
+ * load web fonts (Google SERP fell back to a globe). Geometry needs no font,
+ * so that failure mode is gone by construction. This file builds strings
+ * only and is safe in any runtime; the native half (sharp, ICO) stays
+ * quarantined in raster.ts — see the split note there (#600).
  */
-// fontkit ships no type declarations; declare the minimal surface we use.
-// @ts-expect-error - no types published for fontkit
-import * as fontkit from 'fontkit';
-import { OUTFIT_700_SUBSET_BASE64 } from './font-data.ts';
 
-interface Glyph {
-  bbox: { minX: number; minY: number; maxX: number; maxY: number };
-  path: { toSVG(): string };
-}
-interface Font {
-  hasGlyphForCodePoint(codePoint: number): boolean;
-  glyphForCodePoint(codePoint: number): Glyph;
-}
+const VIEW = 16;
+const FG = '#ffffff';
 
-// Parse the embedded font once and reuse across routes.
-let cachedFont: Font | null = null;
-function getFont(): Font {
-  if (!cachedFont) {
-    const buf = Buffer.from(OUTFIT_700_SUBSET_BASE64, 'base64');
-    cachedFont = (fontkit as { create(buf: Buffer): Font }).create(buf);
-  }
-  return cachedFont;
-}
-
-/** Fraction of the icon the glyph's bounding box should occupy. */
-const GLYPH_FILL = 0.6;
-/** Corner rounding as a fraction of the icon size. */
-const CORNER_RADIUS = 0.1667;
+/** Identity: the root, centre of the mark. */
+const IDENTITY = { x: 6, y: 6, s: 4 };
+/** Handles: four contexts, one per corner. */
+const HANDLES: Array<[number, number]> = [
+  [3, 3],
+  [13, 3],
+  [3, 13],
+  [13, 13],
+];
+const DOT_R = 1.5;
+/** Corner rounding. Must stay 3 — see invariants above. */
+const BADGE_RX = 3;
 
 /**
- * Build a self-contained favicon SVG: a rounded square filled with `bgColor`
- * and the outlined `letter` in `fgColor`, centred. Falls back to an empty
- * square if the embedded subset has no glyph for the character.
+ * Maskable safe-zone scale. Android crops maskable icons to a centred circle
+ * of radius 40% of the canvas (6.4 units here). Unscaled, the mark reaches
+ * 8.57 units (corner dot far edge) and would be clipped; scaled by 0.7 around
+ * the centre the farthest painted point is 6.0 — inside the zone.
  */
-export function buildFaviconSvg(
-  letter: string,
-  bgColor: string,
-  fgColor = '#ffffff',
-  size = 48
+const MASKABLE_SCALE = 0.7;
+
+/**
+ * Build the brand mark as a self-contained SVG string.
+ *
+ * `size` is written into width/height (the viewBox stays 16) so librsvg
+ * rasterises natively at the target resolution and sharp never upscales.
+ *
+ * @param size     rendered width/height in px
+ * @param accent   badge fill; callers pass THEME_COLOR
+ * @param maskable full-bleed variant (rx = 0, mark scaled into the safe zone)
+ */
+export function buildMarkSvg(
+  size: number,
+  accent: string,
+  { maskable = false }: { maskable?: boolean } = {}
 ): string {
-  const rx = (size * CORNER_RADIUS).toFixed(2);
-  const rect = `<rect width="${size}" height="${size}" rx="${rx}" fill="${bgColor}"/>`;
+  const badge = maskable
+    ? `<rect width="${VIEW}" height="${VIEW}" fill="${accent}"/>`
+    : `<rect width="${VIEW}" height="${VIEW}" rx="${BADGE_RX}" fill="${accent}"/>`;
 
-  const font = getFont();
-  const codePoint = letter.codePointAt(0);
-  if (codePoint === undefined || !font.hasGlyphForCodePoint(codePoint)) {
-    console.warn(
-      `[favicon] No embedded glyph for "${letter}". Emitting a plain square. ` +
-        `The embedded Outfit subset covers A-Z and 0-9; regenerate it if your ` +
-        `site name starts with a different character.`
-    );
-    return wrapSvg(size, rect);
-  }
+  const shapes = [
+    `<rect x="${IDENTITY.x}" y="${IDENTITY.y}" width="${IDENTITY.s}" height="${IDENTITY.s}" fill="${FG}"/>`,
+    ...HANDLES.map(([cx, cy]) => `<circle cx="${cx}" cy="${cy}" r="${DOT_R}" fill="${FG}"/>`),
+  ].join('');
 
-  const glyph = font.glyphForCodePoint(codePoint);
-  const { minX, minY, maxX, maxY } = glyph.bbox;
-  const bw = maxX - minX;
-  const bh = maxY - minY;
+  const inset = ((1 - MASKABLE_SCALE) * VIEW) / 2;
+  const mark = maskable
+    ? `<g transform="translate(${inset} ${inset}) scale(${MASKABLE_SCALE})">${shapes}</g>`
+    : shapes;
 
-  const target = size * GLYPH_FILL;
-  const scale = target / Math.max(bw, bh);
-  const scaledW = bw * scale;
-  const scaledH = bh * scale;
-
-  // Map font units (y-up, baseline at 0) into the SVG viewBox (y-down),
-  // centring the glyph's bounding box within the square.
-  const translateX = (size - scaledW) / 2 - minX * scale;
-  const translateY = maxY * scale + (size - scaledH) / 2;
-  const matrix = `matrix(${scale} 0 0 ${-scale} ${translateX} ${translateY})`;
-
-  const path = `<path transform="${matrix}" d="${glyph.path.toSVG()}" fill="${fgColor}"/>`;
-  return wrapSvg(size, rect + path);
-}
-
-function wrapSvg(size: number, inner: string): string {
   return (
-    `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" ` +
-    `xmlns="http://www.w3.org/2000/svg">${inner}</svg>`
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" ` +
+    `viewBox="0 0 ${VIEW} ${VIEW}">${badge}${mark}</svg>`
   );
 }

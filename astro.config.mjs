@@ -1,3 +1,4 @@
+//astro.config.mjs
 import { join, dirname } from 'node:path';
 import { writeFile, mkdir, readdir, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -7,9 +8,10 @@ import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
-import vercel from '@astrojs/vercel';
-import netlify from '@astrojs/netlify';
 import cloudflare from '@astrojs/cloudflare';
+import node from '@astrojs/node';
+import mermaid from 'astro-mermaid';
+
 import i18nConfig from './src/config/i18n.config.ts';
 import { SITE_URL_FALLBACK } from './src/config/site-url.ts';
 import {
@@ -20,29 +22,11 @@ import {
 } from './scripts/site-url-agreement.mjs';
 import { SITE_NAME, THEME_COLOR } from './src/config/branding.ts';
 
-/**
- * Load `.env` into `process.env` before anything below reads it.
- *
- * Astro loads `.env` files for `astro:env` and for `import.meta.env`, but this
- * file runs before any of that — Vite evaluates it as plain Node, where only
- * real environment variables exist. So `SITE_URL` in `.env` reached
- * `site.config.ts` and not `site` below, and a site configured the way
- * `.env.example` describes shipped canonical tags for the fallback domain
- * while its JSON-LD named the real one (#643).
- *
- * `.env.local` is loaded first on purpose. `process.loadEnvFile` does not
- * overwrite a variable that is already set, so whichever file is read first
- * wins — and Astro gives `.env.local` precedence over `.env`. Reading them in
- * this order matches that.
- *
- * Real environment variables are set before any of this runs, so they still
- * beat both files and a host's own configuration keeps precedence.
- *
- * Only these two: mode-specific files (`.env.production` and the like) would
- * need the mode, which Astro has not decided yet at this point. Anyone using
- * one of those still gets the mismatch — and `verifySiteUrl()` below stops the
- * build and says so, rather than letting it ship.
- */
+// Плагины для якорных ссылок в заголовках (для оглавления и шеринга частей статьи)
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+
+// Загрузка .env (как в оригинале)
 for (const file of ['.env.local', '.env']) {
   try {
     process.loadEnvFile(file);
@@ -52,34 +36,14 @@ for (const file of ['.env.local', '.env']) {
 }
 
 /**
- * Deploy-target adapter selection. Vercel is the default; set
- * `DEPLOY_TARGET=netlify` or `DEPLOY_TARGET=cloudflare` to build for those
- * platforms instead. All three keep `output: 'static'`, so every page is
- * prerendered and only the `prerender = false` API routes (the contact form
- * and newsletter) ship as the platform's serverless/edge function — on
- * Cloudflare Pages, as a Pages Function.
+ * Deploy-target adapter selection.
+ * Обновлено: Cloudflare Pages установлен как целевая платформа по умолчанию.
  */
-const deployTarget = process.env.DEPLOY_TARGET;
 function resolveAdapter() {
-  switch (deployTarget) {
-    case 'netlify':
-      return netlify();
-    case 'cloudflare':
-      return cloudflare();
-    default:
-      return vercel();
-  }
+  if (process.env.ASTRO_DEV) return node({ mode: 'middleware' });
+  return cloudflare(); // Всегда используем Cloudflare Pages
 }
 
-/**
- * Build-time check that the site knows its own address.
- *
- * With `SITE_URL` unset the build still succeeds, and every canonical tag,
- * `og:url`, `og:image`, RSS link and sitemap entry is written against the
- * placeholder above — pointing search engines and social crawlers at a domain
- * that isn't yours. Nothing in the output looks broken, so it survives to
- * production easily. Warn where it will be read: the build log.
- */
 function siteUrlCheck() {
   return {
     name: 'site-url-check',
@@ -96,16 +60,6 @@ function siteUrlCheck() {
   };
 }
 
-/**
- * Pagefind static search index, generated after every `astro build`.
- *
- * Runs in the `astro:build:done` hook so it indexes the *actual* output
- * directory — the Vercel adapter writes to `.vercel/output/static`, Netlify,
- * Cloudflare, and plain static builds to `dist/` — without the build command
- * needing to know which. The index is served from `/pagefind/` and loaded lazily by
- * `src/components/layout/SearchModal.astro`; `astro dev` has no index, and
- * the search modal explains that instead of erroring.
- */
 function pagefind() {
   return {
     name: 'pagefind',
@@ -124,80 +78,42 @@ function pagefind() {
   };
 }
 
-/**
- * Favicon PNG/ICO files, written after every `astro build`.
- *
- * These used to be prerendered endpoints under `src/pages/`. That worked on
- * Vercel and Netlify but broke on Cloudflare: `@astrojs/cloudflare` prerenders
- * routes inside workerd, and the renderer needs `sharp`, a native Node module
- * that cannot load there. Every favicon route failed with
- * `No such module "…/chunks/sharp"` and the build died — so Cloudflare users
- * got no site at all. Reported in #600.
- *
- * `astro:build:done` always runs in Node, whichever adapter is active, and
- * `dir` already points at that adapter's real output directory. So the same
- * files land in the same place on all three targets, with no native module
- * anywhere near a page.
- *
- * `favicon.svg` is written here too, rather than staying a route. It needs no
- * *native* module, so keeping it as a route looked safe — but `buildFaviconSvg`
- * decodes an embedded font subset with `Buffer` and parses it with fontkit,
- * and neither exists in workerd without `nodejs_compat`. As a route it emitted
- * a 0-byte file on Cloudflare while the build reported success. The cost is
- * that `astro dev` has no favicon, since build hooks do not run there.
- */
 function faviconAssets() {
-  const letter = SITE_NAME.charAt(0).toUpperCase();
-  const pngSizes = {
-    'favicon-32x32.png': 32,
-    'apple-touch-icon.png': 180,
-    'pwa-192x192.png': 192,
-    'pwa-512x512.png': 512,
-  };
+  const pngSizes = [
+    ['favicon-32x32.png', 32, false],
+    ['apple-touch-icon.png', 180, false],
+    ['pwa-192x192.png', 192, false],
+    ['pwa-512x512.png', 512, false],
+    ['pwa-192x192-maskable.png', 192, true],
+    ['pwa-512x512-maskable.png', 512, true],
+    ['logo.png', 512, false],
+  ];
 
   return {
     name: 'favicon-assets',
     hooks: {
       'astro:build:done': async ({ dir, logger }) => {
-        // Imported here rather than at the top of this file: a static import
-        // of the sharp-backed module makes pagefind's own dynamic import above
-        // fail with "Vite module runner has been closed" (#600).
-        const { buildFaviconSvg } = await import('./src/lib/favicon/svg.ts');
-        const { renderFaviconPng, renderFaviconIco } = await import('./src/lib/favicon/raster.ts');
+        const { buildMarkSvg } = await import('./src/lib/favicon/svg.ts');
+        const { renderMarkPng, renderFaviconIco } = await import('./src/lib/favicon/raster.ts');
         const out = fileURLToPath(dir);
 
-        await writeFile(join(out, 'favicon.svg'), buildFaviconSvg(letter, THEME_COLOR));
+        // The badge itself — also the Logo component's image
+        // (site.config → branding.logo.image). One source for all of it.
+        await writeFile(join(out, 'favicon.svg'), buildMarkSvg(16, THEME_COLOR));
+        await writeFile(join(out, 'logo.svg'), buildMarkSvg(16, THEME_COLOR));
+        await writeFile(join(out, 'logo-maskable.svg'), buildMarkSvg(16, THEME_COLOR, { maskable: true }));
 
-        for (const [name, size] of Object.entries(pngSizes)) {
-          await writeFile(join(out, name), await renderFaviconPng(letter, THEME_COLOR, size));
+        for (const [name, size, maskable] of pngSizes) {
+          await writeFile(join(out, name), await renderMarkPng(size, THEME_COLOR, { maskable }));
         }
-        await writeFile(join(out, 'favicon.ico'), await renderFaviconIco(letter, THEME_COLOR));
+        await writeFile(join(out, 'favicon.ico'), await renderFaviconIco(THEME_COLOR));
 
-        logger.info(`wrote ${Object.keys(pngSizes).length + 2} favicon files to ${out}`);
+        logger.info(`wrote ${pngSizes.length + 3} favicon files to ${out}`);
       },
     },
   };
 }
 
-/**
- * OG share cards, drawn after every `astro build`.
- *
- * These used to be prerendered endpoints under `src/pages/og/`, and they hit
- * the same wall as the favicons in #600: rasterising needs `sharp`, which
- * cannot load in the workerd runtime the Cloudflare adapter prerenders in.
- * Worse than the favicons, `src/lib/og.ts` also held the `getBlogOgPath`
- * helpers that `BlogLayout` and `ProjectLayout` import — so `sharp` was
- * reachable from every blog and project page, not just from the card routes.
- * The library is split in two now: `og/svg.ts` is safe anywhere, `og/raster.ts`
- * is Node-only and reached only from here.
- *
- * Rather than re-deriving which cards to draw from the content collections —
- * which this file cannot read — the hook scans the built HTML for the
- * `og:image` each page declares, and draws exactly those. Cards therefore
- * match what the pages ask for by construction, and a page using its own cover
- * photo silently produces no card, which is correct. Title and subtitle come
- * from the same page's `og:title` and `og:description`.
- */
 function ogCards() {
   const KINDS = [
     [/^\/og\/blog\/tag\//, 'BLOG'],
@@ -230,8 +146,6 @@ function ogCards() {
         const siteUrl = process.env.SITE_URL || SITE_URL_FALLBACK;
         const domain = new URL(siteUrl).host;
 
-        // Collect one entry per distinct card path; several pages can point at
-        // the same card (the default one, most obviously).
         const wanted = new Map();
         for (const file of await htmlFiles(out)) {
           const html = await readFile(file, 'utf8');
@@ -269,29 +183,6 @@ function ogCards() {
   };
 }
 
-/**
- * Stops a build whose pages disagree about the site's own address.
- *
- * The address is read from two places that cannot share code: `site` here,
- * from `process.env`, which writes the canonical tags, the sitemap, the RSS
- * links and robots.txt; and `url` in `src/config/site.config.ts`, from
- * `astro:env/server`, which writes the JSON-LD, the share cards and the
- * footer. See `scripts/site-url-agreement.mjs` for why neither can do the
- * other's job.
- *
- * They do not read the same places. `astro:env` loads `.env` files and this
- * file does not, so a user who follows `.env.example` and sets SITE_URL in
- * `.env` configures one of the two. Their pages then carry canonical tags for
- * the fallback domain and JSON-LD for their own (#643).
- *
- * This runs in `astro:build:done` rather than in `scripts/verify-build.mjs`,
- * where the theme's other output checks live, because that script runs on
- * `pnpm verify` and a deploy runs `astro build`. A misconfiguration that only
- * a local audit catches is one that reaches production.
- *
- * One page is enough: both values are global, so if they agree anywhere they
- * agree everywhere.
- */
 function verifySiteUrl() {
   return {
     name: 'verify-site-url',
@@ -309,8 +200,6 @@ function verifySiteUrl() {
           return found;
         }
 
-        // index.html first: it is the page most likely to carry both, and
-        // finding it there avoids reading the rest of the site.
         const pages = await htmlFiles(root);
         pages.sort((a, b) => Number(b.endsWith('index.html')) - Number(a.endsWith('index.html')));
 
@@ -318,7 +207,7 @@ function verifySiteUrl() {
           const html = await readFile(page, 'utf8');
           const canonical = canonicalOf(html);
           const jsonLd = jsonLdUrlOf(html);
-          if (!canonical || !jsonLd) continue; // proves nothing either way
+          if (!canonical || !jsonLd) continue;
 
           const found = siteUrlDisagreement(html);
           if (found) throw new Error(disagreementMessage(page.replace(`${root}`, ''), found));
@@ -333,12 +222,6 @@ function verifySiteUrl() {
   };
 }
 
-/**
- * Native Astro i18n is only wired up when the user opts in *and* has
- * more than one locale configured. With i18n off (the default) this
- * block is undefined and the build emits the exact same routes as
- * before — no /en/ prefix, no extra pages.
- */
 const i18nEnabled = i18nConfig.enabled === true && i18nConfig.locales.length > 1;
 const astroI18nOptions = i18nEnabled
   ? {
@@ -355,11 +238,9 @@ export default defineConfig({
   output: 'static',
   adapter: resolveAdapter(),
   site: process.env.SITE_URL || SITE_URL_FALLBACK,
+  trailingSlash: 'never', // Оптимально для SEO, предотвращает дублирование URL со слэшем и без
   ...(astroI18nOptions ? { i18n: astroI18nOptions } : {}),
 
-  // Astro 7 changed the default to 'jsx', which strips whitespace between
-  // inline elements (React-style). Pin to `true` to keep this theme's v6
-  // rendering — significant whitespace between inline tags is preserved.
   compressHTML: true,
 
   build: {
@@ -371,8 +252,6 @@ export default defineConfig({
       SITE_URL: envField.string({ context: 'server', access: 'public', optional: true }),
       PUBLIC_GA_MEASUREMENT_ID: envField.string({ context: 'client', access: 'public', optional: true }),
       PUBLIC_GTM_ID: envField.string({ context: 'client', access: 'public', optional: true }),
-      // Umami — privacy-friendly, cookieless analytics. Set the website ID to
-      // enable it; the src defaults to Umami Cloud, override it when self-hosting.
       PUBLIC_UMAMI_WEBSITE_ID: envField.string({ context: 'client', access: 'public', optional: true }),
       PUBLIC_UMAMI_SRC: envField.string({
         context: 'client',
@@ -394,9 +273,14 @@ export default defineConfig({
 
   image: {
     layout: 'constrained',
+    // domains: ['ваш-бакет.tebi.io'], // Раскомментируйте и добавьте ваш домен Tebi, если используете внешние картинки в <Image />
   },
 
   integrations: [
+    mermaid({
+      autoTheme: true,
+      enableLog: false,
+    }),
     react(),
     mdx(),
     sitemap(),
@@ -421,6 +305,13 @@ export default defineConfig({
       theme: 'github-dark',
       wrap: true,
     },
+    // Добавлено для поддержки якорных ссылок и оглавления в блоге
+    rehypePlugins: [
+      rehypeSlug,
+      [rehypeAutolinkHeadings, { 
+        behavior: 'wrap', 
+        properties: { class: 'heading-anchor' } 
+      }],
+    ],
   },
-
 });

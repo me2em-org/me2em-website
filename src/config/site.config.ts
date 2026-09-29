@@ -1,3 +1,4 @@
+// site.config.ts
 import { SITE_URL, GOOGLE_SITE_VERIFICATION, BING_SITE_VERIFICATION } from 'astro:env/server';
 import i18nConfig, { type I18nConfig } from './i18n.config';
 import { SITE_URL_FALLBACK } from './site-url';
@@ -283,9 +284,9 @@ const siteConfig: SiteConfig = {
   },
   socialLinks: [
     'https://github.com/hansmartensdev',
-    'https://x.com/hansmartens_dev',
-    'https://www.linkedin.com/in/hansmartensdev',
-    'https://bsky.app/profile/hansmartensdev.bsky.social',
+    // 'https://x.com/hansmartens_dev',
+    // 'https://www.linkedin.com/in/hansmartensdev',
+    // 'https://bsky.app/profile/hansmartensdev.bsky.social',
   ],
   header: {
     // Flip to `true` to show the social icons (incl. GitHub) in the header.
@@ -308,7 +309,7 @@ const siteConfig: SiteConfig = {
     toc: {
       enabled: true,
       layout: 'auto',
-      sidebarPosition: 'right',
+      sidebarPosition: 'left',
       minHeadings: 3,
       maxDepth: 3,
     },
@@ -369,12 +370,16 @@ const siteConfig: SiteConfig = {
     perPage: 12,
     tagCloudLimit: 10,
   },
-  i18n: i18nConfig,
+  i18n: {
+    enabled: true,
+    defaultLocale: 'en',
+    locales: ['en', 'ru', 'zh'],
+  },
   branding: {
     logo: {
-      alt: 'Astro Rocket',
+      alt: 'Me2em',
       // image: '/logo.svg', // Optional: set to a file in public/ to use a custom logo image instead of the letter monogram.
-      imageUrl: '/favicon.svg',
+      imageUrl: '/logo.png',
     },
     favicon: {
       svg: '/favicon.svg',

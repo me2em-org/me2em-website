@@ -9,27 +9,20 @@
  */
 import sharp from 'sharp';
 import pngToIco from 'png-to-ico';
-import { buildFaviconSvg } from './svg.ts';
+import { buildMarkSvg } from './svg.ts';
 
-/** Rasterise the favicon SVG to a square PNG buffer of the given pixel size. */
-export async function renderFaviconPng(
-  letter: string,
-  bgColor: string,
+/** Rasterise the brand mark to a square PNG buffer of the given pixel size. */
+export async function renderMarkPng(
   size: number,
-  fgColor = '#ffffff'
+  accent: string,
+  { maskable = false }: { maskable?: boolean } = {}
 ): Promise<Buffer> {
-  const svg = buildFaviconSvg(letter, bgColor, fgColor, size);
+  const svg = buildMarkSvg(size, accent, { maskable });
   return sharp(Buffer.from(svg)).resize(size, size).png().toBuffer();
 }
 
-/** Build a multi-size favicon.ico (16/32/48) from the outlined SVG. */
-export async function renderFaviconIco(
-  letter: string,
-  bgColor: string,
-  fgColor = '#ffffff'
-): Promise<Buffer> {
-  const pngs = await Promise.all(
-    [16, 32, 48].map((s) => renderFaviconPng(letter, bgColor, s, fgColor))
-  );
+/** Build a multi-size favicon.ico (16/32/48) from the brand mark. */
+export async function renderFaviconIco(accent: string): Promise<Buffer> {
+  const pngs = await Promise.all([16, 32, 48].map((s) => renderMarkPng(s, accent)));
   return pngToIco(pngs);
 }
