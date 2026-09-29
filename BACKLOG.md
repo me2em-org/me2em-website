@@ -1,4 +1,17 @@
-BL-1 
+BL-1 - Done - 
+Important Details
+Project: astro-rocket (Me2em website) at /home/selub/Documents/progs/me2em-website.
+Environment: Node 24.18.0 (default via nvm), pnpm v10.33.0, Astro 7.3.1, Vite 8.3.0.
+Dev Server Fix: @cloudflare/vite-plugin uses require() in workers, which fails in Node 24 ESM context. Solved by switching to @astrojs/node adapter (mode: 'middleware') during development.
+i18n Configuration: src/config/i18n.config.ts enabled was false; updated to true to activate language switching.
+
+BL-2 - Done -
+Сборка прошла успешно. Созданы два новых файла i18n:
+src/i18n/ru.json — русский перевод, полная копия структуры en.json
+src/i18n/zh.json — китайский перевод, полная копия структуры en.json
+Языки ru и zh уже настроены в src/config/i18n.config.ts (локали: ['en', 'ru', 'zh']), поэтому эти два языка будут загружены автоматически. Проверка сборки пройдена; сайт сгенерировал маршруты /ru/* и /zh/*.
+
+BL-3 - Delayed -
 Очисти:
 ❯ grep -ri "hansmartensdev\|astro-rocket" src/ astro.config.mjs package.json
 # Ожидание: пусто (упоминания в README донора — удаляются вместе с заменой)
@@ -114,3 +127,4 @@ package.json:    "url": "https://github.com/hansmartensdev/astro-rocket"
 package.json:  "homepage": "https://github.com/hansmartensdev/astro-rocket#readme",
 package.json:    "url": "https://github.com/hansmartensdev/astro-rocket/issues"
 
+BL-4 
