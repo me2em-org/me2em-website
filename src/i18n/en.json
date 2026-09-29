@@ -15,8 +15,8 @@
     "sectionConnect": "Connect",
     "items": {
       "home": "Home",
-      "services": "Services",
-      "projects": "Projects",
+      "services": "Docs",
+      "projects": "Use cases",
       "blog": "Blog",
       "about": "About",
       "contact": "Contact"
@@ -68,13 +68,13 @@
     "shareOn": "Share on {platform}",
     "copyLink": "Copy link",
     "metaTitle": "Blog",
-    "metaDescription": "The Astro Rocket blog: practical guides to setting up, configuring, and building with the theme.",
+    "metaDescription": "The Me2em blog: protocol deep dives, security notes, and practical guides to building on seed-derived identity.",
     "heroBadge": "All posts",
-    "heroDescription": "Everything you need to know about Astro\u00a0Rocket, explained in practical guides.",
+    "heroDescription": "Protocol deep dives, tutorials, and architecture notes — everything you need to build on Me2em.",
     "allPosts": "All posts",
     "noPosts": "No posts found",
     "pageMetaTitle": "Blog — Page {page}",
-    "pageMetaDescription": "Page {page} of {total} — practical guides to setting up, configuring, and building with Astro Rocket.",
+    "pageMetaDescription": "Page {page} of {total} — protocol deep dives, tutorials, and architecture notes from the Me2em blog.",
     "pageBadge": "Page {page} of {total}",
     "newestPosts": "Newest posts",
     "tagMetaTitle": "#{tag} — Blog",
@@ -92,7 +92,7 @@
     "rssFeed": "RSS Feed",
     "cta": {
       "heading": "Ready to build?",
-      "description": "Clone Astro Rocket, pick a theme, and launch your next project in minutes.",
+      "description": "Install a package, follow the quick start, and verify your first stateless session in minutes.",
       "button": "Get Started"
     }
   },
@@ -102,11 +102,11 @@
     "requiresJs": "Comments require JavaScript to load."
   },
   "projects": {
-    "title": "Projects",
-    "description": "Things I've built",
+    "title": "Use cases",
+    "description": "Three documented scenarios — people, IoT, AI agents.",
     "viewProject": "View project",
     "viewSource": "View source",
-    "noProjectsFound": "No projects found.",
+    "noProjectsFound": "No Use cases found.",
     "carouselChooseSlide": "Choose slide",
     "carouselNextSlide": "Next slide",
     "carouselPreviousSlide": "Previous slide",
@@ -114,28 +114,28 @@
     "galleryClose": "Close lightbox",
     "galleryNextImage": "Next image",
     "galleryPreviousImage": "Previous image",
-    "metaTitle": "Projects",
-    "metaDescription": "Selected work — websites, tools, and open-source projects built by Astro Rocket.",
-    "heroBadge": "Selected work",
-    "heroDescription": "Work I'm most proud of.",
-    "allProjects": "All projects",
-    "pageMetaTitle": "Projects — Page {page}",
-    "pageMetaDescription": "Page {page} of {total} — selected work, tools, and open-source projects by Astro Rocket.",
+    "metaTitle": "Use cases",
+    "metaDescription": "Documented scenarios on the Me2em protocol — AI agent delegation, IoT hierarchies, and multi-context identity.",
+    "heroBadge": "Use cases",
+    "heroDescription": "The same primitives, read through different domains.",
+    "allProjects": "All use cases",
+    "pageMetaTitle": "Use cases — Page {page}",
+    "pageMetaDescription": "Page {page} of {total} — selected use cases by Me2eM.",
     "pageBadge": "Page {page} of {total}",
-    "tagMetaTitle": "#{tag} — Projects",
+    "tagMetaTitle": "#{tag} — Use cases",
     "tagMetaDescription": "Projects tagged \"{tag}\".",
     "tagBadge": "Tag",
-    "tagCountOne": "{count} project tagged \"{tag}\".",
-    "tagCountOther": "{count} projects tagged \"{tag}\".",
+    "tagCountOne": "{count} use case tagged \"{tag}\".",
+    "tagCountOther": "{count} use cases tagged \"{tag}\".",
     "tagEmpty": "No projects found for this tag.",
-    "tagBackToAll": "Back to all projects",
-    "backToProjects": "Back to Projects",
-    "moreProjects": "More projects",
-    "ctaBadge": "Let's talk",
-    "ctaHeading": "Let's talk about what you need",
-    "ctaLead": "Every website I build is its own custom design, made with the care you see here. Tell me what you have in mind.",
-    "ctaPrimary": "Send a message",
-    "ctaSecondary": "More about me",
+    "tagBackToAll": "Back to all use cases",
+    "backToProjects": "Back to Use cases",
+    "moreProjects": "More use cases",
+    "ctaBadge": "Start building",
+    "ctaHeading": "Build this on Me2em",
+    "ctaLead": "Every scenario here runs on the same three packages. Follow a quick start and issue your first Handle-backed session in minutes.",
+    "ctaPrimary": "Read the docs",
+    "ctaSecondary": "View on GitHub",
     "closingHeading": "Have a project in mind?",
     "closingLead": "Whether it's a new build or something that needs a fresh perspective — I'd love to hear about it."
   },
@@ -159,10 +159,10 @@
     "backHome": "Back to home",
     "browseBlog": "Browse the blog",
     "tryInstead": "Try one of these instead",
-    "projectsDesc": "Selected work and case studies.",
-    "blogDesc": "Notes on design, code, and the craft.",
+    "projectsDesc": "Documented scenarios — AI agents, IoT devices, identities.",
+    "blogDesc": "Protocol deep dives, tutorials, and architecture notes.",
     "contactTitle": "Contact",
-    "contactDesc": "Start a conversation about your project."
+    "contactDesc": "Questions, feedback, and security reports."
   },
   "newsletter": {
     "heading": "Subscribe to the newsletter",
@@ -203,7 +203,7 @@
     "swatchLabel": "{name} theme"
   },
   "search": {
-    "placeholder": "Search posts, projects, and pages…",
+    "placeholder": "Search posts, use cases, and pages…",
     "inputLabel": "Search query",
     "resultsLabel": "Search results",
     "hint": "Start typing to search the site.",
@@ -355,157 +355,102 @@
     },
     "services": {
       "meta": {
-        "title": "Services — Web Design, Development & Optimisation",
-        "description": "Freelance web design, development, and optimisation: sleek, lightning-fast custom Astro websites. A free first talk, one clear proposal, one fixed price."
+        "title": "Documentation — Me2em",
+        "description": "API references, guides, a glossary, and quick starts for @me2em/core, @me2em/crypto, and @me2em/react."
       },
       "includedLabel": "What you get",
       "hero": {
-        "badge": "Services",
-        "titleLead": "Web design, development,",
-        "titleHighlight": "and optimisation",
-        "description": "Three services, one product: a sleek, lightning-fast custom Astro website you're proud to put your name on.",
-        "jumpLabels": ["Web design", "Web development", "Web optimisation"]
+        "badge": "Documentation",
+        "titleLead": "Everything you need",
+        "titleHighlight": "to build on Me2em",
+        "description": "API references for all packages, a glossary, quick starts, and guides — from first seed phrase to a verified session.",
+        "jumpLabels": ["@me2em/core","@me2em/crypto","@me2em/react"]
       },
       "design": {
-        "badge": "Design",
-        "heading": "Web design",
-        "paragraphs": [
-          "Web design is how your website looks and feels: the layout, the colours, the images, and the way visitors find their way around.",
-          "I design every website around your business — your brand, your content, and the customers you want to reach — so it makes a strong first impression and guides people straight to what matters. Clean, modern, and made to work on every screen, from a desktop monitor to a phone."
-        ],
-        "included": [
-          {
-            "lead": "A design that's yours",
-            "text": "shaped around your business, your brand, and the customers you want to reach."
-          },
-          {
-            "lead": "A strong first impression",
-            "text": "a clean, modern look that shows people who you are the moment your page opens."
-          },
-          {
-            "lead": "Clear navigation",
-            "text": "a layout that guides visitors straight to what matters to them."
-          },
-          {
-            "lead": "A design for every screen",
-            "text": "looks and works beautifully on phone, tablet, and desktop."
-          },
-          {
-            "lead": "Your content at its best",
-            "text": "your words and images given a layout that makes them easy to read and good to look at."
-          }
-        ],
-        "ctaLabel": "Discuss a design project"
+        "badge": "@me2em/core",
+        "heading": "Core entities",
+      "paragraphs": [
+        "The core of the protocol: a root Identity derived from a seed phrase, contextual Handles, and stateless signed sessions.",
+        "Nothing here is stored or looked up: a server verifies a session with one signature check, and a third party verifies delegated access using only your root public key. Attestation chains carry audiences, scopes and TTL caps enforced at verification time — trust can be delegated, and revoked, without sharing a private key."
+      ],
+    "included": [
+      { "lead": "A seed-derived Identity", "text": "from 32 bytes or a 12/24-word phrase — constant forever, stored nowhere." },
+      { "lead": "Isolated Handles", "text": "a separate Ed25519 keypair per context; compromising one reveals nothing about the others." },
+      { "lead": "Attestation chains", "text": "parent-signed grants with audiences, scopes and TTL caps, verified offline by any third party." },
+      { "lead": "Stateless sessions", "text": "verifyStateless for your backend, verifyAttested for partners — with instant branch revocation." },
+      { "lead": "Derivations built in", "text": "deterministic passwords, channel keys and X25519 shared secrets, plus BIP39 passphrase support." }
+    ],
+    "ctaLabel": "Read the core guide"
       },
       "development": {
-        "badge": "Development",
-        "heading": "Web development",
-        "paragraphs": [
-          "Web development is the building of your website: turning the design into the code that runs in your visitor's browser.",
-          "I build with Astro, a modern framework trusted for some of the fastest websites online. That makes your site quick to load, safe, and easy to look after for years to come. And it's yours from day one, with the code, the domain, and the hosting all in your name."
-        ],
-        "included": [
-          {
-            "lead": "A lightning-fast website",
-            "text": "built with Astro, the framework behind some of the fastest websites online."
-          },
-          {
-            "lead": "A secure, reliable website",
-            "text": "one that stays safe and keeps working, year after year."
-          },
-          {
-            "lead": "Full ownership",
-            "text": "the code, the domain, and the hosting all in your name from day one."
-          },
-          {
-            "lead": "Care after launch",
-            "text": "your website kept updated and secure with the monthly care plan, while you run your business."
-          },
-          {
-            "lead": "Room to grow",
-            "text": "space to add new pages and features whenever your business needs them."
-          }
-        ],
-        "ctaLabel": "See recent projects"
+        "badge": "@me2em/crypto",
+      "heading": "End-to-end encryption",
+      "paragraphs": [
+        "Protocol cryptography for real communication: canonical Signal X3DH, long-lived encrypted channels, and envelopes for recipients who are offline.",
+        "Channels derive a fresh key for every message and rotate epochs, so what was encrypted stays sealed even if a key leaks later. Pre-keys make asynchronous delivery work: you can encrypt for someone who hasn't been online for days. Underneath sit audited primitives — HKDF, X25519, AES-256-GCM — with Argon2id protecting passwords at the edges."
+      ],
+      "included": [
+        { "lead": "Canonical X3DH", "text": "Signal's key agreement with mandatory one-time pre-keys — no zero-fallback, MITM-resistant." },
+        { "lead": "Channels with forward secrecy", "text": "per-message keys, strictly-increasing replay protection, epoch rotation at defined points." },
+        { "lead": "Envelopes for the offline", "text": "X3DH-wrapped keys reach recipients who haven't been online; every envelope is self-contained." },
+        { "lead": "Argon2id password hardening", "text": "named profiles for interactive and sensitive use, strength checks and HIBP breach lookup." },
+        { "lead": "Verified primitives", "text": "HKDF against RFC 5869 test vectors, X25519, AES-256-GCM, secure key wipe." }
+      ],
+      "ctaLabel": "Explore the crypto guide"
       },
       "performance": {
-        "badge": "Optimisation",
-        "heading": "Web optimisation",
-        "paragraphs": [
-          "Web optimisation is the work that makes your website perform: loading quickly, ranking well in search, and working for everyone.",
-          "I build speed, SEO, and accessibility in from the very first line, not as an afterthought. That means your website is easy for Google to find and understand, opens fast for every visitor, and can be used by everyone who lands on it."
-        ],
-        "included": [
-          {
-            "lead": "A website Google and AI can find",
-            "text": "built so search engines and AI assistants can read, understand, and recommend your pages."
-          },
-          {
-            "lead": "Speed on every device",
-            "text": "pages that stay quick, even on a phone or a slower connection."
-          },
-          {
-            "lead": "A website for everyone",
-            "text": "accessible for every visitor, whatever their device or ability."
-          },
-          {
-            "lead": "High performance scores",
-            "text": "strong marks on Google's own speed and quality checks (Lighthouse)."
-          },
-          {
-            "lead": "Optimisation from day one",
-            "text": "speed, SEO, and accessibility built in from the very first line."
-          }
-        ],
-        "ctaLabel": "Start a project"
+        "badge": "@me2em/react",
+      "heading": "React SDK",
+      "paragraphs": [
+        "React bindings that turn the protocol into product UI: identity hooks, seed-phrase screens, self-renewing sessions.",
+        "The seed phrase is the one secret users must never lose — so its UX is part of the security model. Words are shown once, verified by an order grid, validated word by word on import. Derived keys persist only as non-extractable CryptoKeys, isolated per identity. A headless layer keeps every state machine framework-agnostic — the future @me2em/sdk."
+      ],
+      "included": [
+        { "lead": "Identity hooks", "text": "useCreateIdentity, useImportSeed, useHandle, useSubHandle — the full identity lifecycle." },
+        { "lead": "Seed UX that prevents disasters", "text": "show-once display, single copy, order-verification grid, per-word import validation." },
+        { "lead": "Sessions that renew themselves", "text": "useSession tracks expiry and auto-renews at half-life." },
+        { "lead": "Encrypted context cache", "text": "per-identity IndexedDB isolation with non-extractable persisted CryptoKeys." },
+        { "lead": "Headless layer", "text": "framework-agnostic state machines with zero React imports." }
+      ],
+      "ctaLabel": "Try the React SDK"
       },
-      "process": {
-        "badge": "How it works",
-        "heading": "How a project runs",
-        "lead": "From your first message to a live website.",
-        "steps": [
-          { "title": "First contact", "description": "You send a message through the contact form. I reply within a working day, and we plan a free, informational talk about what you need. No obligations." },
-          { "title": "Proposal", "description": "After our talk you get one clear document: what I'll build, when it's ready, and the fixed price. You decide with everything on the table." },
-          { "title": "Design & build", "description": "I work in short cycles. You follow the progress on a staging link, and you see your website take shape." },
-          { "title": "Launch & support", "description": "Your website goes live on your own domain and hosting, in your name. Afterwards I stay reachable, and there's a monthly care plan if you want regular updates." }
-        ]
-      },
-      "faq": {
-        "badge": "Questions",
-        "heading": "Questions and answers",
-        "lead": "The things clients ask before we start.",
-        "cards": [
-          {
-            "icon": "tag",
-            "title": "Before we start",
-            "items": [
-              { "question": "What does a website cost?", "answer": "Every project gets one fixed price, agreed before we start. No hourly billing, no surprises afterwards. The free talk — and the free check, if there's already a website — tells me what your project needs, and you get the price in one clear proposal." },
-              { "question": "How long does a project take?", "answer": "That depends on the size of the website. The proposal names the timeline together with the price, so you know both before we start." },
-              { "question": "What happens with my current website?", "answer": "It stays online until the new one is ready. Your content, your web address, and your Google rankings come along. I check your current website before our first talk, so you get clear answers from the start." },
-              { "question": "Do I need to arrange hosting or a domain?", "answer": "No. I set up the hosting and the domain for you, in your own name. If you already have a domain, we simply keep it." },
-              { "question": "Do we need to meet in person?", "answer": "It's not needed. Most projects run entirely by phone, video, and email. I work with clients worldwide, and time zones are rarely a problem." }
-            ]
-          },
-          {
-            "icon": "user",
-            "title": "Working with me",
-            "items": [
-              { "question": "Are you a company or agency?", "answer": "I'm a one-person business: a freelancer, not an agency. You work directly with the person doing the work, from the first talk to the finished website. No sales team, no account managers, no handoffs." },
-              { "question": "Can I change the website myself after launch?", "answer": "You can simply send me your changes, and the monthly care plan exists exactly for that. If you want to edit the website yourself, say so in the first talk and I set the site up for it." },
-              { "question": "Do you also build webshops?", "answer": "No. Big online shops are the one thing I don't build. Everything else that needs a custom Astro website, I build: tell me in the first talk what you have in mind, and I'll be honest about whether I'm the right builder for it." },
-              { "question": "Is the website really mine?", "answer": "Completely. The domain, the hosting, and the code are in your name from day one. If you ever want to move on, you take everything with you: you're never locked in." },
-              { "question": "What happens if something breaks after launch?", "answer": "Very little can break: the website has no plugins and no database to fail. And I stay reachable after launch; for regular updates and monitoring there is the monthly care plan." }
-            ]
-          }
-        ]
-      },
-      "cta": {
-        "badge": "Let's talk",
-        "heading": "Let's talk about what you need",
-        "description": "The first talk is free and informative, with no obligations: by phone, video, or email. You get honest answers, and after the talk one clear proposal with a timeline and a fixed price.",
-        "primary": "Send a message",
-        "secondary": "More about me"
-      }
+"process": {
+  "badge": "How it works",
+  "heading": "From seed to verified session",
+  "lead": "Four steps — the same in every scenario, from a messenger to a charging network.",
+  "steps": [
+    { "title": "Write the seed", "description": "12 or 24 BIP39 words on paper. The only permanent carrier of identity — never transmitted, never stored." },
+    { "title": "Derive the root", "description": "The Identity is computed locally by HKDF. Handles for each context — work, personal, devices — derive offline from it." },
+    { "title": "Delegate & sign", "description": "Attestation chains grant scoped, time-boxed access to devices, partners, and AI agents. Sessions are stateless signed tokens." },
+    { "title": "Verify & revoke", "description": "Any third party verifies with the root public key alone. One revoked jti disables an entire branch — instantly." }
+  ]
+},
+"faq": {
+  "badge": "Good to know",
+  "heading": "Frequently asked questions",
+  "lead": "The questions that come up before the first derivation.",
+  "cards": [
+    { "icon": "shield-check", "title": "The protocol", "items": [
+      { "question": "Do I need to register anywhere?", "answer": "No. An Identity is derived from your seed phrase on your device. There is no account to create — and no database that could leak it." },
+      { "question": "What happens if I lose my seed phrase?", "answer": "The identity is unrecoverable — by design. The seed is the only permanent carrier of identity; there is no reset link because there is nothing on a server to reset." },
+      { "question": "Is Me2em a blockchain?", "answer": "No. Derivation and verification are pure cryptography — Ed25519 and HKDF — offline, with no network and no consensus. A session verifies in about a millisecond." },
+      { "question": "Is it production-ready?", "answer": "The packages are alpha (core 0.7, crypto 0.1, react 0.1), moving toward a v1.0 API freeze. Fine for evaluation and prototypes today; pin versions and expect changes in production." }
+    ]},
+    { "icon": "code-2", "title": "Building on it", "items": [
+      { "question": "Which verification mode should I use?", "answer": "verifyStateless for backends you control — they already hold the root key. verifyAttested for anyone else: grants are enforced at verification time, with the root public key only." },
+      { "question": "How deep can the hierarchy go?", "answer": "Identity → Handle → SubHandle, where SubHandle is the leaf (MAX_DEPTH = 2). A device derives its own SubHandles and child attestations — fully offline." },
+      { "question": "Can I revoke a device or an AI agent?", "answer": "Yes. Revoking one attestation jti disables the entire branch — current and future sessions — on every verifier that checks revocations." },
+      { "question": "Where do I report a vulnerability?", "answer": "See SECURITY.md in the me2em-protocol repository — responsible disclosure, with credit." }
+    ]}
+  ]
+},
+"cta": {
+  "badge": "Get started",
+  "heading": "Your first session in minutes",
+  "description": "Install a package, derive a Handle, and verify a stateless session — the quick start runs across all three packages.",
+  "primary": "Open the quick start",
+  "secondary": "View on GitHub"
+}
     },
     "contact": {
       "meta": {
@@ -514,97 +459,105 @@
       },
       "hero": {
         "badge": "Start a project",
-        "titleLead": "Tell me about your",
-        "titleHighlight": "new project",
-        "description": "I'd love to hear from you. Send a message with the form below, or reach out on one of the other channels below."
+        "titleLead": "Talk to the",
+        "titleHighlight": "Me2em team",
+        "description": "Questions about the protocol, integration help, or a security report — tell us what you need and we'll get back to you."
       },
-      "formTitle": "Project details",
-      "channelsTitle": "Other channels",
-      "channelsSubtitle": "Prefer a direct channel? Pick whichever works best.",
+      "formTitle": "Send a message",
+      "channelsTitle": "Prefer a direct channel? Pick whichever works.",
+      "channelsSubtitle": "Questions about the protocol, integration help, or a security report — tell us what you need and we'll get back to you.",
       "emailLabel": "Email",
       "emailNote": "Drop us a line",
-      "socialNote": "Follow along",
-      "basedIn": "Based in {country}"
+      "socialNote": "Contact",
+      "basedIn": "Talk to the Me2em team"
     },
     "home": {
       "meta": {
-        "title": "Free open-source Astro 7 theme",
-        "description": "A free, fast Astro 7 starter theme to build anything on: 44 designed components, 8 colour themes, dark mode, and built-in i18n."
+        "title": "Me2em — Seed-Derived Identity Protocol",
+        "description": "One seed phrase, many isolated Handles, stateless sessions and delegatable trust. A decentralized identity protocol on Ed25519 — with no user database to leak."
       },
       "hero": {
-        "badge": "Available for new projects",
-        "titleLine1": "Astro Rocket —",
-        "titleLine2": "Web Designer",
-        "titleLine3": "& Developer",
-        "description": "A free, lightning-fast Astro 7 starter theme to build anything on: 44 designed components, 8 colour themes, and dark mode.",
-        "descriptionMobile": "A free, lightning-fast Astro 7 starter theme to build anything on: 44 designed components and 8 colour themes.",
-        "github": "Get it on GitHub",
+        "badge": "Open source · Apache-2.0",
+        "titleLine1": "Me2eM",
+        "titleLine2": "identity protocol.",
+        "titleLine3": "One Identity → Many Handles → Stateless Sessions",
+        "description": "A decentralized, seed-derived identity and authorization protocol built on Ed25519 — for people, IoT fleets and AI agents. No user database, no personal data to leak.",
+        "descriptionMobile": "A decentralized, seed-derived identity protocol on Ed25519 — for people, IoT fleets and AI agents.",
+        "github": "View on GitHub",
         "getStarted": "Get started"
       },
       "services": {
-        "badge": "What I do",
-        "heading": "Design, build, optimise",
-        "lead": "Every project gets all three services.",
-        "learnMore": "Learn more",
-        "cards": [
-          { "icon": "layout", "title": "Web Design", "description": "Interfaces that feel obvious. Layouts shaped around your content, your brand, and how people actually read on a screen." },
-          { "icon": "code", "title": "Web Development", "description": "Sites built to last. Astro, Tailwind, and a clean architecture: fast on day one, easy to maintain on day 500." },
-          { "icon": "trending-up", "title": "Web Optimisation", "description": "SEO, Core Web Vitals, and accessibility, built in from day one so your site ranks, loads well, and works for every visitor." }
-        ]
+      "badge": "Packages",
+      "heading": "Three packages, one seed",
+      "lead": "Everything derives from the same Ed25519 root — start with the core, add encryption and UI when you need them.",
+      "learnMore": "Read the docs",
+      "cards": [
+        { "icon": "layout", "title": "@me2em/core", "description": "Core primitives for the Me2em authorization protocol: hierarchical deterministic identities, stateless signed sessions, and parent-signed attestation for delegatable, externally verifiable authorization." },
+        { "icon": "code", "title": "@me2em/crypto", "description": "Cryptographic mechanisms for the Me2em protocol: E2EE channels, X3DH key exchange, purpose-based key derivation, and envelope patterns for offline recipients and media chunk encryption." },
+        { "icon": "atom", "title": "@me2em/react", "description": "React bindings for the Me2em protocol: identity lifecycle hooks, seed-phrase UX components, session management, and an encrypted per-identity context cache." }
+      ]
       },
       "workWithMe": {
-        "badge": "Work with me",
-        "heading": "Let's build your website",
-        "lead": "What you get when we work together.",
+        "badge": "Features",
+        "heading": "Guaranteed by cryptography",
+        "lead": "Eight properties of the protocol — math, not promises.",
         "cards": [
-          { "icon": "palette", "title": "Custom design", "description": "Designed around your business, your content, and your customers." },
-          { "icon": "zap", "title": "A lightning-fast website", "description": "Pages that open instantly, on every phone and every connection." },
-          { "icon": "search", "title": "Found by Google and AI", "description": "Every page built so search engines and AI assistants read it cleanly and customers can find you." },
-          { "icon": "shield-check", "title": "Zero maintenance", "description": "Kept up to date and secure with the care plan, so you can focus on your business." }
+          { "icon": "sprout",     "title": "Seed-derived",   "description": "Your identity lives in a seed phrase; keys are recomputed on demand. A breached server holds nothing." },
+          { "icon": "eye-off",    "title": "Zero-knowledge", "description": "Private keys never leave your device. Servers verify signatures without ever learning who you are." },
+          { "icon": "repeat",     "title": "Deterministic",  "description": "Same seed, same keys — always. One identity on every device, with nothing to sync." },
+          { "icon": "box",        "title": "Isolated",       "description": "Every Handle is a separate keypair. Compromising one context reveals nothing about the others." },
+          { "icon": "zap",        "title": "Stateless",      "description": "No session database. Any server — or any third party — verifies a token with one signature check." },
+          { "icon": "share-2",    "title": "Delegatable",    "description": "Attestation chains hand scoped, time-boxed access to partners, IoT devices, and AI agents." },
+          { "icon": "git-branch", "title": "Hierarchical",   "description": "Identity → Handle → SubHandle: a whole device fleet under one root, provisioned offline." },
+          { "icon": "ban",        "title": "Revocable",      "description": "One revoked attestation disables an entire branch — current and future sessions, instantly." }
         ],
-        "cta": "Read my services page"
+        "cta": "Read the docs"
       },
       "portfolio": {
-        "badge": "Selected work",
-        "heading": "Projects I've built",
-        "lead": "A selection of recent work.",
-        "viewAll": "View all projects"
+        "badge": "Use cases",
+        "heading": "What you can build",
+        "lead": "Three documented scenarios — the same primitives, read through different domains.",
+        "viewAll": "All use cases"
       },
       "testimonials": {
-        "badge": "Testimonials",
-        "heading": "What clients say",
-        "lead": "Real words from finished projects.",
+        "badge": "From the alpha",
+        "heading": "What early testers say",
+        "lead": "Feedback from teams building on the protocol.",
         "items": [
-          { "quote": "The new site launched on time and hit every goal we set. Performance improved dramatically — load times dropped and the feedback from our customers has been overwhelmingly positive.", "name": "Alex Morgan", "role": "Founder, Bright Studio" },
-          { "quote": "Straightforward from first conversation to final handover. The right questions were asked, we were kept in the loop throughout, and the end result exceeded what we imagined. Would recommend without hesitation.", "name": "Sarah Chen", "role": "CEO, Luma Agency" }
+          { "quote": "We verify partner devices with nothing but our public key. No shared secrets, no database sync — the attestation chain just works.", "name": "Daniel Reyes", "role": "CTO, EV-charging platform" },
+          { "quote": "The seed UX components saved us weeks. Show-once display, verification grid, per-word import — our security review signed off on the first pass.", "name": "Priya Sharma", "role": "Indie developer, E2EE messenger" },
+          { "quote": "Revoking a compromised agent is one call. That single property changed how we design delegation for our AI tooling.", "name": "Tomasz Weber", "role": "Platform engineer, AI orchestration" },
+          { "quote": "Verification is one signature check. We sized our auth servers for a database that no longer exists.", "name": "Marcus Hale", "role": "Backend engineer, credential tooling" }
         ]
       },
-      "aboutTeaser": {
-        "badge": "About me",
-        "headingLine1": "Designer, developer,",
-        "headingLine2": "and blogger.",
-        "para1WithLocation": "Sixteen years of hands-on experience, based in {location} and available for clients worldwide. I build with Astro because it aligns with how I think about the web: lean, purposeful, and built to last.",
-        "para1NoLocation": "Sixteen years of hands-on experience and available for clients worldwide. I build with Astro because it aligns with how I think about the web: lean, purposeful, and built to last.",
-        "para2": "On the blog, I share the ideas and decisions that shape my work.",
-        "moreAboutMe": "More about me",
-        "statsIntro": "A few things about me.",
-        "stat1": "16 Years Experience",
-        "stat2": "Building with Astro",
-        "stat3": "Working worldwide",
-        "basedIn": "Based in"
-      },
+"aboutTeaser": {
+  "badge": "Tutorials",
+  "headingLine1": "From seed phrase",
+  "headingLine2": "to working code.",
+  "para1WithLocation": "Four scenarios carry the same primitives into four very different worlds: an AI agent workforce, a drone fleet that sells access, a corporate messenger, and a network of charging stations. None of them bends the protocol — that is the point. The team behind it is based in {location}.",
+  "para1NoLocation": "Four scenarios carry the same primitives into four very different worlds: an AI agent workforce, a drone fleet that sells access, a corporate messenger, and a network of charging stations. None of them bends the protocol — that is the point.",
+  "para2": "On the blog, each scenario becomes a step-by-step tutorial.",
+  "moreAboutMe": "Read more",
+  "casesIntro": "Four use cases, one protocol.",
+  "cases": [
+    { "title": "AI Agent Delegation", "href": "" },
+    { "title": "Drone Fleet", "href": "" },
+    { "title": "Corporate Messenger", "href": "" },
+    { "title": "EV Charging Station", "href": "" }
+  ]
+},
       "blog": {
         "badge": "From the blog",
         "heading": "Featured",
         "viewAll": "View all posts"
       },
-      "cta": {
-        "badge": "Let's talk",
-        "heading": "Let's talk about what you need",
-        "description": "The first talk is free and informative, with no obligations. And from the first conversation to the final delivery, it's me.",
-        "primary": "Send a message",
-        "secondary": "More about me"
-      }
+"cta": {
+  "badge": "Start building",
+  "heading": "Build on your own seed",
+  "description": "From first seed phrase to verified session — the quick start covers all three packages, end to end.",
+  "primary": "Read the docs",
+  "secondary": "View on GitHub"
+}
     }
   }
 }

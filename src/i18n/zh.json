@@ -1,0 +1,610 @@
+{
+  "nav": {
+    "skipToContent": "跳转到内容",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "selectLanguage": "选择语言",
+    "currentLanguage": "当前语言",
+    "mainNav": "主导航",
+    "mobileNav": "移动导航",
+    "toggleMenu": "切换菜单",
+    "sectionNavigate": "导航",
+    "searchSite": "搜索此网站",
+    "sectionTheme": "主题",
+    "sectionLanguage": "语言",
+    "sectionConnect": "联系",
+    "items": {
+      "home": "首页",
+      "services": "服务",
+      "projects": "项目",
+      "blog": "博客",
+      "about": "关于",
+      "contact": "联系"
+    }
+  },
+  "common": {
+    "readMore": "阅读更多",
+    "loading": "加载中…",
+    "backToTop": "回到顶部",
+    "search": "搜索",
+    "submit": "提交",
+    "cancel": "取消",
+    "next": "下一步",
+    "previous": "上一步",
+    "home": "首页",
+    "map": "地图",
+    "mapConsentPrompt": "接受Cookie以加载交互式地图。",
+    "viewOnGoogleMaps": "在Google Maps上查看",
+    "themeModeTitle": "主题：{mode}（点击切换）",
+    "googleMaps": "Google Maps",
+    "progress": "进度",
+    "themeMode": "主题：{mode}",
+    "browseByTag": "按标签浏览",
+    "techStack": "技术栈",
+    "togglePassword": "切换密码可见性",
+    "breadcrumb": "面包屑导航",
+    "copyCode": "复制代码到剪贴板",
+    "dismiss": "关闭",
+    "notifications": "通知",
+    "closeDialog": "关闭对话框",
+    "tabs": "标签页",
+    "verticalTabs": "垂直标签页"
+  },
+  "blog": {
+    "title": "博客",
+    "description": "最新文章和更新",
+    "readingTime": "{minutes} 分钟阅读",
+    "publishedOn": "发布于 {date}",
+    "updatedOn": "更新于 {date}",
+    "writtenBy": "作者：{author}",
+    "tagsLabel": "标签",
+    "featured": "精选",
+    "draft": "草稿",
+    "noPostsFound": "未找到文章。",
+    "tableOfContents": "目录",
+    "shareThisPost": "分享此文章",
+    "relatedPosts": "相关文章",
+    "share": "分享：",
+    "shareOn": "在{platform}上分享",
+    "copyLink": "复制链接",
+    "metaTitle": "博客",
+    "metaDescription": "Astro Rocket博客：有关设置、配置和使用该主题的实用指南。",
+    "heroBadge": "所有文章",
+    "heroDescription": "关于Astro\u00a0Rocket你需要知道的一切，用实用指南来解释。",
+    "allPosts": "所有文章",
+    "noPosts": "未找到文章",
+    "pageMetaTitle": "博客 — 第{page}页",
+    "pageMetaDescription": "第{page}页，共{total}页 — 有关设置、配置和使用Astro Rocket的实用指南。",
+    "pageBadge": "第{page}页，共{total}页",
+    "newestPosts": "最新文章",
+    "tagMetaTitle": "#{tag} — 博客",
+    "tagMetaDescription": "标记为\"{tag}\"的文章。",
+    "tagBadge": "标签",
+    "tagCountOne": "有{count}篇文章标记为\"{tag}\"。",
+    "tagCountOther": "有{count}篇文章标记为\"{tag}\"。",
+    "tagEmpty": "未找到此标签的文章。",
+    "tagBackToAll": "返回所有文章",
+    "onThisPage": "此页上",
+    "tocShow": "显示",
+    "tocHide": "隐藏",
+    "backToBlog": "返回博客",
+    "updated": "已更新",
+    "rssFeed": "RSS订阅",
+    "cta": {
+      "heading": "准备开始了吗？",
+      "description": "克隆Astro Rocket，选择一个主题，在几分钟内启动你的下一个项目。",
+      "button": "开始使用"
+    }
+  },
+  "comments": {
+    "title": "评论",
+    "loadError": "评论加载失败。请刷新页面重试。",
+    "requiresJs": "评论需要JavaScript才能加载。"
+  },
+  "projects": {
+    "title": "项目",
+    "description": "我构建的作品",
+    "viewProject": "查看项目",
+    "viewSource": "查看源码",
+    "noProjectsFound": "未找到项目。",
+    "carouselChooseSlide": "选择幻灯片",
+    "carouselNextSlide": "下一张幻灯片",
+    "carouselPreviousSlide": "上一张幻灯片",
+    "galleryLabel": "媒体灯箱",
+    "galleryClose": "关闭灯箱",
+    "galleryNextImage": "下一张图片",
+    "galleryPreviousImage": "上一张图片",
+    "metaTitle": "项目",
+    "metaDescription": "精选作品 — Astro Rocket构建的网站、工具和开源项目。",
+    "heroBadge": "精选作品",
+    "heroDescription": "我最引以为傲的作品。",
+    "allProjects": "所有项目",
+    "pageMetaTitle": "项目 — 第{page}页",
+    "pageMetaDescription": "第{page}页，共{total}页 — Astro Rocket精选的作品、工具和开源项目。",
+    "pageBadge": "第{page}页，共{total}页",
+    "tagMetaTitle": "#{tag} — 项目",
+    "tagMetaDescription": "标记为\"{tag}\"的项目。",
+    "tagBadge": "标签",
+    "tagCountOne": "有{count}个项目标记为\"{tag}\"。",
+    "tagCountOther": "有{count}个项目标记为\"{tag}\"。",
+    "tagEmpty": "未找到此标签的项目。",
+    "tagBackToAll": "返回所有项目",
+    "backToProjects": "返回项目",
+    "moreProjects": "更多项目",
+    "ctaBadge": "聊聊",
+    "ctaHeading": "聊聊你需要什么",
+    "ctaLead": "我构建的每一个网站都是定制设计，用你在这里看到的用心制作。告诉我你的想法。",
+    "ctaPrimary": "发送消息",
+    "ctaSecondary": "更多关于我",
+    "closingHeading": "心中有项目吗？",
+    "closingLead": "无论是新构建还是需要新鲜视角的事情——我都想听听。"
+  },
+  "pagination": {
+    "page": "第{current}页，共{total}页",
+    "label": "分页",
+    "previousPage": "上一页",
+    "nextPage": "下一页",
+    "morePages": "更多页面"
+  },
+  "errors": {
+    "pageNotFound": "页面未找到",
+    "pageNotFoundMessage": "你寻找的页面不存在或已移动。",
+    "goHome": "前往首页",
+    "metaTitle": "页面未找到",
+    "metaDescription": "此页面已移动、被删除或从未存在过。",
+    "badge": "404 — 页面未找到",
+    "titleLead": "页面未",
+    "titleHighlight": "找到。",
+    "description": "此页面已移动、被删除或从未存在过。让我们帮你回到正轨。",
+    "backHome": "返回首页",
+    "browseBlog": "浏览博客",
+    "tryInstead": "试试这些",
+    "projectsDesc": "精选作品和案例研究。",
+    "blogDesc": "关于设计、代码和技艺的笔记。",
+    "contactTitle": "联系",
+    "contactDesc": "开始关于你项目的对话。"
+  },
+  "newsletter": {
+    "heading": "订阅通讯",
+    "description": "在您的收件箱中获取最新文章。",
+    "emailPlaceholder": "输入您的邮箱",
+    "subscribe": "订阅",
+    "subscribing": "订阅中…",
+    "success": "感谢订阅！",
+    "genericError": "出了点问题",
+    "notConfigured": "尚未配置——设置RESEND_API_KEY和RESEND_AUDIENCE_ID以启用。只有你能看到这一行。",
+    "unavailable": "目前无法注册。",
+    "error": "订阅失败。请再试一次。"
+  },
+  "contact": {
+    "heading": "联系我们",
+    "name": "姓名",
+    "email": "邮箱",
+    "subject": "主题",
+    "message": "消息",
+    "send": "发送消息",
+    "sending": "发送中…",
+    "success": "消息发送成功！",
+    "genericError": "出了点问题",
+    "notConfigured": "尚未配置——设置RESEND_API_KEY以启用。只有你能看到这一行。",
+    "unavailable": "此表单目前不可用。",
+    "error": "发送消息失败。请再试一次。"
+  },
+  "theme": {
+    "selectColourTheme": "选择颜色主题",
+    "colourTheme": "颜色主题",
+    "colourMode": "颜色模式",
+    "modeTrigger": "主题：{mode}。点击更改。",
+    "system": "系统",
+    "light": "浅色",
+    "dark": "深色",
+    "currentlyLight": "当前为浅色",
+    "currentlyDark": "当前为深色",
+    "swatchLabel": "{name}主题"
+  },
+  "search": {
+    "placeholder": "搜索文章、项目和页面…",
+    "inputLabel": "搜索查询",
+    "resultsLabel": "搜索结果",
+    "hint": "开始输入以搜索网站。",
+    "noResults": "未找到「{query}」的结果",
+    "unavailable": "搜索索引在构建时生成，在<code class=\"rounded bg-secondary px-1.5 py-0.5 text-xs\">astro dev</code>中不可用。<br />运行<code class=\"rounded bg-secondary px-1.5 py-0.5 text-xs\">pnpm build &amp;&amp; pnpm preview</code>在本地尝试。"
+  },
+  "video": {
+    "playLabel": "播放视频：{title}",
+    "watchOn": "在YouTube上观看"
+  },
+  "footer": {
+    "copyright": "© {year} {siteName}",
+    "credit": "主题由 <a href=\"https://hansmartens.dev\" class=\"transition-colors hover:text-foreground\" target=\"_blank\" rel=\"noopener noreferrer\">Hans Martens Dev</a> 提供",
+    "builtWith": "基于Astro Rocket构建",
+    "groups": {
+      "site": "网站",
+      "topics": "主题",
+      "projects": "项目",
+      "questions": "有问题？"
+    },
+    "followOn": "在{platform}上关注我们"
+  },
+  "pages": {
+    "about": {
+      "meta": {
+        "title": "关于 — 免费开源Astro 7主题",
+        "description": "Astro Rocket是什么以及它是如何构建的：一个免费的Astro 7启动主题，拥有44个设计组件、8个颜色主题、i18n和深色模式。"
+      },
+      "hero": {
+        "badge": "关于",
+        "titleLead": "Astro Rocket —",
+        "typingWords": ["闪电般快速", "启动主题", "44个组件", "8个主题", "深色模式", "内置i18n"],
+        "typingWordsMobile": ["闪电般快速", "启动主题", "8个主题", "深色模式", "内置i18n"],
+        "description": "一个免费的开源Astro 7启动主题，可以在其上构建任何内容。"
+      },
+      "whatYouGet": {
+        "badge": "你得到什么",
+        "heading": "网站所需的一切",
+        "lead": "组件库是主题的核心。其他一切都已经就位。",
+        "items": [
+          {
+            "icon": "component",
+            "title": "44个设计组件",
+            "description": "从按钮到hero区域：类型化、可访问、一致，并在实时展示中记录。"
+          },
+          {
+            "icon": "layout",
+            "title": "起步页面",
+            "description": "首页、关于、服务、联系、博客、项目和404，完全设计和响应式，准备让你个性化。"
+          },
+          {
+            "icon": "palette",
+            "title": "8个颜色主题",
+            "description": "从标题栏实时切换整个网站的调色板。包括浅色和深色模式。"
+          },
+          {
+            "icon": "book-open",
+            "title": "带目录的博客",
+            "description": "MDX、RSS、标签、评论、相关文章和滚动spy目录。写作和发布。"
+          },
+          {
+            "icon": "image",
+            "title": "带画廊的项目",
+            "description": "带有图片画廊、视频幻灯片、标签和独立目录的portfolio部分。"
+          },
+          {
+            "icon": "globe",
+            "title": "完整i18n，可选",
+            "description": "博客、项目、导航、表单和404：每种语言都本地化。默认关闭，不使用时无成本。"
+          },
+          {
+            "icon": "search",
+            "title": "网站搜索",
+            "description": "快速静态搜索（Pagefind）配合⌘K模态框：打开前零JavaScript。"
+          },
+          {
+            "icon": "trending-up",
+            "title": "SEO工具包",
+            "description": "元数据、站点地图、结构化数据和OG图片，开箱即用。"
+          },
+          {
+            "icon": "server",
+            "title": "表单和部署",
+            "description": "防垃圾邮件的联系和newsletter表单，以及一键部署到Vercel、Netlify或Cloudflare。"
+          }
+        ]
+      },
+      "principles": {
+        "badge": "设计原则",
+        "heading": "有意图地构建",
+        "lead": "Astro Rocket中的每个决定，从组件结构到默认配置，都源于同样的三个原则。",
+        "items": [
+          { "icon": "zap", "title": "性能优先", "description": "默认零JavaScript。每个组件都为速度、Core Web Vitals和精简输出而优化。" },
+          { "icon": "award", "title": "开发者体验", "description": "全程TypeScript、明智的默认设置，以及可以直插任何页面的组件库。" },
+          { "icon": "rocket", "title": "从底层现代化", "description": "Astro 7、Tailwind CSS 4和干净的架构，易于扩展和维护。" }
+        ]
+      },
+      "stack": {
+        "badge": "工具与技术",
+        "title": "技术栈",
+        "description": "支撑Astro Rocket的技术，选择它们是因为性能、出色的开发者体验和长期可靠性。"
+      },
+      "faq": {
+        "badge": "需要了解",
+        "heading": "常见问题",
+        "lead": "开始之前你需要知道的一切。",
+        "cards": [
+          {
+            "icon": "rocket",
+            "title": "关于Astro",
+            "items": [
+              { "question": "什么是Astro？", "answer": "Astro是一个为内容驱动型网站构建的现代Web框架。它默认不发送任何JavaScript——只发送页面真正需要的内容。结果是加载速度快、Core Web Vitals评分优秀、代码精简且易于维护。" },
+              { "question": "为什么选择Astro构建？", "answer": "Astro是内容密集型网站的正确工具：最少的JavaScript、干净的HTML、开箱即用的优秀SEO和不打扰你的开发者体验。它精简、有目的性且经久耐用。" },
+              { "question": "用Astro Rocket能构建什么？", "answer": "作品集、企业网站、营销页面、博客、文档站点——任何内容驱动型项目。Astro Rocket为你提供结构、组件和默认设置，让你立刻开始。" },
+              { "question": "Astro Rocket是否列在Astro官方主题目录中？", "answer": "是的。<a href=\"https://astro.build/themes/details/astro-rocket/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">Astro Rocket</a>列在Astro官方主题目录中，是一个免费的生产就绪主题。" },
+              { "question": "Astro Rocket会跟进新的Astro版本吗？", "answer": "会的。Astro Rocket actively维护并更新以跟踪新的Astro版本。关注博客或观看GitHub仓库获取更新。" }
+            ]
+          },
+          {
+            "icon": "code-2",
+            "title": "使用主题",
+            "items": [
+              { "question": "使用免费吗？", "answer": "是的，完全免费。Astro Rocket采用MIT许可证——用于个人和商业项目，不需要署名。" },
+              { "question": "如何切换主题？", "answer": "更改配置中的一行。Astro Rocket附带8个手工制作的配色主题——即时切换，无需触碰一行CSS。" },
+              { "question": "是否支持TypeScript？", "answer": "是的，全程使用TypeScript。所有组件、配置和工具都已完全类型化。" },
+              { "question": "如何为自己的语言添加i18n？", "answer": "Astro Rocket的i18n是配置驱动的。在i18n配置文件中添加你的语言区域，创建匹配的翻译文件，路由和界面会自动适配。" },
+              { "question": "在哪里报告bug或建议功能？", "answer": "在<a href=\"https://github.com/hansmartensdev/astro-rocket\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">GitHub仓库</a>上创建issue或开始讨论。欢迎贡献和反馈。" }
+            ]
+          }
+        ]
+      },
+      "openSource": {
+        "badge": "开源",
+        "heading": "公开构建",
+        "description": "Astro Rocket免费、开源且采用MIT许可证。浏览源代码、创建issue、提交PR，或者直接克隆它构建一些伟大的东西。",
+        "button": "在GitHub上查看",
+        "cards": [
+          { "title": "由Hans Martens Dev制作", "text": "Astro Rocket由<a href=\"https://hansmartens.dev\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">Hans Martens Dev</a>设计并构建——一位来自荷兰Veghel的Astro主题开发者。" },
+          { "title": "MIT许可证", "text": "免费用于个人和商业项目。不需要署名，但GitHub上的星星总是受欢迎的。" },
+          { "title": "积极维护", "text": "该主题随新的Astro版本保持更新，并根据社区反馈定期改进。" }
+        ]
+      },
+      "cta": {
+        "badge": "开始使用",
+        "heading": "准备开始了吗？",
+        "description": "克隆Astro Rocket，选择一个主题，在几分钟内启动你的下一个项目。",
+        "button": "开始使用"
+      }
+    },
+    "services": {
+      "meta": {
+        "title": "服务 — 网页设计、开发与优化",
+        "description": "自由职业网页设计、开发和优化：时尚、闪电般的定制Astro网站。第一次免费咨询，一个清晰的提案，一个固定价格。"
+      },
+      "includedLabel": "你得到什么",
+      "hero": {
+        "badge": "服务",
+        "titleLead": "网页设计、开发，",
+        "titleHighlight": "和优化",
+        "description": "三项服务，一个产品：一个时尚、闪电般的定制Astro网站，让你引以为傲。",
+        "jumpLabels": ["网页设计", "网页开发", "网页优化"]
+      },
+      "design": {
+        "badge": "设计",
+        "heading": "网页设计",
+        "paragraphs": [
+          "网页设计是网站的外观和感觉：布局、颜色、图片以及访客找到信息的方式。",
+          "我为每个网站围绕你的业务进行设计——你的品牌、你的内容和你想吸引的客户——让它产生强烈的第一印象并引导人们走向重点。简洁、现代，适用于每个屏幕，从桌面显示器到手机。"
+        ],
+        "included": [
+          {
+            "lead": "属于你的设计",
+            "text": "围绕你的业务、品牌和你想吸引的客户塑造。"
+          },
+          {
+            "lead": "强烈的第一印象",
+            "text": "一个简洁、现代的外观，在页面打开的瞬间展示你是谁。"
+          },
+          {
+            "lead": "清晰的导航",
+            "text": "一个引导访客直接走向对他们重要的内容的布局。"
+          },
+          {
+            "lead": "适用于每个屏幕的设计",
+            "text": "在手机、平板和桌面上看起来和运行都很精美。"
+          },
+          {
+            "lead": "你内容的最佳呈现",
+            "text": "你的文字和图片在一个易于阅读和美观的布局中。"
+          }
+        ],
+        "ctaLabel": "讨论设计项目"
+      },
+      "development": {
+        "badge": "开发",
+        "heading": "网页开发",
+        "paragraphs": [
+          "网页开发是构建你的网站：将设计转化为在访客浏览器中运行的代码。",
+          "我用Astro构建，这是一个现代框架，被一些最快的网站所信任。这使你的网站加载快速、安全且易于多年维护。从第一天起它就是你的，代码、域名和托管都在你名下。"
+        ],
+        "included": [
+          {
+            "lead": "一个闪电般的网站",
+            "text": "使用Astro构建，这是互联网上一些最快网站的框架。"
+          },
+          {
+            "lead": "一个安全可靠的网站",
+            "text": "一个保持安全并持续运行的网站，年复一年。"
+          },
+          {
+            "lead": "完全所有权",
+            "text": "代码、域名和托管从第一天起就在你名下。"
+          },
+          {
+            "lead": "发布后的关怀",
+            "text": "你的网站通过月度维护计划保持更新和安全，而你可以专注于你的业务。"
+          },
+          {
+            "lead": "成长空间",
+            "text": "当你的业务需要时，可以添加新页面和功能的余地。"
+          }
+        ],
+        "ctaLabel": "查看近期项目"
+      },
+      "performance": {
+        "badge": "优化",
+        "heading": "网页优化",
+        "paragraphs": [
+          "网页优化是让网站表现的工作：快速加载、在搜索中排名良好、为每个人服务。",
+          "我从第一行代码就开始构建速度、SEO和可访问性，而不是事后添加。这意味着你的网站容易被Google找到和理解，对每个访客快速打开，每个访问者都能使用。"
+        ],
+        "included": [
+          {
+            "lead": "一个Google和AI能找到的网站",
+            "text": "构建得让搜索引擎和AI助手能够阅读、理解和推荐你的页面。"
+          },
+          {
+            "lead": "每个设备上的速度",
+            "text": "即使在手机或较慢连接下也能保持快速的页面。"
+          },
+          {
+            "lead": "一个属于每个人的网站",
+            "text": "对每个访客可访问，无论他们的设备或能力如何。"
+          },
+          {
+            "lead": "高性能评分",
+            "text": "在Google自己的速度和质量检查（Lighthouse）中获得高分。"
+          },
+          {
+            "lead": "从第一天开始的优化",
+            "text": "速度、SEO和可访问性从第一行代码开始构建。"
+          }
+        ],
+        "ctaLabel": "开始项目"
+      },
+      "process": {
+        "badge": "如何运作",
+        "heading": "项目如何运行",
+        "lead": "从你的第一条消息到一个上线的网站。",
+        "steps": [
+          { "title": "首次联系", "description": "你通过联系表单发送消息。我在工作日内回复，我们计划一次免费的 informational 谈话，讨论你的需求。无义务。" },
+          { "title": "提案", "description": "谈话后，你得到一个清晰的文档：我构建什么、何时完成以及固定价格。你在信息充分的情况下做决定。" },
+          { "title": "设计与开发", "description": "我分短周期工作。你通过staging链接跟踪进度，亲眼看到你的网站成形。" },
+          { "title": "发布与支持", "description": "你的网站在你的域名和托管上上线，以你的名义。之后我保持联系，如果有定期更新需求还有月度维护计划。" }
+        ]
+      },
+      "faq": {
+        "badge": "问题",
+        "heading": "问答",
+        "lead": "客户在开始之前会问的事情。",
+        "cards": [
+          {
+            "icon": "tag",
+            "title": "开始之前",
+            "items": [
+              { "question": "网站多少钱？", "answer": "每个项目都有一个固定价格，在开始之前商定。没有按小时计费，之后没有惊喜。免费谈话——以及免费检查（如果已有网站）——让我了解你的项目需要什么，你在一个清晰的提案中得到价格。" },
+              { "question": "项目需要多长时间？", "answer": "这取决于网站的规模。提案与价格一起列出时间表，所以你在开始之前就知道两者。" },
+              { "question": "我当前的网站怎么办？", "answer": "在新网站准备好之前，它保持在线。你的内容、网址和Google排名都会跟随。我在第一次谈话之前检查你当前的网站，所以从一开始你就能得到清晰的答案。" },
+              { "question": "我需要自己安排托管或域名吗？", "answer": "不需要。我为你设置托管和域名，以你自己的名义。如果你已经有域名，我们就保留它。" },
+              { "question": "我们需要面对面见面吗？", "answer": "不需要。大多数项目完全通过电话、视频和电子邮件进行。我与全球客户合作，时区很少是问题。" }
+            ]
+          },
+          {
+            "icon": "user",
+            "title": "与我合作",
+            "items": [
+              { "question": "你是公司还是机构？", "answer": "我是一人企业：自由职业者，不是机构。你直接与做事的人合作，从第一次谈话到完成的网站。没有销售团队、没有客户经理、没有交接。" },
+              { "question": "发布后我能自己更改网站吗？", "answer": "你可以简单地把你的更改发给我，月度维护计划正是为此存在。如果你想自己编辑网站，在第一次谈话中说明，我会为此设置网站。" },
+              { "question": "你也构建网店吗？", "answer": "不。大型网店是我唯一不构建的东西。其他任何需要定制Astro网站的东西，我都会构建：在第一次谈话中告诉我你的想法，我会诚实地告诉你我是否适合。" },
+              { "question": "网站真的是我的吗？", "answer": "完全是。域名、托管和代码从第一天起就在你名下。如果你将来想离开，你可以带走一切：你永远不会被锁定。" },
+              { "question": "如果发布后出问题了怎么办？", "answer": "几乎不会出问题：网站没有会失败的插件和数据库。而且我在发布后仍然可以联系；对于定期更新和监控，有月度维护计划。" }
+            ]
+          }
+        ]
+      },
+      "cta": {
+        "badge": "聊聊",
+        "heading": "聊聊你需要什么",
+        "description": "第一次谈话免费且信息丰富，无任何义务：通过电话、视频或电子邮件。你会得到诚实的答案，谈话后得到一个清晰的时间表和固定价格的提案。",
+        "primary": "发送消息",
+        "secondary": "更多关于我"
+      }
+    },
+    "contact": {
+      "meta": {
+        "title": "联系",
+        "description": "要开始新事物？我从零开始设计和构建新网站——告诉我你的项目，我会在1个工作日内回复你。"
+      },
+      "hero": {
+        "badge": "开始项目",
+        "titleLead": "告诉我你的",
+        "titleHighlight": "新项目",
+        "description": "很想听到你的消息。通过下面的表单发送消息，或通过下面的其他渠道联系。"
+      },
+      "formTitle": "项目详情",
+      "channelsTitle": "其他渠道",
+      "channelsSubtitle": "更喜欢直接渠道？选择最适合的。",
+      "emailLabel": "邮箱",
+      "emailNote": "给我们留言",
+      "socialNote": "关注",
+      "basedIn": "位于{country}"
+    },
+    "home": {
+      "meta": {
+        "title": "免费开源Astro 7主题",
+        "description": "一个免费、快速的Astro 7启动主题，可以在其上构建任何内容：44个设计组件、8个颜色主题、深色模式和内置i18n。"
+      },
+      "hero": {
+        "badge": "接受新项目",
+        "titleLine1": "Astro Rocket —",
+        "titleLine2": "网页设计师",
+        "titleLine3": "& 开发者",
+        "description": "一个免费、闪电般的Astro 7启动主题，可以在其上构建任何内容：44个设计组件、8个颜色主题和深色模式。",
+        "descriptionMobile": "一个免费、闪电般的Astro 7启动主题，可以在其上构建任何内容：44个设计组件和8个颜色主题。",
+        "github": "在GitHub上获取",
+        "getStarted": "开始使用"
+      },
+      "services": {
+        "badge": "我做什么",
+        "heading": "设计、构建、优化",
+        "lead": "每个项目都获得所有三项服务。",
+        "learnMore": "了解更多",
+        "cards": [
+          { "icon": "layout", "title": "网页设计", "description": "感觉直观的用户界面。围绕你的内容、品牌和人们实际在屏幕上阅读方式塑造的布局。" },
+          { "icon": "code", "title": "网页开发", "description": "经久耐用的网站。Astro、Tailwind和干净的架构：第一天快，第500天易于维护。" },
+          { "icon": "trending-up", "title": "网页优化", "description": "SEO、Core Web Vitals和可访问性，从第一天开始构建，让你的网站排名好、加载快、为每个访客服务。" }
+        ]
+      },
+      "workWithMe": {
+        "badge": "与我合作",
+        "heading": "让我们一起构建你的网站",
+        "lead": "与你合作时你得到什么。",
+        "cards": [
+          { "icon": "palette", "title": "定制设计", "description": "围绕你的业务、内容和客户设计。" },
+          { "icon": "zap", "title": "闪电般的网站", "description": "在任何手机和任何连接上立即打开的页面。" },
+          { "icon": "search", "title": "被Google和AI找到", "description": "每个页面构建得让搜索引擎和AI助手能干净地读取它，客户可以找到你。" },
+          { "icon": "shield-check", "title": "零维护", "description": "通过维护计划保持更新和安全，让你专注于你的业务。" }
+        ],
+        "cta": "阅读我的服务页面"
+      },
+      "portfolio": {
+        "badge": "精选作品",
+        "heading": "我构建的项目",
+        "lead": "近期作品的精选。",
+        "viewAll": "查看所有项目"
+      },
+      "testimonials": {
+        "badge": "评价",
+        "heading": "客户怎么说",
+        "lead": "来自完成项目的真实话语。",
+        "items": [
+          { "quote": "新网站按时发布并达到了我们设定的所有目标。性能大幅改善——加载时间下降，客户反馈 overwhelmingly 积极。", "name": "Alex Morgan", "role": "创始人，Bright Studio" },
+          { "quote": "从第一次对话到最后交付都很 straightforward。问了正确的问题，我们全程保持知情，最终结果超出了我们的想象。毫不犹豫地推荐。", "name": "Sarah Chen", "role": "CEO，Luma Agency" }
+        ]
+      },
+      "aboutTeaser": {
+        "badge": "关于我",
+        "headingLine1": "设计师、开发者，",
+        "headingLine2": "和博主。",
+        "para1WithLocation": "十六年实践经验，位于{location}，可为全球客户服务。我用Astro构建，因为它符合我对网络的思考方式：精简、有目的性、经久耐用。",
+        "para1NoLocation": "十六年实践经验，可为全球客户服务。我用Astro构建，因为它符合我对网络的思考方式：精简、有目的性、经久耐用。",
+        "para2": "在博客上，我分享塑造我工作的想法和决定。",
+        "moreAboutMe": "更多关于我",
+        "statsIntro": "关于我的一些事情。",
+        "stat1": "16年经验",
+        "stat2": "使用Astro构建",
+        "stat3": "全球工作",
+        "basedIn": "位于"
+      },
+      "blog": {
+        "badge": "来自博客",
+        "heading": "精选",
+        "viewAll": "查看所有文章"
+      },
+      "cta": {
+        "badge": "聊聊",
+        "heading": "聊聊你需要什么",
+        "description": "第一次谈话免费且信息丰富，无任何义务。从第一次对话到最后交付，都是我。",
+        "primary": "发送消息",
+        "secondary": "更多关于我"
+      }
+    }
+  }
+}
