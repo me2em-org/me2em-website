@@ -108,7 +108,7 @@ function faviconAssets() {
         }
         await writeFile(join(out, 'favicon.ico'), await renderFaviconIco(THEME_COLOR));
 
-        logger.info(`wrote ${pngSizes.length + 3} favicon files to ${out}`);
+        logger.info(`wrote ${pngSizes.length + 4} favicon files to ${out}`);
       },
     },
   };
