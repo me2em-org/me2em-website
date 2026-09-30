@@ -1,13 +1,15 @@
 ---
 title: "E2EE без хранения приватных ключей: архитектура идентичности на основе seed-фразы"
-description: "Полное инженерное руководство архитектуры, в которой приватный ключ никогда не сохраняется: детерминированное дерево ключей, non-extractable CryptoKey, канонический X3DH ."
+description: "Полное инженерное руководство архитектуры, в которой приватный ключ никогда не сохраняется: детерминированное дерево ключей, non-extractable CryptoKey, канонический X3DH."
 publishedAt: 2026-09-20
 author: "Me2em Organization"
-tags: ["e2ee", "x3dh", "cryptography", "websecurity", "webcrypto", "indexeddb", "architecture", "typescript"]
+tags: ["e2ee", "webcrypto", "security", "architecture"]
 featured: true
 locale: ru
 uid: "e2ee-seed-derived-identity"
 ---
+
+> **Уровень: инженерный deep-dive.** Основы детерминированной деривации — в статье-основе: [Me2em: идентичность из seed-фразы](/ru/blog/me2em-seed-derived-identity).
 
 Откройте любое E2EE-приложение в браузере и задайте простой вопрос: **где сейчас находится ваш приватный ключ?**
 
@@ -35,7 +37,7 @@ uid: "e2ee-seed-derived-identity"
 | Briar | На устройстве; мультидевайс — только физическая близость | Максимум изоляции, максимум трения |
 | Element (Matrix) | Browser IndexedDB, зашифровано, часто non-extractable WebCrypto | Ближе всех к веб-нативному подходу |
 
-*Более глубокий разбор этого обзора — в статье [Beyond Signal](https://blog.cryptographyengineering.com/) Сергея Любимова.*
+*Более глубокий разбор этого обзора — в статье [Beyond Signal](https://www.linkedin.com/pulse/beyond-signal-e2ee-architecture-web-without-private-keys-lubimov-lpmuf/) Сергея Любимова.*
 
 Паттерн однозначен: **все они персистят приватный ключ на устройстве**, потому что в их архитектурах подпись и расшифровка требуют присутствия ключевого материала постоянно.
 
@@ -65,15 +67,7 @@ seed-фраза (BIP39, в голове пользователя и на его 
 - Это не «новый ключ» и не «ротированный ключ». Это *тот же ключ, воспроизведённый*.
 - Ничего в идентичности, хэндлах или их публичных ключах не меняется. Никогда.
 
-```mermaid
-flowchart TD
-    S["BIP39 Seed<br/>бумага + транзиторная RAM"] -->|"HKDF"| I["Identity Private Key<br/>КОНСТАНТА<br/>никогда не персистится"]
-    I -->|"HKDF + имя"| H1["Handle: work<br/>КОНСТАНТА"]
-    I -->|"HKDF + имя"| H2["Handle: personal<br/>КОНСТАНТА"]
-    I -->|"HKDF + имя"| H3["Handle: station-001<br/>КОНСТАНТА"]
-    H3 -->|"HKDF + имя"| S1["SubHandle: connector-1<br/>КОНСТАНТА, лист"]
-    H3 -->|"HKDF + имя"| S2["SubHandle: connector-2<br/>КОНСТАНТА, лист"]
-```
+Разбор дерева ключей по шагам — в статье-основе: [Me2em: идентичность из seed-фразы](/ru/blog/me2em-seed-derived-identity).
 
 Детерминизм — это свойство, которое делает неперсистентную идентичность возможной. Но у него есть ловушка для неподготовленного, и её стоит сформулировать точно, потому что мы видели, как две независимые реализации в неё попадают:
 
@@ -256,19 +250,11 @@ if (!theirBundle.oneTimePreKeyPublicKey) {
 - Содержимое кэша шифруется non-extractable CryptoKey.
 - Два аккаунта на одном устройстве — полностью изолированы.
 
-```mermaid
-stateDiagram-v2
-    [*] --> ColdLogin: первый запуск / TTL истёк
-    ColdLogin: seed → PK → hashIdentityMaterial<br/>→ non-extractable cacheKey<br/>→ зашифрованный кэш в IDB<br/>→ wipe seed и PK
-    ColdLogin --> WarmSessions: кэш готов
-    WarmSessions: работа без seed<br/>пер-сессионные ключи<br/>auto-renewal session tokens
-    WarmSessions --> ColdLogin: TTL истёк / logout
-    WarmSessions --> [*]: cleanup
-```
-
 Replay-защита в каналах: строго возрастающий sequence number. Повторная доставка отклоняется с ошибкой `REPLAY_DETECTED`. Window-based защита (ограниченный out-of-order) — future track.
 
 ## Групповые чаты и ревокация
+
+Этот раздел — пример конкретной реализации (групповые чаты не входят в текущие пакеты протокола); он показывает, как session-bound паттерн масштабируется на группы. Полная концепция мессенджера на этих примитивах — в статье [Анонимный E2EE-мессенджер на Me2em](/ru/blog/anonymous-e2ee-messenger).
 
 Группы работают через **Group Key + Epoch**:
 
@@ -293,7 +279,7 @@ Replay-защита в каналах: строго возрастающий seq
 | **Post-compromise security** | Нет | Да | Компрометация chatKey = история канала |
 | **PK персистентность** | Не хранится | На устройстве | Главное отличие |
 | **Восстановление** | Seed (бумага) | PIN / seed | Seed — единственный носитель |
-| **Оффлайн-получатель** | До 30 дней (pre-keys TTL) | Бессрочно | TTL — осознанный компромисс |
+| **Оффлайн-получатель** | TTL pre-keys — в нашей реализации ~30 дней | Бессрочно | TTL — осознанный компромисс; параметр реализации, не протокола |
 | **Анонимность** | Выше (PK не живёт долго) | Долгоживущий PK = идентификатор | Ротация PK видна контактам |
 | **Сложность** | Проще (нет ratchet state) | Сложнее (ratchet, sync) | |
 | **Кража устройства** | Seed = бумага (брутфорс бесполезен) | Ключ украден вместе с устройством | |
@@ -326,8 +312,8 @@ Signal Protocol остаётся золотым стандартом для мо
 ---
 
 *References:*
-- *Sergey Lubimov, "Beyond Signal — E2EE Architecture for the Web Without Persistent Private Keys" — концептуальная рамка.*
-- *Signal Foundation, ["The X3DH Key Agreement Protocol"](https://signal.org/docs/specifications/x3dh/) — каноническая спецификация X3DH.*
+- *Sergey Lubimov, ["Beyond Signal — E2EE Architecture for the Web Without Persistent Private Keys"](https://www.linkedin.com/pulse/beyond-signal-e2ee-architecture-web-without-private-keys-lubimov-lpmuf/) — концептуальная рамка.*
+- *Signal, ["The X3DH Key Agreement Protocol"](https://signal.org/docs/specifications/x3dh/) — каноническая спецификация X3DH.*
 - *RFC 5869 — HKDF specification.*
 - *RFC 9106 — Argon2id specification.*
 - *NIST SP 800-56C — Key derivation recommendations.*

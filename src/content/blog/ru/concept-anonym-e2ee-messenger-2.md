@@ -7,6 +7,7 @@ tags: ["e2ee", "me2em", "messenger", "zero-trust", "stateless", "architecture"]
 featured: false
 locale: ru
 uid: "anonymous-e2ee-messenger-concept"
+draft: true
 ---
 
 Этот документ — не архитектурный эссей о криптографии. Это **концептуальный чертёж мессенджера**, собранного вокруг одной идеи: *сервер не должен знать ни о существовании пользователей, ни об их переписке, ни о связях между ними.*

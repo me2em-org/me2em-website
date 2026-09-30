@@ -3,7 +3,7 @@ title: "Me2em: идентичность из seed-фразы — как рабо
 description: "Полный разбор детерминированного дерева ключей: как 12 слов превращаются в иерархию идентичностей — Identity, Handle, SubHandle — и почему один и тот же seed всегда даёт одни и те же ключи."
 publishedAt: 2026-09-22
 author: "Me2em Organization"
-tags: ["me2em", "seed", "derivation", "hierarchical-identity", "bip39", "hkdf", "architecture"]
+tags: ["identity", "cryptography", "architecture"]
 featured: false
 locale: ru
 uid: "me2em-seed-derived-identity"
@@ -22,6 +22,8 @@ uid: "me2em-seed-derived-identity"
 ```text
 12 слов → BIP39 → seed 64 байта → SHA-256 → seed 32 байта
 ```
+
+> Терминологическая заметка: 64-байтовое значение — это «seed» по стандарту BIP39. В Me2em словом «seed» мы называем финальные 32 байта — результат SHA-256 от BIP39-seed; именно они передаются в `Identity.fromSeed()`.
 
 Из этих 32 байт рождается корневая идентичность:
 
@@ -53,7 +55,7 @@ HandlePrivateKey = HKDF-SHA256(
 SubHandlePrivateKey = HKDF-SHA256(
   ikm  = HandlePrivateKey,
   salt = "",
-  info = "me2em/handle/v1/{handleName}/{subName}",
+  info = "me2em/subhandle/v1/{handleName}/{subName}",
   len  = 32
 )
 ```
@@ -77,10 +79,10 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph Автономный ["На устройстве (Handle)"]
+    subgraph OnDevice ["На устройстве (Handle)"]
         A1["stationHandle<br/>deriveSubHandle('connector-ccs')"]
     end
-    subgraph Атомарный ["На сервере (Identity)"]
+    subgraph OnServer ["На сервере (Identity)"]
         A2["networkIdentity<br/>deriveSubHandle('station-001', 'connector-ccs')"]
     end
     A1 -.->|"тот же ключ"| A2
@@ -127,7 +129,7 @@ const viaIdentity = await identity.deriveSubHandle('station-001', 'connector-ccs
 | Метод | Вход | Выход | Применение |
 |-------|------|-------|------------|
 | `derivePassword(context)` | handle-ключ + имя сервиса | base64url-пароль | детерминированный пароль-менеджер |
-| `deriveChannelKey(context)` | handle-ключ + имя канала | 32-байтовый AES-ключ | симметричный канал Identity ↔ Handle |
+| `deriveChannelKey(context)` | handle-ключ + имя канала | 32-байтовый AES-ключ | симметричный ключ шифрованного канала |
 | `deriveSharedSecret(pub)` | handle-ключ + pubkey пира | 32-байтовый секрет | X25519 ECDH для p2p-каналов |
 
 Все три используют ту же дисциплину domain separation — разные salt/info дают несвязанные секреты из одного ключа.
@@ -137,7 +139,7 @@ const viaIdentity = await identity.deriveSubHandle('station-001', 'connector-ccs
 Всё описанное реализовано в `@me2em/core`:
 
 ```typescript
-import { Identity, generateSeedPhrase, get32ByteSeedFromMnemonic } from '@me2em/core';
+import { Identity, Session, generateSeedPhrase, get32ByteSeedFromMnemonic } from '@me2em/core';
 
 // 1. Пользователь создаёт seed-фразу
 const phrase = generateSeedPhrase(128);  // 12 слов
@@ -163,6 +165,7 @@ const session = await Session.create(connector, {
 
 ## Что читать дальше
 
-- **[E2EE без хранения приватных ключей](/ru/blog/e2ee-seed-derived-identity)** — session-bound профиль: как не хранить выведенные ключи, а вычислять при необходимости
-- **[USE_CASES.md](https://github.com/me2em-org/me2em-protocol/blob/main/packages/core/USE_CASES.md)** — четыре полных сценария: EV-станции, дроны, корпоративный мессенджер, AI-агенты
-- **[`@me2em/core` на npm](https://www.npmjs.com/package/@me2em/core)** — реализация
+- **[E2EE без хранения приватных ключей: архитектура идентичности на основе seed-фразы](/ru/blog/e2ee-seed-derived-identity)** — инженерный deep-dive: session-bound профиль, non-extractable CryptoKey, канонический X3DH и три ловушки, которые проходят «зелёные» тесты
+- **[Аттестационные цепочки: делегирование доверия без сервера](/ru/blog/attestation-chains-delegated-trust)** — как родительские подписи превращают дерево ключей в делегируемое доверие: гранты, аудитории, TTL и мгновенная ревокация всей ветки
+- **[Парольный менеджер, который ничего не хранит: детерминированная криптография Me2em](/ru/blog/me2em-deterministic-password-keeper)** — та же механика на практике: пароль для каждого сервиса выводится из дерева ключей и нигде не хранится
+- **[Анонимный E2EE-мессенджер на Me2em](/ru/blog/anonymous-e2ee-messenger)** — концепт: как из дерева ключей собирается общение, при котором сервер не знает ничего

@@ -7,6 +7,7 @@ tags: ["e2ee", "me2em", "messenger", "zero-trust", "stateless", "architecture"]
 featured: false
 locale: ru
 uid: "anonymous-e2ee-messenger-me2em"
+draft: true
 ---
 
 Представьте корпоративный или приватный мессенджер, где сервер не знает, кто вы, не хранит таблицы активных сессий и не может расшифровать ни одного байта, даже если его база данных будет полностью слита в сеть. 
