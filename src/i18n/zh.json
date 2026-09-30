@@ -541,6 +541,11 @@
         "github": "在GitHub上获取",
         "getStarted": "开始使用"
       },
+      "intro": {
+        "badge": "The protocol",
+        "heading": "The whole idea, in one paragraph",
+        "body": "Me2em is a decentralized identity and authorization protocol built on Ed25519 cryptography and standard key-agreement primitives. Nothing to register, no passwords to store: a person, a device, or an AI agent is represented by keys derived locally from a single seed phrase. Every context keeps its own isolated identity, access is delegated and revoked through signed attestations, and servers confirm a session with a single signature check — serverless authentication with minimal latency that minimizes, or removes entirely, the database you have to run and protect. Me2em is for one user who safely becomes many: separate profiles (work, home, the gym), hierarchies of IoT devices and drones, autonomous AI agents under signed mandates, E2EE-encrypted channels, and deterministic passwords for third-party services."
+      },
       "services": {
         "badge": "我做什么",
         "heading": "设计、构建、优化",
@@ -564,6 +569,11 @@
         ],
         "cta": "阅读我的服务页面"
       },
+      "stack": {
+        "badge": "Under the hood",
+        "heading": "The stack",
+        "lead": "Audited primitives and a lean toolchain — every tile links to its source."
+      },
       "portfolio": {
         "badge": "精选作品",
         "heading": "我构建的项目",
@@ -579,20 +589,22 @@
           { "quote": "从第一次对话到最后交付都很 straightforward。问了正确的问题，我们全程保持知情，最终结果超出了我们的想象。毫不犹豫地推荐。", "name": "Sarah Chen", "role": "CEO，Luma Agency" }
         ]
       },
-      "aboutTeaser": {
-        "badge": "关于我",
-        "headingLine1": "设计师、开发者，",
-        "headingLine2": "和博主。",
-        "para1WithLocation": "十六年实践经验，位于{location}，可为全球客户服务。我用Astro构建，因为它符合我对网络的思考方式：精简、有目的性、经久耐用。",
-        "para1NoLocation": "十六年实践经验，可为全球客户服务。我用Astro构建，因为它符合我对网络的思考方式：精简、有目的性、经久耐用。",
-        "para2": "在博客上，我分享塑造我工作的想法和决定。",
-        "moreAboutMe": "更多关于我",
-        "statsIntro": "关于我的一些事情。",
-        "stat1": "16年经验",
-        "stat2": "使用Astro构建",
-        "stat3": "全球工作",
-        "basedIn": "位于"
-      },
+"aboutTeaser": {
+  "badge": "Tutorials",
+  "headingLine1": "From seed phrase",
+  "headingLine2": "to working code.",
+  "para1WithLocation": "Four scenarios carry the same primitives into four very different worlds: an AI agent workforce, a drone fleet that sells access, a corporate messenger, and a network of charging stations. None of them bends the protocol — that is the point. The team behind it is based in {location}.",
+  "para1NoLocation": "Four scenarios carry the same primitives into four very different worlds: an AI agent workforce, a drone fleet that sells access, a corporate messenger, and a network of charging stations. None of them bends the protocol — that is the point.",
+  "para2": "On the blog, each scenario becomes a step-by-step tutorial.",
+  "moreAboutMe": "Read more",
+  "casesIntro": "Four use cases, one protocol.",
+  "cases": [
+    { "title": "AI Agent Delegation", "href": "" },
+    { "title": "Drone Fleet", "href": "" },
+    { "title": "Corporate Messenger", "href": "" },
+    { "title": "EV Charging Station", "href": "" }
+  ]
+},
       "blog": {
         "badge": "来自博客",
         "heading": "精选",

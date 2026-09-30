@@ -1,14 +1,21 @@
 ---
+// src/components/ui/marketing/Logo/Logo.astro
 /**
  * Logo Component
  *
- * By default renders a brand-coloured square badge with the first letter of
- * the site name (used in the navbar, footer, and blog post bylines).
+ * Default: the Me2em brand mark as inline SVG — a brand-coloured badge with
+ * the Identity square at the centre and four Handle dots in the corners.
+ * Inline is what makes the badge follow the active colour theme: an external
+ * file rendered via <img> is in secure static mode and cannot see the page's
+ * CSS variables, so it would be frozen at its authored colour.
  *
- * When `branding.logo.image` is set in site.config, a custom <img> logo is
- * rendered instead — everywhere <Logo> is used, with no layout edits. The
- * per-author `letter` override (byline avatars) always keeps the monogram, so
- * author initials are unaffected by a configured brand image.
+ * The per-author `letter` override (byline avatars) keeps the letter
+ * monogram — author initials are not the brand mark.
+ *
+ * A legacy escape hatch remains: setting `branding.logo.image` in
+ * site.config swaps the mark for a static <img> wherever no `letter` is
+ * requested. The site does not use it — the inline mark is the one that
+ * follows the theme.
  */
 import { cn } from '@/lib/cn';
 import siteConfig from '@/config/site.config';
@@ -42,31 +49,15 @@ const sizeClasses: Record<string, { box: string; text: string; radius: string; i
 
 const { box, text, radius, img, px } = sizeClasses[size] ?? sizeClasses.md;
 
-// A custom image logo (site.config → branding.logo.image) replaces the
-// monogram everywhere, except when a specific `letter` is requested (byline
-// author avatars), which always keep their initial badge.
+// Priority, inherited from the monogram component: a requested `letter`
+// (byline avatar) wins over everything; a configured brand image wins over
+// the default mark; otherwise the inline theme-following mark renders.
 const logoImage = siteConfig.branding.logo.image;
 const useImage = Boolean(logoImage) && !letterProp;
 const letter = letterProp ?? siteConfig.name.charAt(0).toUpperCase();
 ---
 
-{useImage ? (
-  <img
-    src={logoImage}
-    alt={siteConfig.branding.logo.alt}
-    height={px}
-    class={cn(
-      'inline-block shrink-0 object-contain',
-      img,
-      // Neutralise the brand-tint background the call sites pass for the
-      // monogram badge (e.g. `bg-brand-600`) — a custom logo shouldn't sit on
-      // a coloured square. The trailing class wins via tailwind-merge, while
-      // non-background utilities (e.g. `mx-auto`) are preserved.
-      className,
-      'bg-transparent'
-    )}
-  />
-) : (
+{letterProp ? (
   <span
     class={cn(
       'inline-flex items-center justify-center shrink-0',
@@ -80,4 +71,30 @@ const letter = letterProp ?? siteConfig.name.charAt(0).toUpperCase();
   >
     {letter}
   </span>
+) : useImage ? (
+  <img
+    src={logoImage}
+    alt={siteConfig.branding.logo.alt}
+    height={px}
+    class={cn(
+      'inline-block shrink-0 object-contain',
+      img,
+      className,
+      'bg-transparent'
+    )}
+  />
+) : (
+  <svg
+    viewBox="0 0 16 16"
+    class={cn('inline-block shrink-0', box, className)}
+    role="img"
+    aria-label={siteConfig.branding.logo.alt}
+  >
+    <rect width="16" height="16" rx="3" class="fill-brand-500" />
+    <rect x="6" y="6" width="4" height="4" fill="#fff" />
+    <circle cx="3" cy="3" r="1.5" fill="#fff" />
+    <circle cx="13" cy="3" r="1.5" fill="#fff" />
+    <circle cx="3" cy="13" r="1.5" fill="#fff" />
+    <circle cx="13" cy="13" r="1.5" fill="#fff" />
+  </svg>
 )}

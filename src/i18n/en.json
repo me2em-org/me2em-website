@@ -486,6 +486,11 @@
         "github": "View on GitHub",
         "getStarted": "Get started"
       },
+      "intro": {
+      "badge": "The protocol",
+      "heading": "What Me2em is",
+      "body": "Me2em is a decentralized identity and authorization protocol built on Ed25519 cryptography and standard key-agreement primitives. Nothing to register, no passwords to store: a person, a device, or an AI agent is represented by keys derived locally from a single seed phrase. Every context keeps its own isolated identity, access is delegated and revoked through signed attestations, and servers confirm a session with a single signature check — serverless authentication with minimal latency that minimizes, or removes entirely, the database you have to run and protect. Me2em is for one user who safely becomes many: separate profiles (work, home, the gym), hierarchies of IoT devices and drones, autonomous AI agents under signed mandates, E2EE-encrypted channels, and deterministic passwords for third-party services."
+      },
       "services": {
       "badge": "Packages",
       "heading": "Three packages, one seed",
@@ -512,6 +517,11 @@
           { "icon": "ban",        "title": "Revocable",      "description": "One revoked attestation disables an entire branch — current and future sessions, instantly." }
         ],
         "cta": "Read the docs"
+      },
+      "stack": {
+        "badge": "Under the hood",
+        "heading": "The stack",
+        "lead": "Audited primitives and a lean toolchain — every tile links to its source."
       },
       "portfolio": {
         "badge": "Use cases",
