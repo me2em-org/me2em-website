@@ -47,6 +47,10 @@ interface FaqCard {
   title: string;
   items: FaqItem[];
 }
+interface GlossaryTerm {
+  term: string;
+  definition: string;
+}
 
 const { locale = defaultLocale } = Astro.props;
 
@@ -58,18 +62,42 @@ const hero = tData<{ badge: string; titleLead: string; titleHighlight: string; d
 const design = tData<Service>('pages.services.design', locale)!;
 const development = tData<Service>('pages.services.development', locale)!;
 const performance = tData<Service>('pages.services.performance', locale)!;
+const glossary = tData<{ badge: string; heading: string; lead: string; terms: GlossaryTerm[] }>(
+  'pages.services.glossary',
+  locale
+)!;
 const processSection = tData<{ badge: string; heading: string; lead: string; steps: ProcessStep[] }>(
   'pages.services.process',
   locale
 )!;
 const faq = tData<{ badge: string; heading: string; lead: string; cards: FaqCard[] }>('pages.services.faq', locale)!;
-const cta = tData<{ badge: string; heading: string; description: string; primary: string; secondary: string }>(
+const cta = tData<{ badge: string; heading: string; description: string; primary: string; secondary: string; tertiary: string }>(
   'pages.services.cta',
   locale
 )!;
+const tutorials = tData<{ badge: string; headingLine1: string; headingLine2: string; para1: string; para2: string; casesIntro: string; moreAboutMe: string }>(
+  'pages.services.tutorials',
+  locale
+)!;
+const tutorialCases = tData<{ cases: { title: string; href: string }[] }>(
+  'pages.home.aboutTeaser',
+  locale
+)!;
 
-const contactUrl = localizedPath('/contact', locale);
-const aboutUrl = localizedPath('/about', locale);
+const blogUrl = localizedPath('/blog', locale);
+const CORE_DOCS_URL = 'https://core.me2em.com';
+const CRYPTO_DOCS_URL = 'https://crypto.me2em.com';
+const REACT_DOCS_URL = 'https://react.me2em.com';
+const NPM_ORG_URL = 'https://www.npmjs.com/org/me2em';
+const GITHUB_URL = 'https://github.com/me2em-org/me2em-protocol';
+
+// Tutorials teaser — four use-case cards. Titles and links live in i18n
+// (tutorialCases.cases); icons are presentation and stay here.
+const caseIcons = ['bot', 'radar', 'messages-square', 'plug-zap'] as const;
+const caseCardBase =
+  'bg-background-tertiary rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 border-t-2 border-brand-500/40 shadow-sm transition-all duration-200 h-full';
+const caseCardLinked = `${caseCardBase} hover:-translate-y-1 hover:shadow-md hover:border-brand-500`;
+const caseCardIdle = `${caseCardBase} cursor-default`;
 ---
 <PageLayout
   title={t('pages.services.meta.title', locale)}
@@ -126,6 +154,10 @@ const aboutUrl = localizedPath('/about', locale);
               {paragraph}
             </p>
           ))}
+          <Button variant="brand-outline" size="sm" class="self-start sm:self-center glitch:self-start mt-2 hidden sm:inline-flex glitch:inline-flex" href={CORE_DOCS_URL} target="_blank" rel="noopener noreferrer">
+            {design.ctaLabel}
+            <Icon name="arrow-right" size="sm" />
+          </Button>
         </div>
         <!-- Card -->
         <div class="sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
@@ -147,6 +179,12 @@ const aboutUrl = localizedPath('/about', locale);
               ))}
             </ul>
           </Card>
+        </div>
+        <div class="flex justify-center sm:hidden glitch:hidden" data-reveal data-reveal-delay="2">
+          <Button variant="brand-outline" size="sm" href={CORE_DOCS_URL} target="_blank" rel="noopener noreferrer">
+            {design.ctaLabel}
+            <Icon name="arrow-right" size="sm" />
+          </Button>
         </div>
       </div>
     </div>
@@ -172,6 +210,10 @@ const aboutUrl = localizedPath('/about', locale);
               {paragraph}
             </p>
           ))}
+          <Button variant="brand-outline" size="sm" class="self-start sm:self-center glitch:self-start mt-2 hidden sm:inline-flex glitch:inline-flex" href={CRYPTO_DOCS_URL} target="_blank" rel="noopener noreferrer">
+            {development.ctaLabel}
+            <Icon name="arrow-right" size="sm" />
+          </Button>
         </div>
         <!-- Card -->
         <div class="sm:max-w-xl sm:mx-auto glitch:order-1 glitch:max-w-none glitch:mx-0" data-reveal data-reveal-ease="smooth">
@@ -193,6 +235,12 @@ const aboutUrl = localizedPath('/about', locale);
               ))}
             </ul>
           </Card>
+        </div>
+        <div class="flex justify-center sm:hidden glitch:hidden" data-reveal data-reveal-delay="2">
+          <Button variant="brand-outline" size="sm" href={CRYPTO_DOCS_URL} target="_blank" rel="noopener noreferrer">
+            {development.ctaLabel}
+            <Icon name="arrow-right" size="sm" />
+          </Button>
         </div>
       </div>
     </div>
@@ -218,6 +266,10 @@ const aboutUrl = localizedPath('/about', locale);
               {paragraph}
             </p>
           ))}
+          <Button variant="brand-outline" size="sm" class="self-start sm:self-center glitch:self-start mt-2 hidden sm:inline-flex glitch:inline-flex" href={REACT_DOCS_URL} target="_blank" rel="noopener noreferrer">
+            {performance.ctaLabel}
+            <Icon name="arrow-right" size="sm" />
+          </Button>
         </div>
         <!-- Card -->
         <div class="sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
@@ -239,6 +291,95 @@ const aboutUrl = localizedPath('/about', locale);
               ))}
             </ul>
           </Card>
+        </div>
+        <div class="flex justify-center sm:hidden glitch:hidden" data-reveal data-reveal-delay="2">
+          <Button variant="brand-outline" size="sm" href={REACT_DOCS_URL} target="_blank" rel="noopener noreferrer">
+            {performance.ctaLabel}
+            <Icon name="arrow-right" size="sm" />
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Glossary -->
+  <section id="glossary" class="py-[var(--space-section-md)] bg-background border-t border-border">
+    <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+      <div class="flex flex-col items-center gap-4 text-center" data-reveal>
+        <div class="flex flex-col items-center gap-6">
+          <Badge variant="brand" pill>
+            <Icon name="book-open" size="sm" />
+            {glossary.badge}
+          </Badge>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+            {glossary.heading}
+          </h2>
+        </div>
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
+          {glossary.lead}
+        </p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {glossary.terms.map((item, i) => (
+          <Card variant="elevated" padding="md" data-reveal data-reveal-delay={i || undefined}>
+            <h3 class="font-display text-base font-semibold text-foreground">{item.term}</h3>
+            <p class="text-sm text-foreground-muted leading-relaxed mt-2">{item.definition}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Tutorials -->
+  <section class="relative z-10 py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12">
+        <div class="flex flex-col justify-center sm:items-center sm:text-center glitch:items-start glitch:text-left" data-reveal data-reveal-ease="smooth">
+          <div class="flex flex-col gap-6 mb-6 sm:items-center glitch:items-start">
+            <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
+              <Icon name="book-open" size="sm" />
+              {tutorials.badge}
+            </Badge>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+              {tutorials.headingLine1}<br />
+              <span class="text-brand-500">{tutorials.headingLine2}</span>
+            </h2>
+          </div>
+          <p class="text-lg text-foreground-muted leading-relaxed mb-4 sm:mb-0 sm:max-w-xl glitch:mb-4 glitch:max-w-none">
+            {tutorials.para1}
+          </p>
+          <p class="text-lg text-foreground-muted leading-relaxed mb-8 sm:max-w-xl glitch:mb-8 glitch:max-w-none">
+            {tutorials.para2}
+          </p>
+          <Button variant="brand-outline" href={blogUrl} class="self-start sm:self-center glitch:self-start sm:hidden glitch:inline-flex">
+            {tutorials.moreAboutMe}
+            <Icon name="arrow-right" size="sm" />
+          </Button>
+        </div>
+        <Card variant="elevated" padding="lg" class="h-full flex flex-col" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
+          <p class="text-sm font-bold text-brand-500 mb-5 text-center sm:hidden glitch:block">{tutorials.casesIntro}</p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 glitch:grid-cols-2 gap-3 flex-1 auto-rows-fr">
+            {tutorialCases.cases.map((useCase, i) =>
+              useCase.href ? (
+                <a href={useCase.href} class={caseCardLinked}>
+                  <Icon name={caseIcons[i]} class="w-10 h-10 text-brand-500" />
+                  <p class="text-sm font-semibold text-foreground">{useCase.title}</p>
+                </a>
+              ) : (
+                <div class={caseCardIdle}>
+                  <Icon name={caseIcons[i]} class="w-10 h-10 text-brand-500" />
+                  <p class="text-sm font-semibold text-foreground">{useCase.title}</p>
+                </div>
+              )
+            )}
+          </div>
+        </Card>
+        <div class="hidden sm:flex justify-center glitch:hidden" data-reveal data-reveal-delay="2">
+          <Button variant="brand-outline" href={blogUrl}>
+            {tutorials.moreAboutMe}
+            <Icon name="arrow-right" size="sm" />
+          </Button>
         </div>
       </div>
     </div>
@@ -326,13 +467,17 @@ const aboutUrl = localizedPath('/about', locale);
         {cta.description}
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button size="lg" href={contactUrl}>
+        <Button size="lg" href="#design">
           {cta.primary}
-          <Icon name="arrow-right" size="sm" />
+          <Icon name="rocket" size="sm" />
         </Button>
-        <Button size="lg" variant="outline" class="cta-btn-brand" href={aboutUrl}>
+        <Button size="lg" variant="outline" class="cta-btn-brand" href={NPM_ORG_URL} target="_blank" rel="noopener noreferrer">
           {cta.secondary}
-          <Icon name="arrow-right" size="sm" />
+          <Icon name="package" size="sm" />
+        </Button>
+        <Button size="lg" variant="outline" class="cta-btn-brand" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
+          {cta.tertiary}
+          <Icon name="github" size="sm" />
         </Button>
       </div>
     </CtaBand>

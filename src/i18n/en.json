@@ -363,7 +363,7 @@
         "badge": "Documentation",
         "titleLead": "Everything you need",
         "titleHighlight": "to build on Me2em",
-        "description": "API references for all packages, a glossary, quick starts, and guides — from first seed phrase to a verified session.",
+        "description": "API references for all packages, glossary, quick starts, and guides — from first seed phrase to a verified session.",
         "jumpLabels": ["@me2em/core","@me2em/crypto","@me2em/react"]
       },
       "design": {
@@ -425,6 +425,21 @@
     { "title": "Verify & revoke", "description": "Any third party verifies with the root public key alone. One revoked jti disables an entire branch — instantly." }
   ]
 },
+"glossary": {
+  "badge": "Glossary",
+  "heading": "Speak the protocol",
+  "lead": "A shared vocabulary for the whole model — each term is defined once, here, and used everywhere else.",
+  "terms": [
+    { "term": "Identity", "definition": "Root cryptographic identity derived from a seed phrase. Constant forever." },
+    { "term": "Handle", "definition": "A derived, attested, named key representing a distinct identity context." },
+    { "term": "SubHandle", "definition": "A leaf child of a Handle." },
+    { "term": "Attestation", "definition": "A parent-signed statement binding a child key to a name and a grant." },
+    { "term": "Session", "definition": "A stateless signed authorization token." },
+    { "term": "Channel", "definition": "A long-lived E2EE relationship derived from an X3DH shared secret." },
+    { "term": "Transient material", "definition": "Key bytes existing only in RAM at the moment of use." },
+    { "term": "Ephemeral material", "definition": "TTL-bound rotating material (SPK/OTK, cache keys, session tokens)." }
+  ]
+},
 "faq": {
   "badge": "Good to know",
   "heading": "Frequently asked questions",
@@ -444,12 +459,22 @@
     ]}
   ]
 },
+"tutorials": {
+  "badge": "Tutorials",
+  "headingLine1": "The protocol",
+  "headingLine2": "at work.",
+  "para1": "Every documented scenario — a charging network, a fleet of drones selling access to its cameras, a corporate messenger, a delegated AI agent — has a walkthrough that builds it from a seed phrase to a verified session, in real code. The packages never change; only the roles do.",
+  "para2": "New tutorials land in the blog as the protocol grows.",
+  "casesIntro": "One protocol, many scenarios.",
+  "moreAboutMe": "Read the tutorials"
+},
 "cta": {
   "badge": "Get started",
   "heading": "Your first session in minutes",
   "description": "Install a package, derive a Handle, and verify a stateless session — the quick start runs across all three packages.",
-  "primary": "Open the quick start",
-  "secondary": "View on GitHub"
+  "primary": "Get started",
+  "secondary": "Browse on npm",
+  "tertiary": "Star on GitHub"
 }
     },
     "contact": {
@@ -544,7 +569,7 @@
   "badge": "Tutorials",
   "headingLine1": "From seed phrase",
   "headingLine2": "to working code.",
-  "para1WithLocation": "Four scenarios carry the same primitives into four very different worlds: an AI agent workforce, a drone fleet that sells access, a corporate messenger, and a network of charging stations. None of them bends the protocol — that is the point. The team behind it is based in {location}.",
+  "para1WithLocation": "Four scenarios carry the same primitives into four very different worlds: an AI agent workforce, a drone fleet that sells access, a corporate messenger, and a network of charging stations. None of them bends the protocol — that is the point.",
   "para1NoLocation": "Four scenarios carry the same primitives into four very different worlds: an AI agent workforce, a drone fleet that sells access, a corporate messenger, and a network of charging stations. None of them bends the protocol — that is the point.",
   "para2": "On the blog, each scenario becomes a step-by-step tutorial.",
   "moreAboutMe": "Read more",

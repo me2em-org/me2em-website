@@ -499,7 +499,31 @@
           }
         ]
       },
-      "cta": {
+      "glossary": {
+        "badge": "术语表",
+        "heading": "理解协议语言",
+        "lead": "A shared vocabulary for the whole model — each term is defined once, here, and used everywhere else.",
+        "terms": [
+          { "term": "Identity", "definition": "Root cryptographic identity derived from a seed phrase. Constant forever." },
+          { "term": "Handle", "definition": "A derived, attested, named key representing a distinct identity context." },
+          { "term": "SubHandle", "definition": "A leaf child of a Handle." },
+          { "term": "Attestation", "definition": "A parent-signed statement binding a child key to a name and a grant." },
+          { "term": "Session", "definition": "A stateless signed authorization token." },
+          { "term": "Channel", "definition": "A long-lived E2EE relationship derived from an X3DH shared secret." },
+          { "term": "Transient material", "definition": "Key bytes existing only in RAM at the moment of use." },
+          { "term": "Ephemeral material", "definition": "TTL-bound rotating material (SPK/OTK, cache keys, session tokens)." }
+        ]
+      },
+      "tutorials": {
+        "badge": "Tutorials",
+        "headingLine1": "The protocol",
+        "headingLine2": "at work.",
+        "para1": "Every documented scenario — a charging network, a fleet of drones selling access to its cameras, a corporate messenger, a delegated AI agent — has a walkthrough that builds it from a seed phrase to a verified session, in real code. The packages never change; only the roles do.",
+        "para2": "New tutorials land in the blog as the protocol grows.",
+        "casesIntro": "One protocol, many scenarios.",
+        "moreAboutMe": "Read the tutorials"
+      },
+"cta": {
         "badge": "聊聊",
         "heading": "聊聊你需要什么",
         "description": "第一次谈话免费且信息丰富，无任何义务：通过电话、视频或电子邮件。你会得到诚实的答案，谈话后得到一个清晰的时间表和固定价格的提案。",
