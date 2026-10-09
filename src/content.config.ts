@@ -149,7 +149,11 @@ const projects = defineCollection({
       tags: z.array(z.string()).default([]),
       featured: z.boolean().default(false),
       order: z.number().default(99),
-      year: z.number().optional(),
+      /**
+       * Protocol use-case code shown on the card ("UC-4"). Free-form short
+       * string — codes come from the protocol's UC registry (USE_CASES.md).
+       */
+      uc: z.string().optional(),
       client: z.string().optional(),
       role: z.string().optional(),
       services: z.array(z.string()).default([]),

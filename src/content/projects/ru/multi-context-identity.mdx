@@ -1,0 +1,58 @@
+---
+title: "Мульти-контекстная идентичность"
+locale: ru
+description: "Одна seed-фраза — много изолированных персон. Работа, портфолио, дом, личное — у каждого контекста свой Handle, и компрометация одного не раскрывает остальные."
+icon: "user-cog"
+tags: ["identity", "isolation", "privacy", "deterministic"]
+featured: true
+order: 5
+uc: "UC-3"
+url: "https://github.com/me2em-org/me2em-protocol/blob/main/packages/core/USE_CASES.md#scenario-5-multi-context-identity-uc-3-personas"
+services: ["@me2em/core 0.7", "@me2em/crypto 0.1", "@me2em/react 0.1"]
+meta: ["Один seed — много лиц", "Изолированные пары ключей", "Нет связующего идентификатора", "На сервере — ничего"]
+draft: false
+---
+
+## Что можно построить
+
+Идентичность пользователя, которая остаётся разделённой в каждом контексте —
+работа, личный, дом, устройства — без центральной базы данных, которая их
+связывает. Каждый Handle — это отдельная Ed25519 keypair, выведенная из
+одного seed, и каждое устройство пересчитывает те же ключи из seed-фразы.
+
+## Как это работает
+
+Пользователь выводит Handle на каждый контекст. Каждый Handle несёт свою
+keypair, свою цепочку аттестаций и свои сессии. Приложения видят только
+Handle, который предъявляет пользователь, и проверяют по корневому публичному
+ключу.
+
+```typescript
+const work = await identity.deriveHandle('work');
+const home = await identity.deriveHandle('home');
+const devices = await identity.deriveHandle('devices');
+```
+
+## Бенефиты
+
+- **Изоляция by construction.** Компрометация одного Handle никогда не раскрывает
+  другой — separate keys, separate grants.
+- **Stateless.** Серверы проверяют сессии по корневому публичному ключу —
+  без базы пользователей для содержания или защиты.
+- **Одна строка для нового контекста.** Новая персона — одно derivation — без
+  registration, без approval, без данных для утечки.
+- **Deterministic.** Тот же seed, тот же Handle — всегда. Одна идентичность на
+  каждом устройстве, ничего для sync.
+
+## Компромиссы
+
+- **Потеря seed = потеря идентичности по дизайну.** Нет recovery — seed — это
+  единственный permanent carrier идентичности.
+- **Обучение пользователей.** Персоны нуждаются в объяснении: пользователи должны
+  понимать, когда какой Handle предъявлять и почему isolation важна.
+- **Alpha.** Package APIs are pre-1.0; pin versions.
+
+## Ссылки
+
+- Сценарий 5 в [protocol Use Cases guide](https://github.com/me2em-org/me2em-protocol/blob/main/packages/core/USE_CASES.md#scenario-5-multi-context-identity-uc-3-personas)
+- Quick Start в README

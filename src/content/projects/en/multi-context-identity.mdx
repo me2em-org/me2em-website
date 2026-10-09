@@ -1,0 +1,57 @@
+---
+title: "Multi-Context Identity"
+locale: en
+description: "One seed, many identities — a separate Handle per context, each with its own keypair. No linking identifier, no user database, deterministic derivation on every device."
+icon: "user-cog"
+tags: ["identity", "isolation", "privacy", "deterministic"]
+featured: true
+order: 5
+uc: "UC-3"
+url: "https://github.com/me2em-org/me2em-protocol/blob/main/packages/core/USE_CASES.md#scenario-5-multi-context-identity-uc-3-personas"
+services: ["@me2em/core 0.7", "@me2em/crypto 0.1", "@me2em/react 0.1"]
+meta: ["One seed — many faces", "Isolated keypairs", "No linking identifier", "Server holds nothing"]
+draft: false
+---
+
+## What you can build
+
+A user identity that stays separate across every context — work, personal,
+home, devices — with no central database linking them. Each Handle is a
+distinct Ed25519 keypair derived from the same seed, and every device
+recomputes the same keys from the seed phrase.
+
+## How it works
+
+The user derives a Handle per context. Each Handle carries its own keypair,
+its own attestation chain, and its own sessions. Applications see only the
+Handle the user presents and verify against the root public key.
+
+```typescript
+const work = await identity.deriveHandle('work');
+const home = await identity.deriveHandle('home');
+const devices = await identity.deriveHandle('devices');
+```
+
+## Benefits
+
+- **Isolation by construction.** A compromise of one Handle never reveals
+  another — separate keys, separate grants.
+- **Stateless.** Servers verify sessions with the root public key alone;
+  no user database to maintain or protect.
+- **One-line new context.** A new persona is one derivation — no
+  registration, no approval, no data to leak.
+- **Deterministic.** Same seed, same Handle — always. One identity on
+  every device, nothing to sync.
+
+## Trade-offs
+
+- **Lost seed = lost identity by design.** There is no recovery — the seed
+  is the only permanent carrier of identity.
+- **User education.** Personas need explanation: users must understand when
+  to present which Handle and why isolation matters.
+- **Alpha.** Package APIs are pre-1.0; pin versions.
+
+## References
+
+- Scenario 5 in the [protocol Use Cases guide](https://github.com/me2em-org/me2em-protocol/blob/main/packages/core/USE_CASES.md#scenario-5-multi-context-identity-uc-3-personas)
+- Quick Start in the README

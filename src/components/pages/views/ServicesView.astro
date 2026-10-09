@@ -85,6 +85,7 @@ const tutorialCases = tData<{ cases: { title: string; href: string }[] }>(
 )!;
 
 const blogUrl = localizedPath('/blog', locale);
+const tutorialsUrl = localizedPath( '/blog/tag/tutorial', locale)
 const CORE_DOCS_URL = 'https://core.me2em.com';
 const CRYPTO_DOCS_URL = 'https://crypto.me2em.com';
 const REACT_DOCS_URL = 'https://react.me2em.com';
@@ -352,7 +353,7 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
           <p class="text-lg text-foreground-muted leading-relaxed mb-8 sm:max-w-xl glitch:mb-8 glitch:max-w-none">
             {tutorials.para2}
           </p>
-          <Button variant="brand-outline" href={blogUrl} class="self-start sm:self-center glitch:self-start sm:hidden glitch:inline-flex">
+          <Button variant="brand-outline" href={tutorialsUrl} class="self-start sm:self-center glitch:self-start sm:hidden glitch:inline-flex">
             {tutorials.moreAboutMe}
             <Icon name="arrow-right" size="sm" />
           </Button>

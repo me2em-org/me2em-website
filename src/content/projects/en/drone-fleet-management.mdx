@@ -1,0 +1,69 @@
+---
+title: "Drone Fleet Management"
+locale: en
+description: "Provision airframes at deploy, isolate onboard subsystems, grant a technician 48 hours of maintenance access from the hangar — and kill a lost drone in one call."
+icon: "radar"
+tags: ["drones", "attestation", "offline", "revocation"]
+featured: false
+order: 3
+uc: "UC-2"
+url: "https://github.com/me2em-org/me2em-protocol/blob/main/packages/core/USE_CASES.md#scenario-3-drone-fleet-management-uc-2-iot-device-hierarchy"
+services: ["@me2em/core 0.7"]
+meta: ["Provisioning without the root", "In-field grants", "Subsystem isolation", "Lost airframe = one revocation"]
+draft: false
+---
+
+## What you can build
+
+Fleet operations that stay cryptographic from the hangar to the field:
+airframes provisioned once at deploy, onboard subsystems as isolated
+SubHandles, time-boxed maintenance access issued by the drone itself — and a
+lost airframe removed from the entire perimeter with a single revocation.
+
+## How it works
+
+Each airframe is a Handle attested by the operator at deploy. Sensors and
+telemetry are derived SubHandles; a technician's window is a self-issued
+child attestation with a 48-hour TTL — no network needed.
+
+```mermaid
+flowchart LR
+    O[Operator seed] -->|attestHandle, per airframe| D["Handle: drone-alpha"]
+    D --> G["SubHandle: gimbal-camera"]
+    D --> T["SubHandle: flight-telemetry"]
+    D -->|attestSubHandle, 48 h| M["SubHandle: maint-tech-77"]
+    R[Lost drone] -->|one jti| D
+```
+
+```typescript
+const B = await droneHandle.attestSubHandle('maint-tech-77', {
+  audiences: ['fleet-control.internal'],
+  scopes: ['maintenance:run', 'telemetry:read'],
+  maxSessionTtl: 3600,
+}, { ttlSeconds: 48 * 3600 });
+// Hand the tech { token, chain: [A.token, B.token] }.
+```
+
+## Benefits
+
+- **No root key in the field.** Everything below deploy is derived and
+  attested by the airframe itself.
+- **Subsystem isolation.** A compromised gimbal does not reach flight
+  telemetry — separate keys, separate grants.
+- **Self-expiring access.** Maintenance windows die on schedule; nobody
+  revokes manually.
+- **Instant removal.** A lost or captured airframe is disabled everywhere by
+  revoking its attestation `jti`.
+
+## Trade-offs
+
+- **Mode 1 perimeter.** Fleet control holds the root key for internal
+  verification — the perimeter must be hardened.
+- **Grant discipline.** SubHandle scopes bound what the airframe can attest;
+  set `subNamePatterns` narrowly.
+- **Alpha.** Package APIs are pre-1.0; pin versions.
+
+## References
+
+- Scenario 3 in the [protocol Use Cases guide](https://github.com/me2em-org/me2em-protocol/blob/main/packages/core/USE_CASES.md#scenario-3-drone-fleet-management-uc-2-iot-device-hierarchy)
+- API reference at [core.me2em.com](https://core.me2em.com)
