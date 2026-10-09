@@ -77,11 +77,7 @@ function IdentityScreen() {
     );
   }
 
-  if (status === 'verified') {
-    return <p>Идентичность готова!</p>;
-  }
-
-  return <p>Создание...</p>;
+  return <p>Идентичность готова</p>;
 }
 ```
 
