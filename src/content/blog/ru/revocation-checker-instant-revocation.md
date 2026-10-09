@@ -1,9 +1,9 @@
 ---
 title: "Мгновенный отзыв: ревокация в stateless-мире"
-description: "Как отозвать подписанный токен за 0.1 мс, если у тебя нет серверных сессий: гранулярность отзыва, fail-open vs fail-closed, TTL записей и почему stateless ≠ безотзывность."
+description: "Как отзывать подписанные токены, когда серверных сессий нет: гранулярность отзыва, fail-open vs fail-closed, TTL записей и почему stateless ≠ безотзывность."
 publishedAt: 2026-09-25
 author: "Me2em Organization"
-tags: ["me2em", "revocation", "sessions", "stateless", "redis", "security", "architecture"]
+tags: ["revocation", "sessions", "security"]
 featured: false
 locale: ru
 uid: "revocation-checker-instant-revocation"
@@ -25,16 +25,18 @@ interface RevocationChecker {
 
 ## Что такое jti — ключ ко всему
 
-Каждый токен несёт `jti` (JWT ID — унаследовано терминологии, работает так же) — уникальный идентификатор, сгенерированный при создании сессии:
+Каждый токен несёт `jti` (JWT ID — термин унаследован из JWT, работает так же) — уникальный идентификатор, сгенерированный при создании сессии:
 
 ```typescript
+import { Session } from '@me2em/core';
+
 const session = await Session.create(handle, {
   audience: 'app.com',
   scopes: ['read'],
   ttl: 3600,
-  // jti генерируется автоматически: crypto.randomUUID()
 });
-console.log(session.jti); // 'f47ac10b-58cc-4372-a567-0e02b2c3d479'
+// jti генерируется автоматически (UUID) и хранится в подписанном payload —
+// верификатор извлекает его из токена и передаёт в RevocationChecker
 ```
 
 `jti` — это **имя сессии в мире отзыва**. Оно не выводится из ключа, не зависит от хэндла, не повторяется. Именно поэтому отзыв точечный: отозван может быть один конкретный токен, не затрагивая другие сессии того же хэндла.
@@ -68,7 +70,7 @@ await revocationService.revokeAttestation(workerAttestationJti);
 
 ```typescript
 import Redis from 'ioredis';
-import { RevocationChecker } from '@me2em/react';
+import { RevocationChecker } from '@me2em/core';
 
 export class RedisRevocationService implements RevocationChecker {
   private readonly redis: Redis;
@@ -95,7 +97,7 @@ export class RedisRevocationService implements RevocationChecker {
 }
 ```
 
-Характеристики:
+Характеристики — порядок величины (зависит от окружения):
 
 | Метрика | Значение |
 |---------|----------|
@@ -109,7 +111,7 @@ export class RedisRevocationService implements RevocationChecker {
 Позиция проверки ревокации в цепочке верификации — не перестановка, а решение с последствиями:
 
 ```text
-Порядок в @me2em/crypto:
+Типовой порядок проверок верификатора:
 1. Формат и обязательные поля
 2. Аудитория
 3. Время (exp, iat)
@@ -153,7 +155,7 @@ async isRevoked(jti: string): Promise<boolean> {
 | Риск | отозванный токен проскочит в окно недоступности | полный простой системы |
 | Кому подходит | мессенджеры, соцсети, контентные платформы | банки, military, системы с ценой пропуска > ценой простоя |
 
-Me2em оставляет выбор приложению — протокол фиксирует только интерфейс. Но документируйте выбор явно: fail-open с отозванными yesterday-токенами и fail-closed с тотальным простоем — это разные катастрофы, и команда должна знать, какая из них выбрана.
+Me2em оставляет выбор приложению — протокол фиксирует только интерфейс. Но документируйте выбор явно: fail-open, при котором отозванный токен может проскочить, и fail-closed с тотальным простоем — это разные катастрофы, и команда должна знать, какая из них выбрана.
 
 ## TTL записей отзыва: не вечные надгробия
 
@@ -189,7 +191,7 @@ Per-key EXPIRE чище (автоочистка встроена в Redis), но
 
 ## Namespaces: одна ловушка, которую нужно знать
 
-Аттестации и сессии делят одно хранилище. `jti` аттестации и `jti` сессии — оба UUID, оба UUID-формата. **Теоретически возможно коллицировать**: UUID аттестации случайно совпал с UUID сессии, и отзыв сессии убил аттестацию.
+Аттестации и сессии делят одно хранилище. `jti` аттестации и `jti` сессии — оба UUID. **Теоретически возможно столкновение**: UUID аттестации случайно совпал с UUID сессии, и отзыв сессии убил аттестацию.
 
 Вероятность ничтожна (UUID 122 бит случайности), но дисциплина требует явности. Два подхода:
 
@@ -211,23 +213,21 @@ Me2em не навязывает — приложение выбирает. Но 
 
 ```mermaid
 flowchart TD
-    S["Session Token<br/>jti: session-uuid"] --> CHECK4["Ревокация<br/>(последняя)"]
-    A["Root Attestation<br/>jti: root-uuid"] --> CHECK1["Ревокация ROOT"]
-    B["Handle Attestation<br/>jti: handle-uuid"] --> CHECK2["Ревокация<br/>HANDLE_ATTESTATION"]
-    B --> SESSION
-    SESSION --> CHECK4
-    A --> CHECK1
+    A["Root Attestation<br/>jti: root-uuid"] --> B["Handle Attestation<br/>jti: handle-uuid"] --> S["Session Token<br/>jti: session-uuid"]
+    A -.->|"отзыв уровня ROOT"| K1["REVOKED / ROOT"]
+    B -.->|"отзыв уровня<br/>HANDLE_ATTESTATION"| K2["REVOKED /<br/>HANDLE_ATTESTATION"]
+    S -.->|"отзыв уровня SESSION"| K3["REVOKED / SESSION"]
 ```
 
 Каждый уровень проверяется независимо. Отзыв любого уровня делает всю цепь недействительной:
 
-| Отозвано | Что умирает | Level при ошибке |
+| Отозвано | Что умирает | Код / уровень ошибки |
 |----------|-------------|------------------|
 | Root attestation | Вся ветка | REVOKED / ROOT |
 | Handle attestation | Хэндл + все его сессии | REVOKED / HANDLE_ATTESTATION |
 | Session | Одна сессия | REVOKED / SESSION |
 
-Это даёт гранулярность отзыва, которую Signal-подобные системы не имеют: у них identity key вечен, и отзывать можно только устройства целиком.
+Это даёт гранулярность отзыва, которую Signal-подобные системы не имеют: их identity key долгоживущий, а отзыв ограничен отвязкой устройств целиком.
 
 ## Итог
 
@@ -244,7 +244,7 @@ flowchart TD
 
 ## Что читать дальше
 
-- **[Stateless-сессии: авторизация без базы данных](/ru/blog/stateless-sessions-no-database)** — что внутри токена и как работает верификация
-- **[Аттестационные цепочки](/ru/blog/attestation-chains-delegated-trust)** — Mode 2 и аттестационный отзыв веток
-- **[USE_CASES.md](https://github.com/me2em-org/me2em-protocol/blob/main/packages/core/USE_CASES.md)** — Redis RevocationChecker в контексте сценариев
-- **[`@me2em/core` на npm](https://www.npmjs.com/package/@me2em/core)** — реализация
+- **[Stateless-сессии: авторизация без базы данных](/ru/blog/stateless-sessions-no-database)** — что внутри токена и какие семь проверок проходит сессия
+- **[Аттестационные цепочки: делегирование доверия без сервера](/ru/blog/attestation-chains-delegated-trust)** — Mode 2: как аттестационный jti выключает всю ветку
+- **[Me2em: идентичность из seed-фразы](/ru/blog/me2em-seed-derived-identity)** — фундамент: откуда берётся дерево ключей
+- **[USE_CASES.md](https://github.com/me2em-org/me2em-protocol/blob/main/packages/core/USE_CASES.md)** — production-пример Redis RevocationChecker в контексте сценариев

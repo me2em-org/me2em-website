@@ -1,9 +1,9 @@
 ---
 title: "DevSecOps для криптографического monorepo: три контура защиты на GitHub Actions"
-description: "Как построить бесплатный security-пайплайн для TypeScript-монорепозитория на pnpm: secret scanning, dependency audit, CodeQL SAST — и четыре ловушки, которые мы поймали на первом прогоне."
+description: "Как построить бесплатный security-пайплайн для TypeScript-монорепозитория на pnpm: secret scanning, dependency audit, CodeQL SAST — и четыре проблемы, которые мы решили на пути к нему."
 publishedAt: 2026-09-21
 author: "Me2em Organization"
-tags: ["devsecops", "github-actions", "ci", "monorepo", "pnpm", "security", "typescript"]
+tags: ["devsecops", "security", "cryptography"]
 featured: false
 locale: ru
 uid: "devsecops-crypto-monorepo"
@@ -14,7 +14,7 @@ Me2em — TypeScript-монорепозиторий на pnpm с тремя па
 Нам нужен был пайплайн, который закрывает три контура защиты — и делает это бесплатно на GitHub Actions для публичного репозитория:
 
 - **Secret Scanning** — сканирование полной git-истории на утечку ключей, токенов, seed-фраз
-- **Build & Test** — typecheck, сборка, 380+ тестов в чистом окружении
+- **Build & Test** — typecheck, сборка, полный тестовый набор (сотни тестов) в чистом окружении
 - **CodeQL SAST** — глубокий статический анализ с taint tracking
 
 Эта статья описывает финальный пайплайн, четыре проблемы, которые мы решили на пути к нему, и разбор того, что означает каждая зелёная джоба.
@@ -26,22 +26,22 @@ Me2em — TypeScript-монорепозиторий на pnpm с тремя па
 ```mermaid
 flowchart LR
     PUSH["push / PR / weekly cron"] --> SS["secret-scan<br/>gitleaks: полная история"]
-    PUSH --> BAT["build-and-test<br/>typecheck → build → test<br/>→ lint (NB) → audit (NB)"]
+    PUSH --> BAT["build-and-test<br/>build → typecheck → test<br/>→ lint (non-blocking) → audit (non-blocking)"]
     PUSH --> CQL["codeql<br/>SAST security-extended"]
     SS --> GREEN["🟢 all green<br/>→ merge allowed"]
     BAT --> GREEN
     CQL --> GREEN
 ```
 
-Три параллельных джобы дают **три независимых сигнала**. Падение одного не скрывает результаты двух других — разработчик видит всю картину сразу и чинит параллельно. В последовательной цепочке падение на первом шаге скрывает результаты остальных: больше информации для фикса, меньше итераций.
+Три параллельных джобы дают **три независимых сигнала**. Падение одного не скрывает результаты двух других — разработчик видит всю картину сразу и чинит параллельно. В последовательной цепочке падение на первом шаге скрывает результаты остальных: меньше информации для фикса, больше итераций.
 
-Каждый контур свой тип доверия:
+Каждый контур построен на своём принципе недоверия:
 
-| Джоба | Доверяет | Не доверяет |
-|-------|----------|-------------|
-| `secret-scan` | Ничему — сканирует всю историю коммитов | |
-| `build-and-test` | Собранному коду, но не окружению — каждый прогон с чистого листа | |
-| `codeql` | Исходникам, но не зависимостям — taint tracking через всю цепочку | |
+| Джоба | Принцип недоверия |
+|-------|-------------------|
+| `secret-scan` | Не доверяет ничему — сканирует всю историю коммитов, включая «удалённые» секреты |
+| `build-and-test` | Не доверяет окружению — каждый прогон с чистого листа, без остатков прошлых сборок |
+| `codeql` | Не доверяет ни исходникам, ни зависимостям — taint tracking через всю цепочку данных |
 
 ## Build до typecheck: ловушка workspace-зависимостей
 
@@ -100,7 +100,7 @@ onlyBuiltDependencies:
 
 ## Gitleaks в организации: лицензия, видимость, миграция v2 → v3
 
-Третья проблема — гitleaks-action в организационном репозитории требует лицензию (для личных аккаунтов бесплатен). Мы получили лицензию на gitleaks.io, добавили `GITLEAKS_LICENSE` в org secrets — и action всё равно упал с `missing gitleaks license`.
+Третья проблема — gitleaks-action в организационном репозитории требует лицензию (для личных аккаунтов бесплатен). Мы получили лицензию на gitleaks.io, добавили `GITLEAKS_LICENSE` в org secrets — и action всё равно упал с `missing gitleaks license`.
 
 Причина: **org secrets видны репозиториям только при настроенной видимости**. Проверьте: Organization → Settings → Secrets and variables → Actions → GITLEAKS_LICENSE → Repository access → All repositories (или Selected + ваш репо).
 
@@ -119,26 +119,19 @@ onlyBuiltDependencies:
 
 Явная передача `GITLEAKS_LICENSE` через `env:` — надёжнее, чем надежда на org-level visibility. Тот же принцип, что с `GITHUB_TOKEN`: лучше передать явно, чем полагаться на неявное наследование.
 
-Для тест-фикстур (BIP39-векторы, `Uint8Array(32).fill(0x42)` паттерны) мы добавили превентивный allowlist в `.gitleaks.toml` — gitleaks сканирует полную историю и может поймать синтетические константы как ложные срабатывания:
+Для тест-фикстур (BIP39-векторы, `Uint8Array(32).fill(0x42)`-паттерны) мы добавили превентивный allowlist в `.gitleaks.toml` — gitleaks сканирует полную историю и может поймать синтетические константы как ложные срабатывания:
 
 ```toml
-[[rules]]
-id = "allow-test-fixtures"
-description = "Suppress known synthetic vectors in test directories"
-regex = '''(?:abandon( abandon){11}|0x0b{10,}|deadbeef|new Uint8Array\(\d+\)\.fill\(0x[0-9a-fA-F]{2}\))'''
-
-[rules.allowlist]
-description = "BIP39 test vectors and fixed test mnemonics"
-regexes = [
-  '''abandon( abandon){11}''',
-  '''(?i)0x0b{10,}''',
-  '''(?i)deadbeef''',
-]
-paths = [
-  '''packages/crypto/test/.*''',
-  '''packages/core/test/.*''',
-  '''packages/react/test/.*''',
-]
+[allowlist]
+  description = "Test fixtures: BIP39 vectors and synthetic constants"
+  regexes = [
+    '''abandon( abandon){11}''',
+    '''(?i)0x0b{10,}''',
+    '''(?i)deadbeef''',
+  ]
+  paths = [
+    '''packages/.*/test/.*''',
+  ]
 ```
 
 ## Версионная гигиена: pinning runner'а и action'ов
@@ -147,9 +140,9 @@ paths = [
 
 | Warning | Дедлайн | Фикс |
 |---------|---------|------|
-| `ubuntu-latest мигрирует на Ubuntu 26` | 19 октября 2026 | `runs-on: ubuntu-24.04` |
-| `CodeQL Action v3 deprecated` | Декабрь 2026 | `github/codeql-action@v4` |
-| `Node 20 deprecated` в action'ах | Переменно | Обновить action'ы до Node 24-совместимых версий (`checkout@v6`) |
+| `ubuntu-latest` мигрирует на Ubuntu 26 | 19 октября 2026 | `runs-on: ubuntu-24.04` |
+| CodeQL Action v3 deprecated | Декабрь 2026 | `github/codeql-action@v4` |
+| Node 20 deprecated в action'ах | Переменно | Обновить action'ы до Node 24-совместимых версий (`checkout@v6`) |
 
 Правило: **`ubuntu-latest` — плавающая цель.** Сегодня это Ubuntu 24, завтра 26 — и поведение сборщиков изменится незаметно. Фиксация конкретной версии — предсказуемость.
 
@@ -252,11 +245,11 @@ jobs:
 
 | Зелёная джоба | Что гарантирует | Что НЕ гарантирует |
 |---------------|-----------------|-------------------|
-| 🟢 `secret-scan` | В **всей git-истории** (не только последний коммит) нет паттернов секретов: приватных ключей, API-токенов, seed-фраз | Что секрет не будет добавлен в следующем коммите. Что synthetic-векторы в тестах не выглядят как секреты для более строгих сканеров |
-| 🟢 `build-and-test` | Все пакеты **собираются в чистом окружении**; типы консистентны; 380+ тестов проходят; зависимости аудитируются (informational) | Криптографическую корректность протокола (это отдельный слой — test vectors протокола, не CI); отсутствие 0-day в зависимостях (audit — информационный) |
-| 🟢 `codeql` | `security-extended` набор правил не нашёл taint-flow, SQL-injection, XSS-паттернов в исходном коде | Логическую корректность криптографических протоколов; 0-day в самих action'ах |
+| 🟢 `secret-scan` | Во **всей git-истории** (не только последний коммит) нет паттернов секретов: приватных ключей, API-токенов, seed-фраз | Что секрет не будет добавлен в следующем коммите. Что синтетические векторы в тестах не выглядят как секреты для более строгих сканеров |
+| 🟢 `build-and-test` | Все пакеты **собираются в чистом окружении**; типы консистентны; весь тестовый набор проходит; зависимости аудитируются (informational) | Криптографическую корректность протокола (это отдельный слой — test vectors протокола, не CI); отсутствие 0-day в зависимостях (audit — информационный) |
+| 🟢 `codeql` | `security-extended`-набор правил не нашёл taint-flow, SQL-injection, XSS-паттернов в исходном коде | Логическую корректность криптографических протоколов; 0-day в самих action'ах |
 
-CI не дублирует локальные проверки — **он проверяет чистое окружение, которого у разработчика нет**. Именно поэтому первый прогон в чистом CI нашёл то, что 380 зелёных локальных тестов не видели: отсутствующий `dist/`, неправильную локацию `onlyBuiltDependencies`, deprecated runner-версии.
+CI не дублирует локальные проверки — **он проверяет чистое окружение, которого у разработчика нет**. Именно поэтому первый прогон в чистом CI нашёл то, чего не видели сотни зелёных локальных тестов: отсутствующий `dist/`, неправильную локацию `onlyBuiltDependencies`, deprecated runner-версии.
 
 ## FAQ: Troubleshooting по каждой джобе
 
@@ -268,7 +261,7 @@ CI не дублирует локальные проверки — **он про
 
 **Q: false positive на тест-фикстуру.**
 
-Подтвердите, что строка синтетическая (BIP39-вектор, `fill()`-паттерн, RFC-константа). Добавьте подавление в `.gitleaks.toml` (broad pattern для test-директорий) или `.gitleaksignore` (fingerprint конкретной находки). Коммит: `ci: gitleaks ignore for <что и почему>`.
+Подтвердите, что строка синтетическая (BIP39-вектор, `fill()`-паттерн, RFC-константа). Добавьте подавление в `[allowlist]` в `.gitleaks.toml` (path/regex-паттерны для test-директорий) или `.gitleaksignore` (fingerprint конкретной находки). Коммит: `ci: gitleaks ignore for <что и почему>`.
 
 **Q: missing gitleaks license (organization).**
 
@@ -325,6 +318,12 @@ Security → Code scanning alerts на GitHub. CodeQL не печатает find
 - **npm publish automation** — trusted publishing из CI вместо ручного `pnpm publish`
 - **Lint config для корня** — сейчас `pnpm -r lint` покрывает только `packages/*/src`; корневые файлы (BACKLOG, specs) — вне контура
 
+## Что читать дальше
+
+- **[Пост-мортем: эволюция @me2em/core](/ru/blog/core-evolution-post-mortem)** — дизайн-решения, которые этот пайплайн охраняет
+- **[E2EE без хранения приватных ключей](/ru/blog/e2ee-seed-derived-identity)** — код, ради которого стоят три контура защиты
+- **[Me2em: идентичность из seed-фразы](/ru/blog/me2em-seed-derived-identity)** — фундамент протокола
+
 ---
 
-*Полный workflow-файл: [`.github/workflows/ci-security.yml`](./ci-security.yml). Тестовые фикстуры в allowlist: [`.gitleaks.toml`](./.gitleaks.toml).*
+*Полный workflow-файл: [`.github/workflows/ci-security.yml`](https://github.com/me2em-org/me2em-protocol/blob/main/.github/workflows/ci-security.yml). Тестовые фикстуры в allowlist: [`.gitleaks.toml`](https://github.com/me2em-org/me2em-protocol/blob/main/.gitleaks.toml).*

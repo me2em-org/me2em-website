@@ -1,9 +1,9 @@
 ---
 title: "Stateless-сессии: авторизация без базы данных"
-description: "Как подписанный токен заменяет серверную сессию: что внутри, что проверяет верификатор, чем stateless отличается от JWT — и почему ротация jti делает отзыв точным."
+description: "Как подписанный токен заменяет серверную сессию: что внутри, что проверяет верификатор, чем stateless отличается от JWT — и почему ротация jti делает отзыв точечным."
 publishedAt: 2026-09-24
 author: "Me2em Organization"
-tags: ["me2em", "sessions", "stateless", "authorization", "architecture", "jwt"]
+tags: ["sessions", "architecture", "security"]
 featured: false
 locale: ru
 uid: "stateless-sessions-no-database"
@@ -18,6 +18,8 @@ Me2em работает иначе: сессия — это **подписанн�
 Сессия создаётся хэндлом — подписывается его ключом:
 
 ```typescript
+import { Session } from '@me2em/core';
+
 const session = await Session.create(connector, {
   audience: 'ev-app.com',       // для кого этот токен
   scopes: ['charge:start'],     // что можно делать
@@ -44,18 +46,18 @@ interface SessionPayload {
 
 ```mermaid
 flowchart LR
-    subgraph Создание
-        H["Handle<br/>приватный ключ"] -->|"подписывает<br/>payload"| T["Token<br/>payload.signature"]
+    subgraph Creation ["Создание"]
+        H["Handle<br/>приватный ключ"] -->|"подписывает payload"| T["Token<br/>payload.signature"]
     end
-    T -->|"предъявляет"| V
-    subgraph Верификация
+    subgraph Verification ["Верификация"]
         V["Сервер"] --> P1["1. Формат и поля"]
         V --> P2["2. Аудитория"]
         V --> P3["3. Время: exp, iat"]
-        V --> P4["4. Пересчёт pubkey<br/>по имени из токена"]
+        V --> P4["4. Реконструкция pubkey<br/>по имени из токена"]
         V --> P5["5. Подпись"]
-        V --> P6["6. Отзыв (опционально)"]
+        V --> P6["6. Отзыв — опционально"]
     end
+    T -->|"предъявляет"| V
 ```
 
 ## Что проверяет сервер — по шагам
@@ -96,8 +98,8 @@ interface RevocationChecker {
 Сервер, который хочет уметь отзывать сессии мгновенно (не дожидаясь TTL), реализует этот интерфейс — например, на Redis SET:
 
 ```typescript
-// Отзыв одной сессии:
-await redis.sadd('me2em:revoked', session.jti);
+// Отзыв одной сессии (jti — из подписанного payload отзываемого токена):
+await redis.sadd('me2em:revoked', jti);
 
 // Проверка — O(1), ~0.1 мс на уровень:
 const revoked = await redis.sismember('me2em:revoked', jti);
@@ -120,6 +122,8 @@ const revoked = await redis.sismember('me2em:revoked', jti);
 
 Ключевое различие — **кто владеет подписывающим ключом**. В JWT подписывает сервер, значит сервер всемогущ: он может выдать любой токен с любыми правами. В Me2em подписывает хэндл пользователя — сервер лишь **верифицирует**, не имея права создавать чужие сессии. Это смещение доверия: от «поверь серверу» к «проверь криптографию».
 
+Одно уточнение к таблице. Всё описанное выше — Mode 1 (`verifyStateless`): верификатор держит `Identity` и сам пересчитывает ключи по именам из токена. Строка «серверу не нужен даже секрет» — это Mode 2 (`verifyAttested`): сервер проверяет цепочку родительских аттестаций против **публичного** корневого ключа и принуждает гранты на каждой проверке. Полный разбор — в статье [об аттестационных цепочках](/ru/blog/attestation-chains-delegated-trust).
+
 ## Авто-renewal: сессия без логина
 
 Токен короткоживущий (≤ 1 час — рекомендация). Но пользователю нельзя требовать логин каждый час. Решение — авто-renewal:
@@ -127,12 +131,12 @@ const revoked = await redis.sismember('me2em:revoked', jti);
 ```mermaid
 sequenceDiagram
     participant App as Приложение
-    participant Handle as Handle (ключ)
-    App->>Handle: Session.create(ttl=3600)
-    Handle-->>App: session (exp = now + 3600)
-    Note over App: через 1800 сек (половина TTL)
-    App->>Handle: Session.create (новый jti)
-    Handle-->>App: свежая сессия
+    participant K as Ключ хэндла
+    App->>K: Session.create, ttl 3600
+    K-->>App: сессия, exp = now + 3600
+    Note over App: через половину TTL
+    App->>K: Session.create — новый jti
+    K-->>App: свежая сессия
     Note over App: цикл повторяется,<br/>пользователь не замечает
 ```
 
@@ -149,10 +153,11 @@ sequenceDiagram
 | Иерархия в токене | `hPath` — путь в дереве деривации |
 | Отзыв ветки целиком | аттестационный `jti` (Mode 2) |
 
-Stateless-сессия — не изобретение Me2em: это идея, старая как PGP. Но соединение stateless-токенов с детерминированной деривацией и аттестационными цепочками даёт свойство, которого нет в классических схемах: **сервер без единого секрета и без единой записи проверяет не только «кто ты», но и «кто разрешил тебе существовать»**.
+Stateless-сессия — не изобретение Me2em: это идея, старая как PGP. Но соединение stateless-токенов с детерминированной деривацией и аттестационными цепочками даёт свойство, которого нет в классических схемах: **сервер без единой записи в базе — а в Mode 2 и без единого секрета — проверяет не только «кто ты», но и «кто разрешил тебе существовать»**.
 
 ## Что читать дальше
 
-- **[Идентичность из seed-фразы](/ru/blog/me2em-seed-derived-identity)** — фундамент: откуда берётся ключ хэндла
-- **[Аттестационные цепочки](/ru/blog/attestation-chains-delegated-trust)** — Mode 2: делегирование и ревокация веток
+- **[Мгновенный отзыв: ревокация в stateless-мире](/ru/blog/revocation-checker-instant-revocation)** — как устроен отзыв jti: гранулярность, fail-open/closed, TTL записей
+- **[Аттестационные цепочки: делегирование доверия без сервера](/ru/blog/attestation-chains-delegated-trust)** — Mode 2: делегирование и отзыв веток
+- **[Me2em: идентичность из seed-фразы](/ru/blog/me2em-seed-derived-identity)** — фундамент: откуда берётся ключ хэндла
 - **[`@me2em/core` на npm](https://www.npmjs.com/package/@me2em/core)** — реализация
