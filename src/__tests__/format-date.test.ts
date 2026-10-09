@@ -10,8 +10,8 @@ describe('formatDate()', () => {
     expect(formatDate(date, 'en')).toBe('June 24, 2026');
   });
 
-  it('formats day-first, lowercase month in Dutch', () => {
-    expect(formatDate(date, 'nl')).toBe('24 juni 2026');
+  it('formats day-first in Russian', () => {
+    expect(formatDate(date, 'ru')).toBe('24 июня 2026 г.');
   });
 
   it('formats with year/month/day markers in Chinese (zh-CN)', () => {

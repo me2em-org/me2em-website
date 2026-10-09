@@ -6,12 +6,12 @@ import { describe, it, expect, vi } from 'vitest';
 // configured but has no posts, so it must never appear in results.
 const MOCK_POSTS = [
   { id: 'en/hello', data: { locale: 'en', uid: 'greeting', title: 'Hello', draft: false } },
-  { id: 'nl/hallo', data: { locale: 'nl', uid: 'greeting', title: 'Hallo', draft: false } },
+  { id: 'ru/hello', data: { locale: 'ru', uid: 'greeting', title: 'Привет', draft: false } },
   { id: 'en/about-us', data: { locale: 'en', title: 'About', draft: false } },
-  { id: 'nl/about-us', data: { locale: 'nl', title: 'Over ons', draft: false } },
+  { id: 'ru/about-us', data: { locale: 'ru', title: 'О нас', draft: false } },
   { id: 'en/solo', data: { locale: 'en', title: 'Solo', draft: false } },
   // Draft translation of `solo` — must be ignored (never offered as a target).
-  { id: 'nl/solo', data: { locale: 'nl', title: 'Solo NL', draft: true } },
+  { id: 'ru/solo', data: { locale: 'ru', title: 'Соло РУ', draft: true } },
 ];
 
 vi.mock('astro:content', () => ({
@@ -22,8 +22,8 @@ vi.mock('@/config/i18n.config', () => ({
   default: {
     enabled: true,
     defaultLocale: 'en',
-    locales: ['en', 'nl', 'de'],
-    localeNames: { en: 'English', nl: 'Nederlands', de: 'Deutsch' },
+    locales: ['en', 'ru', 'de'],
+    localeNames: { en: 'English', ru: 'Russian', de: 'Deutsch' },
     detectBrowserLocale: false,
   },
 }));
@@ -35,15 +35,15 @@ describe('getPostTranslations', () => {
     const result = await getPostTranslations('en/hello', 'en', 'greeting');
     expect(result).toEqual([
       { locale: 'en', url: '/blog/hello' },
-      { locale: 'nl', url: '/nl/blog/hallo' },
+      { locale: 'ru', url: '/ru/blog/hello' },
     ]);
   });
 
   it('is symmetric from the secondary locale', async () => {
-    const result = await getPostTranslations('nl/hallo', 'nl', 'greeting');
+    const result = await getPostTranslations('ru/hello', 'ru', 'greeting');
     expect(result).toEqual([
       { locale: 'en', url: '/blog/hello' },
-      { locale: 'nl', url: '/nl/blog/hallo' },
+      { locale: 'ru', url: '/ru/blog/hello' },
     ]);
   });
 
@@ -51,7 +51,7 @@ describe('getPostTranslations', () => {
     const result = await getPostTranslations('en/about-us', 'en');
     expect(result).toEqual([
       { locale: 'en', url: '/blog/about-us' },
-      { locale: 'nl', url: '/nl/blog/about-us' },
+      { locale: 'ru', url: '/ru/blog/about-us' },
     ]);
   });
 
@@ -62,7 +62,7 @@ describe('getPostTranslations', () => {
 
   it('never points at a draft translation', async () => {
     const result = await getPostTranslations('en/solo', 'en');
-    expect(result.some((t) => t.locale === 'nl')).toBe(false);
+    expect(result.some((t) => t.locale === 'ru')).toBe(false);
   });
 
   it('omits configured locales that have no matching post (no 404s)', async () => {

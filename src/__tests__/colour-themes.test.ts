@@ -20,7 +20,8 @@ import { join } from 'node:path';
 
 import { colourThemes, selectorThemes } from '../lib/themes';
 import en from '../i18n/en.json';
-import nl from '../i18n/nl.json';
+import ru from '../i18n/ru.json';
+import zh from '../i18n/zh.json';
 import siteConfig from '../config/site.config';
 
 const COUNT = colourThemes.length;
@@ -109,10 +110,11 @@ describe('colour themes', () => {
     }
   });
 
-  it('site.config and both locales quote the count', () => {
+  it('site.config and all locale files quote the count', () => {
     expect(siteConfig.description).toContain(`${COUNT} colour themes`);
     expect(JSON.stringify(en)).toContain(`${COUNT} colour themes`);
-    expect(JSON.stringify(nl)).toContain(`${COUNT} kleurthema's`);
+    expect(JSON.stringify(ru)).toContain(`${COUNT} цветовых тем`);
+    expect(JSON.stringify(zh)).toContain(`${COUNT} colour themes`);
   });
 
   it('the README and the docs quote the count', () => {
@@ -131,8 +133,8 @@ describe('colour themes', () => {
       'AGENTS.md',
       'src/config/site.config.ts',
       'src/i18n/en.json',
-      'src/i18n/nl.json',
-      'src/content/projects/en/astro-rocket.mdx',
+      'src/i18n/ru.json',
+      'src/content/projects/en/multi-app-sso.mdx',
       'src/content/blog/en/astro-rocket-configuration-guide.mdx',
       'src/content/blog/en/astro-rocket-getting-started.mdx',
       'src/content/blog/en/component-library.mdx',
@@ -146,7 +148,7 @@ describe('colour themes', () => {
   it('no shipped copy names a palette that was removed', () => {
     const gone = ['orange', 'amber', 'lime', 'magenta'];
     for (const file of [
-      'src/content/projects/en/astro-rocket.mdx',
+      'src/content/projects/en/multi-app-sso.mdx',
       'src/content/blog/en/astro-rocket-configuration-guide.mdx',
       'src/content/blog/en/scroll-progress-ring.mdx',
       'README.md',

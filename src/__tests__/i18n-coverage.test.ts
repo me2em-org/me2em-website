@@ -18,7 +18,8 @@ import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 
 import en from '../i18n/en.json';
-import nl from '../i18n/nl.json';
+import ru from '../i18n/ru.json';
+import zh from '../i18n/zh.json';
 
 const ROOT = process.cwd();
 const SCANNED = ['src/components', 'src/layouts'];
@@ -103,7 +104,7 @@ describe('interface text lives in the locale files', () => {
 });
 
 describe('every locale carries every key', () => {
-  const locales = { nl };
+  const locales = { ru, zh };
 
   for (const [name, dictionary] of Object.entries(locales)) {
     it(`${name}.json has no key missing against en.json`, () => {

@@ -7,6 +7,15 @@ vi.mock('astro:content', () => ({
   getCollection: vi.fn(async () => []),
 }));
 
+vi.mock('@/config/i18n.config', () => ({
+  default: {
+    enabled: false,
+    defaultLocale: 'en',
+    locales: ['en'],
+    detectBrowserLocale: false,
+  },
+}));
+
 import {
   getPostSlug,
   getPostUrl,
@@ -22,7 +31,7 @@ import {
 describe('blog URL helpers (i18n disabled — default)', () => {
   it('strips the locale prefix from a post id to get its slug', () => {
     expect(getPostSlug('en/hello-world')).toBe('hello-world');
-    expect(getPostSlug('nl/hallo-wereld', 'nl')).toBe('hallo-wereld');
+    expect(getPostSlug('ru/hello-world', 'ru')).toBe('hello-world');
     // No matching prefix → id returned unchanged.
     expect(getPostSlug('hello-world', 'en')).toBe('hello-world');
   });
@@ -30,12 +39,12 @@ describe('blog URL helpers (i18n disabled — default)', () => {
   it('builds an unprefixed post URL', () => {
     expect(getPostUrl('en/hello-world')).toBe('/blog/hello-world');
     // Even a non-default locale stays unprefixed while i18n is off.
-    expect(getPostUrl('nl/hallo-wereld', 'nl')).toBe('/blog/hallo-wereld');
+    expect(getPostUrl('ru/hello-world', 'ru')).toBe('/blog/hello-world');
   });
 
   it('builds the blog index base URL', () => {
     expect(getBlogBaseUrl()).toBe('/blog');
-    expect(getBlogBaseUrl('nl')).toBe('/blog');
+    expect(getBlogBaseUrl('ru')).toBe('/blog');
   });
 
   it('maps page 1 to the blog root and pages 2+ to /blog/page/N', () => {

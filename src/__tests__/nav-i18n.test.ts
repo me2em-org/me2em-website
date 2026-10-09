@@ -8,15 +8,15 @@ vi.mock('@/config/i18n.config', () => ({
   default: {
     enabled: true,
     defaultLocale: 'en',
-    locales: ['en', 'nl'],
-    localeNames: { en: 'English', nl: 'Nederlands' },
+    locales: ['en', 'ru'],
+    localeNames: { en: 'English', ru: 'Russian' },
     detectBrowserLocale: false,
   },
 }));
 
 import { getNavItems, getLogoHref, resolveNavItem, type NavItem } from '@/config/nav.config';
 
-describe('nav config — locale resolution (en default, nl secondary)', () => {
+describe('nav config — locale resolution (en default, ru secondary)', () => {
   it('keeps default-locale hrefs at the site root', () => {
     const items = getNavItems('en');
     expect(items.find((i) => i.label === 'Blog')?.href).toBe('/blog');
@@ -24,38 +24,38 @@ describe('nav config — locale resolution (en default, nl secondary)', () => {
   });
 
   it('prefixes secondary-locale hrefs with the locale', () => {
-    const items = getNavItems('nl');
+    const items = getNavItems('ru');
     expect(items.map((i) => i.href)).toEqual([
-      '/nl',
-      '/nl/services',
-      '/nl/projects',
-      '/nl/blog',
-      '/nl/about',
-      '/nl/contact',
+      '/ru',
+      '/ru/services',
+      '/ru/projects',
+      '/ru/blog',
+      '/ru/about',
+      '/ru/contact',
     ]);
   });
 
   it('translates labels via the dictionary (labelKey)', () => {
-    const nl = getNavItems('nl');
-    // nl.json: nav.items.about = "Over", nav.items.services = "Diensten"
-    expect(nl.find((i) => i.href === '/nl/about')?.label).toBe('Over');
-    expect(nl.find((i) => i.href === '/nl/services')?.label).toBe('Diensten');
+    const items = getNavItems('ru');
+    // ru.json: nav.items.about = "Обо мне", nav.items.services = "Услуги"
+    expect(items.find((i) => i.href === '/ru/about')?.label).toBe('Обо мне');
+    expect(items.find((i) => i.href === '/ru/services')?.label).toBe('Услуги');
   });
 
   it('points the logo at the locale home', () => {
     expect(getLogoHref('en')).toBe('/');
-    expect(getLogoHref('nl')).toBe('/nl');
+    expect(getLogoHref('ru')).toBe('/ru');
   });
 
   it('never locale-prefixes external, mailto/tel, or anchor hrefs', () => {
     expect(
       resolveNavItem(
         { label: 'GitHub', href: 'https://github.com/x', order: 1, external: true },
-        'nl'
+        'ru'
       ).href
     ).toBe('https://github.com/x');
-    expect(resolveNavItem({ label: 'Top', href: '#top', order: 1 }, 'nl').href).toBe('#top');
-    expect(resolveNavItem({ label: 'Mail', href: 'mailto:a@b.com', order: 1 }, 'nl').href).toBe(
+    expect(resolveNavItem({ label: 'Top', href: '#top', order: 1 }, 'ru').href).toBe('#top');
+    expect(resolveNavItem({ label: 'Mail', href: 'mailto:a@b.com', order: 1 }, 'ru').href).toBe(
       'mailto:a@b.com'
     );
   });
@@ -65,14 +65,14 @@ describe('nav config — locale resolution (en default, nl secondary)', () => {
       label: 'Contact',
       href: '/contact',
       order: 1,
-      locales: { nl: { label: 'Neem contact op', href: '/contacteer' } },
+      locales: { ru: { label: 'Связаться', href: '/svyaz' } },
     };
-    expect(resolveNavItem(item, 'nl')).toEqual({
-      label: 'Neem contact op',
-      href: '/nl/contacteer',
+    expect(resolveNavItem(item, 'ru')).toEqual({
+      label: 'Связаться',
+      href: '/ru/svyaz',
       external: undefined,
     });
-    // The default locale is unaffected by an nl-only override.
+    // The default locale is unaffected by a ru-only override.
     expect(resolveNavItem(item, 'en')).toEqual({
       label: 'Contact',
       href: '/contact',
@@ -81,6 +81,6 @@ describe('nav config — locale resolution (en default, nl secondary)', () => {
   });
 
   it('falls back to the literal label when no labelKey is set', () => {
-    expect(resolveNavItem({ label: 'Docs', href: '/docs', order: 1 }, 'nl').label).toBe('Docs');
+    expect(resolveNavItem({ label: 'Docs', href: '/docs', order: 1 }, 'ru').label).toBe('Docs');
   });
 });
