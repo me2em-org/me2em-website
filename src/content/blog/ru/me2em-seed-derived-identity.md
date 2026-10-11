@@ -4,7 +4,7 @@ description: "Полный разбор детерминированного д�
 publishedAt: 2026-09-22
 author: "Me2em Organization"
 tags: ["identity", "cryptography", "architecture"]
-featured: false
+featured: true
 locale: ru
 uid: "me2em-seed-derived-identity"
 ---

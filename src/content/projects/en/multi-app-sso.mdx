@@ -2,12 +2,12 @@
 title: "Multi-App SSO"
 locale: en
 description: "One Me2em instance lets a user into every application in the ecosystem. The account is a seed phrase: there is no user database — nothing to maintain, leak, or correlate."
-icon: "shield-check"
+icon: "fingerprint"
 tags: ["sso", "stateless", "privacy", "isolation"]
 featured: true
 order: 4
 uc: "UC-4"
-url: "https://github.com/me2em-org/me2em-protocol/blob/main/packages/core/USE_CASES.md#scenario-4-multi-app-sso-uc-4"
+url: "https://github.com/me2em-org/me2em-protocol/blob/main/packages/core/USE_CASES.md#scenario-4-multi-app-sso-uc-4--shared-user-base"
 services: ["@me2em/core 0.7", "@me2em/crypto 0.1"]
 meta: ["Stateless auth — no session database", "User database cannot leak", "Correlation — user's choice", "Sign out of all devices — one revocation"]
 draft: false
@@ -15,56 +15,60 @@ draft: false
 
 ## What you can build
 
-A single identity that opens every application in your ecosystem — without a
-user database. The account is a seed phrase: one root, many contexts. Each
-application sees only the Handle the user chooses to present, and verifies
-the session with the root public key alone.
+A fleet of applications behind one sign-in: every app in the ecosystem accepts
+the same identity, the user types the seed phrase once — at the first app —
+and every other app logs them in automatically. Zero registered accounts: the
+instance stores no profiles, no emails, no password hashes.
 
 ## How it works
 
-The user derives a Handle per context — work, personal, devices — and
-presents the appropriate one to each application. The application verifies
-the session chain with the operator's public key.
+Each app receives its own Handle derived from the user's seed. The instance
+issues a session per app and keeps an HttpOnly cookie for its own domain;
+the next app in the ecosystem recognizes the cookie and signs the user in.
 
 ```mermaid
-flowchart LR
-    U[User seed] -->|deriveHandle| H1["Handle: work-alice"]
-    U -->|deriveHandle| H2["Handle: personal-alice"]
-    H1 --> S1[App A]
-    H2 --> S2[App B]
-    S1 -->|verifyAttested, public key| S1
-    S2 -->|verifyAttested, public key| S2
+sequenceDiagram
+    participant U as User
+    participant A as App A (taxi)
+    participant M as Me2em instance
+    participant B as App B (freelance)
+    U->>A: enters seed phrase (locally)
+    A->>M: auth request, Handle @taxi
+    M->>A: session token + HttpOnly cookie
+    U->>B: opens App B
+    B->>M: cookie check
+    M->>B: session confirmed — auto login
 ```
 
-```typescript
-const workHandle = await identity.deriveHandle('work');
-const session = await workHandle.createSession({
-  audiences: ['app-a.internal'],
-  scopes: ['profile:read', 'projects:write'],
-  maxSessionTtl: 28800,
-});
-```
+Apps inside your perimeter verify tokens statelessly with `verifyStateless`
+(Mode 1); external partner apps verify attestation chains with the root
+public key only (`verifyAttested`, Mode 2). Backends need no session store —
+one signature check per request.
 
 ## Benefits
 
-- **No user database.** No credentials to store, no breach surface, no
-  compliance burden.
-- **Stateless verification.** Each application verifies with the public key
-  alone — no session store, no token introspection.
-- **Correlation-resistant.** Each Handle is a separate keypair; applications
-  cannot link the user across contexts without her consent.
-- **One revocation to sign out.** `revokeAttestation(root.jti)` signs the
-  user out of every application simultaneously.
+- **No user database.** Nothing to register, nothing to leak; the instance
+  stores only hashed refresh tokens and revoked `jti` entries.
+- **Instant onboarding.** A new user costs the instance nothing — derivation
+  happens on the client.
+- **Correlation is opt-in.** Every app sees a different Handle; taxi and
+  freelance cannot link the same person unless the user reuses one Handle
+  deliberately.
+- **"Log out everywhere"** is a revocation entry, not a database wipe.
 
 ## Trade-offs
 
-- **The seed is the single point of failure.** Lose the phrase — lose every
-  identity. There is no password reset by design.
-- **Revocation requires a store.** Instant revocation is only available to
-  verifiers that check `jti`.
+- **The seed is the only key back in.** Lose the phrase — lose every account
+  in the ecosystem; there is no reset by design.
+- **An instance must run.** SSO needs the Me2em service (cloud or self-hosted)
+  reachable at sign-in; it is infrastructure, not a static asset.
+- **Same-domain requirement.** Cookie auto-login works for apps under the
+  instance's domain (or subdomains); fully external apps go through Mode 2
+  instead.
 - **Alpha.** Package APIs are pre-1.0; pin versions.
 
 ## References
 
-- Scenario 4 in the [protocol Use Cases guide](https://github.com/me2em-org/me2em-protocol/blob/main/packages/core/USE_CASES.md#scenario-4-multi-app-sso-uc-4)
+- Scenario 4 in the [protocol Use Cases guide](https://github.com/me2em-org/me2em-protocol/blob/main/packages/core/USE_CASES.md#scenario-4-multi-app-sso-uc-4--shared-user-base)
+- The blog post [SSO without a user database](/ru/blog/me2em-multi-app-sso) — the full walkthrough (RU)
 - API reference at [core.me2em.com](https://core.me2em.com)

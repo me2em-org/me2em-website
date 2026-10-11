@@ -4,7 +4,7 @@ description: "Полное инженерное руководство архи�
 publishedAt: 2026-09-20
 author: "Me2em Organization"
 tags: ["e2ee", "webcrypto", "security", "architecture"]
-featured: true
+featured: false
 locale: ru
 uid: "e2ee-seed-derived-identity"
 ---

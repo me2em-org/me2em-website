@@ -37,9 +37,9 @@ describe('nav config — locale resolution (en default, ru secondary)', () => {
 
   it('translates labels via the dictionary (labelKey)', () => {
     const items = getNavItems('ru');
-    // ru.json: nav.items.about = "Обо мне", nav.items.services = "Услуги"
-    expect(items.find((i) => i.href === '/ru/about')?.label).toBe('Обо мне');
-    expect(items.find((i) => i.href === '/ru/services')?.label).toBe('Услуги');
+    // ru.json: nav.items.about = "О проекте", nav.items.services = "Документация"
+    expect(items.find((i) => i.href === '/ru/about')?.label).toBe('О проекте');
+    expect(items.find((i) => i.href === '/ru/services')?.label).toBe('Документация');
   });
 
   it('points the logo at the locale home', () => {

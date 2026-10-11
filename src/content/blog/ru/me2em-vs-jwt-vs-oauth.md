@@ -4,7 +4,7 @@ description: "JWT, OAuth и Me2em решают одну задачу — авт�
 publishedAt: 2026-09-26
 author: "Me2em Organization"
 tags: ["comparison", "security", "architecture"]
-featured: false
+featured: true
 locale: ru
 uid: "me2em-vs-jwt-vs-oauth"
 ---

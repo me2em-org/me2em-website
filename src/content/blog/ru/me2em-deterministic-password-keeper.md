@@ -4,7 +4,7 @@ description: "От хранения к вычислению: как seed-фра�
 publishedAt: 2026-09-24
 author: "Me2em Organization"
 tags: ["passwords", "security", "cryptography"]
-featured: true
+featured: false
 locale: ru
 uid: "me2em-deterministic-password-keeper"
 ---

@@ -4,7 +4,7 @@ description: "Как подписанный токен заменяет серв
 publishedAt: 2026-09-24
 author: "Me2em Organization"
 tags: ["sessions", "architecture", "security"]
-featured: false
+featured: true
 locale: ru
 uid: "stateless-sessions-no-database"
 ---

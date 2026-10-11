@@ -4,7 +4,7 @@ description: "Концепция мессенджера с нулевым дов
 publishedAt: 2026-09-23
 author: "Me2em Organization"
 tags: ["e2ee", "security", "architecture"]
-featured: true
+featured: false
 locale: ru
 uid: "anonymous-e2ee-messenger"
 ---

@@ -4,7 +4,7 @@ description: "Пошаговый туториал: детерминирован�
 publishedAt: 2026-09-30
 author: "Me2em Organization"
 tags: ["tutorial", "e2ee", "react"]
-featured: true
+featured: false
 locale: ru
 uid: "e2ee-messenger-tutorial"
 ---
