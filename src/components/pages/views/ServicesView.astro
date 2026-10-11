@@ -2,8 +2,8 @@
 /**
  * ServicesView — the Services page body.
  *
- * Shared by the default-locale route (`/services`) and the locale-prefixed
- * route (`/<locale>/services`). All copy is read from the `pages.services.*`
+ * Shared by the default-locale route (`/docs`) and the locale-prefixed
+ * route (`/<locale>/docs`). All copy is read from the `pages.docs.*`
  * keys in the locale dictionaries via `t()` / `tData()`; internal links are
  * built with `localizedPath` so they stay inside the active locale. Untranslated
  * keys fall back to the default locale.
@@ -54,29 +54,29 @@ interface GlossaryTerm {
 
 const { locale = defaultLocale } = Astro.props;
 
-const includedLabel = t('pages.services.includedLabel', locale);
+const includedLabel = t('pages.docs.includedLabel', locale);
 const hero = tData<{ badge: string; titleLead: string; titleHighlight: string; description: string; jumpLabels: string[] }>(
-  'pages.services.hero',
+  'pages.docs.hero',
   locale
 )!;
-const design = tData<Service>('pages.services.design', locale)!;
-const development = tData<Service>('pages.services.development', locale)!;
-const performance = tData<Service>('pages.services.performance', locale)!;
+const design = tData<Service>('pages.docs.design', locale)!;
+const development = tData<Service>('pages.docs.development', locale)!;
+const performance = tData<Service>('pages.docs.performance', locale)!;
 const glossary = tData<{ badge: string; heading: string; lead: string; terms: GlossaryTerm[] }>(
-  'pages.services.glossary',
+  'pages.docs.glossary',
   locale
 )!;
 const processSection = tData<{ badge: string; heading: string; lead: string; steps: ProcessStep[] }>(
-  'pages.services.process',
+  'pages.docs.process',
   locale
 )!;
-const faq = tData<{ badge: string; heading: string; lead: string; cards: FaqCard[] }>('pages.services.faq', locale)!;
+const faq = tData<{ badge: string; heading: string; lead: string; cards: FaqCard[] }>('pages.docs.faq', locale)!;
 const cta = tData<{ badge: string; heading: string; description: string; primary: string; secondary: string; tertiary: string }>(
-  'pages.services.cta',
+  'pages.docs.cta',
   locale
 )!;
 const tutorials = tData<{ badge: string; headingLine1: string; headingLine2: string; para1: string; para2: string; casesIntro: string; moreAboutMe: string }>(
-  'pages.services.tutorials',
+  'pages.docs.tutorials',
   locale
 )!;
 const tutorialCases = tData<{ cases: { title: string; href: string }[] }>(
@@ -101,8 +101,8 @@ const caseCardLinked = `${caseCardBase} hover:-translate-y-1 hover:shadow-md hov
 const caseCardIdle = `${caseCardBase} cursor-default`;
 ---
 <PageLayout
-  title={t('pages.services.meta.title', locale)}
-  description={t('pages.services.meta.description', locale)}
+  title={t('pages.docs.meta.title', locale)}
+  description={t('pages.docs.meta.description', locale)}
   footerBackground="secondary"
 >
   <Hero layout="centered" size="sm" class="isolate services-hero pb-[calc(var(--space-section-sm)_+_var(--space-stack-lg))]" showHeroHalo>
@@ -504,8 +504,8 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
     .services-hero .hero-jump-arrow { animation: none; }
   }
 
-  /* Page-local override: anchor links on /services should land the
-     section's coloured edge flush against the fixed header. */
+  /* Page-local override: anchor links on /docs should land the
+      section's coloured edge flush against the fixed header. */
   html { scroll-padding-top: 4rem; }
   @media (max-height: 600px) { html { scroll-padding-top: 4rem; } }
   @media (min-width: 1024px) { html { scroll-padding-top: 4rem; } }
@@ -526,7 +526,7 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
 
 <script is:inline>
   /* When a hero section button is clicked — or the page is opened directly on
-     one of those sections (e.g. /services#development) — the destination (and
+      one of those sections (e.g. /docs#development) — the destination (and
      everything the jump scrolls past) is snapped to its revealed state before
      the scroll lands, so cards don't slide in mid-jump. Sections below the
      target stay observed, so natural scrolling still animates normally. */

@@ -144,12 +144,11 @@ const cta = tData<{ badge: string; heading: string; description: string; primary
   locale
 )!;
 
-const docsUrl = localizedPath('/services', locale);
-const useCasesUrl = localizedPath('/projects', locale);
+const docsUrl = localizedPath('/docs', locale);
+const useCasesUrl = localizedPath('/usecases', locale);
 const blogUrl = localizedPath('/blog', locale);
 const gitHubUrl = ('https://github.com/me2em-org/me2em-protocol');
-// Interim: the hero "Get started" target is the documentation page, which
-// still lives at /services (BL-6 renames the route to /docs). The donor
+// The hero "Get started" target is the documentation page at /docs. The donor
 // getting-started post this pointed at is scheduled for deletion in BL-3
 // and would 404.
 const getStartedUrl = docsUrl;

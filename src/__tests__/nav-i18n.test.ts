@@ -27,8 +27,8 @@ describe('nav config — locale resolution (en default, ru secondary)', () => {
     const items = getNavItems('ru');
     expect(items.map((i) => i.href)).toEqual([
       '/ru',
-      '/ru/services',
-      '/ru/projects',
+      '/ru/docs',
+      '/ru/usecases',
       '/ru/blog',
       '/ru/about',
       '/ru/contact',
@@ -39,7 +39,7 @@ describe('nav config — locale resolution (en default, ru secondary)', () => {
     const items = getNavItems('ru');
     // ru.json: nav.items.about = "О проекте", nav.items.services = "Документация"
     expect(items.find((i) => i.href === '/ru/about')?.label).toBe('О проекте');
-    expect(items.find((i) => i.href === '/ru/services')?.label).toBe('Документация');
+    expect(items.find((i) => i.href === '/ru/docs')?.label).toBe('Документация');
   });
 
   it('points the logo at the locale home', () => {

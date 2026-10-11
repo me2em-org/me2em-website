@@ -1,8 +1,8 @@
 ---
 /**
- * Horizontal list of tag chips that link to project tag archive pages
- * (`/projects/tag/<slug>`). Pure HTML — no JS. Mirrors the blog `TagList`
- * so blog and project tags look and behave identically.
+ * Horizontal list of tag chips that link to usecases tag archive pages
+ * (`/usecases/tag/<slug>`). Pure HTML — no JS. Mirrors the blog `TagList`
+ * so blog and usecases tags look and behave identically.
  */
 import { defaultLocale, t } from '@/i18n';
 import { getProjectTagUrl } from '@/lib/projects';
@@ -12,8 +12,8 @@ interface Props {
   /** Highlight this tag (used on the tag archive page). */
   active?: string;
   /**
-   * Locale the links belong to. Default-locale links stay at
-   * `/projects/tag/...`; other locales are prefixed (`/<locale>/projects/tag/...`).
+    * Locale the links belong to. Default-locale links stay at
+    * `/usecases/tag/...`; other locales are prefixed (`/<locale>/usecases/tag/...`).
    */
   locale?: string;
   /** Optional class extension. */

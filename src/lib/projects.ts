@@ -3,8 +3,8 @@
  *
  * Mirrors `lib/blog` so projects get the same locale support and tag
  * conventions (slugging, tag clouds, archives) without the two drifting apart.
- * The default locale stays at the site root (`/projects/...`); additional
- * locales live under a prefix (`/<locale>/projects/...`).
+ * The default locale stays at the site root (`/usecases/...`); additional
+ * locales live under a prefix (`/<locale>/usecases/...`).
  */
 import { getCollection, type CollectionEntry } from 'astro:content';
 import siteConfig from '@/config/site.config';
@@ -39,16 +39,16 @@ export function getProjectSlug(projectId: string, locale: string = defaultLocale
 
 /**
  * URL path for an individual project, locale-aware. The default locale stays at
- * the site root (`/projects/<slug>`); additional locales are prefixed
- * (`/<locale>/projects/<slug>`), matching `localizedPath`.
+ * the site root (`/usecases/<slug>`); additional locales are prefixed
+ * (`/<locale>/usecases/<slug>`), matching `localizedPath`.
  */
 export function getProjectUrl(projectId: string, locale: string = defaultLocale): string {
-  return localizedPath(`/projects/${getProjectSlug(projectId, locale)}`, locale);
+  return localizedPath(`/usecases/${getProjectSlug(projectId, locale)}`, locale);
 }
 
-/** URL of the projects index for a locale (`/projects` or `/<locale>/projects`). */
+/** URL of the projects index for a locale (`/usecases` or `/<locale>/usecases`). */
 export function getProjectsBaseUrl(locale: string = defaultLocale): string {
-  return localizedPath('/projects', locale);
+  return localizedPath('/usecases', locale);
 }
 
 /**
@@ -56,17 +56,17 @@ export function getProjectsBaseUrl(locale: string = defaultLocale): string {
  * root (no `/page/1` segment), matching the routing in `projects/page/[page].astro`.
  */
 export function getProjectsPageUrl(page: number, locale: string = defaultLocale): string {
-  return page <= 1 ? getProjectsBaseUrl(locale) : localizedPath(`/projects/page/${page}`, locale);
+  return page <= 1 ? getProjectsBaseUrl(locale) : localizedPath(`/usecases/page/${page}`, locale);
 }
 
 /** URL for a project tag archive page, locale-aware. */
 export function getProjectTagUrl(tag: string, locale: string = defaultLocale): string {
-  return localizedPath(`/projects/tag/${tagToSlug(tag)}`, locale);
+  return localizedPath(`/usecases/tag/${tagToSlug(tag)}`, locale);
 }
 
 /**
- * The non-default locales that should get their own prefixed project routes
- * (`/<locale>/projects/...`). Empty when i18n is off or only one locale is
+ * The non-default locales that should get their own prefixed usecases routes
+ * (`/<locale>/usecases/...`). Empty when i18n is off or only one locale is
  * configured, so the locale-prefixed `getStaticPaths` emit nothing and
  * single-locale builds stay byte-for-byte unchanged.
  */

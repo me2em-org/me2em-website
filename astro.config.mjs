@@ -118,7 +118,7 @@ function ogCards() {
   const KINDS = [
     [/^\/og\/blog\/tag\//, 'BLOG'],
     [/^\/og\/blog\//, 'BLOG'],
-    [/^\/og\/projects\//, 'PROJECTS'],
+    [/^\/og\/usecases\//, 'PROJECTS'],
   ];
 
   async function htmlFiles(directory) {

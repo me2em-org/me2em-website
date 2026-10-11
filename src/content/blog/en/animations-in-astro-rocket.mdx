@@ -13,7 +13,7 @@ imageAlt: "Layered motion lines and a rocket icon representing the animation sys
 
 Motion is one of those things that is easy to get wrong and invisible when it is right. Too fast and the page feels cheap. Too slow and it feels heavy. The wrong easing curve and something technically correct still feels off — like a drawer that flies open and then stops dead instead of gliding to a close.
 
-[Astro Rocket](/projects/astro-rocket) ships a complete, layered animation system built entirely on CSS and a few dozen lines of JavaScript. No Framer Motion, no GSAP, no animation library of any kind. Every curve, every delay, every stagger is written by hand and tuned to feel like premium software.
+[Astro Rocket](/usecases/astro-rocket) ships a complete, layered animation system built entirely on CSS and a few dozen lines of JavaScript. No Framer Motion, no GSAP, no animation library of any kind. Every curve, every delay, every stagger is written by hand and tuned to feel like premium software.
 
 This post walks through every layer of that system: what plays, when it plays, and exactly how it is built.
 
@@ -323,4 +323,4 @@ Three things hold this together at the quality of a paid animation toolkit:
 
 **Cascade precedence is explicit.** The animation rules live outside every Tailwind `@layer`, which makes them unlayered CSS — and unlayered rules win over any `@layer`-scoped utility. No Tailwind class can accidentally override a `transition` or `animation` the system depends on.
 
-The full system lives in `src/styles/global.css`, and the observer script in `src/layouts/BaseLayout.astro`. See the [Astro Rocket project page](/projects/astro-rocket) for the full picture of what ships in the theme.
+The full system lives in `src/styles/global.css`, and the observer script in `src/layouts/BaseLayout.astro`. See the [Astro Rocket usecase page](/usecases/astro-rocket) for the full picture of what ships in the theme.

@@ -85,7 +85,7 @@ Three things to know:
 - **`locales`** is the master list. Order doesn't affect routing, but it controls the order of items in the `LanguageSwitcher` dropdown.
 - **`localeNames`** are the display labels in the dropdown. Use the language's own name (`Nederlands`, not "Dutch") — that's standard practice and respectful to visitors switching from a language they can read.
 
-Save the file. The `LanguageSwitcher` appears in your header, and — because Astro Rocket ships a full Dutch dictionary — `/nl`, `/nl/about`, `/nl/services`, and `/nl/contact` already render in Dutch. Your blog and projects show a localized (but empty) `/nl/blog` and `/nl/projects` index until you add content in that locale, which is the next step.
+Save the file. The `LanguageSwitcher` appears in your header, and — because Astro Rocket ships a full Dutch dictionary — `/nl`, `/nl/about`, `/nl/docs`, and `/nl/contact` already render in Dutch. Your blog and usecases show a localized (but empty) `/nl/blog` and `/nl/usecases` index until you add content in that locale, which is the next step.
 
 ## Step 2 — translate your content
 
@@ -118,13 +118,13 @@ Every in-locale link — post cards, tag chips, pagination, breadcrumbs, related
 
 ### Projects — same story
 
-Projects work exactly like the blog. Drop translations in `src/content/projects/<locale>/` (the bundled projects live in `src/content/projects/en/`) and the localized projects section is generated for you: the index (`/nl/projects`), each project (`/nl/projects/<slug>`), pagination (`/nl/projects/page/N`), and tag archives (`/nl/projects/tag/<tag>`).
+Projects work exactly like the blog. Drop translations in `src/content/projects/<locale>/` (the bundled projects live in `src/content/projects/en/`) and the localized usecases section is generated for you: the index (`/nl/usecases`), each project (`/nl/usecases/<slug>`), pagination (`/nl/usecases/page/N`), and tag archives (`/nl/usecases/tag/<tag>`).
 
 Projects share one slug across locales — keep the same filename in each locale folder (e.g. `en/studio-portfolio.mdx` ↔ `nl/studio-portfolio.mdx`) and the theme pairs them automatically for `hreflang` and the `LanguageSwitcher`. (Blog posts can instead use locale-specific slugs paired by a canonical `uid` — more on that below.)
 
 ### The built-in pages — translate the dictionary
 
-Home, About, Services, and Contact are the least work of all, because they don't have per-locale files at all. Each one is a thin route that renders a shared **View** component (`AboutView`, `ContactView`, and so on), and every word that view displays comes from the `pages.*` keys in `src/i18n/<locale>.json`. The default-locale route (`/about`) and the locale-prefixed route (`/nl/about`) render the *same* view — the only difference is which locale's dictionary entries it reads:
+Home, About, Docs, and Contact are the least work of all, because they don't have per-locale files at all. Each one is a thin route that renders a shared **View** component (`AboutView`, `ContactView`, and so on), and every word that view displays comes from the `pages.*` keys in `src/i18n/<locale>.json`. The default-locale route (`/about`) and the locale-prefixed route (`/nl/about`) render the *same* view — the only difference is which locale's dictionary entries it reads:
 
 ```astro
 ---
@@ -154,7 +154,7 @@ So localizing these pages is the same job as translating any other UI string —
 }
 ```
 
-The moment `nl` is in your `locales` list, `/nl`, `/nl/about`, `/nl/services`, and `/nl/contact` are generated for you. Any `pages.*` key you haven't translated yet falls back to the English copy, so the page is always complete and never blank.
+The moment `nl` is in your `locales` list, `/nl`, `/nl/about`, `/nl/docs`, and `/nl/contact` are generated for you. Any `pages.*` key you haven't translated yet falls back to the English copy, so the page is always complete and never blank.
 
 > **Don't create `src/pages/nl/about.astro`.** The locale route (`src/pages/[locale]/about.astro`) already generates that URL; a hand-written copy collides with it and fails the build. Translate the `pages.about.*` keys instead.
 
@@ -239,7 +239,7 @@ Adding a language is two steps — no code edits:
 1. Create `src/i18n/<code>.json` (say, `de.json`) mirroring the structure of `en.json`. It's discovered and loaded automatically — **no import or registration in `src/i18n/index.ts`**.
 2. Add the locale code to `locales` in `i18n.config.ts` (and give it a `localeNames` entry) so it gets served.
 
-That's the whole onboarding. The built-in pages appear in German immediately (falling back to English for any key you haven't translated yet); then translate content into `src/content/blog/de/` and `src/content/projects/de/`, and add `src/pages/de/*` for any custom pages you want.
+That's the whole onboarding. The built-in pages appear in German immediately (falling back to English for any key you haven't translated yet); then translate content into `src/content/blog/de/` and `src/content/projects/de/`, and add `src/pages/de/*` for any custom pages you want. The built-in pages (Home, About, Docs, Contact) are generated automatically for every locale in the config.
 
 ## Step 4 — localize the navigation, logo, and footer
 
@@ -307,7 +307,7 @@ enabled: false,
 locales: ['en'],
 ```
 
-Deploy. The `LanguageSwitcher` disappears, `hreflang` tags stop emitting, the `/<locale>/` routes vanish, and the site returns to single-locale behavior. Your `src/pages/nl/`, `src/content/blog/nl/`, `src/content/projects/nl/`, and `src/i18n/nl.json` files stay in the repo — dormant but preserved. Flip the flag back when you're ready.
+Deploy. The `LanguageSwitcher` disappears, `hreflang` tags stop emitting, the `/<locale>/` routes vanish, and the site returns to single-locale behavior. Your `src/pages/nl/`, `src/content/blog/nl/`, `src/content/projects/nl/`, and `src/i18n/nl.json` files stay in the repo — dormant but preserved. The built-in pages (Home, About, Docs, Contact) are generated automatically for every locale in the config. Flip the flag back when you're ready.
 
 ## What's next
 

@@ -28,29 +28,29 @@ import {
 
 describe('project URL helpers (i18n enabled — en default, ru secondary)', () => {
   it('keeps default-locale project URLs at the site root', () => {
-    expect(getProjectUrl('en/multi-app-sso')).toBe('/projects/multi-app-sso');
-    expect(getProjectUrl('en/multi-app-sso', 'en')).toBe('/projects/multi-app-sso');
+    expect(getProjectUrl('en/multi-app-sso')).toBe('/usecases/multi-app-sso');
+    expect(getProjectUrl('en/multi-app-sso', 'en')).toBe('/usecases/multi-app-sso');
   });
 
   it('prefixes secondary-locale project URLs with the locale', () => {
-    expect(getProjectUrl('ru/multi-app-sso', 'ru')).toBe('/ru/projects/multi-app-sso');
+    expect(getProjectUrl('ru/multi-app-sso', 'ru')).toBe('/ru/usecases/multi-app-sso');
   });
 
   it('prefixes the projects index base URL for the secondary locale only', () => {
-    expect(getProjectsBaseUrl()).toBe('/projects');
-    expect(getProjectsBaseUrl('en')).toBe('/projects');
-    expect(getProjectsBaseUrl('ru')).toBe('/ru/projects');
+    expect(getProjectsBaseUrl()).toBe('/usecases');
+    expect(getProjectsBaseUrl('en')).toBe('/usecases');
+    expect(getProjectsBaseUrl('ru')).toBe('/ru/usecases');
   });
 
   it('prefixes paginated URLs for the secondary locale', () => {
-    expect(getProjectsPageUrl(1, 'ru')).toBe('/ru/projects');
-    expect(getProjectsPageUrl(2, 'ru')).toBe('/ru/projects/page/2');
-    expect(getProjectsPageUrl(2)).toBe('/projects/page/2');
+    expect(getProjectsPageUrl(1, 'ru')).toBe('/ru/usecases');
+    expect(getProjectsPageUrl(2, 'ru')).toBe('/ru/usecases/page/2');
+    expect(getProjectsPageUrl(2)).toBe('/usecases/page/2');
   });
 
   it('prefixes tag URLs for the secondary locale', () => {
-    expect(getProjectTagUrl('Client Work', 'ru')).toBe('/ru/projects/tag/client-work');
-    expect(getProjectTagUrl('Client Work')).toBe('/projects/tag/client-work');
+    expect(getProjectTagUrl('Client Work', 'ru')).toBe('/ru/usecases/tag/client-work');
+    expect(getProjectTagUrl('Client Work')).toBe('/usecases/tag/client-work');
   });
 
   it('lists the non-default locales as needing prefixed routes', () => {

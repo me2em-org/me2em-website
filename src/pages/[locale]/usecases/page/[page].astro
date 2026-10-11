@@ -2,8 +2,8 @@
 import ProjectsPageView from '@/components/projects/views/ProjectsPageView.astro';
 import { getProjectPageCount, getSecondaryLocales } from '@/lib/projects';
 
-// Locale-prefixed paginated projects index (`/<locale>/projects/page/N`, N >= 2).
-// Page 1 lives at `/<locale>/projects`. Emits nothing when i18n is off.
+// Locale-prefixed paginated usecases index (`/<locale>/usecases/page/N`, N >= 2).
+// Page 1 lives at `/<locale>/usecases`. Emits nothing when i18n is off.
 export async function getStaticPaths() {
   const paths: {
     params: { locale: string; page: string };

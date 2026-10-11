@@ -52,7 +52,7 @@ export function localeStrippedSlug(id: string, locale: string): string {
 /**
  * Build the list of published URLs from the blog, pages, and projects
  * collections. Blog posts live under `/blog/<slug>`; projects under
- * `/projects/<slug>`; pages live at the site root `/<slug>`.
+ * `/usecases/<slug>`; pages live at the site root `/<slug>`.
  */
 export function collectSlugRecords(
   posts: ContentEntryLike[],
@@ -75,7 +75,7 @@ export function collectSlugRecords(
     records.push({
       source: `projects: ${project.id}`,
       locale,
-      path: `/projects/${localeStrippedSlug(project.id, locale)}`,
+      path: `/usecases/${localeStrippedSlug(project.id, locale)}`,
     });
   }
 

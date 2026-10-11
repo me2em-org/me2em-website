@@ -177,7 +177,7 @@ describe('i18n meta titles never embed the site name', () => {
     'errors.metaTitle',
     'pages.home.meta.title',
     'pages.about.meta.title',
-    'pages.services.meta.title',
+    'pages.docs.meta.title',
     'pages.contact.meta.title',
   ];
 

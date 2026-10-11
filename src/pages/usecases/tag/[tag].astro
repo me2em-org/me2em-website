@@ -10,7 +10,7 @@ import {
 } from '@/lib/projects';
 
 // Tag archive pages for the default locale. Additional locales are served by
-// `src/pages/[locale]/projects/tag/[tag].astro`, which renders the same view.
+// `src/pages/[locale]/usecases/tag/[tag].astro`, which renders the same view.
 export async function getStaticPaths() {
   const projects = await getVisibleProjects(defaultLocale);
   const tags = collectProjectTags(projects);

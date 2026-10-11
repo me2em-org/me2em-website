@@ -101,7 +101,7 @@
     "loadError": "评论加载失败。请刷新页面重试。",
     "requiresJs": "评论需要JavaScript才能加载。"
   },
-  "projects": {
+  "usecases": {
     "title": "Use cases",
     "description": "Nine documented scenarios — people, devices, AI agents.",
     "viewProject": "Open scenario",
@@ -417,246 +417,129 @@
         "button": "开始使用"
       }
     },
-    "services": {
+    "docs": {
       "meta": {
-        "title": "服务 — 网页设计、开发与优化",
-        "description": "自由职业网页设计、开发和优化：时尚、闪电般的定制Astro网站。第一次免费咨询，一个清晰的提案，一个固定价格。"
+        "title": "Documentation — Me2em",
+        "description": "API references for every package, a glossary, quick starts, and guides — from first seed phrase to a verified session."
       },
-      "includedLabel": "你得到什么",
+      "includedLabel": "What you get",
       "hero": {
-        "badge": "服务",
-        "titleLead": "网页设计、开发，",
-        "titleHighlight": "和优化",
-        "description": "三项服务，一个产品：一个时尚、闪电般的定制Astro网站，让你引以为傲。",
-        "jumpLabels": [
-          "网页设计",
-          "网页开发",
-          "网页优化"
-        ]
+        "badge": "Documentation",
+        "titleLead": "Everything you need",
+        "titleHighlight": "to build on Me2em",
+        "description": "API references for all packages, glossary, quick starts, and guides — from first seed phrase to a verified session.",
+        "jumpLabels": ["@me2em/core","@me2em/crypto","@me2em/react"]
       },
       "design": {
-        "badge": "设计",
-        "heading": "网页设计",
-        "paragraphs": [
-          "网页设计是网站的外观和感觉：布局、颜色、图片以及访客找到信息的方式。",
-          "我为每个网站围绕你的业务进行设计——你的品牌、你的内容和你想吸引的客户——让它产生强烈的第一印象并引导人们走向重点。简洁、现代，适用于每个屏幕，从桌面显示器到手机。"
-        ],
-        "included": [
-          {
-            "lead": "属于你的设计",
-            "text": "围绕你的业务、品牌和你想吸引的客户塑造。"
-          },
-          {
-            "lead": "强烈的第一印象",
-            "text": "一个简洁、现代的外观，在页面打开的瞬间展示你是谁。"
-          },
-          {
-            "lead": "清晰的导航",
-            "text": "一个引导访客直接走向对他们重要的内容的布局。"
-          },
-          {
-            "lead": "适用于每个屏幕的设计",
-            "text": "在手机、平板和桌面上看起来和运行都很精美。"
-          },
-          {
-            "lead": "你内容的最佳呈现",
-            "text": "你的文字和图片在一个易于阅读和美观的布局中。"
-          }
-        ],
-        "ctaLabel": "讨论设计项目"
+        "badge": "@me2em/core",
+        "heading": "Core entities",
+      "paragraphs": [
+        "The core of the protocol: a root Identity derived from a seed phrase, contextual Handles, and stateless signed sessions.",
+        "Nothing here is stored or looked up: a server verifies a session with one signature check, and a third party verifies delegated access using only your root public key. Attestation chains carry audiences, scopes and TTL caps enforced at verification time — trust can be delegated, and revoked, without sharing a private key."
+      ],
+    "included": [
+      { "lead": "A seed-derived Identity", "text": "from 32 bytes or a 12/24-word phrase — constant forever, stored nowhere." },
+      { "lead": "Isolated Handles", "text": "a separate Ed25519 keypair per context; compromising one reveals nothing about the others." },
+      { "lead": "Attestation chains", "text": "parent-signed grants with audiences, scopes and TTL caps, verified offline by any third party." },
+      { "lead": "Stateless sessions", "text": "verifyStateless for your backend, verifyAttested for partners — with instant branch revocation." },
+      { "lead": "Derivations built in", "text": "deterministic passwords, channel keys and X25519 shared secrets, plus BIP39 passphrase support." }
+    ],
+    "ctaLabel": "Read the core guide"
       },
       "development": {
-        "badge": "开发",
-        "heading": "网页开发",
-        "paragraphs": [
-          "网页开发是构建你的网站：将设计转化为在访客浏览器中运行的代码。",
-          "我用Astro构建，这是一个现代框架，被一些最快的网站所信任。这使你的网站加载快速、安全且易于多年维护。从第一天起它就是你的，代码、域名和托管都在你名下。"
-        ],
-        "included": [
-          {
-            "lead": "一个闪电般的网站",
-            "text": "使用Astro构建，这是互联网上一些最快网站的框架。"
-          },
-          {
-            "lead": "一个安全可靠的网站",
-            "text": "一个保持安全并持续运行的网站，年复一年。"
-          },
-          {
-            "lead": "完全所有权",
-            "text": "代码、域名和托管从第一天起就在你名下。"
-          },
-          {
-            "lead": "发布后的关怀",
-            "text": "你的网站通过月度维护计划保持更新和安全，而你可以专注于你的业务。"
-          },
-          {
-            "lead": "成长空间",
-            "text": "当你的业务需要时，可以添加新页面和功能的余地。"
-          }
-        ],
-        "ctaLabel": "查看近期项目"
+        "badge": "@me2em/crypto",
+      "heading": "End-to-end encryption",
+      "paragraphs": [
+        "Protocol cryptography for real communication: canonical Signal X3DH, long-lived encrypted channels, and envelopes for recipients who are offline.",
+        "Channels derive a fresh key for every message and rotate epochs, so what was encrypted stays sealed even if a key leaks later. Pre-keys make asynchronous delivery work: you can encrypt for someone who hasn't been online for days. Underneath sit audited primitives — HKDF, X25519, AES-256-GCM — with Argon2id protecting passwords at the edges."
+      ],
+      "included": [
+        { "lead": "Canonical X3DH", "text": "Signal's key agreement with mandatory one-time pre-keys — no zero-fallback, MITM-resistant." },
+        { "lead": "Channels with forward secrecy", "text": "per-message keys, strictly-increasing replay protection, epoch rotation at defined points." },
+        { "lead": "Envelopes for the offline", "text": "X3DH-wrapped keys reach recipients who haven't been online; every envelope is self-contained." },
+        { "lead": "Argon2id password hardening", "text": "named profiles for interactive and sensitive use, strength checks and HIBP breach lookup." },
+        { "lead": "Verified primitives", "text": "HKDF against RFC 5869 test vectors, X25519, AES-256-GCM, secure key wipe." }
+      ],
+      "ctaLabel": "Explore the crypto guide"
       },
       "performance": {
-        "badge": "优化",
-        "heading": "网页优化",
-        "paragraphs": [
-          "网页优化是让网站表现的工作：快速加载、在搜索中排名良好、为每个人服务。",
-          "我从第一行代码就开始构建速度、SEO和可访问性，而不是事后添加。这意味着你的网站容易被Google找到和理解，对每个访客快速打开，每个访问者都能使用。"
-        ],
-        "included": [
-          {
-            "lead": "一个Google和AI能找到的网站",
-            "text": "构建得让搜索引擎和AI助手能够阅读、理解和推荐你的页面。"
-          },
-          {
-            "lead": "每个设备上的速度",
-            "text": "即使在手机或较慢连接下也能保持快速的页面。"
-          },
-          {
-            "lead": "一个属于每个人的网站",
-            "text": "对每个访客可访问，无论他们的设备或能力如何。"
-          },
-          {
-            "lead": "高性能评分",
-            "text": "在Google自己的速度和质量检查（Lighthouse）中获得高分。"
-          },
-          {
-            "lead": "从第一天开始的优化",
-            "text": "速度、SEO和可访问性从第一行代码开始构建。"
-          }
-        ],
-        "ctaLabel": "开始项目"
+        "badge": "@me2em/react",
+      "heading": "React SDK",
+      "paragraphs": [
+        "React bindings that turn the protocol into product UI: identity hooks, seed-phrase screens, self-renewing sessions.",
+        "The seed phrase is the one secret users must never lose — so its UX is part of the security model. Words are shown once, verified by an order grid, validated word by word on import. Derived keys persist only as non-extractable CryptoKeys, isolated per identity. A headless layer keeps every state machine framework-agnostic — the future @me2em/sdk."
+      ],
+      "included": [
+        { "lead": "Identity hooks", "text": "useCreateIdentity, useImportSeed, useHandle, useSubHandle — the full identity lifecycle." },
+        { "lead": "Seed UX that prevents disasters", "text": "show-once display, single copy, order-verification grid, per-word import validation." },
+        { "lead": "Sessions that renew themselves", "text": "useSession tracks expiry and auto-renews at half-life." },
+        { "lead": "Encrypted context cache", "text": "per-identity IndexedDB isolation with non-extractable persisted CryptoKeys." },
+        { "lead": "Headless layer", "text": "framework-agnostic state machines with zero React imports." }
+      ],
+      "ctaLabel": "Try the React SDK"
       },
-      "process": {
-        "badge": "如何运作",
-        "heading": "项目如何运行",
-        "lead": "从你的第一条消息到一个上线的网站。",
-        "steps": [
-          {
-            "title": "首次联系",
-            "description": "你通过联系表单发送消息。我在工作日内回复，我们计划一次免费的 informational 谈话，讨论你的需求。无义务。"
-          },
-          {
-            "title": "提案",
-            "description": "谈话后，你得到一个清晰的文档：我构建什么、何时完成以及固定价格。你在信息充分的情况下做决定。"
-          },
-          {
-            "title": "设计与开发",
-            "description": "我分短周期工作。你通过staging链接跟踪进度，亲眼看到你的网站成形。"
-          },
-          {
-            "title": "发布与支持",
-            "description": "你的网站在你的域名和托管上上线，以你的名义。之后我保持联系，如果有定期更新需求还有月度维护计划。"
-          }
-        ]
-      },
-      "faq": {
-        "badge": "问题",
-        "heading": "问答",
-        "lead": "客户在开始之前会问的事情。",
-        "cards": [
-          {
-            "icon": "tag",
-            "title": "开始之前",
-            "items": [
-              {
-                "question": "网站多少钱？",
-                "answer": "每个项目都有一个固定价格，在开始之前商定。没有按小时计费，之后没有惊喜。免费谈话——以及免费检查（如果已有网站）——让我了解你的项目需要什么，你在一个清晰的提案中得到价格。"
-              },
-              {
-                "question": "项目需要多长时间？",
-                "answer": "这取决于网站的规模。提案与价格一起列出时间表，所以你在开始之前就知道两者。"
-              },
-              {
-                "question": "我当前的网站怎么办？",
-                "answer": "在新网站准备好之前，它保持在线。你的内容、网址和Google排名都会跟随。我在第一次谈话之前检查你当前的网站，所以从一开始你就能得到清晰的答案。"
-              },
-              {
-                "question": "我需要自己安排托管或域名吗？",
-                "answer": "不需要。我为你设置托管和域名，以你自己的名义。如果你已经有域名，我们就保留它。"
-              }
-            ]
-          },
-          {
-            "icon": "user",
-            "title": "与我合作",
-            "items": [
-              {
-                "question": "你是公司还是机构？",
-                "answer": "我是一人企业：自由职业者，不是机构。你直接与做事的人合作，从第一次谈话到完成的网站。没有销售团队、没有客户经理、没有交接。"
-              },
-              {
-                "question": "发布后我能自己更改网站吗？",
-                "answer": "你可以简单地把你的更改发给我，月度维护计划正是为此存在。如果你想自己编辑网站，在第一次谈话中说明，我会为此设置网站。"
-              },
-              {
-                "question": "你也构建网店吗？",
-                "answer": "不。大型网店是我唯一不构建的东西。其他任何需要定制Astro网站的东西，我都会构建：在第一次谈话中告诉我你的想法，我会诚实地告诉你我是否适合。"
-              },
-              {
-                "question": "网站真的是我的吗？",
-                "answer": "完全是。域名、托管和代码从第一天起就在你名下。如果你将来想离开，你可以带走一切：你永远不会被锁定。"
-              }
-            ]
-          }
-        ]
-      },
-      "glossary": {
-        "badge": "术语表",
-        "heading": "理解协议语言",
-        "lead": "A shared vocabulary for the whole model — each term is defined once, here, and used everywhere else.",
-        "terms": [
-          {
-            "term": "Identity",
-            "definition": "Root cryptographic identity derived from a seed phrase. Constant forever."
-          },
-          {
-            "term": "Handle",
-            "definition": "A derived, attested, named key representing a distinct identity context."
-          },
-          {
-            "term": "SubHandle",
-            "definition": "A leaf child of a Handle."
-          },
-          {
-            "term": "Attestation",
-            "definition": "A parent-signed statement binding a child key to a name and a grant."
-          },
-          {
-            "term": "Session",
-            "definition": "A stateless signed authorization token."
-          },
-          {
-            "term": "Channel",
-            "definition": "A long-lived E2EE relationship derived from an X3DH shared secret."
-          },
-          {
-            "term": "Transient material",
-            "definition": "Key bytes existing only in RAM at the moment of use."
-          },
-          {
-            "term": "Ephemeral material",
-            "definition": "TTL-bound rotating material (SPK/OTK, cache keys, session tokens)."
-          }
-        ]
-      },
-      "tutorials": {
-        "badge": "Tutorials",
-        "headingLine1": "The protocol",
-        "headingLine2": "at work.",
-        "para1": "Every documented scenario — a charging network, a fleet of drones selling access to its cameras, a corporate messenger, a delegated AI agent — has a walkthrough that builds it from a seed phrase to a verified session, in real code. The packages never change; only the roles do.",
-        "para2": "New tutorials land in the blog as the protocol grows.",
-        "casesIntro": "One protocol, many scenarios.",
-        "moreAboutMe": "Read the tutorials"
-      },
-      "cta": {
-        "badge": "聊聊",
-        "heading": "聊聊你需要什么",
-        "description": "第一次谈话免费且信息丰富，无任何义务：通过电话、视频或电子邮件。你会得到诚实的答案，谈话后得到一个清晰的时间表和固定价格的提案。",
-        "primary": "发送消息",
-        "secondary": "更多关于我",
-        "tertiary": "Star on GitHub"
-      }
+"process": {
+  "badge": "How it works",
+  "heading": "From seed to verified session",
+  "lead": "Four steps — the same in every scenario, from a messenger to a charging network.",
+  "steps": [
+    { "title": "Write the seed", "description": "12 or 24 BIP39 words on paper. The only permanent carrier of identity — never transmitted, never stored." },
+    { "title": "Derive the root", "description": "The Identity is computed locally by HKDF. Handles for each context — work, personal, devices — derive offline from it." },
+    { "title": "Delegate & sign", "description": "Attestation chains grant scoped, time-boxed access to devices, partners, and AI agents. Sessions are stateless signed tokens." },
+    { "title": "Verify & revoke", "description": "Any third party verifies with the root public key alone. One revoked jti disables an entire branch — instantly." }
+  ]
+},
+"glossary": {
+  "badge": "Glossary",
+  "heading": "Speak the protocol",
+  "lead": "A shared vocabulary for the whole model — each term is defined once, here, and used everywhere else.",
+  "terms": [
+    { "term": "Identity", "definition": "Root cryptographic identity derived from a seed phrase. Constant forever." },
+    { "term": "Handle", "definition": "A derived, attested, named key representing a distinct identity context." },
+    { "term": "SubHandle", "definition": "A leaf child of a Handle." },
+    { "term": "Attestation", "definition": "A parent-signed statement binding a child key to a name and a grant." },
+    { "term": "Session", "definition": "A stateless signed authorization token." },
+    { "term": "Channel", "definition": "A long-lived E2EE relationship derived from an X3DH shared secret." },
+    { "term": "Transient material", "definition": "Key bytes existing only in RAM at the moment of use." },
+    { "term": "Ephemeral material", "definition": "TTL-bound rotating material (SPK/OTK, cache keys, session tokens)." }
+  ]
+},
+"faq": {
+  "badge": "Good to know",
+  "heading": "Frequently asked questions",
+  "lead": "The questions that come up before the first derivation.",
+  "cards": [
+    { "icon": "shield-check", "title": "The protocol", "items": [
+      { "question": "Do I need to register anywhere?", "answer": "No. An Identity is derived from your seed phrase on your device. There is no account to create — and no database that could leak it." },
+      { "question": "What happens if I lose my seed phrase?", "answer": "The identity is unrecoverable — by design. The seed is the only permanent carrier of identity; there is no reset link because there is nothing on a server to reset." },
+      { "question": "Is Me2em a blockchain?", "answer": "No. Derivation and verification are pure cryptography — Ed25519 and HKDF — offline, with no network and no consensus. A session verifies in about a millisecond." },
+      { "question": "Is it production-ready?", "answer": "The packages are alpha (core 0.7, crypto 0.1, react 0.1), moving toward a v1.0 API freeze. Fine for evaluation and prototypes today; pin versions and expect changes in production." }
+    ]},
+    { "icon": "code-2", "title": "Building on it", "items": [
+      { "question": "Which verification mode should I use?", "answer": "verifyStateless for backends you control — they already hold the root key. verifyAttested for anyone else: grants are enforced at verification time, with the root public key only." },
+      { "question": "How deep can the hierarchy go?", "answer": "Identity → Handle → SubHandle, where SubHandle is the leaf (MAX_DEPTH = 2). A device derives its own SubHandles and child attestations — fully offline." },
+      { "question": "Can I revoke a device or an AI agent?", "answer": "Yes. Revoking one attestation jti disables the entire branch — current and future sessions — on every verifier that checks revocations." },
+      { "question": "Where do I report a vulnerability?", "answer": "See SECURITY.md in the me2em-protocol repository — responsible disclosure, with credit." }
+    ]}
+  ]
+},
+"tutorials": {
+  "badge": "Tutorials",
+  "headingLine1": "The protocol",
+  "headingLine2": "at work.",
+  "para1": "Every documented scenario — a charging network, a fleet of drones selling access to its cameras, a corporate messenger, a delegated AI agent — has a walkthrough that builds it from a seed phrase to a verified session, in real code. The packages never change; only the roles do.",
+  "para2": "New tutorials land in the blog as the protocol grows.",
+  "casesIntro": "One protocol, many scenarios.",
+  "moreAboutMe": "Read the tutorials"
+},
+"cta": {
+  "badge": "Get started",
+  "heading": "Your first session in minutes",
+  "description": "Install a package, derive a Handle, and verify a stateless session — the quick start runs across all three packages.",
+  "primary": "Get started",
+  "secondary": "Browse on npm",
+  "tertiary": "Star on GitHub"
+}
     },
     "contact": {
       "meta": {
@@ -774,10 +657,10 @@
         "lead": "Audited primitives and a lean toolchain — every tile links to its source."
       },
       "portfolio": {
-        "badge": "精选作品",
-        "heading": "我构建的项目",
-        "lead": "近期作品的精选。",
-        "viewAll": "查看所有项目"
+        "badge": "Use cases",
+        "heading": "What you can build",
+        "lead": "Documented scenarios — people, devices, and AI agents, read through different domains.",
+        "viewAll": "All use cases"
       },
       "testimonials": {
         "badge": "评价",
@@ -808,11 +691,11 @@
       },
       "aboutTeaser": {
         "badge": "Tutorials",
-        "headingLine1": "From seed phrase",
+        "headingLine1": "From examples —",
         "headingLine2": "to working code.",
-        "para1WithLocation": "Four scenarios carry the same primitives into four very different worlds: an AI agent workforce, a drone fleet that sells access, a corporate messenger, and a network of charging stations. None of them bends the protocol — that is the point. The team behind it is based in {location}.",
-        "para1NoLocation": "Four scenarios carry the same primitives into four very different worlds: an AI agent workforce, a drone fleet that sells access, a corporate messenger, and a network of charging stations. None of them bends the protocol — that is the point.",
-        "para2": "On the blog, each scenario becomes a step-by-step tutorial.",
+        "para1WithLocation": "Different scenarios use the same primitives to work in very different worlds: autonomous AI agents, a drone fleet, a satellite selling imaging windows, a corporate messenger, and a charging network. None of them requires changing the protocol. One protocol, different use cases. The team behind it is based in {location}.",
+        "para1NoLocation": "Different scenarios use the same primitives to work in very different worlds: autonomous AI agents, a drone fleet, a satellite selling imaging windows, a corporate messenger, and a charging network. None of them requires changing the protocol. One protocol, different use cases.",
+        "para2": "The blog walks each scenario to a step-by-step tutorial.",
         "moreAboutMe": "Read more",
         "casesIntro": "Four use cases, one protocol.",
         "cases": [

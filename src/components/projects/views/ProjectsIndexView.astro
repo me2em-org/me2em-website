@@ -1,9 +1,9 @@
 ---
 /**
- * ProjectsIndexView — the projects landing page (page 1).
+ * ProjectsIndexView — the usecases landing page (page 1).
  *
- * Shared body for the default-locale route (`/projects`) and the
- * locale-prefixed route (`/<locale>/projects`). All project/pagination/tag URLs
+ * Shared body for the default-locale route (`/usecases`) and the
+ * locale-prefixed route (`/<locale>/usecases`). All usecases/pagination/tag URLs
  * are built locale-aware via the helpers in `lib/projects`, so rendering with
  * the default locale produces exactly the same markup the route did before this
  * was extracted.
@@ -36,11 +36,11 @@ const { locale = defaultLocale } = Astro.props;
 const projects = await getVisibleProjects(locale);
 const topTags = collectTopProjectTags(projects, PROJECT_TAG_CLOUD_LIMIT);
 
-// Page 1 lives here at /projects; /projects/page/2..N handle the rest.
+// Page 1 lives here at /usecases; /usecases/page/2..N handle the rest.
 const totalPages = Math.max(1, Math.ceil(projects.length / PROJECTS_PER_PAGE));
 const pageProjects = projects.slice(0, PROJECTS_PER_PAGE);
 
-const docsUrl = localizedPath('/services', locale);
+const docsUrl = localizedPath('/docs', locale);
 const gitHubUrl = ('https://github.com/me2em-org/me2em-protocol');
 
 

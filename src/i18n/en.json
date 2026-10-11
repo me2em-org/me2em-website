@@ -101,7 +101,7 @@
     "loadError": "Comments failed to load. Please refresh and try again.",
     "requiresJs": "Comments require JavaScript to load."
   },
-  "projects": {
+  "usecases": {
     "title": "Use cases",
     "description": "Three documented scenarios — people, IoT, AI agents.",
     "viewProject": "View project",
@@ -353,10 +353,10 @@
         "button": "Get Started"
       }
     },
-    "services": {
+    "docs": {
       "meta": {
         "title": "Documentation — Me2em",
-        "description": "API references, guides, a glossary, and quick starts for @me2em/core, @me2em/crypto, and @me2em/react."
+        "description": "API references for every package, a glossary, quick starts, and guides — from first seed phrase to a verified session."
       },
       "includedLabel": "What you get",
       "hero": {
@@ -551,7 +551,7 @@
       "portfolio": {
         "badge": "Use cases",
         "heading": "What you can build",
-        "lead": "Three documented scenarios — the same primitives, read through different domains.",
+        "lead": "Documented scenarios — people, devices, and AI agents, read through different domains.",
         "viewAll": "All use cases"
       },
       "testimonials": {
@@ -567,11 +567,11 @@
       },
 "aboutTeaser": {
   "badge": "Tutorials",
-  "headingLine1": "From seed phrase",
+  "headingLine1": "From examples —",
   "headingLine2": "to working code.",
-  "para1WithLocation": "Four scenarios carry the same primitives into four very different worlds: an AI agent workforce, a drone fleet that sells access, a corporate messenger, and a network of charging stations. None of them bends the protocol — that is the point.",
-  "para1NoLocation": "Four scenarios carry the same primitives into four very different worlds: an AI agent workforce, a drone fleet that sells access, a corporate messenger, and a network of charging stations. None of them bends the protocol — that is the point.",
-  "para2": "On the blog, each scenario becomes a step-by-step tutorial.",
+  "para1WithLocation": "Different scenarios use the same primitives to work in very different worlds: autonomous AI agents, a drone fleet, a satellite selling imaging windows, a corporate messenger, and a charging network. None of them requires changing the protocol. One protocol, different use cases. The team behind it is based in {location}.",
+  "para1NoLocation": "Different scenarios use the same primitives to work in very different worlds: autonomous AI agents, a drone fleet, a satellite selling imaging windows, a corporate messenger, and a charging network. None of them requires changing the protocol. One protocol, different use cases.",
+  "para2": "The blog walks each scenario to a step-by-step tutorial.",
   "moreAboutMe": "Read more",
   "casesIntro": "Four use cases, one protocol.",
   "cases": [
