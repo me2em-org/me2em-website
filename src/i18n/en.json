@@ -18,7 +18,7 @@
       "services": "Docs",
       "projects": "Use cases",
       "blog": "Blog",
-      "about": "About",
+      "about": "Sandbox",
       "contact": "Contact"
     }
   },
@@ -229,15 +229,15 @@
   "pages": {
     "about": {
       "meta": {
-        "title": "About — Free Open-Source Astro 7 Theme",
-        "description": "What Astro Rocket is and how it's built: a free Astro 7 starter theme with 44 designed components, 8 colour themes, i18n, and dark mode."
+        "title": "Sandbox — Me2em",
+        "description": "A hands-on sandbox for the Me2em protocol: real seed phrases, derived Handles, stateless sessions — right in your browser."
       },
       "hero": {
-        "badge": "About",
-        "titleLead": "Astro Rocket —",
-        "typingWords": ["Lightning-fast", "Starter theme", "44 Components", "8 Themes", "Dark Mode", "Built-in i18n"],
-        "typingWordsMobile": ["Lightning-fast", "Starter theme", "8 Themes", "Dark Mode", "Built-in i18n"],
-        "description": "A free, open-source Astro 7 starter\u00a0theme to build anything on."
+        "badge": "Sandbox",
+        "titleLead": "Me2eM —",
+        "typingWords": ["One seed phrase.", "Many Handles.", "Isolated contexts.", "Stateless sessions.", "Zero storage."],
+        "typingWordsMobile": ["One phrase.", "Many Handles.", "Stateless."],
+        "description": "A hands-on demo of the protocol: generate a real seed phrase in your browser, watch Handles derive from it, and see one identity serve a person, a device, and an AI agent — with no personal data stored anywhere."
       },
       "whatYouGet": {
         "badge": "What you get",
@@ -351,6 +351,18 @@
         "heading": "Ready to build?",
         "description": "Clone Astro Rocket, pick a theme, and launch your next project in minutes.",
         "button": "Get Started"
+      },
+      "sandbox": {
+        "badge": "How it will work",
+        "heading": "Three steps, one seed",
+        "lead": "The sandbox will walk you through the protocol by doing, not reading.",
+        "steps": [
+          { "title": "Conception", "description": "12 words give birth to a root Identity. No registration, no server." },
+          { "title": "Faces", "description": "Human, IoT, AI agent: each world gets its own Handles, isolated to the last byte." },
+          { "title": "Proof", "description": "Sessions are signed and verified with one signature check. No databases involved." }
+        ],
+        "status": "The interactive sandbox is in development. Until then, touch the protocol in the docs.",
+        "ctaLabel": "Open the docs"
       }
     },
     "docs": {

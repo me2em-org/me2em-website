@@ -20,7 +20,7 @@ describe('nav config — locale resolution (en default, ru secondary)', () => {
   it('keeps default-locale hrefs at the site root', () => {
     const items = getNavItems('en');
     expect(items.find((i) => i.label === 'Blog')?.href).toBe('/blog');
-    expect(items.find((i) => i.label === 'About')?.href).toBe('/about');
+    expect(items.find((i) => i.label === 'Sandbox')?.href).toBe('/sandbox');
   });
 
   it('prefixes secondary-locale hrefs with the locale', () => {
@@ -30,15 +30,15 @@ describe('nav config — locale resolution (en default, ru secondary)', () => {
       '/ru/docs',
       '/ru/usecases',
       '/ru/blog',
-      '/ru/about',
+      '/ru/sandbox',
       '/ru/contact',
     ]);
   });
 
   it('translates labels via the dictionary (labelKey)', () => {
     const items = getNavItems('ru');
-    // ru.json: nav.items.about = "О проекте", nav.items.services = "Документация"
-    expect(items.find((i) => i.href === '/ru/about')?.label).toBe('О проекте');
+    // ru.json: nav.items.about = "Песочница", nav.items.services = "Документация"
+    expect(items.find((i) => i.href === '/ru/sandbox')?.label).toBe('Песочница');
     expect(items.find((i) => i.href === '/ru/docs')?.label).toBe('Документация');
   });
 

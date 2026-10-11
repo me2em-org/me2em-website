@@ -18,7 +18,7 @@
       "services": "服务",
       "projects": "项目",
       "blog": "博客",
-      "about": "关于",
+      "about": "Sandbox",
       "contact": "联系"
     }
   },
@@ -229,28 +229,25 @@
   "pages": {
     "about": {
       "meta": {
-        "title": "关于 — 免费开源Astro 7主题",
-        "description": "Astro Rocket是什么以及它是如何构建的：一个免费的Astro 7启动主题，拥有44个设计组件、8个颜色主题、i18n和深色模式。 (8 colour themes)."
+        "title": "Sandbox — Me2em",
+        "description": "Me2em protocol sandbox: real seed phrases, derived Handles, stateless sessions — all running in your browser."
       },
       "hero": {
-        "badge": "关于",
-        "titleLead": "Astro Rocket —",
+        "badge": "Sandbox",
+        "titleLead": "Me2eM —",
         "typingWords": [
-          "闪电般快速",
-          "启动主题",
-          "44个组件",
-          "8个主题",
-          "深色模式",
-          "内置i18n"
+          "One seed phrase.",
+          "Many Handles.",
+          "Isolated contexts.",
+          "Stateless sessions.",
+          "Zero storage."
         ],
         "typingWordsMobile": [
-          "闪电般快速",
-          "启动主题",
-          "8个主题",
-          "深色模式",
-          "内置i18n"
+          "One phrase.",
+          "Many Handles.",
+          "Stateless."
         ],
-        "description": "一个免费的开源Astro 7启动主题，可以在其上构建任何内容。"
+        "description": "Live protocol demo: generate a real seed phrase right in your browser, watch it derive Handles, and see one identity serve a human, a device, and an AI agent — with zero bytes of personal data on any server."
       },
       "whatYouGet": {
         "badge": "你得到什么",
@@ -415,6 +412,18 @@
         "heading": "准备开始了吗？",
         "description": "克隆Astro Rocket，选择一个主题，在几分钟内启动你的下一个项目。",
         "button": "开始使用"
+      },
+      "sandbox": {
+        "badge": "How it will work",
+        "heading": "Three steps, one seed",
+        "lead": "The sandbox will walk you through the protocol by doing, not reading.",
+        "steps": [
+          { "title": "Conception", "description": "12 words give birth to a root Identity. No registration, no server." },
+          { "title": "Faces", "description": "Human, IoT, AI agent: each world gets its own Handles, isolated to the last byte." },
+          { "title": "Proof", "description": "Sessions are signed and verified with one signature check. No databases involved." }
+        ],
+        "status": "The interactive sandbox is in development. Until then, touch the protocol in the docs.",
+        "ctaLabel": "Open the docs"
       }
     },
     "docs": {

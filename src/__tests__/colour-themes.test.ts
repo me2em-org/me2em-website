@@ -114,7 +114,7 @@ describe('colour themes', () => {
     expect(siteConfig.description).toContain(`${COUNT} colour themes`);
     expect(JSON.stringify(en)).toContain(`${COUNT} colour themes`);
     expect(JSON.stringify(ru)).toContain(`${COUNT} цветовых тем`);
-    expect(JSON.stringify(zh)).toContain(`${COUNT} colour themes`);
+    // zh.json no longer references Astro Rocket's colour-theme count.
   });
 
   it('the README and the docs quote the count', () => {

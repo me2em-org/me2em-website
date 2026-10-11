@@ -89,7 +89,7 @@ export const navItems: NavItem[] = [
   { label: 'Services', href: '/docs', order: 1, labelKey: 'nav.items.services' },
   { label: 'Projects', href: '/usecases', order: 2, labelKey: 'nav.items.projects' },
   { label: 'Blog', href: '/blog', order: 3, labelKey: 'nav.items.blog' },
-  { label: 'About', href: '/about', order: 4, labelKey: 'nav.items.about' },
+  { label: 'Sandbox', href: '/sandbox', order: 4, labelKey: 'nav.items.about' },
   { label: 'Contact', href: '/contact', order: 5, labelKey: 'nav.items.contact' },
 ];
 
@@ -98,7 +98,7 @@ export const footerNavItems: NavItem[] = [
   { label: 'Services', href: '/docs', order: 1, labelKey: 'nav.items.services' },
   { label: 'Projects', href: '/usecases', order: 2, labelKey: 'nav.items.projects' },
   { label: 'Blog', href: '/blog', order: 3, labelKey: 'nav.items.blog' },
-  { label: 'About', href: '/about', order: 4, labelKey: 'nav.items.about' },
+  { label: 'Sandbox', href: '/sandbox', order: 4, labelKey: 'nav.items.about' },
   { label: 'Contact', href: '/contact', order: 5, labelKey: 'nav.items.contact' },
   { label: 'GitHub', href: 'https://github.com/me2em-org/me2em-protocol', order: 6, external: true },
 ];
@@ -127,7 +127,7 @@ export const footerLinkGroups: FooterLinkGroupConfig[] = [
     titleKey: 'footer.groups.questions',
     title: 'Got questions?',
     links: [
-      { label: 'FAQ', href: '/about#faq' },
+      { label: 'FAQ', href: '/docs#faq' },
       { label: 'Email', href: 'mailto:hello@hansmartens.dev' },
       { label: 'GitHub', href: 'https://github.com/me2em-org/me2em-protocol', external: true },
       { label: 'LinkedIn', href: 'https://www.linkedin.com/in/hansmartensdev', external: true },
