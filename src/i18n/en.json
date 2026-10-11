@@ -491,18 +491,19 @@
     },
     "contact": {
       "meta": {
-        "title": "Contact",
-        "description": "Starting something new? I design and build new websites from scratch — tell me about your project and I'll get back to you within 1 business day."
+        "title": "Contact — Me2em",
+        "description": "Questions about the protocol, integration help, or a security report — send a message or use a direct channel."
       },
       "hero": {
-        "badge": "Start a project",
+        "badge": "Contact",
         "titleLead": "Talk to the",
         "titleHighlight": "Me2em team",
-        "description": "Questions about the protocol, integration help, or a security report — tell us what you need and we'll get back to you."
+        "description": "Whether you're evaluating the protocol, building on it, or found a vulnerability — send a message or use a direct channel below."
       },
       "formTitle": "Send a message",
       "channelsTitle": "Prefer a direct channel? Pick whichever works.",
       "channelsSubtitle": "Questions about the protocol, integration help, or a security report — tell us what you need and we'll get back to you.",
+      "securityNote": "Security — responsible disclosure process",
       "emailLabel": "Email",
       "emailNote": "Drop us a line",
       "socialNote": "Contact",

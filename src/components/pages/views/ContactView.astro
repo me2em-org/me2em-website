@@ -114,6 +114,25 @@ const channels = [
                 </Card>
               </a>
             ))}
+
+            <a
+              href="https://github.com/me2em-org/me2em-protocol/blob/main/SECURITY.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block group"
+            >
+              <Card hover padding="sm" class="h-full">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+                    <Icon name="shield-check" size="sm" />
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <p class="font-semibold text-sm text-foreground">{t('pages.contact.securityNote', locale)}</p>
+                  </div>
+                  <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
+                </div>
+              </Card>
+            </a>
           </div>
 
           <!-- Location card -->

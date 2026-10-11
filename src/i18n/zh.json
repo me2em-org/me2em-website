@@ -562,12 +562,13 @@
         "description": "很想听到你的消息。通过下面的表单发送消息，或通过下面的其他渠道联系。"
       },
       "formTitle": "项目详情",
-      "channelsTitle": "其他渠道",
-      "channelsSubtitle": "更喜欢直接渠道？选择最适合的。",
+      "channelsTitle": "Prefer a direct channel? Pick whichever works.",
+      "channelsSubtitle": "Questions about the protocol, integration help, or a security report — tell us what you need and we'll get back to you.",
       "emailLabel": "邮箱",
       "emailNote": "给我们留言",
       "socialNote": "关注",
-      "basedIn": "位于{country}"
+      "basedIn": "位于{country}",
+      "securityNote": "Security — responsible disclosure process"
     },
     "home": {
       "meta": {
