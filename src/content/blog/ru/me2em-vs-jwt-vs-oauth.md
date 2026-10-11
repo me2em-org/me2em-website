@@ -326,6 +326,7 @@ Me2em не заменяет JWT или OAuth — он решает другую 
 
 ## Что читать дальше
 
+- **[SSO без базы пользователей](/ru/blog/me2em-multi-app-sso)** — предельный случай: seed-фраза как аккаунт всей платформы
 - **[Stateless-сессии: авторизация без базы данных](/ru/blog/stateless-sessions-no-database)** — что внутри токена и какие семь проверок проходит сессия
 - **[Аттестационные цепочки: делегирование доверия без сервера](/ru/blog/attestation-chains-delegated-trust)** — Mode 2: делегирование и ревокация веток
 - **[Мгновенный отзыв: ревокация в stateless-мире](/ru/blog/revocation-checker-instant-revocation)** — как устроен отзыв jti

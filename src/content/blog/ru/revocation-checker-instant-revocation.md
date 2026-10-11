@@ -244,6 +244,7 @@ flowchart TD
 
 ## Что читать дальше
 
+- **[Stateless-бэкенд для Me2em](/ru/blog/me2em-stateless-backend)** — как подключить RevocationChecker на сервере: Guard, 400/401/403, multi-root
 - **[Stateless-сессии: авторизация без базы данных](/ru/blog/stateless-sessions-no-database)** — что внутри токена и какие семь проверок проходит сессия
 - **[Аттестационные цепочки: делегирование доверия без сервера](/ru/blog/attestation-chains-delegated-trust)** — Mode 2: как аттестационный jti выключает всю ветку
 - **[Me2em: идентичность из seed-фразы](/ru/blog/me2em-seed-derived-identity)** — фундамент: откуда берётся дерево ключей

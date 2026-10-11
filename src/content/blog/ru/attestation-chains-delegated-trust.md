@@ -210,6 +210,7 @@ Seed → Identity → Handle → SubHandle     ← дерево (детерми�
 
 ## Что читать дальше
 
+- **[Продажа доступа: подписанная квитанция как товар](/ru/blog/me2em-selling-access)** — Mode 2 в чистом виде: дроны, спутниковые окна, офлайн-проверка покупки
 - **[Мгновенный отзыв: ревокация в stateless-мире](/ru/blog/revocation-checker-instant-revocation)** — как устроен отзыв `jti` на каждом уровне цепочки: гранулярность, fail-open/closed, TTL записей
 - **[Stateless-сессии: авторизация без базы данных](/ru/blog/stateless-sessions-no-database)** — что внутри токена и какие семь проверок проходит сессия
 - **[Me2em: идентичность из seed-фразы](/ru/blog/me2em-seed-derived-identity)** — фундамент: откуда берётся дерево

@@ -122,16 +122,23 @@ onlyBuiltDependencies:
 Для тест-фикстур (BIP39-векторы, `Uint8Array(32).fill(0x42)`-паттерны) мы добавили превентивный allowlist в `.gitleaks.toml` — gitleaks сканирует полную историю и может поймать синтетические константы как ложные срабатывания:
 
 ```toml
-[allowlist]
-  description = "Test fixtures: BIP39 vectors and synthetic constants"
-  regexes = [
-    '''abandon( abandon){11}''',
-    '''(?i)0x0b{10,}''',
-    '''(?i)deadbeef''',
-  ]
-  paths = [
-    '''packages/.*/test/.*''',
-  ]
+[[rules]]
+id = "allow-test-fixtures"
+description = "Suppress known synthetic vectors in test directories"
+regex = '''(?:abandon( abandon){11}|0x0b{10,}|deadbeef|new Uint8Array\(\d+\)\.fill\(0x[0-9a-fA-F]{2}\))'''
+
+[rules.allowlist]
+description = "BIP39 test vectors and fixed test mnemonics"
+regexes = [
+  '''abandon( abandon){11}''',
+  '''(?i)0x0b{10,}''',
+  '''(?i)deadbeef''',
+]
+paths = [
+  '''packages/crypto/test/.*''',
+  '''packages/core/test/.*''',
+  '''packages/react/test/.*''',
+]
 ```
 
 ## Версионная гигиена: pinning runner'а и action'ов
@@ -261,7 +268,7 @@ CI не дублирует локальные проверки — **он про
 
 **Q: false positive на тест-фикстуру.**
 
-Подтвердите, что строка синтетическая (BIP39-вектор, `fill()`-паттерн, RFC-константа). Добавьте подавление в `[allowlist]` в `.gitleaks.toml` (path/regex-паттерны для test-директорий) или `.gitleaksignore` (fingerprint конкретной находки). Коммит: `ci: gitleaks ignore for <что и почему>`.
+Подтвердите, что строка синтетическая (BIP39-вектор, `fill()`-паттерн, RFC-константа). Добавьте подавление в `.gitleaks.toml` (allowlist-секцию правила для test-директорий) или `.gitleaksignore` (fingerprint конкретной находки). Коммит: `ci: gitleaks ignore for <что и почему>`.
 
 **Q: missing gitleaks license (organization).**
 

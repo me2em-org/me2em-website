@@ -150,6 +150,7 @@ Seed-фраза — это 12 или 24 слова из фиксированно
 
 ## Что читать дальше
 
+- **[Почему UX seed-фразы такой параноидальный](/ru/blog/me2em-seed-ux-react)** — как пакет @me2em/react компенсирует человеческие ошибки
 - **[Me2em: идентичность из seed-фразы](/ru/blog/me2em-seed-derived-identity)** — детерминированное дерево ключей
 - **[Парольный менеджер, который ничего не хранит](/ru/blog/me2em-deterministic-password-keeper)** — та же модель custody на практике
 - **[Мгновенный отзыв: ревокация в stateless-мире](/ru/blog/revocation-checker-instant-revocation)** — почему отзыв не требует хранить seed: ветки отзываемы, корень — нет
