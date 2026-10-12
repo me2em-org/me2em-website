@@ -84,7 +84,7 @@ const sidebarOnLeft = (tocConfig?.sidebarPosition ?? 'right') === 'left';
 
 const breadcrumbs = [
   { label: t('common.home', locale), href: localizedPath('/', locale) },
-  { label: t('projects.title', locale), href: getProjectsBaseUrl(locale) },
+  { label: t('usecases.title', locale), href: getProjectsBaseUrl(locale) },
   { label: title },
 ];
 
@@ -191,7 +191,7 @@ const languageAlternates = Object.fromEntries(
           <footer class="border-border mt-12 border-t pt-8 flex justify-center" data-reveal>
             <Button href={projectsHref} variant="brand-outline" size="sm">
               <Icon name="arrow-left" size="sm" />
-              {t('projects.backToProjects', locale)}
+              {t('usecases.backToProjects', locale)}
             </Button>
           </footer>
         </div>
@@ -212,7 +212,7 @@ const languageAlternates = Object.fromEntries(
     {related.length > 0 && (
       <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border" data-reveal>
         <div class="mx-auto max-w-7xl px-6">
-          <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">{t('projects.moreProjects', locale)}</h2>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">{t('usecases.moreProjects', locale)}</h2>
           <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {/* The same card the projects index, the paginated pages, the tag
                 archives and the homepage use. `reveal={false}` because the
@@ -229,18 +229,18 @@ const languageAlternates = Object.fromEntries(
     <section class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
       <CtaBand maxWidth="7xl">
         <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
-          {t('projects.closingHeading', locale)}
+          {t('usecases.closingHeading', locale)}
         </h2>
         <p class="text-lg text-foreground-muted mb-8 text-balance">
-          {t('projects.closingLead', locale)}
+          {t('usecases.closingLead', locale)}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <Button size="lg" href={contactUrl}>
-            {t('projects.ctaPrimary', locale)}
+            {t('usecases.ctaPrimary', locale)}
             <Icon name="arrow-right" size="sm" />
           </Button>
           <Button size="lg" variant="outline" class="cta-btn-brand" href={projectsHref}>
-            {t('projects.allProjects', locale)}
+            {t('usecases.allProjects', locale)}
             <Icon name="arrow-right" size="sm" />
           </Button>
         </div>

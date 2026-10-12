@@ -47,21 +47,21 @@ const gitHubUrl = ('https://github.com/me2em-org/me2em-protocol');
 ---
 
 <PageLayout
-  title={t('projects.metaTitle', locale)}
-  description={t('projects.metaDescription', locale)}
+  title={t('usecases.metaTitle', locale)}
+  description={t('usecases.metaDescription', locale)}
   eagerReveal
   footerBackground="secondary"
 >
   <Hero layout="centered" size="sm" class="isolate" showHeroHalo>
     <Badge slot="badge" variant="brand" pill>
       <Icon name="layers" size="sm" />
-      {t('projects.heroBadge', locale)}
+      {t('usecases.heroBadge', locale)}
     </Badge>
 
-    <h1 slot="title">{t('projects.title', locale)}</h1>
+    <h1 slot="title">{t('usecases.title', locale)}</h1>
 
     <p slot="description">
-      {t('projects.heroDescription', locale)}
+      {t('usecases.heroDescription', locale)}
     </p>
   </Hero>
 
@@ -95,18 +95,18 @@ const gitHubUrl = ('https://github.com/me2em-org/me2em-protocol');
   <section class="relative z-10 py-[var(--space-section-md)] bg-background">
     <CtaBand>
       <h2 class="font-display text-4xl font-bold text-foreground mb-4 text-balance">
-        {t('projects.ctaHeading', locale)}
+        {t('usecases.ctaHeading', locale)}
       </h2>
       <p class="text-lg text-foreground-muted mb-8 text-balance">
-        {t('projects.ctaLead', locale)}
+        {t('usecases.ctaLead', locale)}
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <Button size="lg" href={docsUrl}>
-          {t('projects.ctaPrimary', locale)}
+          {t('usecases.ctaPrimary', locale)}
           <Icon name="arrow-right" size="sm" />
         </Button>
         <Button size="lg" variant="outline" class="cta-btn-brand" href={gitHubUrl}>
-          {t('projects.ctaSecondary', locale)}
+          {t('usecases.ctaSecondary', locale)}
           <Icon name="arrow-right" size="sm" />
         </Button>
       </div>

@@ -14,22 +14,14 @@
 import PageLayout from '@/layouts/PageLayout.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
-import Card from '@/components/ui/data-display/Card/Card.astro';
-import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
-import ProjectImageSVG from '@/components/projects/ProjectImageSVG.astro';
 import TypingEffect from '@/components/ui/TypingEffect.astro';
-import { t, tData, defaultLocale, localizedPath } from '@/i18n';
+import { t, tData, defaultLocale } from '@/i18n';
+import SandboxSeedIsland from '@/components/sandbox/SeedIsland';
 
 interface Props {
   /** Locale whose copy this page renders. Defaults to the site default. */
   locale?: string;
-}
-
-interface IconText {
-  icon: string;
-  title: string;
-  description: string;
 }
 
 const { locale = defaultLocale } = Astro.props;
@@ -42,10 +34,28 @@ const hero = tData<{
   typingWordsMobile: string[];
   description: string;
 }>('pages.about.hero', locale)!;
-const sandbox = tData<{ badge: string; heading: string; lead: string; steps: { title: string; description: string }[]; status: string; ctaLabel: string }>(
-  'pages.about.sandbox',
-  locale
-)!;
+const sandboxSeed = tData<{
+  badge: string;
+  heading: string;
+  lead: string;
+  ctaStart: string;
+  generating: string;
+  disclaimer: string;
+  copied: string;
+  verifyTitle: string;
+  verifyRetry: string;
+  bornTitle: string;
+  bornText: string;
+  nextLabel: string;
+  nextHuman: string;
+  nextIot: string;
+  nextAgent: string;
+  restart: string;
+  panelHidden: string;
+  panelRevealed: string;
+  afterCopy: string;
+  retryButton: string;
+}>('pages.about.sandboxSeed', locale)!;
 ---
 <PageLayout
   title={t('pages.about.meta.title', locale)}
@@ -70,56 +80,27 @@ const sandbox = tData<{ badge: string; heading: string; lead: string; steps: { t
     <p slot="description" class="!text-balance">
       {hero.description}
     </p>
-
-    <div class="mt-[calc(var(--space-section-gap)_-_var(--space-stack-lg))] w-full max-w-4xl mx-auto">
-      <ProjectImageSVG
-        slug="astro-rocket"
-        title="Launch your next site with Astro Rocket — the rocket mark over a lit planet's edge, against a starfield."
-      />
-    </div>
   </Hero>
 
-  <!-- Sandbox announcement -->
-  <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+  <!-- Sandbox seed island -->
+  <section class="py-[var(--space-section-md)] bg-background-secondary">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
       <div class="flex flex-col items-center gap-4 text-center" data-reveal data-reveal-eager data-reveal-ease="smooth">
         <div class="flex flex-col items-center gap-6">
           <Badge variant="brand" pill>
-            <Icon name="flask-conical" size="sm" />
-            {sandbox.badge}
+            <Icon name="sparkles" size="sm" />
+            {sandboxSeed.badge}
           </Badge>
           <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground text-balance">
-            {sandbox.heading}
+            {sandboxSeed.heading}
           </h2>
         </div>
         <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
-          {sandbox.lead}
+          {sandboxSeed.lead}
         </p>
       </div>
 
-      <div class="grid gap-6 sm:grid-cols-3">
-        {sandbox.steps.map((step, i) => (
-          <Card variant="elevated" padding="lg" data-reveal data-reveal-delay={i || undefined}>
-            <h3 class="font-display text-base font-semibold text-foreground">
-              {step.title}
-            </h3>
-            <p class="text-sm text-foreground-muted mt-2">
-              {step.description}
-            </p>
-          </Card>
-        ))}
-      </div>
-
-      <p class="text-center text-foreground-muted text-sm">
-        {sandbox.status}
-      </p>
-
-      <div class="flex justify-center">
-        <Button variant="brand-outline" href={localizedPath('/docs', locale)}>
-          {sandbox.ctaLabel}
-          <Icon name="arrow-right" size="sm" />
-        </Button>
-      </div>
+      <SandboxSeedIsland client:load seed={sandboxSeed} />
     </div>
   </section>
 </PageLayout>

@@ -71,7 +71,7 @@ const slideData = images.map((item, i) =>
     <button
       id={`prev-${id}`}
       class="absolute left-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-background/80 border border-border shadow-md text-foreground backdrop-blur-sm transition-opacity disabled:opacity-30 disabled:cursor-not-allowed hover:bg-background"
-      aria-label={t('projects.galleryPreviousImage', locale)}
+      aria-label={t('usecases.galleryPreviousImage', locale)}
       disabled
     >
       <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -83,7 +83,7 @@ const slideData = images.map((item, i) =>
     <button
       id={`next-${id}`}
       class="absolute right-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-background/80 border border-border shadow-md text-foreground backdrop-blur-sm transition-opacity disabled:opacity-30 disabled:cursor-not-allowed hover:bg-background"
-      aria-label={t('projects.galleryNextImage', locale)}
+      aria-label={t('usecases.galleryNextImage', locale)}
     >
       <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
@@ -124,12 +124,12 @@ const slideData = images.map((item, i) =>
   class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90"
   role="dialog"
   aria-modal="true"
-  aria-label={t('projects.galleryLabel', locale)}
+  aria-label={t('usecases.galleryLabel', locale)}
 >
   <button
     id={`lb-close-${id}`}
     class="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
-    aria-label={t('projects.galleryClose', locale)}
+    aria-label={t('usecases.galleryClose', locale)}
   >
     <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -139,7 +139,7 @@ const slideData = images.map((item, i) =>
   <button
     id={`lb-prev-${id}`}
     class="absolute left-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-    aria-label={t('projects.galleryPreviousImage', locale)}
+    aria-label={t('usecases.galleryPreviousImage', locale)}
   >
     <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
@@ -161,7 +161,7 @@ const slideData = images.map((item, i) =>
   <button
     id={`lb-next-${id}`}
     class="absolute right-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-    aria-label={t('projects.galleryNextImage', locale)}
+    aria-label={t('usecases.galleryNextImage', locale)}
   >
     <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />

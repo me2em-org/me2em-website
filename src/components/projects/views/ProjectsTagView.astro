@@ -32,19 +32,19 @@ interface Props {
 const { locale = defaultLocale, tag, projects, visibleTags } = Astro.props;
 
 const projectsHref = getProjectsBaseUrl(locale);
-const countKey = projects.length === 1 ? 'projects.tagCountOne' : 'projects.tagCountOther';
+const countKey = projects.length === 1 ? 'usecases.tagCountOne' : 'usecases.tagCountOther';
 ---
 
 <PageLayout
-  title={t('projects.tagMetaTitle', locale, { tag })}
-  description={t('projects.tagMetaDescription', locale, { tag })}
+  title={t('usecases.tagMetaTitle', locale, { tag })}
+  description={t('usecases.tagMetaDescription', locale, { tag })}
   eagerReveal
   footerBackground="secondary"
 >
   <Hero layout="centered" size="sm">
     <Badge slot="badge" variant="brand" pill>
       <Icon name="tag" size="sm" />
-      {t('projects.tagBadge', locale)}
+      {t('usecases.tagBadge', locale)}
     </Badge>
 
     <h1
@@ -65,7 +65,7 @@ const countKey = projects.length === 1 ? 'projects.tagCountOne' : 'projects.tagC
           class="group inline-flex items-center gap-2 rounded-lg border border-brand-500/40 bg-transparent px-4 py-2 text-sm font-medium text-brand-700 dark:text-brand-400 hover:border-brand-500/80 hover:bg-brand-500/10 transition-colors"
         >
           <Icon name="arrow-left" size="sm" />
-          {t('projects.allProjects', locale)}
+          {t('usecases.allProjects', locale)}
         </a>
 
         {visibleTags.length > 0 && (
@@ -84,11 +84,11 @@ const countKey = projects.length === 1 ? 'projects.tagCountOne' : 'projects.tagC
           <div class="bg-background mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
             <Icon name="layers" size="lg" class="text-foreground-muted" />
           </div>
-          <p class="text-foreground-muted text-lg">{t('projects.tagEmpty', locale)}</p>
+          <p class="text-foreground-muted text-lg">{t('usecases.tagEmpty', locale)}</p>
           <div class="mt-6">
             <Button href={projectsHref} variant="brand-outline" size="sm">
               <Icon name="arrow-left" size="sm" />
-              {t('projects.tagBackToAll', locale)}
+              {t('usecases.tagBackToAll', locale)}
             </Button>
           </div>
         </div>

@@ -11,6 +11,9 @@ import {
   stripLocaleFromPath,
   swapLocaleInPath,
 } from '../i18n';
+import enDict from '../i18n/en.json';
+import ruDict from '../i18n/ru.json';
+import zhDict from '../i18n/zh.json';
 
 describe('i18n t() helper', () => {
   it('returns a translation for a valid dotted key', () => {
@@ -187,5 +190,26 @@ describe('i18n meta titles never embed the site name', () => {
 
   it.each(cases)('%s "%s" does not include the site name', (locale, key) => {
     expect(t(key, locale)).not.toContain(SITE_NAME);
+  });
+});
+
+describe('usecases keys exist and projects top-level key is absent', () => {
+  // After renaming projects.* → usecases.*, the i18n dictionaries must carry
+  // the new keys and must NOT carry a top-level 'projects' section.
+  const USECASES_KEYS = ['usecases.heroBadge', 'usecases.metaTitle', 'usecases.ctaHeading'];
+
+  it.each(['en', 'ru', 'zh'])('%s dictionary contains all usecases keys', (locale) => {
+    for (const key of USECASES_KEYS) {
+      expect(t(key, locale)).not.toBe(key);
+    }
+  });
+
+  it.each(['en', 'ru', 'zh'])('%s dictionary has no top-level "projects" key', (locale) => {
+    const dicts: Record<string, Record<string, unknown>> = {
+      en: enDict,
+      ru: ruDict,
+      zh: zhDict,
+    };
+    expect('projects' in dicts[locale]).toBe(false);
   });
 });
