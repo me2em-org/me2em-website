@@ -1,12 +1,8 @@
-import { useState, useCallback, useEffect, useRef, useReducer } from 'react';
+import { useState, useCallback, useEffect, useRef, useReducer, useMemo } from 'react';
 import {
   Me2emProvider,
   useCreateIdentity,
 } from '@me2em/react';
-
-// DEMO: verification indices — change together with verifyPrompt strings.
-// The sandbox verifies words at positions 3, 8, 12 (1-based) = [2, 7, 11] (0-based).
-const VERIFY_INDICES: readonly [number, number, number] = [2, 7, 11];
 
 /**
  * Parse raw paper text into a list of words, stripping numbered prefixes
@@ -44,28 +40,30 @@ export interface SeedCopy {
   generating: string;
   disclaimer: string;
   copied: string;
-  verifyTitle: string;
-  verifyRetry: string;
-  bornTitle: string;
-  bornText: string;
-  nextLabel: string;
-  nextHuman: string;
-  nextIot: string;
-  nextAgent: string;
-  restart: string;
   panelHidden: string;
   panelRevealed: string;
-  afterCopy: string;
-  retryButton: string;
   revealButton: string;
   hideButton: string;
   copyAllButton: string;
+  paperTitle: string;
+  paperPasteHint: string;
+  paperNote: string;
   verifyPrompt: string;
   verifyWordLabel: string;
   verifyPlaceholder: string;
   verifyConfirm: string;
   verifyError: string;
   verifySeeAgain: string;
+  paperMissing: string;
+  paperBadgeHint: string;
+  bornTitle: string;
+  bornText: string;
+  createdSequence: string;
+  nextLabel: string;
+  nextHuman: string;
+  nextIot: string;
+  nextAgent: string;
+  restart: string;
 }
 
 type PanelState = 'idle' | 'generating' | 'hidden' | 'revealed' | 'copied' | 'verify' | 'created';
@@ -96,6 +94,54 @@ function RevealedWordBadge({ index, word }: { index: number; word: string }) {
   );
 }
 
+function PaperWordBadge({
+  index,
+  word,
+  onClick,
+}: {
+  index: number;
+  word: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      aria-label={`Word ${index + 1}: ${word}`}
+      onClick={onClick}
+      className="inline-flex items-center gap-1.5 rounded-full bg-background-tertiary border border-border px-3 py-1.5 text-xs font-mono text-foreground hover:border-brand-500 hover:bg-background-secondary transition-colors cursor-pointer"
+    >
+      <span className="text-foreground-subtle font-semibold">{index + 1}.</span>
+      <span>{word}</span>
+    </button>
+  );
+}
+
+function PaperBlock({
+  title,
+  note,
+  value,
+  onChange,
+}: {
+  title: string;
+  note?: string;
+  value: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <div className="flex flex-col gap-2 mt-2 p-4 rounded-lg border border-border bg-background-tertiary/50">
+      <p className="text-sm text-foreground-muted text-center">{title}</p>
+      {note && <p className="text-sm text-foreground-muted text-balance">{note}</p>}
+      <textarea
+        rows={4}
+        aria-label={title}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full rounded-lg border-2 border-border bg-background px-3 py-2 text-sm font-mono focus:border-brand-500 transition-colors outline-none resize-y"
+      />
+    </div>
+  );
+}
+
 function MentorPanel({
   state,
   words,
@@ -104,6 +150,8 @@ function MentorPanel({
   onCopyAll,
   onHide,
   onGenerate,
+  paperText,
+  onPaperChange,
 }: {
   state: PanelState;
   words: string[] | null;
@@ -112,6 +160,8 @@ function MentorPanel({
   onCopyAll: () => void;
   onHide: () => void;
   onGenerate: () => void;
+  paperText: string;
+  onPaperChange: (v: string) => void;
 }) {
   const isHidden = state === 'hidden';
   const isRevealed = state === 'revealed';
@@ -219,7 +269,6 @@ function MentorPanel({
           </div>
           <div className="flex flex-col gap-2 items-center">
             <p className="text-sm font-medium text-foreground">{seed.copied}</p>
-            <p className="text-sm text-foreground-muted">{seed.afterCopy}</p>
             <button
               onClick={onHide}
               className={buttonClasses}
@@ -227,6 +276,12 @@ function MentorPanel({
               {seed.hideButton}
             </button>
           </div>
+          <PaperBlock
+            title={seed.paperTitle + (paperText.trim() ? '' : ' ' + seed.paperPasteHint)}
+            note={seed.paperNote}
+            value={paperText}
+            onChange={onPaperChange}
+          />
         </div>
       )}
 
@@ -248,18 +303,46 @@ function VerifyForm({
   onError,
   onSeeAgain,
   seed,
+  verifyIndices,
+  paperText,
+  onPaperChange,
 }: {
   realWords: string[];
   onVerified: () => void;
   onError: () => void;
   onSeeAgain: () => void;
   seed: SeedCopy;
+  verifyIndices: readonly [number, number, number];
+  paperText: string;
+  onPaperChange: (v: string) => void;
 }) {
-  // DEMO: verification indices — change together with verifyPrompt strings.
   const [inputs, setInputs] = useState<string[]>(['', '', '']);
   const [errorShown, setErrorShown] = useState(false);
+  const [focusedInput, setFocusedInput] = useState<number | null>(null);
 
-  const expected = VERIFY_INDICES.map(i => realWords[i].toLowerCase());
+  const expected = verifyIndices.map(i => realWords[i].toLowerCase());
+
+  const dynamicPrompt = seed.verifyPrompt
+    .replace('{a}', String(verifyIndices[0] + 1))
+    .replace('{b}', String(verifyIndices[1] + 1))
+    .replace('{c}', String(verifyIndices[2] + 1));
+
+  const paperWords = useMemo(() => parsePaperWords(paperText), [paperText]);
+  const hasPaper = paperWords.length >= 12;
+
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([null, null, null]);
+
+  const handleBadgeClick = (word: string) => {
+    setInputs((prev) => {
+      const next = [...prev];
+      const target = focusedInput !== null && !next[focusedInput] ? focusedInput : next.findIndex((v) => !v.trim());
+      if (target === -1) return prev;
+      next[target] = word;
+      return next;
+    });
+    const nextEmpty = inputs.findIndex((v, i) => !v.trim() && i !== focusedInput);
+    if (nextEmpty !== -1) inputRefs.current[nextEmpty]?.focus();
+  };
 
   const handleChange = (idx: number, value: string) => {
     setInputs(prev => {
@@ -292,41 +375,65 @@ function VerifyForm({
   return (
     <div className="flex flex-col gap-4 w-full max-w-xl">
       <p className="text-center text-sm text-foreground-muted">
-        {seed.verifyPrompt}
+        {dynamicPrompt}
       </p>
 
-      <div className="flex flex-col gap-3">
-        {VERIFY_INDICES.map((wordIdx, inputIdx) => {
-          const padded = String(wordIdx + 1).padStart(2, '0');
-          const label = seed.verifyWordLabel.replace('{n}', padded);
-          const isCorrect = inputs[inputIdx]?.trim().toLowerCase() === expected[inputIdx];
-          return (
-            <div key={inputIdx} className="flex flex-col gap-1">
-              <label className="text-xs text-foreground-muted font-mono">
-                {label}
-              </label>
-              <input
-                type="text"
-                autoComplete="off"
-                spellCheck={false}
-                placeholder={seed.verifyPlaceholder}
-                value={inputs[inputIdx]}
-                onChange={e => handleChange(inputIdx, e.target.value)}
-                className="w-full rounded-lg border-2 border-border bg-background px-3 py-2 text-sm font-mono focus:border-brand-500 transition-colors outline-none"
-              />
-              {isCorrect && inputs[inputIdx].trim() && (
-                <div className="flex items-center gap-1 text-[var(--success)]">
-                  <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M20 6L9 17l-5-5" />
-                  </svg>
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
+      {hasPaper ? (
+        <>
+          <p className="text-center text-sm text-foreground-muted">{seed.paperBadgeHint}</p>
+          <div className="flex flex-wrap gap-2 justify-center">
+            {paperWords.map((word, i) => (
+              <PaperWordBadge key={i} index={i} word={word} onClick={() => handleBadgeClick(word)} />
+            ))}
+          </div>
+        </>
+      ) : (
+        <div className="flex items-start gap-2 rounded-lg border border-border bg-background-tertiary/50 px-4 py-3">
+          <svg className="h-5 w-5 text-foreground-muted shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          <p className="text-sm text-foreground text-balance">{seed.paperMissing}</p>
+        </div>
+      )}
 
-      {errorShown && (
+      {hasPaper && (
+        <div className="flex flex-col gap-3">
+          {verifyIndices.map((wordIdx, inputIdx) => {
+            const padded = String(wordIdx + 1).padStart(2, '0');
+            const label = seed.verifyWordLabel.replace('{n}', padded);
+            const isCorrect = inputs[inputIdx]?.trim().toLowerCase() === expected[inputIdx];
+            return (
+              <div key={inputIdx} className="flex flex-col gap-1">
+                <label className="text-xs text-foreground-muted font-mono">
+                  {label}
+                </label>
+                <input
+                  ref={el => { inputRefs.current[inputIdx] = el; }}
+                  type="text"
+                  autoComplete="off"
+                  spellCheck={false}
+                  placeholder={seed.verifyPlaceholder}
+                  value={inputs[inputIdx]}
+                  onChange={e => handleChange(inputIdx, e.target.value)}
+                  onFocus={() => setFocusedInput(inputIdx)}
+                  className="w-full rounded-lg border-2 border-border bg-background px-3 py-2 text-sm font-mono focus:border-brand-500 transition-colors outline-none"
+                />
+                {isCorrect && inputs[inputIdx].trim() && (
+                  <div className="flex items-center gap-1 text-[var(--success)]">
+                    <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {hasPaper && errorShown && (
         <div className="flex items-start gap-2 rounded-lg border border-destructive/40 bg-destructive/10 px-4 py-3">
           <svg className="h-5 w-5 text-destructive shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="12" r="10" />
@@ -338,13 +445,15 @@ function VerifyForm({
       )}
 
       <div className="flex flex-col gap-2 items-center">
-        <button
-          onClick={handleConfirm}
-          disabled={isDisabled}
-          className="rounded-md bg-brand-500 hover:bg-brand-600 disabled:opacity-40 disabled:cursor-not-allowed text-white px-6 py-2.5 text-sm font-medium transition-colors"
-        >
-          {seed.verifyConfirm}
-        </button>
+        {hasPaper && (
+          <button
+            onClick={handleConfirm}
+            disabled={isDisabled}
+            className="rounded-md bg-brand-500 hover:bg-brand-600 disabled:opacity-40 disabled:cursor-not-allowed text-white px-6 py-2.5 text-sm font-medium transition-colors"
+          >
+            {seed.verifyConfirm}
+          </button>
+        )}
         <button
           onClick={handleSeeAgain}
           className="text-sm text-foreground-muted hover:text-foreground underline underline-offset-2 transition-colors"
@@ -360,8 +469,11 @@ function SeedIslandInner({ seed: seedCopy }: { seed: SeedCopy }) {
   const { status: hookStatus, seedWords, generate, reset, confirmWords } = useCreateIdentity();
   const [state, dispatch] = useReducer(sandboxReducer, initialState);
   const [generatedWords, setGeneratedWords] = useState<string[] | null>(null);
+  const [paperText, setPaperText] = useState('');
   const copyRef = useRef(false);
   const confirmCalledRef = useRef(false);
+
+  const handlePaperChange = useCallback((v: string) => setPaperText(v), []);
 
   // Derive PanelState from sandbox state: 'revealed' + copyUsed → 'copied'
   function panelState(status: SandboxStatus): PanelState {
@@ -391,7 +503,7 @@ function SeedIslandInner({ seed: seedCopy }: { seed: SeedCopy }) {
   }, [hookStatus, seedWords]);
 
   useEffect(() => {
-    if (hookStatus === 'ready') {
+    if (hookStatus === 'ready' || hookStatus === 'verified') {
       confirmCalledRef.current = true;
       dispatch({ type: 'verifyPassed' });
     }
@@ -419,10 +531,11 @@ function SeedIslandInner({ seed: seedCopy }: { seed: SeedCopy }) {
     dispatch({ type: 'hide' });
   }, []);
 
-  const handleVerified = useCallback(async () => {
+  const handleVerified = useCallback(() => {
+    dispatch({ type: 'verifyPassed' });
     if (!confirmCalledRef.current) {
       confirmCalledRef.current = true;
-      await confirmWords();
+      confirmWords().catch((e) => console.warn('[sandbox] confirmWords:', e));
     }
   }, [confirmWords]);
 
@@ -438,6 +551,7 @@ function SeedIslandInner({ seed: seedCopy }: { seed: SeedCopy }) {
     reset();
     dispatch({ type: 'restart' });
     setGeneratedWords(null);
+    setPaperText('');
     copyRef.current = false;
     confirmCalledRef.current = false;
   }, [reset]);
@@ -454,6 +568,8 @@ function SeedIslandInner({ seed: seedCopy }: { seed: SeedCopy }) {
         onCopyAll={handleCopyAll}
         onHide={handleHide}
         onGenerate={handleGenerate}
+        paperText={paperText}
+        onPaperChange={handlePaperChange}
       />
 
       {panel === 'verify' && generatedWords && state.verifyIndices && (
@@ -463,6 +579,9 @@ function SeedIslandInner({ seed: seedCopy }: { seed: SeedCopy }) {
           onError={handleVerifyError}
           onSeeAgain={handleBackToRevealed}
           seed={seedCopy}
+          verifyIndices={state.verifyIndices!}
+          paperText={paperText}
+          onPaperChange={handlePaperChange}
         />
       )}
 

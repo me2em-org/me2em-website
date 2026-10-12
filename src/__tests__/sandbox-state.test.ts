@@ -65,6 +65,15 @@ describe('sandboxReducer', () => {
     expect(next.verifyIndices).toEqual([2, 7, 11]);
   });
 
+  it('verifyPassed from created: stays created (idempotent)', () => {
+    const prev = s('created', [2, 7, 11] as const);
+    const first = sandboxReducer(prev, { type: 'verifyPassed' });
+    expect(first.status).toBe('created');
+    const second = sandboxReducer(first, { type: 'verifyPassed' });
+    expect(second.status).toBe('created');
+    expect(second.verifyIndices).toEqual([2, 7, 11]);
+  });
+
   it('verifyFailed: status unchanged', () => {
     const prev = s('verify', [2, 7, 11] as const);
     const next = sandboxReducer(prev, { type: 'verifyFailed' });

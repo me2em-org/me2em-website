@@ -43,12 +43,6 @@ export function shouldWarnBeforeUnload(status: SandboxStatus): boolean {
   );
 }
 
-/**
- * DEMO: verification indices — change together with verifyPrompt strings.
- * The sandbox verifies words at positions 3, 8, 12 (1-based) = [2, 7, 11] (0-based).
- */
-const VERIFY_INDICES: readonly [number, number, number] = [2, 7, 11];
-
 function pickThreeDistinct(rng: () => number): [number, number, number] {
   const used = new Set<number>();
   const result: number[] = [];
