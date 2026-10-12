@@ -17,7 +17,7 @@ import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import { Hero } from '@/components/hero';
 import TypingEffect from '@/components/ui/TypingEffect.astro';
 import { t, tData, defaultLocale } from '@/i18n';
-import SandboxSeedIsland from '@/components/sandbox/SeedIsland';
+import SandboxSeedIsland, { type SeedCopy } from '@/components/sandbox/SeedIsland';
 
 interface Props {
   /** Locale whose copy this page renders. Defaults to the site default. */
@@ -34,28 +34,7 @@ const hero = tData<{
   typingWordsMobile: string[];
   description: string;
 }>('pages.about.hero', locale)!;
-const sandboxSeed = tData<{
-  badge: string;
-  heading: string;
-  lead: string;
-  ctaStart: string;
-  generating: string;
-  disclaimer: string;
-  copied: string;
-  verifyTitle: string;
-  verifyRetry: string;
-  bornTitle: string;
-  bornText: string;
-  nextLabel: string;
-  nextHuman: string;
-  nextIot: string;
-  nextAgent: string;
-  restart: string;
-  panelHidden: string;
-  panelRevealed: string;
-  afterCopy: string;
-  retryButton: string;
-}>('pages.about.sandboxSeed', locale)!;
+const sandboxSeed = tData<SeedCopy>('pages.about.sandboxSeed', locale)!;
 ---
 <PageLayout
   title={t('pages.about.meta.title', locale)}

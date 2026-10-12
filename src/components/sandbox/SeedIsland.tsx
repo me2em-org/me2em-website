@@ -8,6 +8,34 @@ import {
 // The sandbox verifies words at positions 3, 8, 12 (1-based) = [2, 7, 11] (0-based).
 const VERIFY_INDICES: readonly [number, number, number] = [2, 7, 11];
 
+/**
+ * Parse raw paper text into a list of words, stripping numbered prefixes
+ * and punctuation.  Returns at most 12 words; returns [] when the text
+ * contains no real words (only numbers or whitespace).
+ */
+export function parsePaperWords(raw: string): string[] {
+  // Split on whitespace, newlines, tabs, and common punctuation.
+  const tokens = raw
+    .replace(/[\r\n\t]+/g, ' ')
+    .split(/\s+/)
+    .filter(Boolean);
+
+  const words: string[] = [];
+  for (const token of tokens) {
+    // Strip leading number+dot patterns like "1.", "2.", etc.
+    const stripped = token.replace(/^\d+\.\s*/, '');
+    if (!stripped) continue;
+    // Skip tokens that are pure numbers.
+    if (/^\d+$/.test(stripped)) continue;
+    // Strip trailing punctuation.
+    const clean = stripped.replace(/[.,;:!?"'(){}[\]]+$/g, '');
+    if (!clean) continue;
+    words.push(clean);
+    if (words.length >= 12) break;
+  }
+  return words;
+}
+
 export interface SeedCopy {
   badge: string;
   heading: string;
