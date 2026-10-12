@@ -395,7 +395,7 @@
         "nextHuman": "Human: work, family, fitness club",
         "nextIot": "Satellite: selling capacity",
         "nextAgent": "AI agent: mandate and revocation",
-        "restart": "Start over (the phrase will vanish)"
+        "restart": "Start over (the seed will vanish)"
       }
     },
     "docs": {

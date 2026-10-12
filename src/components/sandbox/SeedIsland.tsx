@@ -166,7 +166,6 @@ function MentorPanel({
   const isHidden = state === 'hidden';
   const isRevealed = state === 'revealed';
   const isCopied = state === 'copied';
-  const isCreated = state === 'created';
   const isGenerating = state === 'generating';
   const isIdle = state === 'idle';
 
@@ -177,9 +176,7 @@ function MentorPanel({
   return (
     <div
       className={`w-full max-w-2xl mx-auto rounded-xl border p-5 transition-colors ${
-        isCreated
-          ? 'border-[var(--success-light)] bg-[var(--success-light)]/30'
-          : 'border-border bg-background-secondary'
+        'border-border bg-background-secondary'
       }`}
       role="status"
       aria-live="polite"
@@ -285,14 +282,6 @@ function MentorPanel({
         </div>
       )}
 
-      {isCreated && (
-        <div className="flex flex-col gap-3 text-center">
-          <h3 className="text-xl font-display font-bold text-foreground">
-            {seed.bornTitle}
-          </h3>
-          <p className="text-sm text-foreground-muted text-balance">{seed.bornText}</p>
-        </div>
-      )}
     </div>
   );
 }
@@ -591,23 +580,50 @@ function SeedIslandInner({ seed: seedCopy }: { seed: SeedCopy }) {
             <h2 className="text-3xl font-display font-bold text-foreground text-center">
               {seedCopy.bornTitle}
             </h2>
-            <p className="max-w-xl text-foreground-muted text-balance">{seedCopy.bornText}</p>
+            <p className="max-w-xl text-foreground-muted text-balance">
+              {seedCopy.bornText}
+            </p>
           </div>
 
           <div className="flex flex-col items-center gap-4 w-full">
             <span className="text-sm font-bold text-brand-500">{seedCopy.nextLabel}</span>
             <div className="grid gap-4 sm:grid-cols-3 w-full">
-              <div aria-disabled="true" className="opacity-60 cursor-not-allowed rounded-xl border border-border bg-background-tertiary p-5">
+              <div aria-disabled="true" className="flex flex-col items-center gap-3 text-center rounded-xl border border-border bg-background-tertiary p-5 opacity-60 cursor-not-allowed">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 text-brand-500 shrink-0">
+                  <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 21a8 8 0 0 0-16 0" />
+                    <circle cx="12" cy="11" r="5" />
+                  </svg>
+                </span>
                 <h3 className="font-display text-base font-semibold text-foreground">
                   {seedCopy.nextHuman}
                 </h3>
               </div>
-              <div aria-disabled="true" className="opacity-60 cursor-not-allowed rounded-xl border border-border bg-background-tertiary p-5">
+              <div aria-disabled="true" className="flex flex-col items-center gap-3 text-center rounded-xl border border-border bg-background-tertiary p-5 opacity-60 cursor-not-allowed">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 text-brand-500 shrink-0">
+                  <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M13 7 9 3 5 7l4 4" />
+                    <path d="m17 11 4 4-4 4-4-4" />
+                    <path d="m8 12 4 4 6-6-4-4Z" />
+                    <path d="m16 8 3-3" />
+                    <path d="M9 21a6 6 0 0 0-6-6" />
+                  </svg>
+                </span>
                 <h3 className="font-display text-base font-semibold text-foreground">
                   {seedCopy.nextIot}
                 </h3>
               </div>
-              <div aria-disabled="true" className="opacity-60 cursor-not-allowed rounded-xl border border-border bg-background-tertiary p-5">
+              <div aria-disabled="true" className="flex flex-col items-center gap-3 text-center rounded-xl border border-border bg-background-tertiary p-5 opacity-60 cursor-not-allowed">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 text-brand-500 shrink-0">
+                  <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 8V4H8" />
+                    <rect width="16" height="12" x="4" y="8" rx="2" />
+                    <path d="M2 14h2" />
+                    <path d="M20 14h2" />
+                    <path d="M15 13v2" />
+                    <path d="M9 13v2" />
+                  </svg>
+                </span>
                 <h3 className="font-display text-base font-semibold text-foreground">
                   {seedCopy.nextAgent}
                 </h3>
@@ -615,6 +631,7 @@ function SeedIslandInner({ seed: seedCopy }: { seed: SeedCopy }) {
             </div>
           </div>
 
+          {/* Destructive action kept below the cards, not as a peer tile. */}
           <button
             onClick={handleRestart}
             className="text-sm text-foreground-muted hover:text-foreground underline underline-offset-2 transition-colors"
