@@ -511,7 +511,7 @@
    "para1": "This is a collection of action guides for the use cases — protocol code examples across industries. Every scenario becomes a step-by-step tutorial. Take them as a base for your own projects: read the docs, study the examples, build.",
   "para2": "New tutorials land in the blog as the protocol grows.",
   "casesIntro": "One protocol, many scenarios.",
-  "moreAboutMe": "Read the tutorials"
+  "moreTutorials": "Read the tutorials"
 },
 "cta": {
   "badge": "Get started",
@@ -611,14 +611,13 @@
           { "quote": "Verification is one signature check. We sized our auth servers for a database that no longer exists.", "name": "Marcus Hale", "role": "Backend engineer, credential tooling" }
         ]
       },
-"aboutTeaser": {
+"tutorials": {
   "badge": "Tutorials",
   "headingLine1": "From examples —",
   "headingLine2": "to working code.",
-  "para1WithLocation": "Different scenarios use the same primitives to work in very different worlds: autonomous AI agents, a drone fleet, a satellite selling imaging windows, a corporate messenger, and a charging network. None of them requires changing the protocol. One protocol, different use cases.",
-  "para1NoLocation": "Different scenarios use the same primitives to work in very different worlds: autonomous AI agents, a drone fleet, a satellite selling imaging windows, a corporate messenger, and a charging network. None of them requires changing the protocol. One protocol, different use cases.",
+  "para1": "Different scenarios use the same primitives to work in very different worlds: autonomous AI agents, a drone fleet, a satellite selling imaging windows, a corporate messenger, and a charging network. None of them requires changing the protocol. One protocol, different use cases.",
   "para2": "The blog walks each scenario to a step-by-step tutorial.",
-  "moreAboutMe": "Read more",
+  "moreTutorials": "Read more",
   "casesIntro": "Four use cases, one protocol.",
   "cases": [
     { "title": "AI Agent Delegation", "href": "/usecases/ai-agent-delegation" },

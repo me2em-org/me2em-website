@@ -572,7 +572,7 @@
   "para1": "Every documented scenario — a charging network, a fleet of drones selling access to its cameras, a corporate messenger, a delegated AI agent — has a walkthrough that builds it from a seed phrase to a verified session, in real code. The packages never change; only the roles do.",
   "para2": "New tutorials land in the blog as the protocol grows.",
   "casesIntro": "One protocol, many scenarios.",
-  "moreAboutMe": "Read the tutorials"
+  "moreTutorials": "Read the tutorials"
 },
 "cta": {
   "badge": "Get started",
@@ -732,31 +732,30 @@
           }
         ]
       },
-      "aboutTeaser": {
+      "tutorials": {
         "badge": "Tutorials",
         "headingLine1": "From examples —",
         "headingLine2": "to working code.",
-        "para1WithLocation": "Different scenarios use the same primitives to work in very different worlds: autonomous AI agents, a drone fleet, a satellite selling imaging windows, a corporate messenger, and a charging network. None of them requires changing the protocol. One protocol, different use cases.",
-        "para1NoLocation": "Different scenarios use the same primitives to work in very different worlds: autonomous AI agents, a drone fleet, a satellite selling imaging windows, a corporate messenger, and a charging network. None of them requires changing the protocol. One protocol, different use cases.",
+        "para1": "Different scenarios use the same primitives to work in very different worlds: autonomous AI agents, a drone fleet, a satellite selling imaging windows, a corporate messenger, and a charging network. None of them requires changing the protocol. One protocol, different use cases.",
         "para2": "The blog walks each scenario to a step-by-step tutorial.",
-        "moreAboutMe": "Read more",
+        "moreTutorials": "Read more",
         "casesIntro": "Four use cases, one protocol.",
         "cases": [
           {
             "title": "AI Agent Delegation",
-            "href": ""
+            "href": "/usecases/ai-agent-delegation"
           },
           {
             "title": "Drone Fleet",
-            "href": ""
+            "href": "/usecases/drone-fleet-management"
           },
           {
             "title": "Corporate Messenger",
-            "href": ""
+            "href": "/usecases/corporate-messenger"
           },
           {
             "title": "EV Charging Station",
-            "href": ""
+            "href": "/usecases/ev-charging-network"
           }
         ]
       },

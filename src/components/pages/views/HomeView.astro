@@ -117,18 +117,18 @@ const testimonials = tData<{ badge: string; heading: string; lead: string; items
   'pages.home.testimonials',
   locale
 )!;
-const aboutTeaser = tData<{
+const tutorials = tData<{
   badge: string;
   headingLine1: string;
   headingLine2: string;
   para2: string;
-  moreAboutMe: string;
+  moreTutorials: string;
   casesIntro: string;
   cases: UseCaseCard[];
-}>('pages.home.aboutTeaser', locale)!;
+}>('pages.home.tutorials', locale)!;
 
 // Tutorials teaser — four use-case cards. Titles and links live in i18n
-// (aboutTeaser.cases); icons are presentation and stay here. Index-paired:
+// (tutorials.cases); icons are presentation and stay here. Index-paired:
 // cases[i] renders with caseIcons[i]. An empty href renders a plain tile,
 // so a missing tutorial never produces a link that 404s.
 const caseIcons = ['bot', 'radar', 'messages-square', 'plug-zap'] as const;
@@ -153,14 +153,7 @@ const gitHubUrl = ('https://github.com/me2em-org/me2em-protocol');
 // and would 404.
 const getStartedUrl = docsUrl;
 
-// About-teaser copy with the configured location woven in (mirrors the original
-// page's conditional). Falls back to a location-free sentence when no city is set.
-const city = siteConfig.address?.city;
-const country = siteConfig.address?.country;
-const location = city ? (country ? `${city}, ${country}` : city) : '';
-const aboutPara1 = location
-  ? t('pages.home.aboutTeaser.para1WithLocation', locale, { location })
-  : t('pages.home.aboutTeaser.para1NoLocation', locale);
+const tutorialsPara1 = t('pages.home.tutorials.para1', locale);
 ---
 
 <LandingLayout
@@ -378,28 +371,28 @@ const aboutPara1 = location
         <div class="flex flex-col gap-6 mb-6 sm:items-center glitch:items-start">
           <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
             <Icon name="book-open" size="sm" />
-            {aboutTeaser.badge}
+            {tutorials.badge}
           </Badge>
           <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-            {aboutTeaser.headingLine1}<br />
-            <span class="text-brand-500">{aboutTeaser.headingLine2}</span>
+            {tutorials.headingLine1}<br />
+            <span class="text-brand-500">{tutorials.headingLine2}</span>
           </h2>
         </div>
         <p class="text-lg text-foreground-muted leading-relaxed mb-4 sm:mb-0 sm:max-w-xl glitch:mb-4 glitch:max-w-none">
-          {aboutPara1}
+          {tutorialsPara1}
         </p>
         <p class="text-lg text-foreground-muted leading-relaxed mb-8 sm:max-w-xl glitch:max-w-none sm:hidden glitch:block">
-          {aboutTeaser.para2}
+          {tutorials.para2}
         </p>
         <Button variant="brand-outline" href={blogUrl} class="self-start sm:self-center glitch:self-start sm:hidden glitch:inline-flex">
-          {aboutTeaser.moreAboutMe}
+          {tutorials.moreTutorials}
           <Icon name="arrow-right" size="sm" />
         </Button>
       </div>
       <Card variant="elevated" padding="lg" class="h-full flex flex-col" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
-        <p class="text-sm font-bold text-brand-500 mb-5 text-center sm:hidden glitch:block">{aboutTeaser.casesIntro}</p>
+        <p class="text-sm font-bold text-brand-500 mb-5 text-center sm:hidden glitch:block">{tutorials.casesIntro}</p>
         <div class="grid grid-cols-2 sm:grid-cols-4 glitch:grid-cols-2 gap-3 flex-1 auto-rows-fr">
-          {aboutTeaser.cases.map((useCase, i) =>
+          {tutorials.cases.map((useCase, i) =>
             useCase.href ? (
               <a href={useCase.href} class={caseCardLinked}>
                 <Icon name={caseIcons[i]} class="w-10 h-10 text-brand-500" />
@@ -416,7 +409,7 @@ const aboutPara1 = location
       </Card>
       <div class="hidden sm:flex justify-center glitch:hidden" data-reveal data-reveal-delay="2">
         <Button variant="brand-outline" href={blogUrl}>
-          {aboutTeaser.moreAboutMe}
+          {tutorials.moreTutorials}
           <Icon name="arrow-right" size="sm" />
         </Button>
       </div>

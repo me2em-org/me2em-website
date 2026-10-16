@@ -75,12 +75,12 @@ const cta = tData<{ badge: string; heading: string; description: string; primary
   'pages.docs.cta',
   locale
 )!;
-const tutorials = tData<{ badge: string; headingLine1: string; headingLine2: string; para1: string; para2: string; casesIntro: string; moreAboutMe: string }>(
+const tutorials = tData<{ badge: string; headingLine1: string; headingLine2: string; para1: string; para2: string; casesIntro: string; moreTutorials: string }>(
   'pages.docs.tutorials',
   locale
 )!;
 const tutorialCases = tData<{ cases: { title: string; href: string }[] }>(
-  'pages.home.aboutTeaser',
+  'pages.home.tutorials',
   locale
 )!;
 
@@ -354,7 +354,7 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
             {tutorials.para2}
           </p>
           <Button variant="brand-outline" href={tutorialsUrl} class="self-start sm:self-center glitch:self-start sm:hidden glitch:inline-flex">
-            {tutorials.moreAboutMe}
+            {tutorials.moreTutorials}
             <Icon name="arrow-right" size="sm" />
           </Button>
         </div>
@@ -378,7 +378,7 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
         </Card>
         <div class="hidden sm:flex justify-center glitch:hidden" data-reveal data-reveal-delay="2">
           <Button variant="brand-outline" href={blogUrl}>
-            {tutorials.moreAboutMe}
+            {tutorials.moreTutorials}
             <Icon name="arrow-right" size="sm" />
           </Button>
         </div>
