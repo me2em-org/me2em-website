@@ -18,7 +18,7 @@
       "services": "Docs",
       "usecases": "Use cases",
       "blog": "Blog",
-      "about": "Sandbox",
+      "sandbox": "Sandbox",
       "contact": "Contact"
     }
   },
@@ -227,7 +227,7 @@
     "followOn": "Follow us on {platform}"
   },
   "pages": {
-    "about": {
+    "sandbox": {
       "meta": {
         "title": "Sandbox — Me2em",
         "description": "A hands-on sandbox for the Me2em protocol: real seed phrases, derived Handles, stateless sessions — right in your browser."
@@ -252,7 +252,7 @@
           {
             "icon": "layout",
             "title": "Pages to start from",
-            "description": "Home, about, services, contact, blog, projects, and 404, fully designed and responsive, ready to make your own."
+            "description": "Home, sandbox, docs, contact, blog, usecases, and 404, fully designed and responsive, ready to make your own."
           },
           {
             "icon": "palette",

@@ -35,7 +35,7 @@ export function getLocales(): Locale[] {
 
 /**
  * The non-default locales that should get their own prefixed routes
- * (`/<locale>/about`, `/<locale>` …). Empty when i18n is off or only one
+ * (`/<locale>/sandbox`, `/<locale>` …). Empty when i18n is off or only one
  * locale is configured, so locale-prefixed `getStaticPaths` emit nothing and
  * single-locale builds stay byte-for-byte unchanged. Mirrors the per-section
  * helpers in `lib/blog` and `lib/usecases` so every content type derives its
@@ -129,7 +129,7 @@ export function localizedPath(path: string, locale: Locale = defaultLocale): str
  * the path unchanged when the first segment is not a configured
  * locale. Always returns a path starting with `/`.
  *
- * `/nl/about` → `/about`, `/en` → `/`, `/about` → `/about`.
+  * `/nl/sandbox` → `/sandbox`, `/en` → `/`, `/about` → `/about`.
  */
 export function stripLocaleFromPath(path: string): string {
   const normalized = path.startsWith('/') ? path : `/${path}`;

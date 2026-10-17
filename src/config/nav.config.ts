@@ -8,7 +8,7 @@
  * - `navItems`       → main (header) navigation
  * - `footerNavItems` → footer navigation, configured independently from
  *                      the header so you can show different links in the
- *                      footer (e.g. add a Privacy link, drop About, etc.)
+ *                      footer (e.g. add a Privacy link, drop Sandbox, etc.)
  * - `legalLinks`     → small legal-style links (Privacy, Terms, Imprint…)
  *                      shown in the footer's bottom row when supported
  *                      by the active footer layout.
@@ -89,7 +89,7 @@ export const navItems: NavItem[] = [
   { label: 'Docs', href: '/docs', order: 1, labelKey: 'nav.items.services' },
   { label: 'Use cases', href: '/usecases', order: 2, labelKey: 'nav.items.usecases' },
   { label: 'Blog', href: '/blog', order: 3, labelKey: 'nav.items.blog' },
-  { label: 'Sandbox', href: '/sandbox', order: 4, labelKey: 'nav.items.about' },
+  { label: 'Sandbox', href: '/sandbox', order: 4, labelKey: 'nav.items.sandbox' },
   { label: 'Contact', href: '/contact', order: 5, labelKey: 'nav.items.contact' },
 ];
 
@@ -98,7 +98,7 @@ export const footerNavItems: NavItem[] = [
   { label: 'Docs', href: '/docs', order: 1, labelKey: 'nav.items.services' },
   { label: 'Use cases', href: '/usecases', order: 2, labelKey: 'nav.items.usecases' },
   { label: 'Blog', href: '/blog', order: 3, labelKey: 'nav.items.blog' },
-  { label: 'Sandbox', href: '/sandbox', order: 4, labelKey: 'nav.items.about' },
+  { label: 'Sandbox', href: '/sandbox', order: 4, labelKey: 'nav.items.sandbox' },
   { label: 'Contact', href: '/contact', order: 5, labelKey: 'nav.items.contact' },
   { label: 'GitHub', href: 'https://github.com/me2em-org/me2em-protocol', order: 6, external: true },
 ];

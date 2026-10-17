@@ -1,9 +1,10 @@
 ---
-import SandboxView from '@/components/pages/views/AboutView.astro';
+import SandboxView from '@/components/pages/views/SandboxView.astro';
 import { defaultLocale } from '@/i18n';
 
 // The Sandbox page for the default locale. Additional locales are served by
-// `src/pages/[locale]/sandbox.astro`, which renders the same view.
+// `src/pages/[locale]/sandbox.astro`, which renders the same view. All copy
+// is read from the `pages.sandbox.*` keys in `src/i18n/<locale>.json`.
 ---
 
 <SandboxView locale={defaultLocale} />

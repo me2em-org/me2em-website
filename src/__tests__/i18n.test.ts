@@ -41,11 +41,11 @@ describe('i18n t() helper', () => {
 describe('i18n tData() helper', () => {
   it('returns a structured (array) value by dotted key', () => {
     // Asserts the shape rather than the copy. The previous version read
-    // `pages.about.intro.facts` and checked for the literal "Astro 7"; the
-    // about page was later restructured, `intro` stopped existing, and the
-    // test failed for a reason that had nothing to do with tData().
+    // `pages.sandbox.hero` and checked for a literal; the sandbox page was
+    // later restructured, `hero` stopped existing, and the test failed for a
+    // reason that had nothing to do with tData().
     const items = tData<{ icon: string; title: string; description: string }[]>(
-      'pages.about.principles.items',
+      'pages.sandbox.whatYouGet.items',
       'en'
     );
     expect(Array.isArray(items)).toBe(true);
@@ -61,7 +61,7 @@ describe('i18n tData() helper', () => {
 
   it('falls back to the default-locale value when the locale has no entry', () => {
     // 'de' has no dictionary loaded yet — should fall back to the English data
-    const cards = tData<unknown[]>('pages.about.faq.cards', 'de');
+    const cards = tData<unknown[]>('pages.sandbox.whatYouGet.items', 'de');
     expect(Array.isArray(cards)).toBe(true);
     expect(cards?.length).toBe(2);
   });
@@ -179,7 +179,7 @@ describe('i18n meta titles never embed the site name', () => {
     'usecases.tagMetaTitle',
     'errors.metaTitle',
     'pages.home.meta.title',
-    'pages.about.meta.title',
+    'pages.sandbox.meta.title',
     'pages.docs.meta.title',
     'pages.contact.meta.title',
   ];

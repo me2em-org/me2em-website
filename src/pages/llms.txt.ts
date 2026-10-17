@@ -23,7 +23,7 @@ import { getNavItems } from '@/config/nav.config';
  * hand.
  *
  * The Pages list used to be five hardcoded lines and had already drifted: it
- * named Home, About, Usecases, Blog and Contact while the nav also carried
+ * named Home, Sandbox, Usecases, Blog and Contact while the nav also carried
  * Services, and it never mentioned the components page at all — so an
  * assistant asked about this theme had no way to learn that the page
  * documenting every component exists. It now comes from `getNavItems`, so it

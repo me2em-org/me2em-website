@@ -18,7 +18,7 @@
       "services": "服务",
       "usecases": "用例",
       "blog": "博客",
-      "about": "Sandbox",
+      "sandbox": "Sandbox",
       "contact": "联系"
     }
   },
@@ -227,7 +227,7 @@
     "followOn": "在{platform}上关注我们"
   },
   "pages": {
-    "about": {
+    "sandbox": {
       "meta": {
         "title": "Sandbox — Me2em",
         "description": "Me2em protocol sandbox: real seed phrases, derived Handles, stateless sessions — all running in your browser."

@@ -1,9 +1,9 @@
 ---
 /**
- * AboutView — the About page body.
+ * SandboxView — the Sandbox page body.
  *
- * Shared by the default-locale route (`/about`) and the locale-prefixed route
- * (`/<locale>/about`). All copy is read from the `pages.about.*` keys in the
+ * Shared by the default-locale route (`/sandbox`) and the locale-prefixed route
+ * (`/<locale>/sandbox`). All copy is read from the `pages.sandbox.*` keys in the
  * locale dictionaries (`src/i18n/<locale>.json`) via `t()` / `tData()`, so
  * translating the page is a matter of editing JSON — no markup changes — and
  * any untranslated key falls back to the default locale automatically.
@@ -33,12 +33,12 @@ const hero = tData<{
   /** Shorter set for phones (below sm), dropping the one word wide enough to clip at the hero size. */
   typingWordsMobile: string[];
   description: string;
-}>('pages.about.hero', locale)!;
-const sandboxSeed = tData<SeedCopy>('pages.about.sandboxSeed', locale)!;
+}>('pages.sandbox.hero', locale)!;
+const sandboxSeed = tData<SeedCopy>('pages.sandbox.sandboxSeed', locale)!;
 ---
 <PageLayout
-  title={t('pages.about.meta.title', locale)}
-  description={t('pages.about.meta.description', locale)}
+  title={t('pages.sandbox.meta.title', locale)}
+  description={t('pages.sandbox.meta.description', locale)}
   footerBackground="secondary"
 >
   <Hero layout="centered" size="sm" class="isolate pb-[var(--space-section-md)]" showHeroHalo>

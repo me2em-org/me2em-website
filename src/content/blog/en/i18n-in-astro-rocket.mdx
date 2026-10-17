@@ -17,7 +17,7 @@ Astro Rocket ships native, opt-in internationalization. You can run your site in
 
 This is the complete, current guide: what the feature is, what it costs (nothing if you leave it off), and exactly how to turn it on and ship an English-plus-Dutch site.
 
-> **Kept current.** The i18n system has matured a lot since it first shipped, much of it from community feedback. Two things changed that earlier versions of this guide got wrong: extra language dictionaries are now **auto-loaded** (you no longer edit `src/i18n/index.ts` to register them), and the built-in pages — Home, About, Services, Contact — are now **localized from the dictionary**, not by hand-copying page files. If you previously created `src/pages/<locale>/about.astro` copies, delete them; they now collide with the generated locale routes.
+> **Kept current.** The i18n system has matured a lot since it first shipped, much of it from community feedback. Two things changed that earlier versions of this guide got wrong: extra language dictionaries are now **auto-loaded** (you no longer edit `src/i18n/index.ts` to register them), and the built-in pages — Home, Sandbox, Docs, Contact — are now **localized from the dictionary**, not by hand-copying page files. If you previously created `src/pages/<locale>/sandbox.astro` copies, delete them; they now collide with the generated locale routes.
 
 If you want the broader picture of how the theme is structured first, the <PostLink uid="configuration-guide">configuration guide</PostLink> covers `site.config.ts`, themes, and layout switches; the [SEO post](/blog/seo-in-astro-rocket) covers everything in the `<head>` that i18n extends with `hreflang`.
 
@@ -54,9 +54,9 @@ Turn it on and the whole machinery wakes up.
 
 As soon as i18n is active:
 
-1. **Locale-prefixed routes.** With `prefixDefaultLocale: false` (the default), your default locale stays at the site root — the English "About" is still `/about`. Additional locales live under a prefix — a Dutch "About" is `/nl/about`.
+1. **Locale-prefixed routes.** With `prefixDefaultLocale: false` (the default), your default locale stays at the site root — the English "Sandbox" is still `/sandbox`. Additional locales live under a prefix — a Dutch "Sandbox" is `/nl/sandbox`.
 2. **A `LanguageSwitcher` dropdown** in the header and mobile menu, automatically. It lists every configured locale and links to the matching version of the page the visitor is on.
-3. **The built-in pages in every locale** — Home, About, Services, and Contact render from the dictionary, so they light up the moment a locale is configured (translated or falling back to your default copy).
+3. **The built-in pages in every locale** — Home, Sandbox, Docs, and Contact render from the dictionary, so they light up the moment a locale is configured (translated or falling back to your default copy).
 4. **An automatically localized blog** — index, posts, pagination, and tag archives — for every locale you add content to. No per-locale page files to write.
 5. **An automatically localized usecases section**, the same way.
 6. **Localized chrome** — navigation, logo, footer, the theme and search controls, forms, the 404 page, and every shared UI string follow the active locale.
@@ -81,11 +81,11 @@ const i18nConfig: I18nConfig = {
 
 Three things to know:
 
-- **`defaultLocale`** is the locale served at the site root. Keep it `'en'` and English visitors keep landing at `/`, `/about`, `/blog`. (Making a non-English language the default is fully supported — see [Switching the default language](#switching-the-default-language) below.)
+- **`defaultLocale`** is the locale served at the site root. Keep it `'en'` and English visitors keep landing at `/`, `/sandbox`, `/blog`. (Making a non-English language the default is fully supported — see [Switching the default language](#switching-the-default-language) below.)
 - **`locales`** is the master list. Order doesn't affect routing, but it controls the order of items in the `LanguageSwitcher` dropdown.
 - **`localeNames`** are the display labels in the dropdown. Use the language's own name (`Nederlands`, not "Dutch") — that's standard practice and respectful to visitors switching from a language they can read.
 
-Save the file. The `LanguageSwitcher` appears in your header, and — because Astro Rocket ships a full Dutch dictionary — `/nl`, `/nl/about`, `/nl/docs`, and `/nl/contact` already render in Dutch. Your blog and usecases show a localized (but empty) `/nl/blog` and `/nl/usecases` index until you add content in that locale, which is the next step.
+Save the file. The `LanguageSwitcher` appears in your header, and — because Astro Rocket ships a full Dutch dictionary — `/nl`, `/nl/sandbox`, `/nl/docs`, and `/nl/contact` already render in Dutch. Your blog and usecases show a localized (but empty) `/nl/blog` and `/nl/usecases` index until you add content in that locale, which is the next step.
 
 ## Step 2 — translate your content
 
@@ -124,12 +124,12 @@ Usecases share one slug across locales — keep the same filename in each locale
 
 ### The built-in pages — translate the dictionary
 
-Home, About, Docs, and Contact are the least work of all, because they don't have per-locale files at all. Each one is a thin route that renders a shared **View** component (`AboutView`, `ContactView`, and so on), and every word that view displays comes from the `pages.*` keys in `src/i18n/<locale>.json`. The default-locale route (`/about`) and the locale-prefixed route (`/nl/about`) render the *same* view — the only difference is which locale's dictionary entries it reads:
+Home, Sandbox, Docs, and Contact are the least work of all, because they don't have per-locale files at all. Each one is a thin route that renders a shared **View** component (`SandboxView`, `ContactView`, and so on), and every word that view displays comes from the `pages.*` keys in `src/i18n/<locale>.json`. The default-locale route (`/sandbox`) and the locale-prefixed route (`/nl/sandbox`) render the *same* view — the only difference is which locale's dictionary entries it reads:
 
 ```astro
 ---
-// src/pages/[locale]/about.astro — generated for every non-default locale
-import AboutView from '@/components/pages/views/AboutView.astro';
+// src/pages/[locale]/sandbox.astro — generated for every non-default locale
+import SandboxView from '@/components/pages/views/SandboxView.astro';
 import { getSecondaryLocales } from '@/i18n';
 
 export function getStaticPaths() {
@@ -137,7 +137,7 @@ export function getStaticPaths() {
 }
 const { locale } = Astro.params;
 ---
-<AboutView locale={locale} />
+<SandboxView locale={locale} />
 ```
 
 So localizing these pages is the same job as translating any other UI string — you edit JSON, not markup:
@@ -146,7 +146,7 @@ So localizing these pages is the same job as translating any other UI string —
 // src/i18n/nl.json
 {
   "pages": {
-    "about": {
+    "sandbox": {
       "meta": { "title": "Over", "description": "…" },
       "hero": { "badge": "Over", "titleLead": "Astro Rocket —", "description": "…" }
     }
@@ -154,9 +154,9 @@ So localizing these pages is the same job as translating any other UI string —
 }
 ```
 
-The moment `nl` is in your `locales` list, `/nl`, `/nl/about`, `/nl/docs`, and `/nl/contact` are generated for you. Any `pages.*` key you haven't translated yet falls back to the English copy, so the page is always complete and never blank.
+The moment `nl` is in your `locales` list, `/nl`, `/nl/sandbox`, `/nl/docs`, and `/nl/contact` are generated for you. Any `pages.*` key you haven't translated yet falls back to the English copy, so the page is always complete and never blank.
 
-> **Don't create `src/pages/nl/about.astro`.** The locale route (`src/pages/[locale]/about.astro`) already generates that URL; a hand-written copy collides with it and fails the build. Translate the `pages.about.*` keys instead.
+> **Don't create `src/pages/nl/sandbox.astro`.** The locale route (`src/pages/[locale]/sandbox.astro`) already generates that URL; a hand-written copy collides with it and fails the build. Translate the `pages.sandbox.*` keys instead.
 
 ### Your own pages — one file per locale
 
@@ -214,14 +214,14 @@ Missing keys fall back to the default locale's value, then to the key itself —
 
 ### Strings vs. structured copy: `t()` and `tData()`
 
-`t()` returns a single string. For copy that's naturally a list or an object — the feature cards on the About page, an FAQ, a set of steps — use **`tData()`**, which returns the raw (typed) JSON value instead of a string:
+`t()` returns a single string. For copy that's naturally a list or an object — the feature cards on the Sandbox page, an FAQ, a set of steps — use **`tData()`**, which returns the raw (typed) JSON value instead of a string:
 
 ```astro
 ---
 import { tData, getLocaleFromPath } from '@/i18n';
 const locale = getLocaleFromPath(Astro.url.pathname);
 const facts = tData<{ icon: string; title: string; description: string }[]>(
-  'pages.about.intro.facts',
+  'pages.sandbox.intro.facts',
   locale,
 );
 ---
@@ -239,7 +239,7 @@ Adding a language is two steps — no code edits:
 1. Create `src/i18n/<code>.json` (say, `de.json`) mirroring the structure of `en.json`. It's discovered and loaded automatically — **no import or registration in `src/i18n/index.ts`**.
 2. Add the locale code to `locales` in `i18n.config.ts` (and give it a `localeNames` entry) so it gets served.
 
-That's the whole onboarding. The built-in pages appear in German immediately (falling back to English for any key you haven't translated yet); then translate content into `src/content/blog/de/` and `src/content/usecases/de/`, and add `src/pages/de/*` for any custom pages you want. The built-in pages (Home, About, Docs, Contact) are generated automatically for every locale in the config.
+That's the whole onboarding. The built-in pages appear in German immediately (falling back to English for any key you haven't translated yet); then translate content into `src/content/blog/de/` and `src/content/usecases/de/`, and add `src/pages/de/*` for any custom pages you want. The built-in pages (Home, Sandbox, Docs, Contact) are generated automatically for every locale in the config.
 
 ## Step 4 — localize the navigation, logo, and footer
 
@@ -251,8 +251,8 @@ You write each navigation entry once in `src/config/nav.config.ts` (`navItems`, 
 So for most sites, translating the `nav.items.*` keys is all the navigation needs. For the rare case where a locale needs a structurally different label or path — say a localized slug — add a per-locale `locales` override to the item:
 
 ```ts
-{ label: 'About', href: '/about', order: 4, labelKey: 'nav.items.about',
-  locales: { nl: { href: '/over-ons' } } },
+{ label: 'Sandbox', href: '/sandbox', order: 4, labelKey: 'nav.items.sandbox',
+  locales: { nl: { href: '/zandbak' } } },
 ```
 
 The footer copyright follows the same dictionary: it reads `footer.copyright` in every locale (edit that key — or pass a `copyright` prop — to change the line). With i18n off, none of this runs and the nav renders exactly as written.
@@ -261,8 +261,8 @@ The footer copyright follows the same dictionary: it reads `footer.copyright` in
 
 With the default `prefixDefaultLocale: false` setting:
 
-- The default locale lives at the root: `/`, `/about`, `/blog/hello-world`.
-- Every other locale lives under its prefix: `/nl/`, `/nl/about`, `/nl/blog/hallo-wereld`.
+- The default locale lives at the root: `/`, `/sandbox`, `/blog/hello-world`.
+- Every other locale lives under its prefix: `/nl/`, `/nl/sandbox`, `/nl/blog/hallo-wereld`.
 
 The `LanguageSwitcher` and the `hreflang` tags link to each translation's **real** URL — so a visitor reading `/blog/hello-world` who clicks "Nederlands" lands on the actual Dutch post, even when that post is slugged differently. The theme works out which URL that is using one of two pairing strategies:
 
@@ -276,9 +276,9 @@ Either way, a locale with no translation of the current post is dropped from `hr
 When i18n is on, Astro Rocket's `SEO` component automatically emits the right tags. A localized page's `<head>` contains:
 
 ```html
-<link rel="alternate" hreflang="en" href="https://yoursite.com/about" />
-<link rel="alternate" hreflang="nl" href="https://yoursite.com/nl/about" />
-<link rel="alternate" hreflang="x-default" href="https://yoursite.com/about" />
+<link rel="alternate" hreflang="en" href="https://yoursite.com/sandbox" />
+<link rel="alternate" hreflang="nl" href="https://yoursite.com/nl/sandbox" />
+<link rel="alternate" hreflang="x-default" href="https://yoursite.com/sandbox" />
 ```
 
 That tells Google which version corresponds to which locale, and which to show when no language matches. Two things to keep right:
@@ -307,7 +307,7 @@ enabled: false,
 locales: ['en'],
 ```
 
-Deploy. The `LanguageSwitcher` disappears, `hreflang` tags stop emitting, the `/<locale>/` routes vanish, and the site returns to single-locale behavior. Your `src/pages/nl/`, `src/content/blog/nl/`, `src/content/usecases/nl/`, and `src/i18n/nl.json` files stay in the repo — dormant but preserved. The built-in pages (Home, About, Docs, Contact) are generated automatically for every locale in the config. Flip the flag back when you're ready.
+Deploy. The `LanguageSwitcher` disappears, `hreflang` tags stop emitting, the `/<locale>/` routes vanish, and the site returns to single-locale behavior. Your `src/pages/nl/`, `src/content/blog/nl/`, `src/content/usecases/nl/`, and `src/i18n/nl.json` files stay in the repo — dormant but preserved. The built-in pages (Home, Sandbox, Docs, Contact) are generated automatically for every locale in the config. Flip the flag back when you're ready.
 
 ## What's next
 

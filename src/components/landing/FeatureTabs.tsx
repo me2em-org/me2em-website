@@ -161,7 +161,7 @@ export const defaultLang = 'en';
 // src/i18n/translations/en.ts
 export default {
   'nav.home': 'Home',
-  'nav.about': 'About',
+  'nav.sandbox': 'Sandbox',
   'hero.title': 'Ship faster with Astro Rocket',
   'hero.subtitle': 'The modern Astro theme',
 } as const;

@@ -18,7 +18,7 @@
       "services": "Документация",
       "usecases": "Использование",
       "blog": "Блог",
-      "about": "Песочница",
+      "sandbox": "Песочница",
       "contact": "Контакты"
     }
   },
@@ -227,7 +227,7 @@
     "followOn": "Подписывайтесь на {platform}"
   },
   "pages": {
-    "about": {
+    "sandbox": {
       "meta": {
         "title": "Песочница — Me2em",
         "description": "Песочница протокола Me2em: настоящие seed-фразы, производные Handle, stateless-сессии — прямо в вашем браузере."
@@ -818,12 +818,12 @@
             "href": "/ru/usecases/drone-fleet-management"
           },
           {
-            "title": "Корпоративный мессенджер",
-            "href": "/ru/usecases/corporate-messenger"
+            "title": "E2EE мессенджер",
+            "href": "/ru/blog/e2ee-messenger-tutorial"
           },
           {
             "title": "Сеть EV-зарядок",
-            "href": "/ru/usecases/ev-charging-network"
+            "href": "/ru/blog/ev-charging-network-tutorial"
           }
         ]
       },

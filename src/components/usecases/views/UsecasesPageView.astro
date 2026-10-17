@@ -45,7 +45,7 @@ const topTags = collectTopUsecaseTags(usecases, PROJECT_TAG_CLOUD_LIMIT);
 
 const usecasesHref = getUsecasesBaseUrl(locale);
 const contactUrl = localizedPath('/contact', locale);
-const aboutUrl = localizedPath('/about', locale);
+const sandboxUrl = localizedPath('/sandbox', locale);
 ---
 
 <PageLayout
@@ -111,7 +111,7 @@ const aboutUrl = localizedPath('/about', locale);
           {t('usecases.ctaPrimary', locale)}
           <Icon name="arrow-right" size="sm" />
         </Button>
-        <Button size="lg" variant="outline" class="cta-btn-brand" href={aboutUrl}>
+        <Button size="lg" variant="outline" class="cta-btn-brand" href={sandboxUrl}>
           {t('usecases.ctaSecondary', locale)}
           <Icon name="arrow-right" size="sm" />
         </Button>
