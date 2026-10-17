@@ -92,7 +92,7 @@ If you commit before updating, **git is your backup** — every version of every
 
 | Folder | What's in it |
 |--------|--------------|
-| `src/content/` | Your blog posts, projects, authors, FAQs, and pages |
+| `src/content/` | Your blog posts, usecases, authors, FAQs, and pages |
 | `src/config/` | `site.config.ts`, `nav.config.ts`, `i18n.config.ts` |
 | `src/i18n/` | Your page text — `en.json` and any other language files |
 | `src/assets/` | Your images |
@@ -103,7 +103,7 @@ One of those deserves special attention: **`.env` is deliberately not tracked by
 
 ## Will your content be overwritten?
 
-**No.** A merge only touches files that actually changed in the theme. Your posts, projects, images, and settings stay exactly as you left them.
+**No.** A merge only touches files that actually changed in the theme. Your posts, usecases, images, and settings stay exactly as you left them.
 
 There is one thing to expect, though, and it isn't an error: a **merge conflict**. That happens when you edited the same file that I also changed. Git doesn't guess — it stops and asks you which version to keep, marking both inside the file:
 

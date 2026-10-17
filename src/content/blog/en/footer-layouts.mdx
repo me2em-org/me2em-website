@@ -1,6 +1,6 @@
 ---
 title: "Five Footer Layouts, and the One That Ships"
-description: "Simple, minimal, stacked, centered and columns. The default builds its own columns from your nav, your tags and your projects, and shrinks back to a single row when a site has nothing to put in them."
+description: "Simple, minimal, stacked, centered and columns. The default builds its own columns from your nav, your tags and your usecases, and shrinks back to a single row when a site has nothing to put in them."
 publishedAt: 2026-08-03
 author: "Hans Martens"
 tags: ["astro-rocket", "features", "footer", "navigation", "customization"]
@@ -37,15 +37,15 @@ With nothing set, it derives three columns from the site it is on:
 |---|---|
 | **Site** | `footerNavItems` in `src/config/nav.config.ts` |
 | **Topics** | your six most-used blog tags, linking to their tag pages |
-| **Projects** | your visible projects |
+| **Usecases** | your visible usecases |
 
-Each column is dropped when it has nothing in it. A brand-new site with no posts and no projects gets the Site column alone, which looks much like the old single-row footer. Add posts and the Topics column appears. Add projects and so does that one. The grid counts what is actually there, so a site with two columns does not leave a third of the row empty.
+Each column is dropped when it has nothing in it. A brand-new site with no posts and no usecases gets the Site column alone, which looks much like the old single-row footer. Add posts and the Topics column appears. Add usecases and so does that one. The grid counts what is actually there, so a site with two columns does not leave a third of the row empty.
 
 That is the part that matters if you are wondering whether this change is going to make your small site look padded. It will not. The footer reports what exists rather than what someone remembered to type.
 
-### Projects that have no page
+### Usecases that have no page
 
-If you mark a project `placeholder: true`, it has no detail page — `ProjectCard` already renders those without a link on the projects index. The footer does the same: the name is listed, in plain text, with no link. Projects that do have pages sort first, so the column leads with the entries you can actually follow.
+If you mark a usecase `placeholder: true`, it has no detail page — `UsecaseCard` already renders those without a link on the usecases index. The footer does the same: the name is listed, in plain text, with no link. Usecases that do have pages sort first, so the column leads with the entries you can actually follow.
 
 This demo uses it deliberately. It is a demo, and on demos not everything is linked.
 

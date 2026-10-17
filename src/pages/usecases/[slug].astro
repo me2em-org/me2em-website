@@ -1,8 +1,8 @@
 ---
-import ProjectLayout from '@/layouts/ProjectLayout.astro';
+import UsecaseLayout from '@/layouts/UsecaseLayout.astro';
 import { render } from 'astro:content';
 import { assertNoSlugCollisions } from '@/lib/content-validation';
-import { getVisibleProjects, getRoutableProjects } from '@/lib/projects';
+import { getVisibleUsecases, getRoutableUsecases } from '@/lib/usecases';
 import { defaultLocale } from '@/i18n';
 
 export async function getStaticPaths() {
@@ -10,39 +10,39 @@ export async function getStaticPaths() {
   // to the same URL within a locale.
   await assertNoSlugCollisions();
 
-  const visibleProjects = await getVisibleProjects(defaultLocale);
-  const routableProjects = await getRoutableProjects(defaultLocale);
+  const visibleUsecases = await getVisibleUsecases(defaultLocale);
+  const routableUsecases = await getRoutableUsecases(defaultLocale);
 
-  return routableProjects.map((project) => ({
-    params: { slug: project.id.replace(new RegExp(`^${defaultLocale}/`), '') },
+  return routableUsecases.map((usecase) => ({
+    params: { slug: usecase.id.replace(new RegExp(`^${defaultLocale}/`), '') },
     props: {
-      project,
-      related: visibleProjects
-        .filter((p) => p.id !== project.id)
+      usecase,
+      related: visibleUsecases
+        .filter((p) => p.id !== usecase.id)
         .sort((a, b) => a.data.order - b.data.order)
         .slice(0, 3),
     },
   }));
 }
 
-const { project, related } = Astro.props;
-const { Content, headings } = await render(project);
+const { usecase, related } = Astro.props;
+const { Content, headings } = await render(usecase);
 ---
 
-<ProjectLayout
-  title={project.data.title}
-  description={project.data.description}
-  meta={project.data.meta}
-  url={project.data.url}
-  repo={project.data.repo}
-  image={project.data.image}
-  imageAlt={project.data.imageAlt}
-  gallery={project.data.gallery}
-  tags={project.data.tags}
-  slug={project.id}
+<UsecaseLayout
+  title={usecase.data.title}
+  description={usecase.data.description}
+  meta={usecase.data.meta}
+  url={usecase.data.url}
+  repo={usecase.data.repo}
+  image={usecase.data.image}
+  imageAlt={usecase.data.imageAlt}
+  gallery={usecase.data.gallery}
+  tags={usecase.data.tags}
+  slug={usecase.id}
   related={related}
   headings={headings}
-  toc={project.data.toc}
+  toc={usecase.data.toc}
 >
   <Content />
-</ProjectLayout>
+</UsecaseLayout>

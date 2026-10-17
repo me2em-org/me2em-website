@@ -16,7 +16,7 @@
     "items": {
       "home": "Главная",
       "services": "Документация",
-      "projects": "Use cases",
+      "usecases": "Использование",
       "blog": "Блог",
       "about": "Песочница",
       "contact": "Контакты"
@@ -104,9 +104,9 @@
   "usecases": {
     "title": "Use cases",
     "description": "Девять документированных сценариев — люди, устройства, ИИ-агенты.",
-    "viewProject": "Открыть сценарий",
+    "viewUsecase": "Открыть сценарий",
     "viewSource": "Исходный код",
-    "noProjectsFound": "Проектов не найдено.",
+    "noUsecasesFound": "Use cases не найдено.",
     "carouselChooseSlide": "Выберите слайд",
     "carouselNextSlide": "Следующий слайд",
     "carouselPreviousSlide": "Предыдущий слайд",
@@ -118,7 +118,7 @@
     "metaDescription": "Документированные сценарии протокола Me2em — делегирование ИИ-агентам, иерархии IoT-устройств, мульти-контекстная идентичность и SSO без базы пользователей.",
     "heroBadge": "Use cases",
     "heroDescription": "Одни и те же примитивы — прочитанные через разные домены.",
-    "allProjects": "Все use cases",
+    "allUsecases": "Все use cases",
     "pageMetaTitle": "Use cases — страница {page}",
     "pageMetaDescription": "Страница {page} из {total} — документированные сценарии протокола Me2em.",
     "pageBadge": "Страница {page} из {total}",
@@ -129,8 +129,8 @@
     "tagCountOther": "{count} use cases с тегом \"{tag}\".",
     "tagEmpty": "Нет use cases с этим тегом.",
     "tagBackToAll": "Назад ко всем use cases",
-    "backToProjects": "Назад к Use cases",
-    "moreProjects": "Больше use cases",
+    "backToUsecases": "Назад к use cases",
+    "moreUsecases": "Больше use cases",
     "ctaBadge": "Начните строить",
     "ctaHeading": "Постройте это на Me2em",
     "ctaLead": "Каждый сценарий работает на одних и тех же трёх пакетах. Пройдите quick start и выпустите первую сессию за считанные минуты.",
@@ -159,7 +159,7 @@
     "backHome": "На главную",
     "browseBlog": "Просмотреть блог",
     "tryInstead": "Попробуйте одно из следующего",
-    "projectsDesc": "Документированные сценарии — агенты, устройства, идентичности.",
+    "usecasesDesc": "Документированные сценарии — агенты, устройства, идентичности.",
     "blogDesc": "Разборы протокола, туториалы, архитектурные заметки.",
     "contactTitle": "Контакты",
     "contactDesc": "Вопросы, обратная связь и сообщения о безопасности."
@@ -221,7 +221,7 @@
     "groups": {
       "site": "Сайт",
       "topics": "Темы",
-      "projects": "Проекты",
+      "usecases": "Использование",
       "questions": "Есть вопросы?"
     },
     "followOn": "Подписывайтесь на {platform}"

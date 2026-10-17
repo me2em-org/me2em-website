@@ -1,6 +1,6 @@
 ---
-import ProjectsPageView from '@/components/projects/views/ProjectsPageView.astro';
-import { getProjectPageCount, getSecondaryLocales } from '@/lib/projects';
+import UsecasesPageView from '@/components/usecases/views/UsecasesPageView.astro';
+import { getUsecasePageCount, getSecondaryLocales } from '@/lib/usecases';
 
 // Locale-prefixed paginated usecases index (`/<locale>/usecases/page/N`, N >= 2).
 // Page 1 lives at `/<locale>/usecases`. Emits nothing when i18n is off.
@@ -11,7 +11,7 @@ export async function getStaticPaths() {
   }[] = [];
 
   for (const locale of getSecondaryLocales()) {
-    const totalPages = await getProjectPageCount(locale);
+    const totalPages = await getUsecasePageCount(locale);
     for (let page = 2; page <= totalPages; page++) {
       paths.push({
         params: { locale, page: String(page) },
@@ -27,4 +27,4 @@ const { locale } = Astro.params;
 const { page, totalPages } = Astro.props;
 ---
 
-<ProjectsPageView locale={locale} page={page} totalPages={totalPages} />
+<UsecasesPageView locale={locale} page={page} totalPages={totalPages} />

@@ -1,6 +1,6 @@
 import { getFooterNavItems, footerLinkGroups, resolveNavItem } from '@/config/nav.config';
 import { getPublishedPosts, collectTopTags, getTagUrl } from '@/lib/blog';
-import { getVisibleProjects, getProjectUrl } from '@/lib/projects';
+import { getVisibleUsecases, getUsecaseUrl } from '@/lib/usecases';
 import { defaultLocale, t } from '@/i18n';
 import type { FooterLinkGroup } from '@/components/layout/Footer.astro';
 
@@ -14,7 +14,7 @@ import type { FooterLinkGroup } from '@/components/layout/Footer.astro';
  *
  * Each group is dropped when it has nothing in it, so the footer reports what
  * exists rather than what someone remembered to add. A new site with no posts
- * and no projects gets the site column alone, which renders as a simple
+ * and no usecases gets the site column alone, which renders as a simple
  * footer without anyone choosing a layout — and it fills out as the site
  * grows.
  *
@@ -56,20 +56,20 @@ export async function getDerivedFooterGroups(
   // page, so they carry no href and render as text. Dropping them left a
   // column of two on the demo, and a demo where not everything is clickable
   // reads as a demo rather than as a mistake.
-  // Projects that have a page come first, then the placeholders, each keeping
+  // Usecases that have a page come first, then the placeholders, each keeping
   // the site's own `order` within its group. Straight `order` put four
   // placeholders ahead of the second real project and the limit then cut it,
   // so a column meant for navigating led with the entries that do not.
-  const allProjects = await getVisibleProjects(locale);
-  const projects = [...allProjects]
+  const allUsecases = await getVisibleUsecases(locale);
+  const usecases = [...allUsecases]
     .sort((a, b) => Number(!!a.data.placeholder) - Number(!!b.data.placeholder))
     .slice(0, PROJECTS_LIMIT)
-    .map((project) => ({
-      label: project.data.title,
-      href: project.data.placeholder ? undefined : getProjectUrl(project.id, locale),
+    .map((usecase) => ({
+      label: usecase.data.title,
+      href: usecase.data.placeholder ? undefined : getUsecaseUrl(usecase.id, locale),
     }));
-  if (projects.length) {
-    groups.push({ title: t('footer.groups.projects', locale), links: projects });
+  if (usecases.length) {
+    groups.push({ title: t('footer.groups.usecases', locale), links: usecases });
   }
 
   // Columns declared in config are appended to the derived ones, and go

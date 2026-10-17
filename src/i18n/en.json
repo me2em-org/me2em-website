@@ -16,7 +16,7 @@
     "items": {
       "home": "Home",
       "services": "Docs",
-      "projects": "Use cases",
+      "usecases": "Use cases",
       "blog": "Blog",
       "about": "Sandbox",
       "contact": "Contact"
@@ -104,9 +104,9 @@
   "usecases": {
     "title": "Use cases",
     "description": "Three documented scenarios — people, IoT, AI agents.",
-    "viewProject": "View project",
+    "viewUsecase": "View usecase",
     "viewSource": "View source",
-    "noProjectsFound": "No Use cases found.",
+    "noUsecasesFound": "No use cases found.",
     "carouselChooseSlide": "Choose slide",
     "carouselNextSlide": "Next slide",
     "carouselPreviousSlide": "Previous slide",
@@ -118,19 +118,19 @@
     "metaDescription": "Documented scenarios on the Me2em protocol — AI agent delegation, IoT hierarchies, and multi-context identity.",
     "heroBadge": "Use cases",
     "heroDescription": "The same primitives, read through different domains.",
-    "allProjects": "All use cases",
+    "allUsecases": "All use cases",
     "pageMetaTitle": "Use cases — Page {page}",
     "pageMetaDescription": "Page {page} of {total} — selected use cases by Me2eM.",
     "pageBadge": "Page {page} of {total}",
     "tagMetaTitle": "#{tag} — Use cases",
-    "tagMetaDescription": "Projects tagged \"{tag}\".",
+    "tagMetaDescription": "Usecases tagged \"{tag}\".",
     "tagBadge": "Tag",
     "tagCountOne": "{count} use case tagged \"{tag}\".",
     "tagCountOther": "{count} use cases tagged \"{tag}\".",
-    "tagEmpty": "No projects found for this tag.",
+    "tagEmpty": "No usecases found for this tag.",
     "tagBackToAll": "Back to all use cases",
-    "backToProjects": "Back to Use cases",
-    "moreProjects": "More use cases",
+    "backToUsecases": "Back to use cases",
+    "moreUsecases": "More use cases",
     "ctaBadge": "Start building",
     "ctaHeading": "Build this on Me2em",
     "ctaLead": "Every scenario here runs on the same three packages. Follow a quick start and issue your first Handle-backed session in minutes.",
@@ -159,7 +159,7 @@
     "backHome": "Back to home",
     "browseBlog": "Browse the blog",
     "tryInstead": "Try one of these instead",
-    "projectsDesc": "Documented scenarios — AI agents, IoT devices, identities.",
+    "usecasesDesc": "Documented scenarios — AI agents, IoT devices, identities.",
     "blogDesc": "Protocol deep dives, tutorials, and architecture notes.",
     "contactTitle": "Contact",
     "contactDesc": "Questions, feedback, and security reports."
@@ -221,7 +221,7 @@
     "groups": {
       "site": "Site",
       "topics": "Topics",
-      "projects": "Projects",
+      "usecases": "Use cases",
       "questions": "Got questions?"
     },
     "followOn": "Follow us on {platform}"

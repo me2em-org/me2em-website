@@ -16,7 +16,7 @@
     "items": {
       "home": "首页",
       "services": "服务",
-      "projects": "项目",
+      "usecases": "用例",
       "blog": "博客",
       "about": "Sandbox",
       "contact": "联系"
@@ -104,9 +104,9 @@
   "usecases": {
     "title": "Use cases",
     "description": "Nine documented scenarios — people, devices, AI agents.",
-    "viewProject": "Open scenario",
+    "viewUsecase": "Open scenario",
     "viewSource": "View source",
-    "noProjectsFound": "No projects found.",
+    "noUsecasesFound": "No usecases found.",
     "carouselChooseSlide": "Choose slide",
     "carouselNextSlide": "Next slide",
     "carouselPreviousSlide": "Previous slide",
@@ -118,7 +118,7 @@
     "metaDescription": "Documented Me2em protocol scenarios — AI agent delegation, IoT device hierarchies, multi-context identity, and SSO without a user database.",
     "heroBadge": "Use cases",
     "heroDescription": "The same primitives — read through different domains.",
-    "allProjects": "All use cases",
+    "allUsecases": "All use cases",
     "pageMetaTitle": "Use cases — page {page}",
     "pageMetaDescription": "Page {page} of {total} — documented Me2em protocol scenarios.",
     "pageBadge": "Page {page} of {total}",
@@ -129,8 +129,8 @@
     "tagCountOther": "{count} use cases tagged \"{tag}\".",
     "tagEmpty": "No use cases with this tag.",
     "tagBackToAll": "Back to all use cases",
-    "backToProjects": "Back to Use cases",
-    "moreProjects": "More use cases",
+    "backToUsecases": "Back to use cases",
+    "moreUsecases": "More use cases",
     "ctaBadge": "Start building",
     "ctaHeading": "Build this on Me2em",
     "ctaLead": "Each scenario runs on the same three packages. Go through the quick start and ship your first session in minutes.",
@@ -159,7 +159,7 @@
     "backHome": "返回首页",
     "browseBlog": "浏览博客",
     "tryInstead": "试试这些",
-    "projectsDesc": "精选作品和案例研究。",
+    "usecasesDesc": "精选作品和案例研究。",
     "blogDesc": "关于设计、代码和技艺的笔记。",
     "contactTitle": "联系",
     "contactDesc": "开始关于你项目的对话。"
@@ -221,7 +221,7 @@
     "groups": {
       "site": "网站",
       "topics": "主题",
-      "projects": "项目",
+      "usecases": "用例",
       "questions": "有问题？"
     },
     "followOn": "在{platform}上关注我们"

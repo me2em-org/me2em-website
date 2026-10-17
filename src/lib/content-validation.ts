@@ -50,14 +50,14 @@ export function localeStrippedSlug(id: string, locale: string): string {
 }
 
 /**
- * Build the list of published URLs from the blog, pages, and projects
- * collections. Blog posts live under `/blog/<slug>`; projects under
+ * Build the list of published URLs from the blog, pages, and usecases
+ * collections. Blog posts live under `/blog/<slug>`; usecases under
  * `/usecases/<slug>`; pages live at the site root `/<slug>`.
  */
 export function collectSlugRecords(
   posts: ContentEntryLike[],
   pages: ContentEntryLike[],
-  projects: ContentEntryLike[] = []
+  usecases: ContentEntryLike[] = []
 ): SlugRecord[] {
   const records: SlugRecord[] = [];
 
@@ -70,12 +70,12 @@ export function collectSlugRecords(
     });
   }
 
-  for (const project of projects) {
-    const { locale } = project.data;
+  for (const usecase of usecases) {
+    const { locale } = usecase.data;
     records.push({
-      source: `projects: ${project.id}`,
+      source: `usecases: ${usecase.id}`,
       locale,
-      path: `/usecases/${localeStrippedSlug(project.id, locale)}`,
+      path: `/usecases/${localeStrippedSlug(usecase.id, locale)}`,
     });
   }
 
@@ -142,16 +142,16 @@ export function formatSlugCollisions(collisions: SlugCollision[]): string {
  */
 export async function assertNoSlugCollisions(): Promise<void> {
   const { getCollection } = await import('astro:content');
-  const [posts, pages, projects] = await Promise.all([
+  const [posts, pages, usecases] = await Promise.all([
     getCollection('blog'),
     getCollection('pages'),
-    getCollection('projects'),
+    getCollection('usecases'),
   ]);
 
   const publishablePosts = posts.filter((post) => post.data.draft !== true);
-  const publishableProjects = projects.filter((project) => project.data.draft !== true);
+  const publishableUsecases = usecases.filter((usecase) => usecase.data.draft !== true);
   const collisions = findSlugCollisions(
-    collectSlugRecords(publishablePosts, pages, publishableProjects)
+    collectSlugRecords(publishablePosts, pages, publishableUsecases)
   );
 
   if (collisions.length > 0) {

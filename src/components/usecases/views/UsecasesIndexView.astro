@@ -1,10 +1,10 @@
 ---
 /**
- * ProjectsIndexView — the usecases landing page (page 1).
+ * UsecasesIndexView — the usecases landing page (page 1).
  *
  * Shared body for the default-locale route (`/usecases`) and the
  * locale-prefixed route (`/<locale>/usecases`). All usecases/pagination/tag URLs
- * are built locale-aware via the helpers in `lib/projects`, so rendering with
+ * are built locale-aware via the helpers in `lib/usecases`, so rendering with
  * the default locale produces exactly the same markup the route did before this
  * was extracted.
  */
@@ -14,31 +14,31 @@ import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
 import CtaBand from '@/components/patterns/CtaBand.astro';
-import ProjectCard from '@/components/projects/ProjectCard.astro';
-import ProjectTagList from '@/components/projects/ProjectTagList.astro';
+import UsecaseCard from '@/components/usecases/UsecaseCard.astro';
+import UsecaseTagList from '@/components/usecases/UsecaseTagList.astro';
 import Pagination from '@/components/blog/Pagination.astro';
 import { t, defaultLocale, localizedPath } from '@/i18n';
 import {
-  collectTopProjectTags,
-  getProjectsPageUrl,
-  getVisibleProjects,
+  collectTopUsecaseTags,
+  getUsecasesPageUrl,
+  getVisibleUsecases,
   PROJECT_TAG_CLOUD_LIMIT,
   PROJECTS_PER_PAGE,
-} from '@/lib/projects';
+} from '@/lib/usecases';
 
 interface Props {
-  /** Locale whose projects this index renders. Defaults to the site default. */
+  /** Locale whose usecases this index renders. Defaults to the site default. */
   locale?: string;
 }
 
 const { locale = defaultLocale } = Astro.props;
 
-const projects = await getVisibleProjects(locale);
-const topTags = collectTopProjectTags(projects, PROJECT_TAG_CLOUD_LIMIT);
+const usecases = await getVisibleUsecases(locale);
+const topTags = collectTopUsecaseTags(usecases, PROJECT_TAG_CLOUD_LIMIT);
 
 // Page 1 lives here at /usecases; /usecases/page/2..N handle the rest.
-const totalPages = Math.max(1, Math.ceil(projects.length / PROJECTS_PER_PAGE));
-const pageProjects = projects.slice(0, PROJECTS_PER_PAGE);
+const totalPages = Math.max(1, Math.ceil(usecases.length / PROJECTS_PER_PAGE));
+const pageUsecases = usecases.slice(0, PROJECTS_PER_PAGE);
 
 const docsUrl = localizedPath('/docs', locale);
 const gitHubUrl = ('https://github.com/me2em-org/me2em-protocol');
@@ -65,27 +65,27 @@ const gitHubUrl = ('https://github.com/me2em-org/me2em-protocol');
     </p>
   </Hero>
 
-  <!-- All projects -->
-  {projects.length > 0 && (
+  <!-- All usecases -->
+  {usecases.length > 0 && (
     <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
       <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
 
         {topTags.length > 0 && (
           <div class="flex flex-col items-center gap-4" data-reveal>
-            <ProjectTagList tags={topTags} locale={locale} class="justify-center" />
+            <UsecaseTagList tags={topTags} locale={locale} class="justify-center" />
           </div>
         )}
 
         <div class="grid gap-6 md:grid-cols-2">
-          {pageProjects.map((project, i) => (
-            <ProjectCard project={project} index={i} locale={locale} />
+          {pageUsecases.map((usecase, i) => (
+            <UsecaseCard usecase={usecase} index={i} locale={locale} />
           ))}
         </div>
 
         <Pagination
           currentPage={1}
           totalPages={totalPages}
-          href={(p) => getProjectsPageUrl(p, locale)}
+          href={(p) => getUsecasesPageUrl(p, locale)}
         />
       </div>
     </section>

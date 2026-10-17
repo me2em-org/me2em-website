@@ -779,10 +779,10 @@ gallery:
 
 Keep the single `image` field set as well — project cards on the index and homepage still use it.
 
-**2. In-body carousel with lightbox (MDX).** For an e-commerce-style gallery inside the project body, import the `ProjectGallery` component. Clicking a slide opens a full-screen lightbox, and each image takes an optional caption:
+**2. In-body carousel with lightbox (MDX).** For an e-commerce-style gallery inside the usecase body, import the `UsecaseGallery` component. Clicking a slide opens a full-screen lightbox, and each image takes an optional caption:
 
 ```mdx
-import ProjectGallery from '@/components/projects/ProjectGallery.astro';
+import UsecaseGallery from '@/components/usecases/UsecaseGallery.astro';
 import shot1 from '@/assets/projects/shot-1.jpg';
 import shot2 from '@/assets/projects/shot-2.jpg';
 

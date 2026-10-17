@@ -1,7 +1,7 @@
 ---
-import ProjectLayout from '@/layouts/ProjectLayout.astro';
+import UsecaseLayout from '@/layouts/UsecaseLayout.astro';
 import { getCollection, render } from 'astro:content';
-import { getProjectSlug, getSecondaryLocales, getVisibleProjects, getRoutableProjects } from '@/lib/projects';
+import { getUsecaseSlug, getSecondaryLocales, getVisibleUsecases, getRoutableUsecases } from '@/lib/usecases';
 
 // Locale-prefixed usecases detail pages (`/<locale>/usecases/<slug>`). One page
 // per (non-default locale × visible usecase in that locale). Emits nothing when
@@ -12,22 +12,22 @@ export async function getStaticPaths() {
   const paths: {
     params: { locale: string; slug: string };
     props: {
-      project: Awaited<ReturnType<typeof getCollection<'projects'>>>[number];
-      related: Awaited<ReturnType<typeof getVisibleProjects>>;
+      usecase: Awaited<ReturnType<typeof getCollection<'usecases'>>>[number];
+      related: Awaited<ReturnType<typeof getVisibleUsecases>>;
     };
   }[] = [];
 
   for (const locale of getSecondaryLocales()) {
-    const visibleProjects = await getVisibleProjects(locale);
-    const routableProjects = await getRoutableProjects(locale);
+    const visibleUsecases = await getVisibleUsecases(locale);
+    const routableUsecases = await getRoutableUsecases(locale);
 
-    for (const project of routableProjects) {
+    for (const usecase of routableUsecases) {
       paths.push({
-        params: { locale, slug: getProjectSlug(project.id, locale) },
+        params: { locale, slug: getUsecaseSlug(usecase.id, locale) },
         props: {
-          project,
-          related: visibleProjects
-            .filter((p) => p.id !== project.id)
+          usecase,
+          related: visibleUsecases
+            .filter((p) => p.id !== usecase.id)
             .sort((a, b) => a.data.order - b.data.order)
             .slice(0, 3),
         },
@@ -38,24 +38,24 @@ export async function getStaticPaths() {
   return paths;
 }
 
-const { project, related } = Astro.props;
-const { Content, headings } = await render(project);
+const { usecase, related } = Astro.props;
+const { Content, headings } = await render(usecase);
 ---
 
-<ProjectLayout
-  title={project.data.title}
-  description={project.data.description}
-  meta={project.data.meta}
-  url={project.data.url}
-  repo={project.data.repo}
-  image={project.data.image}
-  imageAlt={project.data.imageAlt}
-  gallery={project.data.gallery}
-  tags={project.data.tags}
-  slug={project.id}
+<UsecaseLayout
+  title={usecase.data.title}
+  description={usecase.data.description}
+  meta={usecase.data.meta}
+  url={usecase.data.url}
+  repo={usecase.data.repo}
+  image={usecase.data.image}
+  imageAlt={usecase.data.imageAlt}
+  gallery={usecase.data.gallery}
+  tags={usecase.data.tags}
+  slug={usecase.id}
   related={related}
   headings={headings}
-  toc={project.data.toc}
+  toc={usecase.data.toc}
 >
   <Content />
-</ProjectLayout>
+</UsecaseLayout>

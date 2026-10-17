@@ -1,6 +1,6 @@
 ---
-import ProjectsIndexView from '@/components/projects/views/ProjectsIndexView.astro';
-import { getSecondaryLocales } from '@/lib/projects';
+import UsecasesIndexView from '@/components/usecases/views/UsecasesIndexView.astro';
+import { getSecondaryLocales } from '@/lib/usecases';
 
 // Locale-prefixed usecases landing pages (`/<locale>/usecases`). One page per
 // non-default locale. Emits nothing when i18n is off or only one locale is
@@ -14,4 +14,4 @@ export function getStaticPaths() {
 const { locale } = Astro.params;
 ---
 
-<ProjectsIndexView locale={locale} />
+<UsecasesIndexView locale={locale} />

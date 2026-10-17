@@ -4,7 +4,7 @@
  *
  * Shared by the default-locale route (`/`) and the locale-prefixed route
  * (`/<locale>`). All copy is read from `pages.home.*` via `t()` / `tData()`,
- * and internal links are localized with `localizedPath`. Featured projects and
+ * and internal links are localized with `localizedPath`. Featured usecases and
  * posts are loaded for the active locale and fall back to the default locale so
  * the sections are never empty on a locale that hasn't translated its content
  * yet. Each card links to the URL of the locale the content actually belongs
@@ -23,8 +23,8 @@ import StackMarquee from '@/components/landing/StackMarquee.astro';
 import { getCollection } from 'astro:content';
 import siteConfig from '@/config/site.config';
 import { getPostUrl, getPublishedPosts } from '@/lib/blog';
-import { getVisibleProjects } from '@/lib/projects';
-import ProjectCard from '@/components/projects/ProjectCard.astro';
+import { getVisibleUsecases } from '@/lib/usecases';
+import UsecaseCard from '@/components/usecases/UsecaseCard.astro';
 import { t, tData, defaultLocale, localizedPath } from '@/i18n';
 
 interface Props {
@@ -51,13 +51,13 @@ interface UseCaseCard {
 
 const { locale = defaultLocale } = Astro.props;
 
-// Featured projects for this locale, falling back to the default locale so the
-// section is never empty on a locale that hasn't translated its projects yet.
-let projectItems = await getVisibleProjects(locale);
-if (projectItems.length === 0 && locale !== defaultLocale) {
-  projectItems = await getVisibleProjects(defaultLocale);
+// Featured usecases for this locale, falling back to the default locale so the
+// section is never empty on a locale that hasn't translated its usecases yet.
+let usecaseItems = await getVisibleUsecases(locale);
+if (usecaseItems.length === 0 && locale !== defaultLocale) {
+  usecaseItems = await getVisibleUsecases(defaultLocale);
 }
-const featuredProjects = projectItems
+const featuredUsecases = usecaseItems
   .filter((p) => p.data.featured)
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 4);
@@ -345,12 +345,12 @@ const tutorialsPara1 = t('pages.home.tutorials.para1', locale);
       </div>
 
       <div class="grid gap-6 md:grid-cols-2">
-        {/* One card component for the homepage, the projects index, the
+        {/* One card component for the homepage, the usecases index, the
             paginated pages and the tag archive. The homepage used to carry
             its own copy of this markup, so a change to the card reached three
             of the four places and quietly skipped this one. */}
-        {featuredProjects.map((project, i) => (
-          <ProjectCard project={project} index={i} locale={project.data.locale} />
+        {featuredUsecases.map((usecase, i) => (
+          <UsecaseCard usecase={usecase} index={i} locale={usecase.data.locale} />
         ))}
       </div>
 

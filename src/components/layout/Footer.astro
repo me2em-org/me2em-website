@@ -42,8 +42,8 @@ export interface NavItem {
 /**
  * A link inside a footer column. `href` is optional: an entry without one
  * renders as plain text rather than a link, which is how the demo shows
- * projects that have no page of their own — the same thing `ProjectCard`
- * does on the projects index.
+ * usecases that have no page of their own — the same thing `UsecaseCard`
+ * does on the usecases index.
  */
 export interface FooterGroupLink {
   label: string;
@@ -152,7 +152,7 @@ const resolvedLegalLinks: LegalLink[] = legalLinks ?? getLegalLinks(locale);
  * Columns with nothing in them was how this layout used to render for anyone
  * who found it: `linkGroups` defaulted to `[]`, so the grid held a logo and
  * empty space. A caller that passes groups still wins; one that passes none
- * gets groups derived from the site's own nav, tags and projects.
+ * gets groups derived from the site's own nav, tags and usecases.
  */
 const resolvedLinkGroups: FooterLinkGroup[] =
   linkGroups.length > 0 ? linkGroups : layout === 'columns' ? await getDerivedFooterGroups(locale) : [];

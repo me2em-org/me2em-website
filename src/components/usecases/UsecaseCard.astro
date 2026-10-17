@@ -1,25 +1,25 @@
 ---
 /**
- * Project listing card. Extracted so the projects index, paginated pages,
+ * Usecase listing card. Extracted so the usecases index, paginated pages,
  * and tag archives render identical cards from one source of truth.
  *
- * Placeholder projects render as a non-interactive card (no link), matching
- * how the listing treats projects that don't have their own detail page.
+ * Placeholder usecases render as a non-interactive card (no link), matching
+ * how the listing treats usecases that don't have their own detail page.
  */
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import type { CollectionEntry } from 'astro:content';
 import { defaultLocale } from '@/i18n';
-import { getProjectUrl } from '@/lib/projects';
+import { getUsecaseUrl } from '@/lib/usecases';
 
 interface Props {
-  project: CollectionEntry<'projects'>;
+  usecase: CollectionEntry<'usecases'>;
   /** Stagger index for the scroll-reveal cascade. */
   index?: number;
   /**
     * Locale the card's link belongs to. Default-locale links stay at
     * `/usecases/...`; other locales are prefixed (`/<locale>/usecases/...`).
-   */
+    */
   locale?: string;
   /**
    * Add the scroll-reveal trigger. Turn it off where a parent already reveals
@@ -29,15 +29,15 @@ interface Props {
   reveal?: boolean;
 }
 
-const { project, index = 0, locale = defaultLocale, reveal = true } = Astro.props;
-const { data } = project;
+const { usecase, index = 0, locale = defaultLocale, reveal = true } = Astro.props;
+const { data } = usecase;
 ---
 
 <Card
   variant="elevated"
   hover
   padding="none"
-  href={data.placeholder ? undefined : getProjectUrl(project.id, locale)}
+  href={data.placeholder ? undefined : getUsecaseUrl(usecase.id, locale)}
   class="group flex flex-col"
   data-reveal={reveal || undefined}
   data-reveal-delay={reveal ? index % 2 || undefined : undefined}
@@ -66,9 +66,9 @@ const { data } = project;
     </div>
 
     <!--
-      The project's own icon, from its frontmatter, falling back to `layers`.
+      The usecase's own icon, from its frontmatter, falling back to `layers`.
       One repeated icon across every card makes them read as placeholders, so
-      each project carries its own.
+      each usecase carries its own.
 
       A plain 40px icon rather than one inside a gradient tile, matching every
       other card in the theme. The size only works centred: left-aligned in a
@@ -76,7 +76,7 @@ const { data } = project;
     -->
     <div class="mb-3 flex flex-col items-center gap-2 text-center">
       <Icon name={data.icon ?? 'layers'} class="w-10 h-10 text-brand-500 shrink-0" />
-      {/* h2, as BlogCard's title already is. The projects index and the tag
+      {/* h2, as BlogCard's title already is. The usecases index and the tag
           archives put these cards straight under the page's h1 with no
           section heading between, so an h3 skipped a level there. On the home
           page they still sit below the section's own h2, which a repeat of

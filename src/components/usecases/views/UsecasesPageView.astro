@@ -1,11 +1,11 @@
 ---
 /**
- * ProjectsPageView — a paginated usecases index page (page 2..N).
+ * UsecasesPageView — a paginated usecases index page (page 2..N).
  *
  * Shared body for the default-locale route (`/usecases/page/N`) and the
  * locale-prefixed route (`/<locale>/usecases/page/N`). The page number and
  * total are resolved in each route's `getStaticPaths` and passed in; URLs are
- * built locale-aware via `lib/projects`.
+ * built locale-aware via `lib/usecases`.
  */
 import PageLayout from '@/layouts/PageLayout.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
@@ -13,21 +13,21 @@ import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
 import CtaBand from '@/components/patterns/CtaBand.astro';
-import ProjectCard from '@/components/projects/ProjectCard.astro';
-import ProjectTagList from '@/components/projects/ProjectTagList.astro';
+import UsecaseCard from '@/components/usecases/UsecaseCard.astro';
+import UsecaseTagList from '@/components/usecases/UsecaseTagList.astro';
 import Pagination from '@/components/blog/Pagination.astro';
 import { t, defaultLocale, localizedPath } from '@/i18n';
 import {
-  collectTopProjectTags,
-  getProjectsBaseUrl,
-  getProjectsPageUrl,
-  getVisibleProjects,
+  collectTopUsecaseTags,
+  getUsecasesBaseUrl,
+  getUsecasesPageUrl,
+  getVisibleUsecases,
   PROJECT_TAG_CLOUD_LIMIT,
   PROJECTS_PER_PAGE,
-} from '@/lib/projects';
+} from '@/lib/usecases';
 
 interface Props {
-  /** Locale whose projects this page renders. Defaults to the site default. */
+  /** Locale whose usecases this page renders. Defaults to the site default. */
   locale?: string;
   /** 1-based page number (always >= 2 for this view). */
   page: number;
@@ -37,13 +37,13 @@ interface Props {
 
 const { locale = defaultLocale, page, totalPages } = Astro.props;
 
-const projects = await getVisibleProjects(locale);
+const usecases = await getVisibleUsecases(locale);
 const start = (page - 1) * PROJECTS_PER_PAGE;
-const pageProjects = projects.slice(start, start + PROJECTS_PER_PAGE);
+const pageUsecases = usecases.slice(start, start + PROJECTS_PER_PAGE);
 
-const topTags = collectTopProjectTags(projects, PROJECT_TAG_CLOUD_LIMIT);
+const topTags = collectTopUsecaseTags(usecases, PROJECT_TAG_CLOUD_LIMIT);
 
-const projectsHref = getProjectsBaseUrl(locale);
+const usecasesHref = getUsecasesBaseUrl(locale);
 const contactUrl = localizedPath('/contact', locale);
 const aboutUrl = localizedPath('/about', locale);
 ---
@@ -71,28 +71,28 @@ const aboutUrl = localizedPath('/about', locale);
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
       <div class="flex flex-col items-center gap-4" data-reveal>
         <a
-          href={projectsHref}
+          href={usecasesHref}
           class="group inline-flex items-center gap-2 rounded-lg border border-brand-500/40 bg-transparent px-4 py-2 text-sm font-medium text-brand-700 dark:text-brand-400 hover:border-brand-500/80 hover:bg-brand-500/10 transition-colors"
         >
           <Icon name="arrow-left" size="sm" />
-          {t('usecases.allProjects', locale)}
+          {t('usecases.allUsecases', locale)}
         </a>
 
         {topTags.length > 0 && (
-          <ProjectTagList tags={topTags} locale={locale} class="justify-center" />
+                      <UsecaseTagList tags={topTags} locale={locale} class="justify-center" />
         )}
       </div>
 
       <div class="grid gap-6 md:grid-cols-2">
-        {pageProjects.map((project, i) => (
-          <ProjectCard project={project} index={i} locale={locale} />
+        {pageUsecases.map((usecase, i) => (
+                      <UsecaseCard usecase={usecase} index={i} locale={locale} />
         ))}
       </div>
 
       <Pagination
         currentPage={page}
         totalPages={totalPages}
-        href={(p) => getProjectsPageUrl(p, locale)}
+          href={(p) => getUsecasesPageUrl(p, locale)}
       />
     </div>
   </section>

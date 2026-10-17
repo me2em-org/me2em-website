@@ -101,9 +101,9 @@ const faqs = defineCollection({
   }),
 });
 
-// Projects collection — one MDX file per project
-const projects = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
+// Usecases collection — one MDX file per usecase
+const usecases = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/usecases' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -161,7 +161,7 @@ const projects = defineCollection({
       meta: z.array(z.string()).default([]),
       draft: z.boolean().default(false),
       placeholder: z.boolean().default(false),
-      /** Per-project override: hide table of contents on this project */
+      /*       * Per-usecase override: hide table of contents on this usecase */
       toc: z.boolean().optional(),
       locale: localeSchema,
     }),
@@ -187,5 +187,5 @@ export const collections = {
   authors,
   faqs,
   stack,
-  projects,
+  usecases,
 };

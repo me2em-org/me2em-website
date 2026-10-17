@@ -5,7 +5,7 @@
  * so blog and usecases tags look and behave identically.
  */
 import { defaultLocale, t } from '@/i18n';
-import { getProjectTagUrl } from '@/lib/projects';
+import { getUsecaseTagUrl } from '@/lib/usecases';
 
 interface Props {
   tags: string[];
@@ -30,7 +30,7 @@ const { tags, active, locale = defaultLocale, class: extraClass } = Astro.props;
       return (
         <li>
           <a
-            href={getProjectTagUrl(tag, locale)}
+            href={getUsecaseTagUrl(tag, locale)}
             class:list={[
               'inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium transition-colors',
               isActive

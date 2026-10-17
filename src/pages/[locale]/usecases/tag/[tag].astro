@@ -1,13 +1,13 @@
 ---
-import ProjectsTagView from '@/components/projects/views/ProjectsTagView.astro';
+import UsecasesTagView from '@/components/usecases/views/UsecasesTagView.astro';
 import {
   PROJECT_TAG_CLOUD_LIMIT,
-  collectProjectTags,
-  collectTopProjectTags,
-  getVisibleProjects,
+  collectUsecaseTags,
+  collectTopUsecaseTags,
+  getVisibleUsecases,
   getSecondaryLocales,
   tagToSlug,
-} from '@/lib/projects';
+} from '@/lib/usecases';
 
 // Locale-prefixed tag archives (`/<locale>/usecases/tag/<tag>`). One page per
 // (non-default locale × tag that exists in that locale). Emits nothing when
@@ -17,24 +17,24 @@ export async function getStaticPaths() {
     params: { locale: string; tag: string };
     props: {
       tag: string;
-      projects: Awaited<ReturnType<typeof getVisibleProjects>>;
+      usecases: Awaited<ReturnType<typeof getVisibleUsecases>>;
       visibleTags: string[];
     };
   }[] = [];
 
   for (const locale of getSecondaryLocales()) {
-    const projects = await getVisibleProjects(locale);
-    const tags = collectProjectTags(projects);
-    const topTags = collectTopProjectTags(projects, PROJECT_TAG_CLOUD_LIMIT);
+    const usecases = await getVisibleUsecases(locale);
+    const tags = collectUsecaseTags(usecases);
+    const topTags = collectTopUsecaseTags(usecases, PROJECT_TAG_CLOUD_LIMIT);
 
     for (const tag of tags) {
-      const projectsForTag = projects.filter((p) => p.data.tags.includes(tag));
+      const usecasesForTag = usecases.filter((p) => p.data.tags.includes(tag));
       const visibleTags = topTags.includes(tag)
         ? topTags
         : [tag, ...topTags.slice(0, PROJECT_TAG_CLOUD_LIMIT - 1)];
       paths.push({
         params: { locale, tag: tagToSlug(tag) },
-        props: { tag, projects: projectsForTag, visibleTags },
+        props: { tag, usecases: usecasesForTag, visibleTags },
       });
     }
   }
@@ -43,7 +43,7 @@ export async function getStaticPaths() {
 }
 
 const { locale } = Astro.params;
-const { tag, projects, visibleTags } = Astro.props;
+const { tag, usecases, visibleTags } = Astro.props;
 ---
 
-<ProjectsTagView locale={locale} tag={tag} projects={projects} visibleTags={visibleTags} />
+<UsecasesTagView locale={locale} tag={tag} usecases={usecases} visibleTags={visibleTags} />

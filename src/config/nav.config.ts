@@ -87,7 +87,7 @@ export interface ResolvedNavItem {
 export const navItems: NavItem[] = [
   { label: 'Home', href: '/', order: 0, labelKey: 'nav.items.home' },
   { label: 'Services', href: '/docs', order: 1, labelKey: 'nav.items.services' },
-  { label: 'Projects', href: '/usecases', order: 2, labelKey: 'nav.items.projects' },
+  { label: 'Use cases', href: '/usecases', order: 2, labelKey: 'nav.items.usecases' },
   { label: 'Blog', href: '/blog', order: 3, labelKey: 'nav.items.blog' },
   { label: 'Sandbox', href: '/sandbox', order: 4, labelKey: 'nav.items.about' },
   { label: 'Contact', href: '/contact', order: 5, labelKey: 'nav.items.contact' },
@@ -96,7 +96,7 @@ export const navItems: NavItem[] = [
 export const footerNavItems: NavItem[] = [
   { label: 'Home', href: '/', order: 0, labelKey: 'nav.items.home' },
   { label: 'Services', href: '/docs', order: 1, labelKey: 'nav.items.services' },
-  { label: 'Projects', href: '/usecases', order: 2, labelKey: 'nav.items.projects' },
+  { label: 'Use cases', href: '/usecases', order: 2, labelKey: 'nav.items.usecases' },
   { label: 'Blog', href: '/blog', order: 3, labelKey: 'nav.items.blog' },
   { label: 'Sandbox', href: '/sandbox', order: 4, labelKey: 'nav.items.about' },
   { label: 'Contact', href: '/contact', order: 5, labelKey: 'nav.items.contact' },
@@ -110,7 +110,7 @@ export const legalLinks: LegalLink[] = [];
  *
  * Leave this empty and the footer builds its own from the site: a Site column
  * from `footerNavItems`, a Topics column from the most-used blog tags, and a
- * Projects column from the visible projects. Each is dropped when it has
+  * Usecases column from the visible usecases. Each is dropped when it has
  * nothing in it, so a new site shows one column and fills out as it grows.
  *
  * Anything here is *added* to those, which is what this is for: a column the

@@ -1,19 +1,19 @@
 ---
 /**
- * ProjectImageSVG — inline, theme-aware SVG hero for a project.
+ * UsecaseImageSVG — inline, theme-aware SVG hero for a usecase.
  *
  * Mirrors the blog's BlogImageSVG: the SVG is inlined (not served as an
  * <img>) so its `var(--brand-*)` classes resolve against the live colour
  * theme — the artwork recolours with every colour theme and stays sharp at
- * any size. Set `svgSlug` in a project's frontmatter to use one instead of
- * a raster hero image; the file lives in `src/assets/projects/<slug>.svg`.
+ * any size. Set `svgSlug` in a usecase's frontmatter to use one instead of
+ * a raster hero image; the file lives in `src/assets/usecases/<slug>.svg`.
  *
  * Vite 8 (shipped with Astro 7) removed the `as: 'raw'` glob option; the
  * modern `query: '?raw', import: 'default'` form returns the raw SVG markup
  * as a string. Without it the glob yields module objects that `set:html`
  * renders as the literal text "[object Module]".
  */
-const svgs = import.meta.glob<string>('/src/assets/projects/*.svg', {
+const svgs = import.meta.glob<string>('/src/assets/usecases/*.svg', {
   query: '?raw',
   import: 'default',
   eager: true,
@@ -25,7 +25,7 @@ interface Props {
 }
 
 const { slug, title } = Astro.props;
-const svgContent = svgs[`/src/assets/projects/${slug}.svg`] ?? '';
+const svgContent = svgs[`/src/assets/usecases/${slug}.svg`] ?? '';
 ---
 
 {svgContent && (

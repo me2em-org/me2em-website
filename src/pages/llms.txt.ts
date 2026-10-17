@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import siteConfig from '@/config/site.config';
 import { defaultLocale } from '@/i18n';
 import { getPublishedPosts, getPostUrl, getRssUrl } from '@/lib/blog';
-import { getVisibleProjects, getProjectUrl } from '@/lib/projects';
+import { getVisibleUsecases, getUsecaseUrl } from '@/lib/usecases';
 import { getNavItems } from '@/config/nav.config';
 
 /**
@@ -23,7 +23,7 @@ import { getNavItems } from '@/config/nav.config';
  * hand.
  *
  * The Pages list used to be five hardcoded lines and had already drifted: it
- * named Home, About, Projects, Blog and Contact while the nav also carried
+ * named Home, About, Usecases, Blog and Contact while the nav also carried
  * Services, and it never mentioned the components page at all — so an
  * assistant asked about this theme had no way to learn that the page
  * documenting every component exists. It now comes from `getNavItems`, so it
@@ -49,7 +49,7 @@ export const GET: APIRoute = async ({ site }) => {
   const base = (site?.toString() || siteConfig.url).replace(/\/$/, '');
 
   const posts = await getPublishedPosts(defaultLocale);
-  const projects = await getVisibleProjects(defaultLocale);
+  const usecases = await getVisibleUsecases(defaultLocale);
 
   const line = (title: string, url: string, description?: string) =>
     description ? `- [${title}](${url}): ${description}` : `- [${title}](${url})`;
@@ -59,10 +59,10 @@ export const GET: APIRoute = async ({ site }) => {
     .map((post) => line(post.data.title, `${base}${getPostUrl(post.id, defaultLocale)}`, post.data.description))
     .join('\n');
 
-  const projectLines = [...projects]
+  const usecaseLines = [...usecases]
     .sort((a, b) => a.data.order - b.data.order)
-    .map((project) =>
-      line(project.data.title, `${base}${getProjectUrl(project.id, defaultLocale)}`, project.data.description)
+    .map((usecase) =>
+      line(usecase.data.title, `${base}${getUsecaseUrl(usecase.id, defaultLocale)}`, usecase.data.description)
     )
     .join('\n');
 
@@ -90,8 +90,8 @@ export const GET: APIRoute = async ({ site }) => {
     ...pageLines,
   ];
 
-  if (projectLines) {
-    sections.push(``, `## Projects`, ``, projectLines);
+  if (usecaseLines) {
+    sections.push(``, `## Usecases`, ``, usecaseLines);
   }
 
   if (postLines) {

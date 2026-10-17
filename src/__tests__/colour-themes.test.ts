@@ -134,7 +134,7 @@ describe('colour themes', () => {
       'src/config/site.config.ts',
       'src/i18n/en.json',
       'src/i18n/ru.json',
-      'src/content/projects/en/multi-app-sso.mdx',
+      'src/content/usecases/en/multi-app-sso.mdx',
       'src/content/blog/en/astro-rocket-configuration-guide.mdx',
       'src/content/blog/en/astro-rocket-getting-started.mdx',
       'src/content/blog/en/component-library.mdx',
@@ -148,7 +148,7 @@ describe('colour themes', () => {
   it('no shipped copy names a palette that was removed', () => {
     const gone = ['orange', 'amber', 'lime', 'magenta'];
     for (const file of [
-      'src/content/projects/en/multi-app-sso.mdx',
+      'src/content/usecases/en/multi-app-sso.mdx',
       'src/content/blog/en/astro-rocket-configuration-guide.mdx',
       'src/content/blog/en/scroll-progress-ring.mdx',
       'README.md',

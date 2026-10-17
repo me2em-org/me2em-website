@@ -1,13 +1,13 @@
 ---
-import ProjectsPageView from '@/components/projects/views/ProjectsPageView.astro';
+import UsecasesPageView from '@/components/usecases/views/UsecasesPageView.astro';
 import { defaultLocale } from '@/i18n';
-import { getProjectPageCount } from '@/lib/projects';
+import { getUsecasePageCount } from '@/lib/usecases';
 
 // Paginated usecases index for the default locale (page 2..N). Page 1 lives at
 // `/usecases`. Additional locales are served by
 // `src/pages/[locale]/usecases/page/[page].astro`.
 export async function getStaticPaths() {
-  const totalPages = await getProjectPageCount(defaultLocale);
+  const totalPages = await getUsecasePageCount(defaultLocale);
 
   const pages: { params: { page: string }; props: { page: number; totalPages: number } }[] = [];
   for (let page = 2; page <= totalPages; page++) {
@@ -19,4 +19,4 @@ export async function getStaticPaths() {
 const { page, totalPages } = Astro.props;
 ---
 
-<ProjectsPageView locale={defaultLocale} page={page} totalPages={totalPages} />
+<UsecasesPageView locale={defaultLocale} page={page} totalPages={totalPages} />

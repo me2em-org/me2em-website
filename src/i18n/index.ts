@@ -38,7 +38,7 @@ export function getLocales(): Locale[] {
  * (`/<locale>/about`, `/<locale>` …). Empty when i18n is off or only one
  * locale is configured, so locale-prefixed `getStaticPaths` emit nothing and
  * single-locale builds stay byte-for-byte unchanged. Mirrors the per-section
- * helpers in `lib/blog` and `lib/projects` so every content type derives its
+ * helpers in `lib/blog` and `lib/usecases` so every content type derives its
  * extra locales the same way.
  */
 export function getSecondaryLocales(): Locale[] {

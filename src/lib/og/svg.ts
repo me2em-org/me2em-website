@@ -205,9 +205,9 @@ export function getBlogTagOgPath(tagSlug: string): string {
   return `/og/blog/tag/${tagSlug}.png`;
 }
 
-/** Path (relative to site root) for a project's generated OG image. */
-export function getProjectOgPath(slug: string): string {
-  return `/og/projects/${slug}.png`;
+/** Path (relative to site root) for a usecase's generated OG image. */
+export function getUsecaseOgPath(slug: string): string {
+  return `/og/usecases/${slug}.png`;
 }
 
 /** Path for the site-wide OG image, used by every page without one of its own. */

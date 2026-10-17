@@ -1,38 +1,38 @@
 ---
 /**
- * ProjectsTagView — a usecases tag archive page.
+ * UsecasesTagView — a usecases tag archive page.
  *
  * Shared body for the default-locale route (`/usecases/tag/<tag>`) and the
  * locale-prefixed route (`/<locale>/usecases/tag/<tag>`). The matching usecases
  * and the visible tag cloud are resolved in each route's `getStaticPaths` and
- * passed in; URLs are built locale-aware via `lib/projects`.
+ * passed in; URLs are built locale-aware via `lib/usecases`.
  */
 import type { CollectionEntry } from 'astro:content';
 import PageLayout from '@/layouts/PageLayout.astro';
-import ProjectCard from '@/components/projects/ProjectCard.astro';
-import ProjectTagList from '@/components/projects/ProjectTagList.astro';
+import UsecaseCard from '@/components/usecases/UsecaseCard.astro';
+import UsecaseTagList from '@/components/usecases/UsecaseTagList.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
 import { t, defaultLocale } from '@/i18n';
-import { getProjectsBaseUrl } from '@/lib/projects';
+import { getUsecasesBaseUrl } from '@/lib/usecases';
 
 interface Props {
-  /** Locale whose projects this archive renders. Defaults to the site default. */
+  /** Locale whose usecases this archive renders. Defaults to the site default. */
   locale?: string;
   /** The active tag (display form). */
   tag: string;
-  /** Projects carrying this tag, in the locale. */
-  projects: CollectionEntry<'projects'>[];
+  /** Usecases carrying this tag, in the locale. */
+  usecases: CollectionEntry<'usecases'>[];
   /** Tags to render in the cloud (always includes the active tag). */
   visibleTags: string[];
 }
 
-const { locale = defaultLocale, tag, projects, visibleTags } = Astro.props;
+const { locale = defaultLocale, tag, usecases, visibleTags } = Astro.props;
 
-const projectsHref = getProjectsBaseUrl(locale);
-const countKey = projects.length === 1 ? 'usecases.tagCountOne' : 'usecases.tagCountOther';
+const usecasesHref = getUsecasesBaseUrl(locale);
+const countKey = usecases.length === 1 ? 'usecases.tagCountOne' : 'usecases.tagCountOther';
 ---
 
 <PageLayout
@@ -53,7 +53,7 @@ const countKey = projects.length === 1 ? 'usecases.tagCountOne' : 'usecases.tagC
     >#{tag}</h1>
 
     <p slot="description">
-      {t(countKey, locale, { count: projects.length, tag })}
+      {t(countKey, locale, { count: usecases.length, tag })}
     </p>
   </Hero>
 
@@ -61,22 +61,22 @@ const countKey = projects.length === 1 ? 'usecases.tagCountOne' : 'usecases.tagC
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
       <div class="flex flex-col items-center gap-4" data-reveal>
         <a
-          href={projectsHref}
+          href={usecasesHref}
           class="group inline-flex items-center gap-2 rounded-lg border border-brand-500/40 bg-transparent px-4 py-2 text-sm font-medium text-brand-700 dark:text-brand-400 hover:border-brand-500/80 hover:bg-brand-500/10 transition-colors"
         >
           <Icon name="arrow-left" size="sm" />
-          {t('usecases.allProjects', locale)}
+          {t('usecases.allUsecases', locale)}
         </a>
 
         {visibleTags.length > 0 && (
-          <ProjectTagList tags={visibleTags} active={tag} locale={locale} class="justify-center" />
+                        <UsecaseTagList tags={visibleTags} active={tag} locale={locale} class="justify-center" />
         )}
       </div>
 
-      {projects.length > 0 ? (
+      {usecases.length > 0 ? (
         <div class="grid gap-6 md:grid-cols-2">
-          {projects.map((project, i) => (
-            <ProjectCard project={project} index={i} locale={locale} />
+          {usecases.map((usecase, i) => (
+                          <UsecaseCard usecase={usecase} index={i} locale={locale} />
           ))}
         </div>
       ) : (
@@ -86,7 +86,7 @@ const countKey = projects.length === 1 ? 'usecases.tagCountOne' : 'usecases.tagC
           </div>
           <p class="text-foreground-muted text-lg">{t('usecases.tagEmpty', locale)}</p>
           <div class="mt-6">
-            <Button href={projectsHref} variant="brand-outline" size="sm">
+            <Button href={usecasesHref} variant="brand-outline" size="sm">
               <Icon name="arrow-left" size="sm" />
               {t('usecases.tagBackToAll', locale)}
             </Button>

@@ -1,6 +1,6 @@
 ---
 title: "Going Multilingual with Native i18n"
-description: "How the opt-in i18n works: locale routing, the t()/tData() dictionary, an auto-localized blog, projects and pages, and how to ship a multilingual site."
+description: "How the opt-in i18n works: locale routing, the t()/tData() dictionary, an auto-localized blog, usecases and pages, and how to ship a multilingual site."
 publishedAt: 2026-05-11
 updatedAt: 2026-07-01
 author: "Hans Martens"
@@ -13,7 +13,7 @@ svgSlug: "i18n-in-astro-rocket"
 imageAlt: "Globe icon centred on a brand-coloured background with the label 'i18n'"
 ---
 
-Astro Rocket ships native, opt-in internationalization. You can run your site in two — or twenty — languages without leaving the theme: no scaffolding CLI, no plugins, no separate package. The system localizes your **pages, the whole blog, the projects section, the navigation, the logo, and every built-in UI string** — right down to the search dialog and its runtime messages — all generated at build time.
+Astro Rocket ships native, opt-in internationalization. You can run your site in two — or twenty — languages without leaving the theme: no scaffolding CLI, no plugins, no separate package. The system localizes your **pages, the whole blog, the usecases section, the navigation, the logo, and every built-in UI string** — right down to the search dialog and its runtime messages — all generated at build time.
 
 This is the complete, current guide: what the feature is, what it costs (nothing if you leave it off), and exactly how to turn it on and ship an English-plus-Dutch site.
 
@@ -28,8 +28,8 @@ Five pieces make up the system. Once you know what each one does, the rest of th
 1. **One config file** (`src/config/i18n.config.ts`) — the master switch and your list of locales.
 2. **Locale-prefixed routing** — [Astro's native i18n routing](https://docs.astro.build/en/guides/internationalization/), wired in conditionally. Your default locale stays at the root; the rest live under a prefix like `/nl/`.
 3. **JSON dictionaries** (`src/i18n/<locale>.json`) — read through a `t()` / `tData()` helper. They hold both the shared UI strings *and* the copy for the built-in pages.
-4. **Locale-aware content collections** — your blog and projects carry a `locale` field and live in per-locale folders.
-5. **Automatic localized routes** — once a locale exists, the theme generates that locale's built-in pages, blog, and projects for you, with every internal link staying inside the locale.
+4. **Locale-aware content collections** — your blog and usecases carry a `locale` field and live in per-locale folders.
+5. **Automatic localized routes** — once a locale exists, the theme generates that locale's built-in pages, blog, and usecases for you, with every internal link staying inside the locale.
 
 Everything is resolved at **build time**. There's no client-side routing, no framework hydration, and no language-detection middleware — so turning i18n on doesn't change Astro Rocket's performance posture.
 
@@ -58,7 +58,7 @@ As soon as i18n is active:
 2. **A `LanguageSwitcher` dropdown** in the header and mobile menu, automatically. It lists every configured locale and links to the matching version of the page the visitor is on.
 3. **The built-in pages in every locale** — Home, About, Services, and Contact render from the dictionary, so they light up the moment a locale is configured (translated or falling back to your default copy).
 4. **An automatically localized blog** — index, posts, pagination, and tag archives — for every locale you add content to. No per-locale page files to write.
-5. **An automatically localized projects section**, the same way.
+5. **An automatically localized usecases section**, the same way.
 6. **Localized chrome** — navigation, logo, footer, the theme and search controls, forms, the 404 page, and every shared UI string follow the active locale.
 7. **`hreflang` alternates** (plus an `x-default`) in the `<head>` of every page, pointing at each locale's real version of that URL per [Google's recommendation](https://developers.google.com/search/docs/specialty/international/localized-versions).
 
@@ -91,7 +91,7 @@ Save the file. The `LanguageSwitcher` appears in your header, and — because As
 
 Content in Astro Rocket falls into two tiers, and the difference is the whole trick to understanding i18n here:
 
-- **Auto-localized** — the **built-in pages, blog, and projects**. You translate copy (or drop in files); the **routing is automatic**.
+- **Auto-localized** — the **built-in pages, blog, and usecases**. You translate copy (or drop in files); the **routing is automatic**.
 - **Manual** — only **your own custom pages**. Those are plain Astro page files, so you create one per locale.
 
 ### Blog posts — just add files
@@ -116,11 +116,11 @@ That's the entire job. **You do not create any blog page files.** Drop posts in 
 
 Every in-locale link — post cards, tag chips, pagination, breadcrumbs, related posts — resolves **inside** that locale instead of falling back to the default-locale URL. The `defaultLocale` keeps its prefix-free URLs (`/blog`). A locale with no posts yet still renders an empty `/<locale>/blog` index, so the `LanguageSwitcher` never lands on a 404.
 
-### Projects — same story
+### Usecases — same story
 
-Projects work exactly like the blog. Drop translations in `src/content/projects/<locale>/` (the bundled projects live in `src/content/projects/en/`) and the localized usecases section is generated for you: the index (`/nl/usecases`), each project (`/nl/usecases/<slug>`), pagination (`/nl/usecases/page/N`), and tag archives (`/nl/usecases/tag/<tag>`).
+Usecases work exactly like the blog. Drop translations in `src/content/usecases/<locale>/` (the bundled usecases live in `src/content/usecases/en/`) and the localized usecases section is generated for you: the index (`/nl/usecases`), each usecase (`/nl/usecases/<slug>`), pagination (`/nl/usecases/page/N`), and tag archives (`/nl/usecases/tag/<tag>`).
 
-Projects share one slug across locales — keep the same filename in each locale folder (e.g. `en/studio-portfolio.mdx` ↔ `nl/studio-portfolio.mdx`) and the theme pairs them automatically for `hreflang` and the `LanguageSwitcher`. (Blog posts can instead use locale-specific slugs paired by a canonical `uid` — more on that below.)
+Usecases share one slug across locales — keep the same filename in each locale folder (e.g. `en/studio-portfolio.mdx` ↔ `nl/studio-portfolio.mdx`) and the theme pairs them automatically for `hreflang` and the `LanguageSwitcher`. (Blog posts can instead use locale-specific slugs paired by a canonical `uid` — more on that below.)
 
 ### The built-in pages — translate the dictionary
 
@@ -239,7 +239,7 @@ Adding a language is two steps — no code edits:
 1. Create `src/i18n/<code>.json` (say, `de.json`) mirroring the structure of `en.json`. It's discovered and loaded automatically — **no import or registration in `src/i18n/index.ts`**.
 2. Add the locale code to `locales` in `i18n.config.ts` (and give it a `localeNames` entry) so it gets served.
 
-That's the whole onboarding. The built-in pages appear in German immediately (falling back to English for any key you haven't translated yet); then translate content into `src/content/blog/de/` and `src/content/projects/de/`, and add `src/pages/de/*` for any custom pages you want. The built-in pages (Home, About, Docs, Contact) are generated automatically for every locale in the config.
+That's the whole onboarding. The built-in pages appear in German immediately (falling back to English for any key you haven't translated yet); then translate content into `src/content/blog/de/` and `src/content/usecases/de/`, and add `src/pages/de/*` for any custom pages you want. The built-in pages (Home, About, Docs, Contact) are generated automatically for every locale in the config.
 
 ## Step 4 — localize the navigation, logo, and footer
 
@@ -283,7 +283,7 @@ When i18n is on, Astro Rocket's `SEO` component automatically emits the right ta
 
 That tells Google which version corresponds to which locale, and which to show when no language matches. Two things to keep right:
 
-- **Reciprocity.** A page reachable in one locale should be reachable in the others for the `hreflang` loop to hold. Your built-in pages, blog, and projects handle this for you; for custom pages, missing translations simply don't get an alternate (which is fine — Google just won't see a translation that doesn't exist).
+- **Reciprocity.** A page reachable in one locale should be reachable in the others for the `hreflang` loop to hold. Your built-in pages, blog, and usecases handle this for you; for custom pages, missing translations simply don't get an alternate (which is fine — Google just won't see a translation that doesn't exist).
 - **Your sitemap reflects the locale URLs.** The [`@astrojs/sitemap`](https://docs.astro.build/en/guides/integrations-guide/sitemap/) integration handles this automatically when i18n is configured.
 
 Run a [Lighthouse](https://developer.chrome.com/docs/lighthouse/) SEO audit after deploying — with i18n correctly configured you should score 100/100 on the SEO section without extra work.
@@ -296,7 +296,7 @@ Run a [Lighthouse](https://developer.chrome.com/docs/lighthouse/) SEO audit afte
 src/content/blog/en/  →  src/content/blog/zh-CN/
 ```
 
-The locale code in `i18n.config.ts` and the folder name under `src/content/blog/` (and `src/content/projects/`) must match — the folder name is what the route resolves to. The bundled posts and projects carry an explicit `locale` field for exactly this reason, and the build validates the pairing, so a non-English default works end to end: the built-in pages, blog index, posts, pagination, tag archives, RSS feed, and dynamic OG images all follow the configured default rather than assuming English.
+The locale code in `i18n.config.ts` and the folder name under `src/content/blog/` (and `src/content/usecases/`) must match — the folder name is what the route resolves to. The bundled posts and usecases carry an explicit `locale` field for exactly this reason, and the build validates the pairing, so a non-English default works end to end: the built-in pages, blog index, posts, pagination, tag archives, RSS feed, and dynamic OG images all follow the configured default rather than assuming English.
 
 ## Turning it back off
 
@@ -307,7 +307,7 @@ enabled: false,
 locales: ['en'],
 ```
 
-Deploy. The `LanguageSwitcher` disappears, `hreflang` tags stop emitting, the `/<locale>/` routes vanish, and the site returns to single-locale behavior. Your `src/pages/nl/`, `src/content/blog/nl/`, `src/content/projects/nl/`, and `src/i18n/nl.json` files stay in the repo — dormant but preserved. The built-in pages (Home, About, Docs, Contact) are generated automatically for every locale in the config. Flip the flag back when you're ready.
+Deploy. The `LanguageSwitcher` disappears, `hreflang` tags stop emitting, the `/<locale>/` routes vanish, and the site returns to single-locale behavior. Your `src/pages/nl/`, `src/content/blog/nl/`, `src/content/usecases/nl/`, and `src/i18n/nl.json` files stay in the repo — dormant but preserved. The built-in pages (Home, About, Docs, Contact) are generated automatically for every locale in the config. Flip the flag back when you're ready.
 
 ## What's next
 
@@ -317,6 +317,6 @@ The system covers the full surface of a marketing-plus-blog site today. A few th
 - **Per-page locale-slug mapping** for custom pages that want fully localized URLs in addition to translated content.
 - **A pure-CSS `LanguageSwitcher`** using `<details>`, removing the small inline JS the dropdown panel needs today.
 
-This feature exists, and has matured, because the community asked. It started with [#207](https://github.com/hansmartensdev/Astro-Rocket/issues/207); the auto-loaded dictionaries, locale-validated schemas, non-English default locale, dictionary-driven pages, automatic blog and projects routing, and fully localized chrome all came from real-world reports and requests ([#414](https://github.com/hansmartensdev/Astro-Rocket/issues/414), [#415](https://github.com/hansmartensdev/Astro-Rocket/issues/415), [#418](https://github.com/hansmartensdev/Astro-Rocket/issues/418), [#419](https://github.com/hansmartensdev/Astro-Rocket/issues/419), [#422](https://github.com/hansmartensdev/Astro-Rocket/issues/422), [#437](https://github.com/hansmartensdev/Astro-Rocket/issues/437), [#438](https://github.com/hansmartensdev/Astro-Rocket/issues/438)). Thanks to everyone who filed them. If you build something with the i18n system and hit a rough edge, [open an issue](https://github.com/hansmartensdev/Astro-Rocket/issues) — the next iteration will come the same way.
+This feature exists, and has matured, because the community asked. It started with [#207](https://github.com/hansmartensdev/Astro-Rocket/issues/207); the auto-loaded dictionaries, locale-validated schemas, non-English default locale, dictionary-driven pages, automatic blog and usecases routing, and fully localized chrome all came from real-world reports and requests ([#414](https://github.com/hansmartensdev/Astro-Rocket/issues/414), [#415](https://github.com/hansmartensdev/Astro-Rocket/issues/415), [#418](https://github.com/hansmartensdev/Astro-Rocket/issues/418), [#419](https://github.com/hansmartensdev/Astro-Rocket/issues/419), [#422](https://github.com/hansmartensdev/Astro-Rocket/issues/422), [#437](https://github.com/hansmartensdev/Astro-Rocket/issues/437), [#438](https://github.com/hansmartensdev/Astro-Rocket/issues/438)). Thanks to everyone who filed them. If you build something with the i18n system and hit a rough edge, [open an issue](https://github.com/hansmartensdev/Astro-Rocket/issues) — the next iteration will come the same way.
 
 For now: flip the flag, add your content in a second language, translate the dictionary, and ship it. The complete reference is in the [Internationalization (i18n) section of the README](https://github.com/hansmartensdev/Astro-Rocket#internationalization-i18n) — keep it open while you set up your second locale.

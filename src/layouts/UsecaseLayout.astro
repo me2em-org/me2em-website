@@ -6,20 +6,20 @@ import BaseLayout from './BaseLayout.astro';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
 import Breadcrumbs from '@/components/seo/Breadcrumbs.astro';
-import ProjectHero from '@/components/projects/ProjectHero.astro';
+import UsecaseHero from '@/components/usecases/UsecaseHero.astro';
 import TableOfContents from '@/components/blog/TableOfContents.astro';
 import CtaBand from '@/components/patterns/CtaBand.astro';
-import ProjectCard from '@/components/projects/ProjectCard.astro';
+import UsecaseCard from '@/components/usecases/UsecaseCard.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import siteConfig from '@/config/site.config';
-import { getDefaultOgPath, getProjectOgPath, isShareableImage } from '@/lib/og/svg';
+import { getDefaultOgPath, getUsecaseOgPath, isShareableImage } from '@/lib/og/svg';
 import { t, getLocaleFromPath, localizedPath, getLocales } from '@/i18n';
 import {
-  getProjectSlug,
-  getProjectsBaseUrl,
-  getProjectTranslations,
-} from '@/lib/projects';
+  getUsecaseSlug,
+  getUsecasesBaseUrl,
+  getUsecaseTranslations,
+} from '@/lib/usecases';
 
 interface Props {
   title: string;
@@ -31,11 +31,11 @@ interface Props {
   imageAlt?: string;
   gallery?: GallerySlide[];
   tags?: string[];
-  /** Project slug, used to resolve the per-project dynamic OG image. */
+  /** Usecase slug, used to resolve the per-usecase dynamic OG image. */
   slug?: string;
-  related?: CollectionEntry<'projects'>[];
+  related?: CollectionEntry<'usecases'>[];
   headings?: MarkdownHeading[];
-  /** Per-project override: hide table of contents on this project */
+  /** Per-usecase override: hide table of contents on this usecase */
   toc?: boolean;
 }
 
@@ -58,19 +58,19 @@ const {
 const locale = getLocaleFromPath(Astro.url.pathname);
 
 // Raster only — see the note in BlogLayout: an SVG cover cannot serve as a
-// share image, so projects without a screenshot fall back to the card generated
-// at build time (see src/pages/og/projects/[slug].png.ts). `slug` is the full
-// (locale-prefixed) project id, so strip the locale to match the OG route.
+// share image, so usecases without a screenshot fall back to the card generated
+// at build time (see src/pages/og/usecases/[slug].png.ts). `slug` is the full
+// (locale-prefixed) usecase id, so strip the locale to match the OG route.
 const ogImage =
   image && isShareableImage(image.src)
     ? image.src
     : slug
-      ? getProjectOgPath(getProjectSlug(slug, locale))
+      ? getUsecaseOgPath(getUsecaseSlug(slug, locale))
       : getDefaultOgPath();
 
 const ogImageAlt = ogImage === image?.src ? imageAlt || title : title;
 
-// Mirror the blog TOC wiring — projects use the same site-wide config.
+// Mirror the blog TOC wiring — usecases use the same site-wide config.
 const tocConfig = siteConfig.articleFeatures?.toc;
 const showToc = !!tocConfig?.enabled && tocOverride !== false;
 const tocLayout = tocConfig?.layout ?? 'auto';
@@ -84,23 +84,23 @@ const sidebarOnLeft = (tocConfig?.sidebarPosition ?? 'right') === 'left';
 
 const breadcrumbs = [
   { label: t('common.home', locale), href: localizedPath('/', locale) },
-  { label: t('usecases.title', locale), href: getProjectsBaseUrl(locale) },
+  { label: t('usecases.title', locale), href: getUsecasesBaseUrl(locale) },
   { label: title },
 ];
 
-const projectsHref = getProjectsBaseUrl(locale);
+const usecasesHref = getUsecasesBaseUrl(locale);
 const contactUrl = localizedPath('/contact', locale);
 
-// Resolve this project's real per-locale URLs so the hreflang tags and the
-// LanguageSwitcher point at the matching translation. Projects share one slug
+// Resolve this usecase's real per-locale URLs so the hreflang tags and the
+// LanguageSwitcher point at the matching translation. Usecases share one slug
 // across locales, so unlike the blog (which uses canonical uids) matching the
 // locale-stripped slug is enough. hreflang lists only verified translations;
-// the switcher shows every locale, falling back to a locale's projects index
-// when this project has no translation there, so switching never 404s.
-const projectTranslations = await getProjectTranslations(getProjectSlug(slug, locale), locale);
-const translationByLocale = new Map(projectTranslations.map((tr) => [tr.locale, tr.url]));
+// the switcher shows every locale, falling back to a locale's usecases index
+// when this usecase has no translation there, so switching never 404s.
+const usecaseTranslations = await getUsecaseTranslations(getUsecaseSlug(slug, locale), locale);
+const translationByLocale = new Map(usecaseTranslations.map((tr) => [tr.locale, tr.url]));
 const languageAlternates = Object.fromEntries(
-  getLocales().map((loc) => [loc, translationByLocale.get(loc) ?? getProjectsBaseUrl(loc)])
+  getLocales().map((loc) => [loc, translationByLocale.get(loc) ?? getUsecasesBaseUrl(loc)])
 );
 ---
 
@@ -109,7 +109,7 @@ const languageAlternates = Object.fromEntries(
   description={description}
   image={ogImage}
   imageAlt={ogImageAlt}
-  localeAlternates={projectTranslations}
+  localeAlternates={usecaseTranslations}
 >
   <Header
     slot="header"
@@ -124,7 +124,7 @@ const languageAlternates = Object.fromEntries(
   />
 
   <div class="min-h-screen pt-16">
-    <ProjectHero
+    <UsecaseHero
       title={title}
       description={description}
       meta={meta}
@@ -189,9 +189,9 @@ const languageAlternates = Object.fromEntries(
           </div>
 
           <footer class="border-border mt-12 border-t pt-8 flex justify-center" data-reveal>
-            <Button href={projectsHref} variant="brand-outline" size="sm">
+            <Button href={usecasesHref} variant="brand-outline" size="sm">
               <Icon name="arrow-left" size="sm" />
-              {t('usecases.backToProjects', locale)}
+              {t('usecases.backToUsecases', locale)}
             </Button>
           </footer>
         </div>
@@ -212,13 +212,13 @@ const languageAlternates = Object.fromEntries(
     {related.length > 0 && (
       <section class="py-[var(--space-section-md)] bg-background-secondary border-t border-border" data-reveal>
         <div class="mx-auto max-w-7xl px-6">
-          <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">{t('usecases.moreProjects', locale)}</h2>
+          <h2 class="font-display text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">{t('usecases.moreUsecases', locale)}</h2>
           <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {/* The same card the projects index, the paginated pages, the tag
+            {/* The same card the usecases index, the paginated pages, the tag
                 archives and the homepage use. `reveal={false}` because the
                 section above already carries the trigger. */}
             {related.map((project, i) => (
-              <ProjectCard project={project} index={i} locale={locale} reveal={false} />
+              <UsecaseCard usecase={project} index={i} locale={locale} reveal={false} />
             ))}
           </div>
         </div>
@@ -239,8 +239,8 @@ const languageAlternates = Object.fromEntries(
             {t('usecases.ctaPrimary', locale)}
             <Icon name="arrow-right" size="sm" />
           </Button>
-          <Button size="lg" variant="outline" class="cta-btn-brand" href={projectsHref}>
-            {t('usecases.allProjects', locale)}
+          <Button size="lg" variant="outline" class="cta-btn-brand" href={usecasesHref}>
+            {t('usecases.allUsecases', locale)}
             <Icon name="arrow-right" size="sm" />
           </Button>
         </div>
