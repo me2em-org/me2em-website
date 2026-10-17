@@ -1,6 +1,6 @@
 ---
 /**
- * ServicesView — the Services page body.
+ * DocsView — the Docs page body.
  *
  * Shared by the default-locale route (`/docs`) and the locale-prefixed
  * route (`/<locale>/docs`). All copy is read from the `pages.docs.*`
@@ -27,7 +27,7 @@ interface IncludedItem {
   lead: string;
   text: string;
 }
-interface Service {
+interface Package {
   badge: string;
   heading: string;
   paragraphs: string[];
@@ -59,9 +59,9 @@ const hero = tData<{ badge: string; titleLead: string; titleHighlight: string; d
   'pages.docs.hero',
   locale
 )!;
-const design = tData<Service>('pages.docs.design', locale)!;
-const development = tData<Service>('pages.docs.development', locale)!;
-const performance = tData<Service>('pages.docs.performance', locale)!;
+const design = tData<Package>('pages.docs.design', locale)!;
+const development = tData<Package>('pages.docs.development', locale)!;
+const performance = tData<Package>('pages.docs.performance', locale)!;
 const glossary = tData<{ badge: string; heading: string; lead: string; terms: GlossaryTerm[] }>(
   'pages.docs.glossary',
   locale
@@ -105,7 +105,7 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
   description={t('pages.docs.meta.description', locale)}
   footerBackground="secondary"
 >
-  <Hero layout="centered" size="sm" class="isolate services-hero pb-[calc(var(--space-section-sm)_+_var(--space-stack-lg))]" showHeroHalo>
+  <Hero layout="centered" size="sm" class="isolate docs-hero pb-[calc(var(--space-section-sm)_+_var(--space-stack-lg))]" showHeroHalo>
     <Badge slot="badge" variant="brand" pill>
       <Icon name="sparkles" size="sm" />
       {hero.badge}
@@ -443,7 +443,7 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
             </div>
             <div class="w-full">
               {card.items.map((item) => (
-                <details class="border-b border-border last:border-0" name={`services-faq-${cardIndex}`}>
+                <details class="border-b border-border last:border-0" name={`docs-faq-${cardIndex}`}>
                   <summary class="flex w-full items-center justify-between text-sm py-4 text-left font-medium text-foreground transition-colors hover:text-foreground-secondary cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                     {item.question}
                     <Icon name="chevron-down" size="sm" class="faq-icon shrink-0 text-foreground-muted transition-transform duration-200" />
@@ -492,8 +492,8 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
   }
 
   /* Gentle "scroll down" bounce on the hero jump-button arrows — same motion
-     language as the homepage hero scroll indicator. */
-  .services-hero .hero-jump-arrow {
+      language as the homepage hero scroll indicator. */
+  .docs-hero .hero-jump-arrow {
     animation: hero-jump-arrow-bounce 1.8s ease-in-out infinite;
   }
   @keyframes hero-jump-arrow-bounce {
@@ -501,7 +501,7 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
     50%      { transform: translateY(4px); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .services-hero .hero-jump-arrow { animation: none; }
+    .docs-hero .hero-jump-arrow { animation: none; }
   }
 
   /* Page-local override: anchor links on /docs should land the
@@ -531,8 +531,8 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
      the scroll lands, so cards don't slide in mid-jump. Sections below the
      target stay observed, so natural scrolling still animates normally. */
   (function () {
-    function initServicesHeroJump() {
-      const hero = document.querySelector('.services-hero');
+    function initDocsHeroJump() {
+      const hero = document.querySelector('.docs-hero');
       if (!hero) return;
       const buttons = hero.querySelectorAll('a[href^="#"]');
       if (!buttons.length) return;
@@ -567,9 +567,9 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
     }
 
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initServicesHeroJump);
+      document.addEventListener('DOMContentLoaded', initDocsHeroJump);
     } else {
-      initServicesHeroJump();
+      initDocsHeroJump();
     }
   })();
 </script>

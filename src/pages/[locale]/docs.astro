@@ -1,5 +1,5 @@
 ---
-import ServicesView from '@/components/pages/views/ServicesView.astro';
+import DocsView from '@/components/pages/views/DocsView.astro';
 import { getSecondaryLocales } from '@/i18n';
 
 // Locale-prefixed Docs page (`/<locale>/docs`). One page per non-default
@@ -12,4 +12,4 @@ export function getStaticPaths() {
 const { locale } = Astro.params;
 ---
 
-<ServicesView locale={locale} />
+<DocsView locale={locale} />

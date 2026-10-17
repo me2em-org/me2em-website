@@ -108,8 +108,8 @@ const workWithMe = tData<{ badge: string; heading: string; lead: string; cards: 
   locale
 )!;
 const stackSection = tData<{ badge: string; heading: string; lead: string }>('pages.home.stack', locale)!;
-const servicesSection = tData<{ badge: string; heading: string; lead: string; learnMore: string; cards: IconCard[] }>(
-  'pages.home.services',
+const packagesSection = tData<{ badge: string; heading: string; lead: string; learnMore: string; cards: IconCard[] }>(
+  'pages.home.packages',
   locale
 )!;
 const portfolio = tData<{ badge: string; heading: string; lead: string; viewAll: string }>('pages.home.portfolio', locale)!;
@@ -242,26 +242,26 @@ const tutorialsPara1 = t('pages.home.tutorials.para1', locale);
     </div>
   </section>
 
-  <!-- Services Section -->
+  <!-- Packages Section -->
   <section class="relative z-10 py-[var(--space-section-md)] bg-background border-t border-border">
     <div class="mx-auto max-w-6xl px-6 flex flex-col gap-8">
       <div class="flex flex-col items-center gap-4 text-center" data-reveal>
         <div class="flex flex-col items-center gap-6">
           <Badge variant="brand" pill>
             <Icon name="sparkles" size="sm" />
-            {servicesSection.badge}
+            {packagesSection.badge}
           </Badge>
           <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
-            {servicesSection.heading}
+            {packagesSection.heading}
           </h2>
         </div>
         <p class="text-lg text-foreground-muted max-w-2xl mx-auto">
-          {servicesSection.lead}
+          {packagesSection.lead}
         </p>
       </div>
 
       <div class="grid gap-6 sm:grid-cols-3">
-        {servicesSection.cards.map((card, i) => (
+        {packagesSection.cards.map((card, i) => (
           <ProofTile
             href={docsUrl}
             icon={card.icon}

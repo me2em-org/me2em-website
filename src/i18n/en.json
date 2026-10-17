@@ -562,17 +562,17 @@
       "heading": "What Me2em is",
       "body": "Me2em is a decentralized identity and authorization protocol built on Ed25519 cryptography and standard key-agreement primitives. Nothing to register, no passwords to store: a person, a device, or an AI agent is represented by keys derived locally from a single seed phrase. Every context keeps its own isolated identity, access is delegated and revoked through signed attestations, and servers confirm a session with a single signature check — serverless authentication with minimal latency that minimizes, or removes entirely, the database you have to run and protect. Me2em is for one user who safely becomes many: separate profiles (work, home, the gym), hierarchies of IoT devices and drones, autonomous AI agents under signed mandates, E2EE-encrypted channels, and deterministic passwords for third-party services."
       },
-      "services": {
-      "badge": "Packages",
-      "heading": "Three packages, one seed",
-      "lead": "Everything derives from the same Ed25519 root — start with the core, add encryption and UI when you need them.",
-      "learnMore": "Read the docs",
-      "cards": [
-        { "icon": "layout", "title": "@me2em/core", "description": "Core primitives for the Me2em authorization protocol: hierarchical deterministic identities, stateless signed sessions, and parent-signed attestation for delegatable, externally verifiable authorization." },
-        { "icon": "code", "title": "@me2em/crypto", "description": "Cryptographic mechanisms for the Me2em protocol: E2EE channels, X3DH key exchange, purpose-based key derivation, and envelope patterns for offline recipients and media chunk encryption." },
-        { "icon": "atom", "title": "@me2em/react", "description": "React bindings for the Me2em protocol: identity lifecycle hooks, seed-phrase UX components, session management, and an encrypted per-identity context cache." }
-      ]
-      },
+       "packages": {
+       "badge": "Packages",
+       "heading": "Three packages, one seed",
+       "lead": "Everything derives from the same Ed25519 root — start with the core, add encryption and UI when you need them.",
+       "learnMore": "Read the docs",
+       "cards": [
+         { "icon": "layout", "title": "@me2em/core", "description": "Core primitives for the Me2em authorization protocol: hierarchical deterministic identities, stateless signed sessions, and parent-signed attestation for delegatable, externally verifiable authorization." },
+         { "icon": "code", "title": "@me2em/crypto", "description": "Cryptographic mechanisms for the Me2em protocol: E2EE channels, X3DH key exchange, purpose-based key derivation, and envelope patterns for offline recipients and media chunk encryption." },
+         { "icon": "atom", "title": "@me2em/react", "description": "React bindings for the Me2em protocol: identity lifecycle hooks, seed-phrase UX components, session management, and an encrypted per-identity context cache." }
+       ]
+       },
       "workWithMe": {
         "badge": "Features",
         "heading": "Guaranteed by cryptography",

@@ -623,26 +623,26 @@
         "heading": "The whole idea, in one paragraph",
         "body": "Me2em is a decentralized identity and authorization protocol built on Ed25519 cryptography and standard key-agreement primitives. Nothing to register, no passwords to store: a person, a device, or an AI agent is represented by keys derived locally from a single seed phrase. Every context keeps its own isolated identity, access is delegated and revoked through signed attestations, and servers confirm a session with a single signature check — serverless authentication with minimal latency that minimizes, or removes entirely, the database you have to run and protect. Me2em is for one user who safely becomes many: separate profiles (work, home, the gym), hierarchies of IoT devices and drones, autonomous AI agents under signed mandates, E2EE-encrypted channels, and deterministic passwords for third-party services."
       },
-      "services": {
-        "badge": "我做什么",
-        "heading": "设计、构建、优化",
-        "lead": "每个项目都获得所有三项服务。",
-        "learnMore": "了解更多",
+      "packages": {
+        "badge": "软件包",
+        "heading": "三个软件包，一个种子",
+        "lead": "一切都源自同一个 Ed25519 根——从核心开始，在需要时添加加密和 UI。",
+        "learnMore": "阅读文档",
         "cards": [
           {
             "icon": "layout",
-            "title": "网页设计",
-            "description": "感觉直观的用户界面。围绕你的内容、品牌和人们实际在屏幕上阅读方式塑造的布局。"
+            "title": "@me2em/core",
+            "description": "Me2em 授权协议的核心原语：层次化确定性身份、无状态签名会话和父级签名证明，用于可委托、可外部验证的授权。"
           },
           {
             "icon": "code",
-            "title": "网页开发",
-            "description": "经久耐用的网站。Astro、Tailwind和干净的架构：第一天快，第500天易于维护。"
+            "title": "@me2em/crypto",
+            "description": "Me2em 协议的加密机制：E2EE 通道、X3DH 密钥交换、基于目的的密钥派生以及用于离线接收者和媒体块加密的信封模式。"
           },
           {
-            "icon": "trending-up",
-            "title": "网页优化",
-            "description": "SEO、Core Web Vitals和可访问性，从第一天开始构建，让你的网站排名好、加载快、为每个访客服务。"
+            "icon": "atom",
+            "title": "@me2em/react",
+            "description": "Me2em 协议的 React 绑定：身份生命周期钩子、种子短语 UX 组件、会话管理和加密的 per-identity 上下文缓存。"
           }
         ]
       },

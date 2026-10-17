@@ -86,7 +86,7 @@ export interface ResolvedNavItem {
 
 export const navItems: NavItem[] = [
   { label: 'Home', href: '/', order: 0, labelKey: 'nav.items.home' },
-  { label: 'Services', href: '/docs', order: 1, labelKey: 'nav.items.services' },
+  { label: 'Docs', href: '/docs', order: 1, labelKey: 'nav.items.services' },
   { label: 'Use cases', href: '/usecases', order: 2, labelKey: 'nav.items.usecases' },
   { label: 'Blog', href: '/blog', order: 3, labelKey: 'nav.items.blog' },
   { label: 'Sandbox', href: '/sandbox', order: 4, labelKey: 'nav.items.about' },
@@ -95,7 +95,7 @@ export const navItems: NavItem[] = [
 
 export const footerNavItems: NavItem[] = [
   { label: 'Home', href: '/', order: 0, labelKey: 'nav.items.home' },
-  { label: 'Services', href: '/docs', order: 1, labelKey: 'nav.items.services' },
+  { label: 'Docs', href: '/docs', order: 1, labelKey: 'nav.items.services' },
   { label: 'Use cases', href: '/usecases', order: 2, labelKey: 'nav.items.usecases' },
   { label: 'Blog', href: '/blog', order: 3, labelKey: 'nav.items.blog' },
   { label: 'Sandbox', href: '/sandbox', order: 4, labelKey: 'nav.items.about' },
