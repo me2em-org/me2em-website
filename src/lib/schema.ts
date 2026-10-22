@@ -35,14 +35,6 @@ export function createPersonSchema(): WithContext<Person> {
     url: siteConfig.url,
     email: siteConfig.email,
     ...(siteConfig.authorImage ? { image: `${siteConfig.url}${siteConfig.authorImage}` } : {}),
-    ...(siteConfig.address?.country
-      ? {
-          address: {
-            '@type': 'PostalAddress',
-            addressCountry: siteConfig.address.country,
-          },
-        }
-      : {}),
     sameAs: siteConfig.socialLinks,
   };
 }
@@ -59,16 +51,7 @@ export function createProfessionalServiceSchema(): WithContext<LocalBusiness> {
     email: siteConfig.email,
     ...(siteConfig.phone ? { telephone: siteConfig.phone } : {}),
     ...(siteConfig.authorImage ? { image: `${siteConfig.url}${siteConfig.authorImage}` } : {}),
-    ...(siteConfig.address?.country
-      ? {
-          address: {
-            '@type': 'PostalAddress',
-            addressCountry: siteConfig.address.country,
-          },
-        }
-      : {}),
     areaServed: [
-      { '@type': 'Country', name: 'Netherlands' },
       { '@type': 'Country', name: 'Worldwide' },
     ],
     sameAs: siteConfig.socialLinks,

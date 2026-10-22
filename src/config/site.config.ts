@@ -19,10 +19,6 @@ export interface SiteConfig {
   author: string;
   email: string;
   phone?: string;
-  address?: {
-    street: string;
-    country: string;
-  };
   socialLinks: string[];
   /**
    * Header options. Set `showSocialLinks: true` to render an icon link in the
@@ -272,10 +268,6 @@ const siteConfig: SiteConfig = {
   ogImage: '/og/default.png',
   author: 'Me2em',
   email: 'hello@me2em.com',
-  address: {
-    street: '',
-    country: 'the Netherlands',
-  },
   socialLinks: [
     'https://github.com/me2em-org',
   ],

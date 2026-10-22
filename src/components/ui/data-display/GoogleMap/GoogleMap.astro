@@ -9,7 +9,6 @@
  */
 import type { HTMLAttributes } from 'astro/types';
 import { PUBLIC_GOOGLE_MAPS_API_KEY, PUBLIC_CONSENT_ENABLED } from 'astro:env/client';
-import siteConfig from '@/config/site.config';
 import { cn } from '@/lib/cn';
 import { googleMapVariants } from './googleMap.variants';
 import { t, getLocaleFromPath } from '@/i18n';
@@ -48,15 +47,12 @@ const {
 
 const hasApiKey = !!PUBLIC_GOOGLE_MAPS_API_KEY;
 
-// Build query — prefer lat/lng, fall back to address, then siteConfig.address
+// Build query — prefer lat/lng, fall back to address
 let query = '';
 if (lat !== undefined && lng !== undefined) {
   query = `${lat},${lng}`;
 } else if (address) {
   query = address;
-} else if (siteConfig.address) {
-  const a = siteConfig.address;
-  query = [a.street, a.country].filter(Boolean).join(', ');
 }
 
 // Build iframe src (only when key exists)
