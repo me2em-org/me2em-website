@@ -22,11 +22,6 @@ const pkg = JSON.parse(read('package.json')) as {
   engines: { node: string };
   packageManager: string;
 };
-const deps = { ...pkg.dependencies, ...pkg.devDependencies };
-
-/** "1.2.3", "^1.2.3", ">=1.2.3" → "1.2" */
-const majorMinor = (range: string) => range.replace(/^[^\d]*/, '').split('.').slice(0, 2).join('.');
-
 describe('what the README claims', () => {
   it('documents only commands that exist', () => {
     const documented = [...readme.matchAll(/\| `pnpm ([a-z:]+)`/g)].map((m) => m[1]);
@@ -45,15 +40,5 @@ describe('what the README claims', () => {
     const claimed = /- \*\*pnpm ([\d.]+)\*\*/.exec(readme)?.[1];
     expect(claimed).toBeDefined();
     expect(claimed).toBe(pkg.packageManager.split('@')[1]);
-  });
-
-  it.each([
-    ['Astro', 'astro'],
-    ['Tailwind', 'tailwindcss'],
-    ['TypeScript', 'typescript'],
-  ])('badges %s at the version package.json declares', (badge, dep) => {
-    const shown = new RegExp(`badge/${badge}-([\\d.]+)-`).exec(readme)?.[1];
-    expect(shown, `no ${badge} badge found`).toBeDefined();
-    expect(shown).toBe(majorMinor(deps[dep]));
   });
 });

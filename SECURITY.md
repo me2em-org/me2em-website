@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-Security fixes are released for the latest published version of Astro Rocket.
+Security fixes are released for the latest published version of Me2em website.
 The theme is distributed by cloning the repository, so the way to receive a fix
 is to update from upstream — see the update guide on the theme blog.
 
@@ -19,9 +19,9 @@ tells everyone running the theme about the weakness before there is a fix.
 Report it privately in one of two ways:
 
 1. **GitHub Security Advisories** — preferred. Go to the repository's
-   **Security** tab and choose **Report a vulnerability**. This keeps the
-   report private and creates a place to discuss the fix.
-2. **Email** — `hello@hansmartens.dev`, if you would rather not use GitHub.
+    **Security** tab and choose **Report a vulnerability**. This keeps the
+    report private and creates a place to discuss the fix.
+2. **Email** — `hello@me2em.com`, if you would rather not use GitHub.
 
 Useful things to include, as far as you can:
 

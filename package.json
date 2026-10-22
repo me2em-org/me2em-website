@@ -1,6 +1,6 @@
 {
-  "name": "astro-rocket",
-  "version": "2.6.0",
+  "name": "me2em-website",
+  "version": "0.1.0",
   "packageManager": "pnpm@10.33.0",
   "description": "Me2em website",
   "type": "module",
@@ -8,23 +8,18 @@
   "license": "MIT",
   "keywords": [
     "astro",
-    "astro-theme",
-    "theme",
-    "tailwind",
+    "react",
     "tailwindcss",
-    "typescript",
-    "blog",
-    "starter",
-    "boilerplate",
-    "seo"
+    "me2em",
+    "i18n"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/hansmartensdev/astro-rocket"
+    "url": "git+https://github.com/me2em-org/me2em-website.git"
   },
-  "homepage": "https://github.com/hansmartensdev/astro-rocket#readme",
+  "homepage": "https://github.com/me2em-org/me2em-website#readme",
   "bugs": {
-    "url": "https://github.com/hansmartensdev/astro-rocket/issues"
+    "url": "https://github.com/me2em-org/me2em-website/issues"
   },
   "scripts": {
     "dev": "ASTRO_DEV=1 astro dev",

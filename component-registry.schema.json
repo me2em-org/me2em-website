@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/hansmartensdev/astro--rocket/component-registry.schema.json",
-  "title": "Astro Rocket Component Registry",
-  "description": "Schema for the Astro Rocket component registry",
+  "$id": "https://github.com/me2em-org/me2em-website/component-registry.schema.json",
+  "title": "Me2em website component registry",
+  "description": "Schema for the Me2em website component registry",
   "type": "object",
   "required": ["version", "categories", "utilities", "components"],
   "properties": {

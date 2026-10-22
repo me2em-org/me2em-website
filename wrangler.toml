@@ -7,7 +7,7 @@
 # are merged into that generated config at build time. Deploy with
 # `npx wrangler deploy`, or connect the repo in the Cloudflare dashboard.
 
-name = "astro-rocket"
+name = "me2em-website"
 compatibility_date = "2026-01-31"
 
 # nodejs_compat is deliberately NOT set here.
