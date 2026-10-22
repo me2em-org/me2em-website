@@ -216,7 +216,7 @@
   },
   "footer": {
     "copyright": "© {year} {siteName}",
-    "credit": "Тема от <a href=\"https://hansmartens.dev\" class=\"transition-colors hover:text-foreground\" target=\"_blank\" rel=\"noopener noreferrer\">Hans Martens Dev</a>",
+    "credit": "Протокол от <a href=\"https://github.com/me2em-org\" class=\"transition-colors hover:text-foreground\" target=\"_blank\" rel=\"noopener noreferrer\">Me2em</a>",
     "builtWith": "Создано на базе Astro Rocket",
     "groups": {
       "site": "Сайт",
@@ -381,7 +381,7 @@
               },
               {
                 "question": "Где сообщать об ошибках или предлагать функции?",
-                "answer": "Откройте issue или начните обсуждение в <a href=\"https://github.com/hansmartensdev/astro-rocket\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">репозитории GitHub</a>. Вклады и обратная связь всегда приветствуются."
+                "answer": "Откройте issue или начните обсуждение в <a href=\"https://github.com/me2em-org/me2em-protocol\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">репозитории GitHub</a>. Вклады и обратная связь всегда приветствуются."
               }
             ]
           }
@@ -395,7 +395,7 @@
         "cards": [
           {
             "title": "Создано Hans Martens Dev",
-            "text": "Astro Rocket спроектирован и создан <a href=\"https://hansmartens.dev\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">Hans Martens Dev</a> — разработчиком тем Astro из Veghel, Нидерланды."
+            "text": "Протокол Me2em — децентрализованная система идентичности и авторизации, основанная на seed-подходе — открытый исходный код, свободное использование, созданный для сообщества."
           },
           {
             "title": "Лицензия MIT",

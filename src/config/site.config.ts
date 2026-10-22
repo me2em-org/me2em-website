@@ -274,7 +274,7 @@ const siteConfig: SiteConfig = {
   // (PNG or JPEG): social platforms don't render SVG share images.
   ogImage: '/og/default.png',
   author: 'Hans Martens',
-  email: 'hello@hansmartens.dev',
+  email: 'hello@me2em.com',
   address: {
     street: '',
     city: 'Amsterdam',
@@ -283,19 +283,13 @@ const siteConfig: SiteConfig = {
     country: 'the Netherlands',
   },
   socialLinks: [
-    'https://github.com/hansmartensdev',
-    // 'https://x.com/hansmartens_dev',
-    // 'https://www.linkedin.com/in/hansmartensdev',
-    // 'https://bsky.app/profile/hansmartensdev.bsky.social',
+    'https://github.com/me2em-org',
   ],
   header: {
     // Flip to `true` to show the social icons (incl. GitHub) in the header.
     showSocialLinks: false,
   },
-  twitter: {
-    site: 'https://x.com/hansmartens_dev',
-    creator: '@hansmartens_dev',
-  },
+
   verification: {
     google: GOOGLE_SITE_VERIFICATION,
     bing: BING_SITE_VERIFICATION,

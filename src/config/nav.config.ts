@@ -128,10 +128,9 @@ export const footerLinkGroups: FooterLinkGroupConfig[] = [
     title: 'Got questions?',
     links: [
       { label: 'FAQ', href: '/docs#faq' },
-      { label: 'Email', href: 'mailto:hello@hansmartens.dev' },
+      { label: 'Email', href: 'mailto:hello@me2em.com' },
       { label: 'GitHub', href: 'https://github.com/me2em-org/me2em-protocol', external: true },
-      { label: 'LinkedIn', href: 'https://www.linkedin.com/in/hansmartensdev', external: true },
-      { label: 'Bluesky', href: 'https://bsky.app/profile/hansmartensdev.bsky.social', external: true },
+      { label: 'Telegram', href: 'https://t.me/me2em_protocol', external: true },
     ],
   },
 ];

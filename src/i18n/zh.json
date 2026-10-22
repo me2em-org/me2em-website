@@ -216,7 +216,7 @@
   },
   "footer": {
     "copyright": "© {year} {siteName}",
-    "credit": "主题由 <a href=\"https://hansmartens.dev\" class=\"transition-colors hover:text-foreground\" target=\"_blank\" rel=\"noopener noreferrer\">Hans Martens Dev</a> 提供",
+    "credit": "协议由 <a href=\"https://github.com/me2em-org\" class=\"transition-colors hover:text-foreground\" target=\"_blank\" rel=\"noopener noreferrer\">Me2em</a> 提供",
     "builtWith": "基于Astro Rocket构建",
     "groups": {
       "site": "网站",
@@ -381,7 +381,7 @@
               },
               {
                 "question": "在哪里报告bug或建议功能？",
-                "answer": "在<a href=\"https://github.com/hansmartensdev/astro-rocket\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">GitHub仓库</a>上创建issue或开始讨论。欢迎贡献和反馈。"
+                "answer": "在<a href=\"https://github.com/me2em-org/me2em-protocol\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">GitHub仓库</a>上创建issue或开始讨论。欢迎贡献和反馈。"
               }
             ]
           }
@@ -395,7 +395,7 @@
         "cards": [
           {
             "title": "由Hans Martens Dev制作",
-            "text": "Astro Rocket由<a href=\"https://hansmartens.dev\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">Hans Martens Dev</a>设计并构建——一位来自荷兰Veghel的Astro主题开发者。"
+            "text": "Me2em协议是一个去中心化的种子衍生身份和授权系统——开源、免费使用、为社区而建。"
           },
           {
             "title": "MIT许可证",

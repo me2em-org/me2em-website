@@ -1,9 +1,7 @@
 {
-  "name": "Astro Rocket",
-  "bio": "Astro Rocket is a free, open-source Astro 7 starter theme to build anything on. Made for speed, accessibility, and developer experience — clone it and build something beautiful.",
+  "name": "Me2em Team",
+  "bio": "Maintainers of the Me2em protocol — a decentralized, seed-derived identity and authorization protocol.",
   "social": {
-    "github": "https://github.com",
-    "linkedin": "https://linkedin.com",
-    "twitter": "https://x.com"
+    "github": "https://github.com/me2em-org"
   }
 }
