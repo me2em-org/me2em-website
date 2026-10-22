@@ -646,9 +646,8 @@ import StackMarquee from '@/components/landing/StackMarquee.astro';
           </div>
           <div class="showcase-content !p-0 overflow-hidden rounded-b-xl">
             <Footer layout="columns" columns={2} hideLogo background="secondary">
-              <div
-                slot="columns"
-                class="grid grid-cols-2 xl:grid-cols-4 gap-y-[var(--space-stack-lg)] gap-x-8">
+              <div slot="columns">
+                <div class="grid grid-cols-2 xl:grid-cols-4 gap-y-[var(--space-stack-lg)] gap-x-8">
                   {[
                     {
                       title: 'Product',

@@ -8,7 +8,7 @@ Me2em is a production website, not a starter theme. You are here to help develop
 src/config/          Site settings — start here for almost any request
 src/content/         The site's content (Markdown/MDX/JSON collections)
 src/i18n/            All user-facing interface text, per language
-src/components/      42 components, grouped by purpose
+src/components/      41 components, grouped by purpose
 src/pages/           Routes; a file here is a URL
 src/layouts/         Page shells the routes render into
 src/lib/             Helpers for blog, projects, tags, SEO, themes
