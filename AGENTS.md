@@ -1,9 +1,6 @@
 # Working in this codebase
 
-Astro Rocket is a starter theme. You are almost certainly here to help someone
-build **their** website on top of it, not to develop the theme itself. This file
-tells you where everything lives and which conventions to follow, so you can
-make changes that fit rather than changes that merely work.
+Me2em is a production website, not a starter theme. You are here to helpdevelop the site itself — pages, components, content and configuration. This file tells you where everything lives and which conventions to follow, so you can make changes that fit rather than changes that merely work.
 
 ## The shape of the project
 
@@ -93,7 +90,7 @@ trust the theme, so a commit message is part of the product.
 - **Present tense, describing the code after the change.** "Scope demo content
   to the demo deployment", not "Fixed the demo leaking".
 - **The subject names the change; it does not argue for it.** "Rewrite the
-  README overview", not "Say what Astro Rocket is before saying what is inside
+  README overview", not "Say what the project is before saying what is inside
   it". No comparisons, no "not X but Y", no reasoning in the title — that is
   what the body is for. Somebody scanning the history wants to know what each
   commit did.

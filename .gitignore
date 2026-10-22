@@ -50,3 +50,4 @@ coverage/
 
 # npm lockfile (pnpm only)
 package-lock.json
+BACKLOG.md
