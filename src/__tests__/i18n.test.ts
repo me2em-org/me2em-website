@@ -163,13 +163,13 @@ describe('i18n swapLocaleInPath()', () => {
 describe('i18n meta titles never embed the site name', () => {
   // SEO.astro renders the document <title> as `${title} — ${siteConfig.name}`,
   // so any meta-title dictionary value that already contains the site name
-  // would render it twice (e.g. "Blog — Astro Rocket — Astro Rocket"). Every
+  // would render it twice (e.g. "Blog — Me2em — Me2em"). Every
   // key below feeds that `title` prop and must therefore stay brand-free.
   //
   // The shipped brand is checked as a literal on purpose: importing
   // site.config.ts here would pull in `astro:env/server` (see i18n.config.ts),
   // and this guards the theme's own default dictionaries against a regression.
-  const SITE_NAME = 'Astro Rocket';
+  const SITE_NAME = 'Me2em';
   const METATITLE_KEYS = [
     'blog.metaTitle',
     'blog.pageMetaTitle',
@@ -181,7 +181,7 @@ describe('i18n meta titles never embed the site name', () => {
     'pages.home.meta.title',
     'pages.sandbox.meta.title',
     'pages.docs.meta.title',
-    'pages.contact.meta.title',
+    'pages.community.meta.title',
   ];
 
   const cases = ['en', 'ru'].flatMap((locale) =>

@@ -31,7 +31,7 @@ describe('nav config — locale resolution (en default, ru secondary)', () => {
       '/ru/usecases',
       '/ru/blog',
       '/ru/sandbox',
-      '/ru/contact',
+      '/ru/community',
     ]);
   });
 
@@ -62,20 +62,20 @@ describe('nav config — locale resolution (en default, ru secondary)', () => {
 
   it('applies a per-locale override (label + path), still locale-prefixed', () => {
     const item: NavItem = {
-      label: 'Contact',
-      href: '/contact',
+      label: 'Community',
+      href: '/community',
       order: 1,
-      locales: { ru: { label: 'Связаться', href: '/svyaz' } },
+      locales: { ru: { label: 'Сообщество', href: '/soobshchestvo' } },
     };
     expect(resolveNavItem(item, 'ru')).toEqual({
-      label: 'Связаться',
-      href: '/ru/svyaz',
+      label: 'Сообщество',
+      href: '/ru/soobshchestvo',
       external: undefined,
     });
     // The default locale is unaffected by a ru-only override.
     expect(resolveNavItem(item, 'en')).toEqual({
-      label: 'Contact',
-      href: '/contact',
+      label: 'Community',
+      href: '/community',
       external: undefined,
     });
   });

@@ -21,10 +21,10 @@ describe('normalizeUid', () => {
 describe('buildUidIndex', () => {
   it('indexes posts by uid then locale, deriving slug and title', () => {
     const index = buildUidIndex([
-      post('en/astro-rocket-configuration-guide', 'configuration-guide', 'Config Guide'),
+      post('en/me2em-configuration-guide', 'configuration-guide', 'Config Guide'),
     ]);
     expect(index.get('configuration-guide')?.get('en')).toEqual({
-      slug: 'astro-rocket-configuration-guide',
+      slug: 'me2em-configuration-guide',
       title: 'Config Guide',
     } satisfies ResolvedPost);
   });
