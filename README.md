@@ -50,7 +50,7 @@ swatches are shown, in what order, and whether each is offered at all.
 
 ## Components
 
-44 production components across four categories — UI, patterns, layout, and
+42 production components across four categories — UI, patterns, layout, and
 hero — all accessible with TypeScript.
 
 ## Internationalization
