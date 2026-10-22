@@ -46,8 +46,8 @@ ENV SITE_URL=$SITE_URL
 # Empty is the default and behaves as unset: no measurement id injects no
 # gtag, and an empty PUBLIC_CONSENT_ENABLED resolves to false.
 #
-# RESEND_API_KEY, RESEND_FROM_EMAIL, RESEND_AUDIENCE_ID and NEWSLETTER_API_KEY
-# are not here: they are read by the API routes, and the runtime image is
+# NEWSLETTER_API_KEY
+# is not here: it is read by the API routes, and the runtime image is
 # nginx serving static files.
 ARG PUBLIC_GA_MEASUREMENT_ID=
 ARG PUBLIC_GTM_ID=

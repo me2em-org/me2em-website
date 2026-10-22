@@ -18,9 +18,8 @@ compatibility_date = "2026-01-31"
 # failure is silent. Bisected to this one line: with `name` and
 # `compatibility_date` alone all 89 pages render correctly.
 #
-# Neither on-demand route imports a `node:` builtin — contact.ts and
-# newsletter.ts use astro/zod and the Resend SDK, both of which target edge
-# runtimes — so the flag looks unnecessary. That is reasoned from the imports
+# Neither on-demand route imports a `node:` builtin — contact.ts uses
+# astro/zod, which targets edge runtimes — so the flag looks unnecessary. That is reasoned from the imports
 # and a clean build, not from a deployed Worker: if the forms fail in
 # production, set the flag on the Worker itself (Cloudflare dashboard →
 # Settings → Runtime) rather than here, so it never reaches the build.
