@@ -56,7 +56,7 @@ if (lat !== undefined && lng !== undefined) {
   query = address;
 } else if (siteConfig.address) {
   const a = siteConfig.address;
-  query = [a.street, a.city, a.state, a.zip, a.country].filter(Boolean).join(', ');
+  query = [a.street, a.country].filter(Boolean).join(', ');
 }
 
 // Build iframe src (only when key exists)

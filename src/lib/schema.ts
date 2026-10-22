@@ -35,13 +35,11 @@ export function createPersonSchema(): WithContext<Person> {
     url: siteConfig.url,
     email: siteConfig.email,
     ...(siteConfig.authorImage ? { image: `${siteConfig.url}${siteConfig.authorImage}` } : {}),
-    ...(siteConfig.address?.city
+    ...(siteConfig.address?.country
       ? {
           address: {
             '@type': 'PostalAddress',
-            addressLocality: siteConfig.address.city,
-            addressRegion: 'Noord-Brabant',
-            addressCountry: 'NL',
+            addressCountry: siteConfig.address.country,
           },
         }
       : {}),
@@ -61,13 +59,11 @@ export function createProfessionalServiceSchema(): WithContext<LocalBusiness> {
     email: siteConfig.email,
     ...(siteConfig.phone ? { telephone: siteConfig.phone } : {}),
     ...(siteConfig.authorImage ? { image: `${siteConfig.url}${siteConfig.authorImage}` } : {}),
-    ...(siteConfig.address?.city
+    ...(siteConfig.address?.country
       ? {
           address: {
             '@type': 'PostalAddress',
-            addressLocality: siteConfig.address.city,
-            addressRegion: 'Noord-Brabant',
-            addressCountry: 'NL',
+            addressCountry: siteConfig.address.country,
           },
         }
       : {}),

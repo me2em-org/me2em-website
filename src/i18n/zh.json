@@ -600,7 +600,6 @@
       "emailLabel": "邮箱",
       "emailNote": "给我们留言",
       "socialNote": "关注",
-      "basedIn": "位于{country}",
       "securityNote": "Security — responsible disclosure process"
     },
     "home": {

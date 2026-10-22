@@ -539,8 +539,7 @@
       "securityNote": "Security — responsible disclosure process",
       "emailLabel": "Email",
       "emailNote": "Drop us a line",
-      "socialNote": "Contact",
-      "basedIn": "Talk to the Me2em team"
+      "socialNote": "Contact"
     },
     "home": {
       "meta": {

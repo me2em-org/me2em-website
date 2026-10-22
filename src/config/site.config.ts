@@ -21,9 +21,6 @@ export interface SiteConfig {
   phone?: string;
   address?: {
     street: string;
-    city: string;
-    state: string;
-    zip: string;
     country: string;
   };
   socialLinks: string[];
@@ -273,13 +270,10 @@ const siteConfig: SiteConfig = {
   // Point this at a file in `public/` to use your own — it has to be a raster
   // (PNG or JPEG): social platforms don't render SVG share images.
   ogImage: '/og/default.png',
-  author: 'Hans Martens',
+  author: 'Me2em',
   email: 'hello@me2em.com',
   address: {
     street: '',
-    city: 'Amsterdam',
-    state: '',
-    zip: '',
     country: 'the Netherlands',
   },
   socialLinks: [
