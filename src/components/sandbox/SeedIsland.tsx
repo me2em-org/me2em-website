@@ -294,7 +294,6 @@ function VerifyForm({
   seed,
   verifyIndices,
   paperText,
-  onPaperChange,
 }: {
   realWords: string[];
   onVerified: () => void;
@@ -303,7 +302,6 @@ function VerifyForm({
   seed: SeedCopy;
   verifyIndices: readonly [number, number, number];
   paperText: string;
-  onPaperChange: (v: string) => void;
 }) {
   const [inputs, setInputs] = useState<string[]>(['', '', '']);
   const [errorShown, setErrorShown] = useState(false);
@@ -570,7 +568,6 @@ function SeedIslandInner({ seed: seedCopy }: { seed: SeedCopy }) {
           seed={seedCopy}
           verifyIndices={state.verifyIndices!}
           paperText={paperText}
-          onPaperChange={handlePaperChange}
         />
       )}
 

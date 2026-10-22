@@ -115,8 +115,8 @@ const usecases = defineCollection({
        * placeholders. Falls back to "layers" when unset.
        */
       icon: z.string().optional(),
-      url: z.string().url().optional(),
-      repo: z.string().url().optional(),
+      url: z.string().url().optional() as z.ZodOptional<z.ZodString>,
+      repo: z.string().url().optional() as z.ZodOptional<z.ZodString>,
       image: image().optional(),
       imageAlt: z.string().optional(),
       /**
@@ -174,7 +174,7 @@ const stack = defineCollection({
     name: z.string(),
     description: z.string(),
     version: z.string(),
-    url: z.string().url(),
+    url: z.string().url() as z.ZodString,
     icon: z.string(), // icon name, e.g. 'brand-astro'
     colorOklch: z.string(), // OKLCH params, e.g. '62.5% 0.22 38'
     order: z.number().default(0),
