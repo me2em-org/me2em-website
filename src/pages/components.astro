@@ -42,7 +42,7 @@ import { Hero } from '@/components/hero';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
 import SearchInput from '@/components/patterns/SearchInput.astro';
-import NewsletterForm from '@/components/patterns/NewsletterForm.astro';
+
 import PasswordInput from '@/components/patterns/PasswordInput.astro';
 import StatCard from '@/components/patterns/StatCard.astro';
 import EmptyState from '@/components/patterns/EmptyState.astro';
@@ -59,7 +59,7 @@ import StackMarquee from '@/components/landing/StackMarquee.astro';
 
   <!-- Hero Section -->
   <Hero layout="split" size="lg">
-    <Badge slot="badge" variant="brand" pill>42 production components</Badge>
+    <Badge slot="badge" variant="brand" pill>41 production components</Badge>
 
     <h1 slot="title">
       Component <span class="text-brand-500">Library</span>
@@ -629,8 +629,8 @@ import StackMarquee from '@/components/landing/StackMarquee.astro';
           Footer Columns Layout — large site
 
           The same layout as above, arranged the way a medium or large site
-          uses it: a wide first column carrying a newsletter block, four link
-          groups beside it, and the social row moved down into the bottom bar.
+          uses it: a wide first column, four link groups beside it, and the
+          social row moved down into the bottom bar.
 
           Nothing here is a new component. `columns={2}` splits the row into
           the wide column and the link area, and the four groups get their own
@@ -642,35 +642,13 @@ import StackMarquee from '@/components/landing/StackMarquee.astro';
         <div class="component-showcase">
           <div class="showcase-header">
             <span class="showcase-label">Columns Layout — large site</span>
-            <span class="showcase-hint">Newsletter block, four link groups, social row in the bottom bar</span>
+            <span class="showcase-hint">Brand column, four link groups, social row in the bottom bar</span>
           </div>
           <div class="showcase-content !p-0 overflow-hidden rounded-b-xl">
             <Footer layout="columns" columns={2} hideLogo background="secondary">
-              <!--
-                One child spanning the whole row, holding its own asymmetric
-                grid. The layout's own grid is two equal halves, so capping the
-                signup block inside one of them leaves dead space rather than
-                giving the link groups room — the halves stay 50/50 whatever
-                the content does. Spanning it and splitting it here is the only
-                way to get a narrow signup column beside a wide link area, and
-                it is still slots and utility classes, with nothing changed in
-                the component.
-              -->
               <div
                 slot="columns"
-                class="md:col-span-2 grid gap-y-[var(--space-stack-lg)] gap-x-12 md:grid-cols-[minmax(0,300px)_1fr] lg:grid-cols-[minmax(0,340px)_1fr]"
-              >
-                <NewsletterForm
-                  layout="stacked"
-                  size="sm"
-                  heading="Let's keep in touch"
-                  description="Get new components and releases in your inbox."
-                />
-
-                <!-- Four across only at `xl`. Below that each column falls
-                     under about 130px and labels like "Terms of Service" break
-                     across two lines. -->
-                <div class="grid grid-cols-2 xl:grid-cols-4 gap-y-[var(--space-stack-lg)] gap-x-8">
+                class="grid grid-cols-2 xl:grid-cols-4 gap-y-[var(--space-stack-lg)] gap-x-8">
                   {[
                     {
                       title: 'Product',
@@ -2172,32 +2150,6 @@ import StackMarquee from '@/components/landing/StackMarquee.astro';
             <SearchInput size="sm" placeholder="Search files..." />
             <SearchInput placeholder="Search components..." />
             <SearchInput size="lg" placeholder="Search documentation..." />
-          </div>
-        </div>
-
-        <!-- NewsletterForm -->
-        <div class="grid gap-6 lg:grid-cols-2">
-          <div class="component-showcase">
-            <div class="showcase-header">
-              <span class="showcase-label">Newsletter Form</span>
-              <span class="showcase-hint">Side by side from sm up</span>
-            </div>
-            <div class="showcase-content">
-              <NewsletterForm
-                heading="Subscribe to the newsletter"
-                description="Get the latest posts in your inbox."
-                note="No spam. Unsubscribe with one click."
-              />
-            </div>
-          </div>
-          <div class="component-showcase">
-            <div class="showcase-header">
-              <span class="showcase-label">Newsletter Form — stacked</span>
-              <span class="showcase-hint">For narrow columns and footers</span>
-            </div>
-            <div class="showcase-content">
-              <NewsletterForm layout="stacked" size="sm" />
-            </div>
           </div>
         </div>
 

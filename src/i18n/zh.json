@@ -164,19 +164,6 @@
     "contactTitle": "社区",
     "contactDesc": "问题、反馈和安全报告。"
   },
-  "newsletter": {
-    "heading": "订阅通讯",
-    "description": "在您的收件箱中获取最新文章。",
-    "emailPlaceholder": "输入您的邮箱",
-    "subscribe": "订阅",
-    "subscribing": "订阅中…",
-    "success": "感谢订阅！",
-    "genericError": "出了点问题",
-    "notConfigured": "尚未配置——设置RESEND_API_KEY和RESEND_AUDIENCE_ID以启用。只有你能看到这一行。",
-    "unavailable": "目前无法注册。",
-    "error": "订阅失败。请再试一次。"
-  },
-
   "theme": {
     "selectColourTheme": "选择颜色主题",
     "colourTheme": "颜色主题",
@@ -243,7 +230,7 @@
         "items": [
           {
             "icon": "component",
-            "title": "42个设计组件",
+            "title": "41个设计组件",
             "description": "从按钮到hero区域：类型化、可访问、一致，并在实时展示中记录。"
           },
           {
@@ -284,7 +271,7 @@
           {
             "icon": "server",
             "title": "表单和部署",
-            "description": "防垃圾邮件的联系和newsletter表单，以及一键部署到Vercel、Netlify或Cloudflare。"
+            "description": "防垃圾邮件的联系表单，以及一键部署到Vercel、Netlify或Cloudflare。"
           }
         ]
       },
@@ -628,15 +615,15 @@
     "home": {
       "meta": {
         "title": "免费开源Astro 7主题",
-        "description": "一个免费、快速的Astro 7启动主题，可以在其上构建任何内容：42个设计组件、8个颜色主题、深色模式和内置i18n。"
+        "description": "一个免费、快速的Astro 7启动主题，可以在其上构建任何内容：41个设计组件、8个颜色主题、深色模式和内置i18n。"
       },
       "hero": {
         "badge": "接受新项目",
         "titleLine1": "Me2em —",
         "titleLine2": "网页设计师",
         "titleLine3": "& 开发者",
-        "description": "一个免费、闪电般的Astro 7启动主题，可以在其上构建任何内容：42个设计组件、8个颜色主题和深色模式。",
-        "descriptionMobile": "一个免费、闪电般的Astro 7启动主题，可以在其上构建任何内容：42个设计组件和8个颜色主题。",
+        "description": "一个免费、闪电般的Astro 7启动主题，可以在其上构建任何内容：41个设计组件、8个颜色主题和深色模式。",
+        "descriptionMobile": "一个免费、闪电般的Astro 7启动主题，可以在其上构建任何内容：41个设计组件和8个颜色主题。",
         "github": "在GitHub上获取",
         "getStarted": "开始使用"
       },

@@ -164,19 +164,6 @@
     "contactTitle": "Community",
     "contactDesc": "Questions, feedback, and security reports."
   },
-  "newsletter": {
-    "heading": "Subscribe to the newsletter",
-    "description": "Get the latest posts in your inbox.",
-    "emailPlaceholder": "Enter your email",
-    "subscribe": "Subscribe",
-    "subscribing": "Subscribing…",
-    "success": "Thanks for subscribing!",
-    "genericError": "Something went wrong",
-    "notConfigured": "Not configured yet — set RESEND_API_KEY and RESEND_AUDIENCE_ID to switch this on. Only you can see this line.",
-    "unavailable": "Signups are not available right now.",
-    "error": "Subscription failed. Please try again."
-  },
-
   "theme": {
     "selectColourTheme": "Select colour theme",
     "colourTheme": "Colour theme",
@@ -233,7 +220,7 @@
         "items": [
           {
             "icon": "component",
-            "title": "42 designed components",
+            "title": "41 designed components",
             "description": "From buttons to hero sections: typed, accessible, consistent, and documented in a live showcase."
           },
           {
@@ -274,7 +261,7 @@
           {
             "icon": "server",
             "title": "Forms & deploy",
-            "description": "Newsletter forms with spam protection, and one-switch deploys to Vercel, Netlify, or Cloudflare."
+            "description": "Contact forms with spam protection, and one-switch deploys to Vercel, Netlify, or Cloudflare."
           }
         ]
       },

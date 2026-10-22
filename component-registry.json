@@ -425,23 +425,6 @@
       },
       "premium": false
     },
-    "newsletter-form": {
-      "name": "NewsletterForm",
-      "category": "patterns",
-      "files": [
-        "src/components/patterns/NewsletterForm.astro"
-      ],
-      "dependencies": {
-        "utilities": [
-          "cn"
-        ],
-        "components": [
-          "input",
-          "button"
-        ]
-      },
-      "premium": false
-    },
     "npm-copy-button": {
       "name": "NpmCopyButton",
       "category": "ui",

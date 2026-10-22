@@ -31,8 +31,6 @@ import { t, tData, getLocaleFromPath } from '@/i18n';
 import { getDerivedFooterGroups } from '@/lib/footer';
 import { resolveSocialLinks } from '@/lib/utils';
 import { getRssUrl } from '@/lib/blog';
-import NewsletterForm from '@/components/patterns/NewsletterForm.astro';
-
 export interface NavItem {
   label: string;
   href: string;
@@ -156,13 +154,6 @@ const resolvedLegalLinks: LegalLink[] = legalLinks ?? getLegalLinks(locale);
  */
 const resolvedLinkGroups: FooterLinkGroup[] =
   linkGroups.length > 0 ? linkGroups : layout === 'columns' ? await getDerivedFooterGroups(locale) : [];
-
-/**
- * The signup block takes the wide first column when the site offers a
- * newsletter. The form knows whether it has keys and says so itself, so this
- * only asks whether a newsletter is wanted at all.
- */
-const showFooterNewsletter = layout === 'columns' && !!siteConfig.newsletter?.enabled;
 
 /**
  * An explicit `columns` wins. Without one the grid counts what is actually
@@ -418,11 +409,7 @@ function getSocialIcon(platform: string): string {
                   {hasTaglineSlot ? <slot name="tagline" /> : tagline}
                 </p>
               )}
-              {showFooterNewsletter && !hasLogoSlot && (
-                <div class="max-w-xs pt-2">
-                  <NewsletterForm layout="stacked" size="sm" description={t('newsletter.description', locale)} />
-                </div>
-              )}
+
             </div>
           )}
 

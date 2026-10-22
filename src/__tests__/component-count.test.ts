@@ -23,7 +23,7 @@ const read = (p: string) => readFileSync(join(process.cwd(), p), 'utf8');
 
 describe('component count', () => {
   it('the registry is the number the copy quotes', () => {
-    expect(COUNT).toBe(42);
+    expect(COUNT).toBe(41);
   });
 
   it('every file the registry lists exists', () => {
