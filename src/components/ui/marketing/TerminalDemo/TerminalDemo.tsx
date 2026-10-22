@@ -22,17 +22,17 @@ interface ScriptLine {
   type: LineType;
 }
 
-// Astro Rocket setup flow: clone → install → dev
+// Me2em setup flow: clone → install → dev
 const script: ScriptLine[] = [
   // Step 1: clone
-  { text: '$ git clone https://github.com/hansmartensdev/Astro-Rocket.git', delay: 1200, type: 'command' },
+  { text: '$ git clone https://github.com/me2em-org/me2em-website.git', delay: 1200, type: 'command' },
   { text: '', delay: 200, type: 'command' },
-  { text: 'Cloning into \'Astro-Rocket\'...', delay: 300, type: 'prompt-hint' },
+  { text: 'Cloning into \'me2em-website\'...', delay: 300, type: 'prompt-hint' },
   { text: '✔  Repository cloned', delay: 600, type: 'success' },
   { text: '', delay: 200, type: 'prompt-label' },
 
   // Step 2: install
-  { text: '$ cd Astro-Rocket && pnpm install', delay: 600, type: 'command' },
+  { text: '$ cd me2em-website && pnpm install', delay: 600, type: 'command' },
   { text: '', delay: 200, type: 'command' },
   { text: '◐  Resolving dependencies...', delay: 400, type: 'spinner' },
   { text: '✔  Dependencies installed', delay: 700, type: 'success' },

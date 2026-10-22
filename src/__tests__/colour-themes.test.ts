@@ -21,7 +21,6 @@ import { join } from 'node:path';
 import { colourThemes, selectorThemes } from '../lib/themes';
 import en from '../i18n/en.json';
 import ru from '../i18n/ru.json';
-import zh from '../i18n/zh.json';
 import siteConfig from '../config/site.config';
 
 const COUNT = colourThemes.length;
@@ -114,7 +113,7 @@ describe('colour themes', () => {
     expect(siteConfig.description).toContain(`${COUNT} colour themes`);
     expect(JSON.stringify(en)).toContain(`${COUNT} colour themes`);
     expect(JSON.stringify(ru)).toContain(`${COUNT} цветовых тем`);
-    // zh.json no longer references Astro Rocket's colour-theme count.
+    // zh.json no longer references Me2em's colour-theme count.
   });
 
   it('the README quotes the count', () => {

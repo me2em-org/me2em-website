@@ -54,7 +54,7 @@ describe('blog URL helpers (i18n disabled — default)', () => {
   });
 
   it('builds a tag URL from the slugified tag', () => {
-    expect(getTagUrl('astro-rocket')).toBe('/blog/tag/astro-rocket');
+    expect(getTagUrl('me2em')).toBe('/blog/tag/me2em');
     expect(getTagUrl('Web Performance')).toBe('/blog/tag/web-performance');
   });
 

@@ -1,5 +1,5 @@
 <!--
-  Astro Rocket hero — the rocket leaving a horizon.
+  Rocket hero — the rocket leaving a horizon.
 
   Two drawings, one file. The wide one
   is 1200×520; the tall one is 720×620 and takes over once the image itself
@@ -223,7 +223,7 @@
   </g>
 
   <text x="600" y="322" text-anchor="middle" class="sh-kicker">Launch your next site with</text>
-  <text x="600" y="400" text-anchor="middle" class="sh-word">Astro Rocket</text>
+  <text x="600" y="400" text-anchor="middle" class="sh-word">Me2em</text>
 
   <ellipse cx="600" cy="960" rx="900" ry="512" class="sh-planet"/>
   <ellipse cx="600" cy="960" rx="900" ry="512" class="sh-atmo-3"/>
@@ -407,7 +407,7 @@
   </g>
 
   <text x="360" y="376" text-anchor="middle" class="sh-kicker">Launch your next site with</text>
-  <text x="360" y="452" text-anchor="middle" class="sh-word">Astro Rocket</text>
+  <text x="360" y="452" text-anchor="middle" class="sh-word">Me2em</text>
 
   <ellipse cx="360" cy="940" rx="620" ry="420" class="sh-planet"/>
   <ellipse cx="360" cy="940" rx="620" ry="420" class="sh-atmo-3"/>

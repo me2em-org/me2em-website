@@ -1,6 +1,6 @@
 # Working in this codebase
 
-Me2em is a production website, not a starter theme. You are here to helpdevelop the site itself — pages, components, content and configuration. This file tells you where everything lives and which conventions to follow, so you can make changes that fit rather than changes that merely work.
+Me2em is a production website, not a starter theme. You are here to help develop the site itself — pages, components, content and configuration. This file tells you where everything lives and which conventions to follow, so you can make changes that fit rather than changes that merely work.
 
 ## The shape of the project
 
@@ -8,7 +8,7 @@ Me2em is a production website, not a starter theme. You are here to helpdevelop 
 src/config/          Site settings — start here for almost any request
 src/content/         The site's content (Markdown/MDX/JSON collections)
 src/i18n/            All user-facing interface text, per language
-src/components/      44 components, grouped by purpose
+src/components/      42 components, grouped by purpose
 src/pages/           Routes; a file here is a URL
 src/layouts/         Page shells the routes render into
 src/lib/             Helpers for blog, projects, tags, SEO, themes

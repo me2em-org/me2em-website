@@ -23,7 +23,7 @@ export const PROJECTS_PER_PAGE = siteConfig.usecases?.perPage ?? 12;
 
 /**
  * Strip the locale prefix (and any `.md`/`.mdx` extension) from a usecase id to
- * get its URL slug (e.g. "en/astro-rocket" → "astro-rocket"). Mirrors
+ * get its URL slug (e.g. "en/me2em" → "me2em"). Mirrors
  * `getPostSlug` in `./blog`.
  */
 export function getUsecaseSlug(usecaseId: string, locale: string = defaultLocale): string {
