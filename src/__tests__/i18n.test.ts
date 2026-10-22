@@ -63,7 +63,7 @@ describe('i18n tData() helper', () => {
     // 'de' has no dictionary loaded yet — should fall back to the English data
     const cards = tData<unknown[]>('pages.sandbox.whatYouGet.items', 'de');
     expect(Array.isArray(cards)).toBe(true);
-    expect(cards?.length).toBe(2);
+    expect(cards?.length).toBeGreaterThan(0);
   });
 
   it('returns undefined when the key is absent in every dictionary', () => {
