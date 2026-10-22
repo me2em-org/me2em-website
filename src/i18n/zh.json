@@ -19,7 +19,7 @@
       "usecases": "用例",
       "blog": "博客",
       "sandbox": "Sandbox",
-      "contact": "联系"
+      "contact": "社区"
     }
   },
   "common": {
@@ -34,9 +34,9 @@
     "home": "首页",
     "map": "地图",
     "mapConsentPrompt": "接受Cookie以加载交互式地图。",
-    "viewOnGoogleMaps": "在Google Maps上查看",
+
     "themeModeTitle": "主题：{mode}（点击切换）",
-    "googleMaps": "Google Maps",
+
     "progress": "进度",
     "themeMode": "主题：{mode}",
     "browseByTag": "按标签浏览",
@@ -68,13 +68,13 @@
     "shareOn": "在{platform}上分享",
     "copyLink": "复制链接",
     "metaTitle": "博客",
-    "metaDescription": "Astro Rocket博客：有关设置、配置和使用该主题的实用指南。",
+    "metaDescription": "Me2em博客：有关设置、配置和使用该主题的实用指南。",
     "heroBadge": "所有文章",
     "heroDescription": "关于Astro Rocket你需要知道的一切，用实用指南来解释。",
     "allPosts": "所有文章",
     "noPosts": "未找到文章",
     "pageMetaTitle": "博客 — 第{page}页",
-    "pageMetaDescription": "第{page}页，共{total}页 — 有关设置、配置和使用Astro Rocket的实用指南。",
+    "pageMetaDescription": "第{page}页，共{total}页 — 有关设置、配置和使用Me2em的实用指南。",
     "pageBadge": "第{page}页，共{total}页",
     "newestPosts": "最新文章",
     "tagMetaTitle": "#{tag} — 博客",
@@ -92,7 +92,7 @@
     "rssFeed": "RSS订阅",
     "cta": {
       "heading": "准备开始了吗？",
-      "description": "克隆Astro Rocket，选择一个主题，在几分钟内启动你的下一个项目。",
+        "description": "克隆Me2em，选择一个主题，在几分钟内启动你的下一个项目。",
       "button": "开始使用"
     }
   },
@@ -161,8 +161,8 @@
     "tryInstead": "试试这些",
     "usecasesDesc": "精选作品和案例研究。",
     "blogDesc": "关于设计、代码和技艺的笔记。",
-    "contactTitle": "联系",
-    "contactDesc": "开始关于你项目的对话。"
+    "contactTitle": "社区",
+    "contactDesc": "问题、反馈和安全报告。"
   },
   "newsletter": {
     "heading": "订阅通讯",
@@ -176,20 +176,7 @@
     "unavailable": "目前无法注册。",
     "error": "订阅失败。请再试一次。"
   },
-  "contact": {
-    "heading": "联系我们",
-    "name": "姓名",
-    "email": "邮箱",
-    "subject": "主题",
-    "message": "消息",
-    "send": "发送消息",
-    "sending": "发送中…",
-    "success": "消息发送成功！",
-    "genericError": "出了点问题",
-    "notConfigured": "尚未配置——设置RESEND_API_KEY以启用。只有你能看到这一行。",
-    "unavailable": "此表单目前不可用。",
-    "error": "发送消息失败。请再试一次。"
-  },
+
   "theme": {
     "selectColourTheme": "选择颜色主题",
     "colourTheme": "颜色主题",
@@ -217,7 +204,7 @@
   "footer": {
     "copyright": "© {year} {siteName}",
     "credit": "协议由 <a href=\"https://github.com/me2em-org\" class=\"transition-colors hover:text-foreground\" target=\"_blank\" rel=\"noopener noreferrer\">Me2em</a> 提供",
-    "builtWith": "基于Astro Rocket构建",
+    "builtWith": "基于Astro构建",
     "groups": {
       "site": "网站",
       "topics": "主题",
@@ -229,7 +216,7 @@
   "pages": {
     "sandbox": {
       "meta": {
-        "title": "Sandbox — Me2em",
+        "title": "Sandbox",
         "description": "Me2em protocol sandbox: real seed phrases, derived Handles, stateless sessions — all running in your browser."
       },
       "hero": {
@@ -256,7 +243,7 @@
         "items": [
           {
             "icon": "component",
-            "title": "44个设计组件",
+            "title": "42个设计组件",
             "description": "从按钮到hero区域：类型化、可访问、一致，并在实时展示中记录。"
           },
           {
@@ -304,7 +291,7 @@
       "principles": {
         "badge": "设计原则",
         "heading": "有意图地构建",
-        "lead": "Astro Rocket中的每个决定，从组件结构到默认配置，都源于同样的三个原则。",
+        "lead": "Me2em中的每个决定，从组件结构到默认配置，都源于同样的三个原则。",
         "items": [
           {
             "icon": "zap",
@@ -326,7 +313,7 @@
       "stack": {
         "badge": "工具与技术",
         "title": "技术栈",
-        "description": "支撑Astro Rocket的技术，选择它们是因为性能、出色的开发者体验和长期可靠性。"
+        "description": "支撑Me2em的技术，选择它们是因为性能、出色的开发者体验和长期可靠性。"
       },
       "faq": {
         "badge": "需要了解",
@@ -346,16 +333,16 @@
                 "answer": "Astro是内容密集型网站的正确工具：最少的JavaScript、干净的HTML、开箱即用的优秀SEO和不打扰你的开发者体验。它精简、有目的性且经久耐用。"
               },
               {
-                "question": "用Astro Rocket能构建什么？",
-                "answer": "作品集、企业网站、营销页面、博客、文档站点——任何内容驱动型项目。Astro Rocket为你提供结构、组件和默认设置，让你立刻开始。"
+                "question": "用Me2em能构建什么？",
+                "answer": "作品集、企业网站、营销页面、博客、文档站点——任何内容驱动型项目。Me2em为你提供结构、组件和默认设置，让你立刻开始。"
               },
               {
-                "question": "Astro Rocket是否列在Astro官方主题目录中？",
-                "answer": "是的。<a href=\"https://astro.build/themes/details/astro-rocket/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">Astro Rocket</a>列在Astro官方主题目录中，是一个免费的生产就绪主题。"
+                "question": "Me2em是否列在Astro官方主题目录中？",
+                "answer": "是的。<a href=\"https://astro.build/themes/details/me2em/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">Me2em</a>列在Astro官方主题目录中，是一个免费的生产就绪主题。"
               },
               {
-                "question": "Astro Rocket会跟进新的Astro版本吗？",
-                "answer": "会的。Astro Rocket actively维护并更新以跟踪新的Astro版本。关注博客或观看GitHub仓库获取更新。"
+                "question": "Me2em会跟进新的Astro版本吗？",
+                "answer": "会的。Me2em actively维护并更新以跟踪新的Astro版本。关注博客或观看GitHub仓库获取更新。"
               }
             ]
           },
@@ -365,11 +352,11 @@
             "items": [
               {
                 "question": "使用免费吗？",
-                "answer": "是的，完全免费。Astro Rocket采用MIT许可证——用于个人和商业项目，不需要署名。"
+                "answer": "是的，完全免费。Me2em采用MIT许可证——用于个人和商业项目，不需要署名。"
               },
               {
                 "question": "如何切换主题？",
-                "answer": "更改配置中的一行。Astro Rocket附带8个手工制作的配色主题——即时切换，无需触碰一行CSS。"
+                "answer": "更改配置中的一行。Me2em附带8个手工制作的配色主题——即时切换，无需触碰一行CSS。"
               },
               {
                 "question": "是否支持TypeScript？",
@@ -377,7 +364,7 @@
               },
               {
                 "question": "如何为自己的语言添加i18n？",
-                "answer": "Astro Rocket的i18n是配置驱动的。在i18n配置文件中添加你的语言区域，创建匹配的翻译文件，路由和界面会自动适配。"
+                "answer": "Me2em的i18n是配置驱动的。在i18n配置文件中添加你的语言区域，创建匹配的翻译文件，路由和界面会自动适配。"
               },
               {
                 "question": "在哪里报告bug或建议功能？",
@@ -390,11 +377,11 @@
       "openSource": {
         "badge": "开源",
         "heading": "公开构建",
-        "description": "Astro Rocket免费、开源且采用MIT许可证。浏览源代码、创建issue、提交PR，或者直接克隆它构建一些伟大的东西。",
+        "description": "Me2em免费、开源且采用MIT许可证。浏览源代码、创建issue、提交PR，或者直接克隆它构建一些伟大的东西。",
         "button": "在GitHub上查看",
         "cards": [
           {
-            "title": "由Hans Martens Dev制作",
+            "title": "由Me2em Dev制作",
             "text": "Me2em协议是一个去中心化的种子衍生身份和授权系统——开源、免费使用、为社区而建。"
           },
           {
@@ -410,7 +397,7 @@
       "cta": {
         "badge": "开始使用",
         "heading": "准备开始了吗？",
-        "description": "克隆Astro Rocket，选择一个主题，在几分钟内启动你的下一个项目。",
+      "description": "克隆Me2em，选择一个主题，在几分钟内启动你的下一个项目。",
         "button": "开始使用"
       },
       "sandbox": {
@@ -461,7 +448,7 @@
     },
     "docs": {
       "meta": {
-        "title": "Documentation — Me2em",
+        "title": "Documentation",
         "description": "API references for every package, a glossary, quick starts, and guides — from first seed phrase to a verified session."
       },
       "includedLabel": "What you get",
@@ -583,37 +570,73 @@
   "tertiary": "Star on GitHub"
 }
     },
-    "contact": {
+    "community": {
       "meta": {
-        "title": "联系",
-        "description": "要开始新事物？我从零开始设计和构建新网站——告诉我你的项目，我会在1个工作日内回复你。"
+        "title": "社区",
+        "description": "问题、想法和安全报告——每个渠道都有它的用途。找到最适合的联系方式。"
       },
       "hero": {
-        "badge": "开始项目",
-        "titleLead": "告诉我你的",
-        "titleHighlight": "新项目",
-        "description": "很想听到你的消息。通过下面的表单发送消息，或通过下面的其他渠道联系。"
+        "badge": "社区",
+        "titleLead": "问题、想法、",
+        "titleHighlight": "漏洞",
+        "description": "问题、想法、漏洞——每个渠道都有它的用途。"
       },
-      "formTitle": "项目详情",
-      "channelsTitle": "Prefer a direct channel? Pick whichever works.",
-      "channelsSubtitle": "Questions about the protocol, integration help, or a security report — tell us what you need and we'll get back to you.",
-      "emailLabel": "邮箱",
-      "emailNote": "给我们留言",
-      "socialNote": "关注",
-      "securityNote": "Security — responsible disclosure process"
+      "channelsTitle": "选择适合的渠道",
+      "channelsSubtitle": "我们按主题分类邮件，确保您的消息到达正确的地方。",
+      "channels": {
+        "security": {
+          "label": "负责任的披露",
+          "note": "私有 — security@me2em.com"
+        },
+        "telegram": {
+          "label": "Telegram",
+          "note": "社区和快速问题"
+        },
+        "issues": {
+          "label": "Bug报告和功能请求",
+          "note": "在GitHub上提交issue"
+        },
+        "discussions": {
+          "label": "问答和想法",
+          "note": "分享用例和模式"
+        },
+        "npm": {
+          "label": "npm包",
+          "note": "npm上的@me2em"
+        },
+        "docs": {
+          "label": "文档",
+          "note": "指南、API参考、术语表"
+        }
+      },
+      "faqTitle": "常见问题",
+      "faq": [
+        {
+          "question": "文档在哪里？",
+          "answer": "所有文档都在 <a href=\"/docs\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">/docs</a> — 核心指南、API参考、术语表和快速入门。"
+        },
+        {
+          "question": "如何报告漏洞？",
+          "answer": "发送邮件至 <a href=\"mailto:security@me2em.com\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">security@me2em.com</a> — 这是唯一的私有渠道。详见协议仓库中的 <a href=\"https://github.com/me2em-org/me2em-protocol/blob/main/SECURITY.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">SECURITY.md</a>。"
+        },
+        {
+          "question": "如何贡献？",
+          "answer": "查看协议仓库中的 <a href=\"https://github.com/me2em-org/me2em-protocol/blob/main/CONTRIBUTING.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">CONTRIBUTING.md</a> — 了解提交issue、创建PR和参与讨论的指南。"
+        }
+      ]
     },
     "home": {
       "meta": {
         "title": "免费开源Astro 7主题",
-        "description": "一个免费、快速的Astro 7启动主题，可以在其上构建任何内容：44个设计组件、8个颜色主题、深色模式和内置i18n。"
+        "description": "一个免费、快速的Astro 7启动主题，可以在其上构建任何内容：42个设计组件、8个颜色主题、深色模式和内置i18n。"
       },
       "hero": {
         "badge": "接受新项目",
-        "titleLine1": "Astro Rocket —",
+        "titleLine1": "Me2em —",
         "titleLine2": "网页设计师",
         "titleLine3": "& 开发者",
-        "description": "一个免费、闪电般的Astro 7启动主题，可以在其上构建任何内容：44个设计组件、8个颜色主题和深色模式。",
-        "descriptionMobile": "一个免费、闪电般的Astro 7启动主题，可以在其上构建任何内容：44个设计组件和8个颜色主题。",
+        "description": "一个免费、闪电般的Astro 7启动主题，可以在其上构建任何内容：42个设计组件、8个颜色主题和深色模式。",
+        "descriptionMobile": "一个免费、闪电般的Astro 7启动主题，可以在其上构建任何内容：42个设计组件和8个颜色主题。",
         "github": "在GitHub上获取",
         "getStarted": "开始使用"
       },

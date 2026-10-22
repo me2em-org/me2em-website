@@ -1,10 +1,7 @@
 ---
-import ContactView from '@/components/pages/views/ContactView.astro';
 import { getSecondaryLocales } from '@/i18n';
 
-// Locale-prefixed Contact page (`/<locale>/contact`). One page per non-default
-// locale; emits nothing when i18n is off. Untranslated copy falls back to the
-// default locale so the LanguageSwitcher never lands on a 404.
+// Locale-prefixed meta-refresh redirect from /<locale>/contact to /<locale>/community.
 export function getStaticPaths() {
   return getSecondaryLocales().map((locale) => ({ params: { locale } }));
 }
@@ -12,4 +9,16 @@ export function getStaticPaths() {
 const { locale } = Astro.params;
 ---
 
-<ContactView locale={locale} />
+<!DOCTYPE html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0;url=/{locale}/community" />
+    <title>Community — Me2em</title>
+  </head>
+  <body>
+    <noscript>
+      <meta http-equiv="refresh" content="0;url=/{locale}/community" />
+    </noscript>
+  </body>
+</html>

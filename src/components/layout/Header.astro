@@ -97,7 +97,7 @@ const {
   nav,
   extraNav = [],
   showCta = false,
-  cta = { label: 'Start a project', href: '/contact' },
+  cta = { label: 'Get in touch', href: '/community' },
   actions = [],
   showSearch = true,
   showThemeToggle = true,
@@ -201,7 +201,7 @@ function getNavIcon(href: string): string {
   if (href.startsWith('/usecases')) return 'layers';
   if (href.startsWith('/docs')) return 'sparkles';
   if (href.startsWith('/sandbox'))    return 'flask-conical';
-  if (href.startsWith('/contact'))  return 'mail';
+  if (href.startsWith('/community')) return 'users';
   if (href.startsWith('#'))         return 'hash';
   if (href.startsWith('http'))      return 'arrow-up-right';
   return 'chevron-right';

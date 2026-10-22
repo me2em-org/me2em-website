@@ -1,0 +1,15 @@
+---
+import CommunityView from '@/components/pages/views/CommunityView.astro';
+import { getSecondaryLocales } from '@/i18n';
+
+// Locale-prefixed Community page (`/<locale>/community`). One page per non-default
+// locale; emits nothing when i18n is off. Untranslated copy falls back to the
+// default locale so the LanguageSwitcher never lands on a 404.
+export function getStaticPaths() {
+  return getSecondaryLocales().map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+---
+
+<CommunityView locale={locale} />

@@ -239,24 +239,7 @@
       },
       "premium": false
     },
-    "contact-form": {
-      "name": "ContactForm",
-      "category": "patterns",
-      "files": [
-        "src/components/patterns/ContactForm.astro"
-      ],
-      "dependencies": {
-        "utilities": [
-          "cn"
-        ],
-        "components": [
-          "input",
-          "textarea",
-          "button"
-        ]
-      },
-      "premium": false
-    },
+
     "cta": {
       "name": "CTA",
       "category": "ui",
@@ -356,23 +339,7 @@
       },
       "premium": false
     },
-    "google-map": {
-      "name": "GoogleMap",
-      "category": "ui",
-      "subcategory": "data-display",
-      "files": [
-        "src/components/ui/data-display/GoogleMap/GoogleMap.astro",
-        "src/components/ui/data-display/GoogleMap/googleMap.variants.ts",
-        "src/components/ui/data-display/GoogleMap/index.ts"
-      ],
-      "dependencies": {
-        "utilities": [
-          "cn"
-        ],
-        "components": []
-      },
-      "premium": false
-    },
+
     "header": {
       "name": "Header",
       "category": "layout",

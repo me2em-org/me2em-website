@@ -90,7 +90,7 @@ export const navItems: NavItem[] = [
   { label: 'Use cases', href: '/usecases', order: 2, labelKey: 'nav.items.usecases' },
   { label: 'Blog', href: '/blog', order: 3, labelKey: 'nav.items.blog' },
   { label: 'Sandbox', href: '/sandbox', order: 4, labelKey: 'nav.items.sandbox' },
-  { label: 'Contact', href: '/contact', order: 5, labelKey: 'nav.items.contact' },
+  { label: 'Community', href: '/community', order: 5, labelKey: 'nav.items.contact' },
 ];
 
 export const footerNavItems: NavItem[] = [
@@ -99,7 +99,7 @@ export const footerNavItems: NavItem[] = [
   { label: 'Use cases', href: '/usecases', order: 2, labelKey: 'nav.items.usecases' },
   { label: 'Blog', href: '/blog', order: 3, labelKey: 'nav.items.blog' },
   { label: 'Sandbox', href: '/sandbox', order: 4, labelKey: 'nav.items.sandbox' },
-  { label: 'Contact', href: '/contact', order: 5, labelKey: 'nav.items.contact' },
+  { label: 'Community', href: '/community', order: 5, labelKey: 'nav.items.contact' },
   { label: 'GitHub', href: 'https://github.com/me2em-org/me2em-protocol', order: 6, external: true },
 ];
 

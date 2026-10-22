@@ -1,9 +1,18 @@
 ---
-import ContactView from '@/components/pages/views/ContactView.astro';
-import { defaultLocale } from '@/i18n';
-
-// The Contact page for the default locale. Additional locales are served by
-// `src/pages/[locale]/contact.astro`, which renders the same view.
+// Meta-refresh redirect from /contact to /community.
+// The site is publicly indexable; keep this as a lightweight redirect so
+// old links don't 404.
 ---
-
-<ContactView locale={defaultLocale} />
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0;url=/community" />
+    <title>Community — Me2em</title>
+  </head>
+  <body>
+    <noscript>
+      <meta http-equiv="refresh" content="0;url=/community" />
+    </noscript>
+  </body>
+</html>

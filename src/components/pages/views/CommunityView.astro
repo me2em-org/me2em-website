@@ -1,0 +1,175 @@
+---
+/**
+ * CommunityView — the Community page body.
+ *
+ * Shared by the default-locale route (`/community`) and the locale-prefixed route
+ * (`/<locale>/community`). Page copy is read from `pages.community.*`.
+ * Zero JavaScript: the channel table and FAQ use only HTML + CSS.
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import { Hero } from '@/components/hero';
+import { t, tData, defaultLocale } from '@/i18n';
+
+interface Props {
+  /** Locale whose copy this page renders. Defaults to the site default. */
+  locale?: string;
+}
+
+const { locale = defaultLocale } = Astro.props;
+
+const hero = tData<{ badge: string; titleLead: string; titleHighlight: string; description: string }>(
+  'pages.community.hero',
+  locale
+)!;
+
+const channels = [
+  {
+    icon: 'shield-check',
+    label: t('pages.community.channels.security.label', locale),
+    value: 'security@me2em.com',
+    note: t('pages.community.channels.security.note', locale),
+    href: 'mailto:security@me2em.com',
+    external: false,
+  },
+  {
+    icon: 'send',
+    label: t('pages.community.channels.telegram.label', locale),
+    value: 't.me/me2em_protocol',
+    note: t('pages.community.channels.telegram.note', locale),
+    href: 'https://t.me/me2em_protocol',
+    external: true,
+  },
+  {
+    icon: 'github',
+    label: t('pages.community.channels.issues.label', locale),
+    value: 'GitHub Issues',
+    note: t('pages.community.channels.issues.note', locale),
+    href: 'https://github.com/me2em-org/me2em-protocol/issues',
+    external: true,
+  },
+  {
+    icon: 'message-circle',
+    label: t('pages.community.channels.discussions.label', locale),
+    value: 'GitHub Discussions',
+    note: t('pages.community.channels.discussions.note', locale),
+    href: 'https://github.com/me2em-org/me2em-protocol/discussions',
+    external: true,
+  },
+  {
+    icon: 'package',
+    label: t('pages.community.channels.npm.label', locale),
+    value: 'npm org/me2em',
+    note: t('pages.community.channels.npm.note', locale),
+    href: 'https://www.npmjs.com/org/me2em',
+    external: true,
+  },
+  {
+    icon: 'book-open',
+    label: t('pages.community.channels.docs.label', locale),
+    value: '/docs',
+    note: t('pages.community.channels.docs.note', locale),
+    href: '/docs',
+    external: false,
+  },
+];
+
+const faq = [
+  {
+    question: t('pages.community.faq.0.question', locale),
+    answer: t('pages.community.faq.0.answer', locale),
+  },
+  {
+    question: t('pages.community.faq.1.question', locale),
+    answer: t('pages.community.faq.1.answer', locale),
+  },
+  {
+    question: t('pages.community.faq.2.question', locale),
+    answer: t('pages.community.faq.2.answer', locale),
+  },
+];
+---
+
+<PageLayout
+  title={t('pages.community.meta.title', locale)}
+  description={t('pages.community.meta.description', locale)}
+  eagerReveal
+>
+  <Hero layout="centered" size="sm" class="isolate" showHeroHalo>
+    <Badge slot="badge" variant="brand" pill>
+      <Icon name="users" size="sm" />
+      {hero.badge}
+    </Badge>
+
+    <h1 slot="title">
+      {hero.titleLead} <span class="text-brand-500">{hero.titleHighlight}</span>
+    </h1>
+
+    <p slot="description" class="!text-balance">
+      {hero.description}
+    </p>
+  </Hero>
+
+  <!-- Channels Section -->
+  <section class="relative isolate overflow-hidden py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="relative z-10 mx-auto max-w-5xl px-6">
+      <div class="text-center mb-8" data-reveal>
+        <h2 class="font-display text-2xl font-bold text-foreground">
+          {t('pages.community.channelsTitle', locale)}
+        </h2>
+        <p class="text-foreground-muted mt-2">
+          {t('pages.community.channelsSubtitle', locale)}
+        </p>
+      </div>
+
+      <!-- Channel table: 6 rows, stacks on mobile -->
+      <div class="space-y-3" data-reveal data-reveal-delay="1">
+        {channels.map((ch) => (
+          <a
+            href={ch.href}
+            {...ch.external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+            class="block group"
+          >
+            <Card hover padding="sm" class="h-full">
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+                  <Icon name={ch.icon} size="sm" />
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="font-semibold text-sm text-foreground">{ch.label}</p>
+                  <p class="text-xs text-foreground-muted truncate">{ch.note}</p>
+                </div>
+                <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
+              </div>
+            </Card>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="relative isolate py-[var(--space-section-md)]">
+    <div class="relative z-10 mx-auto max-w-5xl px-6">
+      <div class="text-center mb-8" data-reveal>
+        <h2 class="font-display text-2xl font-bold text-foreground">
+          {t('pages.community.faqTitle', locale)}
+        </h2>
+      </div>
+
+      <div class="space-y-3 max-w-3xl mx-auto" data-reveal data-reveal-delay="1">
+        {faq.map((item) => (
+          <details class="group rounded-xl border border-border overflow-hidden">
+            <summary class="flex cursor-pointer items-center gap-3 px-5 py-4 font-semibold text-sm text-foreground hover:bg-secondary/50 transition-colors list-none [&::-webkit-details-marker]:hidden">
+              <Icon name="chevron-down" size="sm" class="shrink-0 text-foreground-muted group-open:rotate-180 transition-transform" />
+              {item.question}
+            </summary>
+            <div class="px-5 pb-4 pt-1 text-sm text-foreground-muted leading-relaxed" set:html={item.answer} />
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>

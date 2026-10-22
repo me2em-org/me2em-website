@@ -1,0 +1,9 @@
+---
+import CommunityView from '@/components/pages/views/CommunityView.astro';
+import { defaultLocale } from '@/i18n';
+
+// The Community page for the default locale. Additional locales are served by
+// `src/pages/[locale]/community.astro`, which renders the same view.
+---
+
+<CommunityView locale={defaultLocale} />

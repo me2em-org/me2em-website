@@ -19,7 +19,7 @@
       "usecases": "Use cases",
       "blog": "Blog",
       "sandbox": "Sandbox",
-      "contact": "Contact"
+      "contact": "Community"
     }
   },
   "common": {
@@ -34,9 +34,9 @@
     "home": "Home",
     "map": "Map",
     "mapConsentPrompt": "Accept cookies to load the interactive map.",
-    "viewOnGoogleMaps": "View on Google Maps",
+
     "themeModeTitle": "Theme: {mode} (click to cycle)",
-    "googleMaps": "Google Maps",
+
     "progress": "Progress",
     "themeMode": "Theme: {mode}",
     "browseByTag": "Browse by tag",
@@ -161,7 +161,7 @@
     "tryInstead": "Try one of these instead",
     "usecasesDesc": "Documented scenarios — AI agents, IoT devices, identities.",
     "blogDesc": "Protocol deep dives, tutorials, and architecture notes.",
-    "contactTitle": "Contact",
+    "contactTitle": "Community",
     "contactDesc": "Questions, feedback, and security reports."
   },
   "newsletter": {
@@ -176,20 +176,7 @@
     "unavailable": "Signups are not available right now.",
     "error": "Subscription failed. Please try again."
   },
-  "contact": {
-    "heading": "Get in touch",
-    "name": "Name",
-    "email": "Email",
-    "subject": "Subject",
-    "message": "Message",
-    "send": "Send message",
-    "sending": "Sending…",
-    "success": "Message sent successfully!",
-    "genericError": "Something went wrong",
-    "notConfigured": "Not configured yet — set RESEND_API_KEY to switch this on. Only you can see this line.",
-    "unavailable": "This form is not available right now.",
-    "error": "Failed to send message. Please try again."
-  },
+
   "theme": {
     "selectColourTheme": "Select colour theme",
     "colourTheme": "Colour theme",
@@ -217,7 +204,7 @@
   "footer": {
     "copyright": "© {year} {siteName}",
     "credit": "Protocol by <a href=\"https://github.com/me2em-org\" class=\"transition-colors hover:text-foreground\" target=\"_blank\" rel=\"noopener noreferrer\">Me2em</a>",
-    "builtWith": "Built with Astro Rocket",
+    "builtWith": "Built with Astro",
     "groups": {
       "site": "Site",
       "topics": "Topics",
@@ -229,7 +216,7 @@
   "pages": {
     "sandbox": {
       "meta": {
-        "title": "Sandbox — Me2em",
+        "title": "Sandbox",
         "description": "A hands-on sandbox for the Me2em protocol: real seed phrases, derived Handles, stateless sessions — right in your browser."
       },
       "hero": {
@@ -246,13 +233,13 @@
         "items": [
           {
             "icon": "component",
-            "title": "44 designed components",
+            "title": "42 designed components",
             "description": "From buttons to hero sections: typed, accessible, consistent, and documented in a live showcase."
           },
           {
             "icon": "layout",
             "title": "Pages to start from",
-            "description": "Home, sandbox, docs, contact, blog, usecases, and 404, fully designed and responsive, ready to make your own."
+            "description": "Home, sandbox, docs, community, blog, usecases, and 404, fully designed and responsive, ready to make your own."
           },
           {
             "icon": "palette",
@@ -287,14 +274,14 @@
           {
             "icon": "server",
             "title": "Forms & deploy",
-            "description": "Spam-protected contact and newsletter forms, and one-switch deploys to Vercel, Netlify, or Cloudflare."
+            "description": "Newsletter forms with spam protection, and one-switch deploys to Vercel, Netlify, or Cloudflare."
           }
         ]
       },
       "principles": {
         "badge": "Design Principles",
         "heading": "Built with intention",
-        "lead": "Every decision in Astro Rocket, from component structure to default config, is driven by the same three principles.",
+        "lead": "Every decision in Me2em, from component structure to default config, is driven by the same three principles.",
         "items": [
           { "icon": "zap", "title": "Performance First", "description": "Zero JavaScript by default. Every component is optimised for speed, Core Web Vitals, and lean output." },
           { "icon": "award", "title": "Developer Experience", "description": "TypeScript throughout, sensible defaults, and a component library you can drop straight into any page." },
@@ -304,7 +291,7 @@
       "stack": {
         "badge": "Tools & Tech",
         "title": "The Stack",
-        "description": "The technologies powering Astro Rocket, chosen for performance, great developer experience, and long-term reliability."
+        "description": "The technologies powering Me2em, chosen for performance, great developer experience, and long-term reliability."
       },
       "faq": {
         "badge": "Good to know",
@@ -317,19 +304,19 @@
             "items": [
               { "question": "What is Astro?", "answer": "Astro is a modern web framework built for content-driven sites. It ships zero JavaScript by default — only sending what the page actually needs. The result is fast load times, excellent Core Web Vitals scores, and lean, maintainable code." },
               { "question": "Why build with Astro?", "answer": "Astro is the right tool for content-heavy sites: minimal JavaScript, clean HTML, great SEO out of the box, and a developer experience that stays out of your way. It's lean, purposeful, and built to last." },
-              { "question": "What can I build with Astro Rocket?", "answer": "Portfolios, business sites, marketing pages, blogs, documentation sites — any content-driven project. Astro Rocket gives you the structure, components, and defaults to hit the ground running." },
-              { "question": "Is Astro Rocket listed on the official Astro themes directory?", "answer": "Yes. <a href=\"https://astro.build/themes/details/astro-rocket/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">Astro Rocket</a> is listed on the official Astro themes directory as a free, production-ready theme." },
-              { "question": "Will Astro Rocket keep up with new Astro releases?", "answer": "Yes. Astro Rocket is actively maintained and updated to track new Astro releases. Follow along on the blog or watch the GitHub repository for updates." }
+              { "question": "What can I build with Me2em?", "answer": "Portfolios, business sites, marketing pages, blogs, documentation sites — any content-driven project. Me2em gives you the structure, components, and defaults to hit the ground running." },
+              { "question": "Is Me2em listed on the official Astro themes directory?", "answer": "Yes. <a href=\"https://astro.build/themes/details/me2em/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">Me2em</a> is listed on the official Astro themes directory as a free, production-ready theme." },
+              { "question": "Will Me2em keep up with new Astro releases?", "answer": "Yes. Me2em is actively maintained and updated to track new Astro releases. Follow along on the blog or watch the GitHub repository for updates." }
             ]
           },
           {
             "icon": "code-2",
             "title": "Using the theme",
             "items": [
-              { "question": "Is it free to use?", "answer": "Yes, completely free. Astro Rocket is MIT licensed — use it for personal and commercial projects, no attribution required." },
-              { "question": "How do I switch themes?", "answer": "Change a single line in your config. Astro Rocket ships with 8 hand-crafted colour themes — swap between them instantly without touching a line of CSS." },
+              { "question": "Is it free to use?", "answer": "Yes, completely free. Me2em is MIT licensed — use it for personal and commercial projects, no attribution required." },
+              { "question": "How do I switch themes?", "answer": "Change a single line in your config. Me2em ships with 8 hand-crafted colour themes — swap between them instantly without touching a line of CSS." },
               { "question": "Does it support TypeScript?", "answer": "Yes, TypeScript is used throughout. All components, configs, and utilities are fully typed." },
-              { "question": "How do I add my own language for i18n?", "answer": "Astro Rocket's i18n is config-driven. Add your locale to the i18n config file, create a matching translation file, and the routing and UI adapt automatically." },
+              { "question": "How do I add my own language for i18n?", "answer": "Me2em's i18n is config-driven. Add your locale to the i18n config file, create a matching translation file, and the routing and UI adapt automatically." },
               { "question": "Where do I report bugs or suggest features?", "answer": "Open an issue or start a discussion on the <a href=\"https://github.com/me2em-org/me2em-protocol\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">GitHub repository</a>. Contributions and feedback are always welcome." }
             ]
           }
@@ -338,7 +325,7 @@
       "openSource": {
         "badge": "Open Source",
         "heading": "Built in the open",
-        "description": "Astro Rocket is free, open source, and MIT licensed. Browse the source, open issues, submit PRs, or just clone it and build something great.",
+        "description": "Me2em is free, open source, and MIT licensed. Browse the source, open issues, submit PRs, or just clone it and build something great.",
         "button": "View on GitHub",
         "cards": [
           { "title": "Me2em Protocol", "text": "The Me2em protocol is a decentralized, seed-derived identity and authorization system — open source, free to use, and built for the community." },
@@ -349,7 +336,7 @@
       "cta": {
         "badge": "Get started",
         "heading": "Ready to build?",
-        "description": "Clone Astro Rocket, pick a theme, and launch your next project in minutes.",
+        "description": "Clone Me2em, pick a theme, and launch your next project in minutes.",
         "button": "Get Started"
       },
       "sandbox": {
@@ -400,7 +387,7 @@
     },
     "docs": {
       "meta": {
-        "title": "Documentation — Me2em",
+        "title": "Documentation",
         "description": "API references for every package, a glossary, quick starts, and guides — from first seed phrase to a verified session."
       },
       "includedLabel": "What you get",
@@ -522,28 +509,64 @@
   "tertiary": "Star on GitHub"
 }
     },
-    "contact": {
+    "community": {
       "meta": {
-        "title": "Contact — Me2em",
-        "description": "Questions about the protocol, integration help, or a security report — send a message or use a direct channel."
+        "title": "Community",
+        "description": "Questions, ideas, and security reports — every channel has its place. Reach the right team through the channel that fits."
       },
       "hero": {
-        "badge": "Contact",
-        "titleLead": "Talk to the",
-        "titleHighlight": "Me2em team",
-        "description": "Whether you're evaluating the protocol, building on it, or found a vulnerability — send a message or use a direct channel below."
+        "badge": "Community",
+        "titleLead": "Questions, ideas,",
+        "titleHighlight": "vulnerabilities",
+        "description": "Questions, ideas, vulnerabilities — every channel has its place."
       },
-      "formTitle": "Send a message",
-      "channelsTitle": "Prefer a direct channel? Pick whichever works.",
-      "channelsSubtitle": "Questions about the protocol, integration help, or a security report — tell us what you need and we'll get back to you.",
-      "securityNote": "Security — responsible disclosure process",
-      "emailLabel": "Email",
-      "emailNote": "Drop us a line",
-      "socialNote": "Contact"
+      "channelsTitle": "Pick the channel that fits",
+      "channelsSubtitle": "We sort mail by topic so your message lands where it belongs.",
+      "channels": {
+        "security": {
+          "label": "Responsible disclosure",
+          "note": "Private — security@me2em.com"
+        },
+        "telegram": {
+          "label": "Telegram",
+          "note": "Community and quick questions"
+        },
+        "issues": {
+          "label": "Bug reports and feature requests",
+          "note": "Open GitHub issue"
+        },
+        "discussions": {
+          "label": "Q&A and ideas",
+          "note": "Share use cases and patterns"
+        },
+        "npm": {
+          "label": "npm packages",
+          "note": "@me2em on npm"
+        },
+        "docs": {
+          "label": "Documentation",
+          "note": "Guides, API references, glossary"
+        }
+      },
+      "faqTitle": "Frequently asked",
+      "faq": [
+        {
+          "question": "Where is the documentation?",
+          "answer": "All documentation lives at <a href=\"/docs\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">/docs</a> — core guides, API references, glossary, and quick starts."
+        },
+        {
+          "question": "How do I report a vulnerability?",
+          "answer": "Email <a href=\"mailto:security@me2em.com\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">security@me2em.com</a> — this is the only private channel. See <a href=\"https://github.com/me2em-org/me2em-protocol/blob/main/SECURITY.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">SECURITY.md</a> in the protocol repository for details."
+        },
+        {
+          "question": "How can I contribute?",
+          "answer": "Check <a href=\"https://github.com/me2em-org/me2em-protocol/blob/main/CONTRIBUTING.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">CONTRIBUTING.md</a> in the protocol repository for guidelines on filing issues, opening pull requests, and joining discussions."
+        }
+      ]
     },
     "home": {
       "meta": {
-        "title": "Me2em — Seed-Derived Identity Protocol",
+        "title": "Seed-Derived Identity Protocol",
         "description": "One seed phrase, many isolated Handles, stateless sessions and delegatable trust. A decentralized identity protocol on Ed25519 — with no user database to leak."
       },
       "hero": {
