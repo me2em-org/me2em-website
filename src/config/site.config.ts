@@ -252,7 +252,7 @@ const siteConfig: SiteConfig = {
   // Point this at a file in `public/` to use your own — it has to be a raster
   // (PNG or JPEG): social platforms don't render SVG share images.
   ogImage: '/og/default.png',
-  author: 'Me2em',
+  author: 'Me2eM',
   email: 'hello@me2em.com',
   socialLinks: [
     'https://github.com/me2em-org',
@@ -338,7 +338,7 @@ const siteConfig: SiteConfig = {
   },
   branding: {
     logo: {
-      alt: 'Me2em',
+      alt: 'Me2eM',
       // image: '/logo.svg', // Optional: set to a file in public/ to use a custom logo image instead of the letter monogram.
       imageUrl: '/logo.png',
     },

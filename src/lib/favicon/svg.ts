@@ -6,7 +6,7 @@
  *   - the Identity square at the centre (4×4),
  *   - four Handle dots in the corners (r = 1.5).
  *
- * No edges are drawn: Me2em derivation is stateless — nothing is stored
+ * No edges are drawn: Me2eM derivation is stateless — nothing is stored
  * between an Identity and its Handles, the relationship is recomputed from
  * the seed every time. The empty space is the protocol, not a missing graph.
  *

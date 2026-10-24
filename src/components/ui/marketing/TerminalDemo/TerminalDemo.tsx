@@ -22,7 +22,7 @@ interface ScriptLine {
   type: LineType;
 }
 
-// Me2em setup flow: clone → install → dev
+// Me2eM setup flow: clone → install → dev
 const script: ScriptLine[] = [
   // Step 1: clone
   { text: '$ git clone https://github.com/me2em-org/me2em-website.git', delay: 1200, type: 'command' },

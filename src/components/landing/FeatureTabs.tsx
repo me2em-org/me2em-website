@@ -162,7 +162,7 @@ export const defaultLang = 'en';
 export default {
   'nav.home': 'Home',
   'nav.sandbox': 'Sandbox',
-  'hero.title': 'Ship faster with Me2em',
+  'hero.title': 'Ship faster with Me2eM',
   'hero.subtitle': 'The modern Astro theme',
 } as const;
 

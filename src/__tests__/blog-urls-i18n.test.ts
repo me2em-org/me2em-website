@@ -48,8 +48,8 @@ describe('blog URL helpers (i18n enabled — en default, ru secondary)', () => {
   });
 
   it('prefixes tag URLs for the secondary locale', () => {
-    expect(getTagUrl('Me2em', 'ru')).toBe('/ru/blog/tag/me2em');
-    expect(getTagUrl('Me2em')).toBe('/blog/tag/me2em');
+    expect(getTagUrl('Me2eM', 'ru')).toBe('/ru/blog/tag/me2em');
+    expect(getTagUrl('Me2eM')).toBe('/blog/tag/me2em');
   });
 
   it('lists the non-default locales as needing prefixed routes', () => {

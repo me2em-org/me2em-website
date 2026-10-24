@@ -1,6 +1,6 @@
 {
-  "question": "What is Me2em?",
-  "answer": "Me2em is a free, open-source website theme built on Astro 7 and Tailwind CSS v4. It includes a full component library, a blog with MDX support, built-in dark mode, SEO, and everything else you need to ship a fast, modern website without starting from scratch.",
+  "question": "What is Me2eM?",
+  "answer": "Me2eM is a free, open-source website theme built on Astro 7 and Tailwind CSS v4. It includes a full component library, a blog with MDX support, built-in dark mode, SEO, and everything else you need to ship a fast, modern website without starting from scratch.",
   "category": "general",
   "order": 1,
   "locale": "en"
