@@ -113,7 +113,7 @@ describe('colour themes', () => {
     expect(siteConfig.description).toContain(`${COUNT} colour themes`);
     expect(JSON.stringify(en)).toContain(`${COUNT} colour themes`);
     expect(JSON.stringify(ru)).toContain(`${COUNT} цветовых тем`);
-    // zh.json no longer references Me2em's colour-theme count.
+    // zh.json no longer references Me2eM's colour-theme count.
   });
 
   it('the README quotes the count', () => {
