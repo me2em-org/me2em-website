@@ -13,6 +13,27 @@ stateless sessions. The protocol sources live in
 - Vitest for unit tests, `astro check` for diagnostics
 - Deployed on Cloudflare Pages
 
+## Deployment
+
+Cloudflare Pages, git-интеграция. Каждый push в `main` триггерит автосборку и
+публикует сайт. Ветка разработки — `sitecongig` (не деплоится).
+
+Параметры Pages-проекта (сверены с `astro.config.mjs`):
+
+| Настройка       | Значение              |
+| --------------- | --------------------- |
+| Build command   | `pnpm build`          |
+| Output directory| `dist`                |
+| Node version    | 24                    |
+| Package manager | pnpm                  |
+
+Домен, env-переменные и другие настройки Pages-проекта живут в CF-дашборде и в
+репо не хранятся. GitHub Actions не используется — деплой полностью на стороне
+Cloudflare Pages.
+
+> **MANUAL**: проверить последний Production-билд в CF Pages dashboard
+> (`Production branch = main`).
+
 ## Quick start
 
 - **Node.js 22.12.0+**
