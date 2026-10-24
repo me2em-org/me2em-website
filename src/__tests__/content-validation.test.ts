@@ -16,10 +16,10 @@ describe('collectSlugRecords', () => {
     ]);
   });
 
-  it('maps pages to /<slug> at the site root', () => {
+  it('maps usecases to /usecases/<slug> at the site root', () => {
     const records = collectSlugRecords([], [post('en/about')]);
     expect(records).toEqual([
-      { source: 'pages: en/about', locale: 'en', path: '/about' },
+      { source: 'usecases: en/about', locale: 'en', path: '/usecases/about' },
     ]);
   });
 
@@ -68,11 +68,11 @@ describe('findSlugCollisions', () => {
     expect(findSlugCollisions(records)).toEqual([]);
   });
 
-  it('does collide when two pages share a slug', () => {
+  it('does collide when two usecases share a slug', () => {
     const records = collectSlugRecords([], [post('en/about'), post('about')]);
     const collisions = findSlugCollisions(records);
     expect(collisions).toHaveLength(1);
-    expect(collisions[0].path).toBe('/about');
+    expect(collisions[0].path).toBe('/usecases/about');
   });
 });
 
