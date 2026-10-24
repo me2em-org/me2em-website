@@ -190,7 +190,7 @@
   },
   "footer": {
     "copyright": "© {year} {siteName}",
-    "credit": "Protocol by <a href=\"https://github.com/me2em-org\" class=\"transition-colors hover:text-foreground\" target=\"_blank\" rel=\"noopener noreferrer\">Me2em</a>",
+    "credit": "Theme by <a href=\"https://hansmartens.dev\" class=\"transition-colors hover:text-foreground\" target=\"_blank\" rel=\"noopener noreferrer\">Hans Martens Dev</a>",
     "builtWith": "Built with Astro",
     "groups": {
       "site": "Site",

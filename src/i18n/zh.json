@@ -190,7 +190,7 @@
   },
   "footer": {
     "copyright": "© {year} {siteName}",
-    "credit": "协议由 <a href=\"https://github.com/me2em-org\" class=\"transition-colors hover:text-foreground\" target=\"_blank\" rel=\"noopener noreferrer\">Me2em</a> 提供",
+    "credit": "Theme by <a href=\"https://hansmartens.dev\" class=\"transition-colors hover:text-foreground\" target=\"_blank\" rel=\"noopener noreferrer\">Hans Martens Dev</a>",
     "builtWith": "基于Astro构建",
     "groups": {
       "site": "网站",
