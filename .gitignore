@@ -5,7 +5,7 @@ node_modules/
 dist/
 .vercel/
 .netlify/
-.wrangler/
+
 
 # Astro
 .astro/
