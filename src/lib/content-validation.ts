@@ -50,13 +50,11 @@ export function localeStrippedSlug(id: string, locale: string): string {
 }
 
 /**
- * Build the list of published URLs from the blog, pages, and usecases
- * collections. Blog posts live under `/blog/<slug>`; usecases under
- * `/usecases/<slug>`; pages live at the site root `/<slug>`.
+ * Build the list of published URLs from the blog and usecases collections.
+ * Blog posts live under `/blog/<slug>`; usecases under `/usecases/<slug>`.
  */
 export function collectSlugRecords(
   posts: ContentEntryLike[],
-  pages: ContentEntryLike[],
   usecases: ContentEntryLike[] = []
 ): SlugRecord[] {
   const records: SlugRecord[] = [];
@@ -76,15 +74,6 @@ export function collectSlugRecords(
       source: `usecases: ${usecase.id}`,
       locale,
       path: `/usecases/${localeStrippedSlug(usecase.id, locale)}`,
-    });
-  }
-
-  for (const page of pages) {
-    const { locale } = page.data;
-    records.push({
-      source: `pages: ${page.id}`,
-      locale,
-      path: `/${localeStrippedSlug(page.id, locale)}`,
     });
   }
 
@@ -142,16 +131,15 @@ export function formatSlugCollisions(collisions: SlugCollision[]): string {
  */
 export async function assertNoSlugCollisions(): Promise<void> {
   const { getCollection } = await import('astro:content');
-  const [posts, pages, usecases] = await Promise.all([
+  const [posts, usecases] = await Promise.all([
     getCollection('blog'),
-    getCollection('pages'),
     getCollection('usecases'),
   ]);
 
   const publishablePosts = posts.filter((post) => post.data.draft !== true);
   const publishableUsecases = usecases.filter((usecase) => usecase.data.draft !== true);
   const collisions = findSlugCollisions(
-    collectSlugRecords(publishablePosts, pages, publishableUsecases)
+    collectSlugRecords(publishablePosts, publishableUsecases)
   );
 
   if (collisions.length > 0) {

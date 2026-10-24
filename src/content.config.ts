@@ -60,17 +60,6 @@ const blog = defineCollection({
     }),
 });
 
-// Pages collection for static pages
-const pages = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/pages' }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    updatedAt: z.coerce.date().optional(),
-    locale: localeSchema,
-  }),
-});
-
 // Authors collection
 const authors = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/content/authors' }),
@@ -183,7 +172,6 @@ const stack = defineCollection({
 
 export const collections = {
   blog,
-  pages,
   authors,
   faqs,
   stack,
