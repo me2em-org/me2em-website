@@ -13,8 +13,6 @@
 # Everything Astro inlines into the generated files at build time, shared by
 # both services so a preview and an export build the same site.
 #
-# NEWSLETTER_API_KEY is not here: it is read by the API routes, and neither
-# service carries routes.
 x-build-config: &build-config
   PUBLIC_GA_MEASUREMENT_ID: ${PUBLIC_GA_MEASUREMENT_ID:-}
   PUBLIC_GTM_ID: ${PUBLIC_GTM_ID:-}
