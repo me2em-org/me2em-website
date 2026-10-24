@@ -464,7 +464,14 @@
       { "question": "How deep can the hierarchy go?", "answer": "Identity → Handle → SubHandle, where SubHandle is the leaf (MAX_DEPTH = 2). A device derives its own SubHandles and child attestations — fully offline." },
       { "question": "Can I revoke a device or an AI agent?", "answer": "Yes. Revoking one attestation jti disables the entire branch — current and future sessions — on every verifier that checks revocations." },
       { "question": "Where do I report a vulnerability?", "answer": "See SECURITY.md in the me2em-protocol repository — responsible disclosure, with credit." }
-    ]}
+    ]},
+    {
+      "icon": "shield-check",
+      "title": "License",
+      "items": [
+        { "question": "Is it free to use?", "answer": "Yes, completely free. The Me2em protocol is Apache-2.0 licensed (with patent grant). The theme is MIT licensed — use it for personal and commercial projects, no attribution required." }
+      ]
+    }
   ]
 },
 "tutorials": {
