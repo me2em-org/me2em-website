@@ -32,8 +32,6 @@
     "next": "下一步",
     "previous": "上一步",
     "home": "首页",
-    "map": "地图",
-    "mapConsentPrompt": "接受Cookie以加载交互式地图。",
 
     "themeModeTitle": "主题：{mode}（点击切换）",
 
@@ -95,11 +93,6 @@
         "description": "克隆Me2em，选择一个主题，在几分钟内启动你的下一个项目。",
       "button": "开始使用"
     }
-  },
-  "comments": {
-    "title": "评论",
-    "loadError": "评论加载失败。请刷新页面重试。",
-    "requiresJs": "评论需要JavaScript才能加载。"
   },
   "usecases": {
     "title": "Use cases",
@@ -183,10 +176,6 @@
     "hint": "开始输入以搜索网站。",
     "noResults": "未找到「{query}」的结果",
     "unavailable": "搜索索引在构建时生成，在<code class=\"rounded bg-secondary px-1.5 py-0.5 text-xs\">astro dev</code>中不可用。<br />运行<code class=\"rounded bg-secondary px-1.5 py-0.5 text-xs\">pnpm build &amp;&amp; pnpm preview</code>在本地尝试。"
-  },
-  "video": {
-    "playLabel": "播放视频：{title}",
-    "watchOn": "在YouTube上观看"
   },
   "footer": {
     "copyright": "© {year} {siteName}",
@@ -339,7 +328,7 @@
             "items": [
               {
                 "question": "使用免费吗？",
-                "answer": "是的，完全免费。Me2em采用MIT许可证——用于个人和商业项目，不需要署名。"
+                "answer": "是的，完全免费。Me2em协议采用Apache-2.0许可证（含专利授权）。主题采用MIT许可证——用于个人和商业项目，不需要署名。"
               },
               {
                 "question": "如何切换主题？",
@@ -364,7 +353,7 @@
       "openSource": {
         "badge": "开源",
         "heading": "公开构建",
-        "description": "Me2em免费、开源且采用MIT许可证。浏览源代码、创建issue、提交PR，或者直接克隆它构建一些伟大的东西。",
+        "description": "Me2em协议采用Apache-2.0许可证。主题免费、开源且采用MIT许可证。浏览源代码、创建issue、提交PR，或者直接克隆它构建一些伟大的东西。",
         "button": "在GitHub上查看",
         "cards": [
           {

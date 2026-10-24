@@ -32,8 +32,6 @@
     "next": "Next",
     "previous": "Previous",
     "home": "Home",
-    "map": "Map",
-    "mapConsentPrompt": "Accept cookies to load the interactive map.",
 
     "themeModeTitle": "Theme: {mode} (click to cycle)",
 
@@ -95,11 +93,6 @@
       "description": "Install a package, follow the quick start, and verify your first stateless session in minutes.",
       "button": "Get Started"
     }
-  },
-  "comments": {
-    "title": "Comments",
-    "loadError": "Comments failed to load. Please refresh and try again.",
-    "requiresJs": "Comments require JavaScript to load."
   },
   "usecases": {
     "title": "Use cases",
@@ -183,10 +176,6 @@
     "hint": "Start typing to search the site.",
     "noResults": "No results for “{query}”",
     "unavailable": "The search index is generated at build time and isn’t available in <code class=\"rounded bg-secondary px-1.5 py-0.5 text-xs\">astro dev</code>.<br />Run <code class=\"rounded bg-secondary px-1.5 py-0.5 text-xs\">pnpm build &amp;&amp; pnpm preview</code> to try it locally."
-  },
-  "video": {
-    "playLabel": "Play video: {title}",
-    "watchOn": "Watch on YouTube"
   },
   "footer": {
     "copyright": "© {year} {siteName}",
@@ -300,7 +289,7 @@
             "icon": "code-2",
             "title": "Using the theme",
             "items": [
-              { "question": "Is it free to use?", "answer": "Yes, completely free. Me2em is MIT licensed — use it for personal and commercial projects, no attribution required." },
+               { "question": "Is it free to use?", "answer": "Yes, completely free. The Me2em protocol is Apache-2.0 licensed (with patent grant). The theme is MIT licensed — use it for personal and commercial projects, no attribution required." },
               { "question": "How do I switch themes?", "answer": "Change a single line in your config. Me2em ships with 8 hand-crafted colour themes — swap between them instantly without touching a line of CSS." },
               { "question": "Does it support TypeScript?", "answer": "Yes, TypeScript is used throughout. All components, configs, and utilities are fully typed." },
               { "question": "How do I add my own language for i18n?", "answer": "Me2em's i18n is config-driven. Add your locale to the i18n config file, create a matching translation file, and the routing and UI adapt automatically." },
@@ -312,7 +301,7 @@
       "openSource": {
         "badge": "Open Source",
         "heading": "Built in the open",
-        "description": "Me2em is free, open source, and MIT licensed. Browse the source, open issues, submit PRs, or just clone it and build something great.",
+        "description": "The Me2em protocol is Apache-2.0 licensed. The theme is free, open source, and MIT licensed. Browse the source, open issues, submit PRs, or just clone it and build something great.",
         "button": "View on GitHub",
         "cards": [
           { "title": "Me2em Protocol", "text": "The Me2em protocol is a decentralized, seed-derived identity and authorization system — open source, free to use, and built for the community." },
