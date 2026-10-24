@@ -1,8 +1,8 @@
 ---
-title: "Продажа доступа: подписанная квитанция как товар в Me2em"
+title: "Продажа доступа: подписанная квитанция как товар в Me2eM"
 description: "Сценарий Mode 2 в чистом виде: дрон продаёт 30 минут съёмки, спутник — окно tasking'а. Покупатель верифицирует покупку публичным корнем, оператор не ведёт учёт, чек не подделать и не продлить."
 publishedAt: 2026-10-09
-author: "Me2em Organization"
+author: "Me2eM Organization"
 tags: ["attestations", "iot", "security"]
 featured: false
 locale: ru
@@ -190,5 +190,5 @@ await revocationService.revokeAttestation(B.jti);
 - **[Аттестационные цепочки: делегирование доверия без сервера](/ru/blog/attestation-chains-delegated-trust)** — механика грантов и вложенности, на которой стоит продажа
 - **[Мгновенный отзыв: ревокация в stateless-мире](/ru/blog/revocation-checker-instant-revocation)** — как работает отмена сделки по `jti`
 - **[EV-зарядная сеть с офлайн-авторизацией](/ru/blog/ev-charging-network-tutorial)** — родственный сценарий: те же аттестации, другие роли (продажа → provisioning)
-- **[Me2em: идентичность из seed-фразы](/ru/blog/me2em-seed-derived-identity)** — откуда берутся ключи оператора и дрона
+- **[Me2eM: идентичность из seed-фразы](/ru/blog/me2em-seed-derived-identity)** — откуда берутся ключи оператора и дрона
 - **[`@me2em/core` на npm](https://www.npmjs.com/package/@me2em/core)** — вся механика сценария

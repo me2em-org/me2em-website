@@ -2,7 +2,7 @@
 title: "Почему UX seed-фразы такой параноидальный: анатомия @me2em/react"
 description: "Seed-UX как инженерная проблема: show-once отображение, order-verification, импорт с checksum, предупреждения passphrase — каждый компонент пакета отвечает за конкретную катастрофу. Плюс сессии с auto-renewal и зашифрованный кэш контекста."
 publishedAt: 2026-10-07
-author: "Me2em Organization"
+author: "Me2eM Organization"
 tags: ["react", "security", "identity"]
 featured: false
 locale: ru
@@ -244,6 +244,6 @@ function App({ seedBytes }: { seedBytes: Uint8Array }) {
 
 - **[E2EE без хранения приватных ключей](/ru/blog/e2ee-seed-derived-identity)** — session-bound профиль: non-extractable CryptoKey и кэш под капотом
 - **[Почему мы не храним ваш seed](/ru/blog/why-we-dont-store-your-seed)** — философия, которую этот пакет реализует в UI
-- **[Me2em: идентичность из seed-фразы](/ru/blog/me2em-seed-derived-identity)** — что именно восстанавливается из 12 слов
-- **[Анонимный E2EE-мессенджер на Me2em](/ru/blog/anonymous-e2ee-messenger)** — все компоненты в работе над целым продуктом
+- **[Me2eM: идентичность из seed-фразы](/ru/blog/me2em-seed-derived-identity)** — что именно восстанавливается из 12 слов
+- **[Анонимный E2EE-мессенджер на Me2eM](/ru/blog/anonymous-e2ee-messenger)** — все компоненты в работе над целым продуктом
 - **[`@me2em/react` на npm](https://www.npmjs.com/package/@me2em/react)** — пакет

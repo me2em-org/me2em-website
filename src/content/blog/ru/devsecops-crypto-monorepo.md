@@ -2,14 +2,14 @@
 title: "DevSecOps для криптографического monorepo: три контура защиты на GitHub Actions"
 description: "Как построить бесплатный security-пайплайн для TypeScript-монорепозитория на pnpm: secret scanning, dependency audit, CodeQL SAST — и четыре проблемы, которые мы решили на пути к нему."
 publishedAt: 2026-09-21
-author: "Me2em Organization"
+author: "Me2eM Organization"
 tags: ["devsecops", "security", "cryptography"]
 featured: false
 locale: ru
 uid: "devsecops-crypto-monorepo"
 ---
 
-Me2em — TypeScript-монорепозиторий на pnpm с тремя пакетами: ядро криптографических примитивов, React-биндинги и протокольные механизмы шифрования. Мы работаем с Ed25519-подписями, X25519 key agreement, HKDF-деривацией и BIP39 seed-фразами. Цена утечки секретного материала или регрессии в криптографическом коде максимальна — а значит, обычный «lint + test» пайплайн здесь недостаточен.
+Me2eM — TypeScript-монорепозиторий на pnpm с тремя пакетами: ядро криптографических примитивов, React-биндинги и протокольные механизмы шифрования. Мы работаем с Ed25519-подписями, X25519 key agreement, HKDF-деривацией и BIP39 seed-фразами. Цена утечки секретного материала или регрессии в криптографическом коде максимальна — а значит, обычный «lint + test» пайплайн здесь недостаточен.
 
 Нам нужен был пайплайн, который закрывает три контура защиты — и делает это бесплатно на GitHub Actions для публичного репозитория:
 
@@ -329,7 +329,7 @@ Security → Code scanning alerts на GitHub. CodeQL не печатает find
 
 - **[Пост-мортем: эволюция @me2em/core](/ru/blog/core-evolution-post-mortem)** — дизайн-решения, которые этот пайплайн охраняет
 - **[E2EE без хранения приватных ключей](/ru/blog/e2ee-seed-derived-identity)** — код, ради которого стоят три контура защиты
-- **[Me2em: идентичность из seed-фразы](/ru/blog/me2em-seed-derived-identity)** — фундамент протокола
+- **[Me2eM: идентичность из seed-фразы](/ru/blog/me2em-seed-derived-identity)** — фундамент протокола
 
 ---
 

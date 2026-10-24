@@ -2,7 +2,7 @@
 title: "Мгновенный отзыв: ревокация в stateless-мире"
 description: "Как отзывать подписанные токены, когда серверных сессий нет: гранулярность отзыва, fail-open vs fail-closed, TTL записей и почему stateless ≠ безотзывность."
 publishedAt: 2026-09-25
-author: "Me2em Organization"
+author: "Me2eM Organization"
 tags: ["revocation", "sessions", "security"]
 featured: false
 locale: ru
@@ -13,7 +13,7 @@ Stateless-сессии имеют репутацию неотзывных. Ло�
 
 Логика правильная — и неполная. Stateless означает «состояние не обязательно». Это не запрет состояния — это **свобода выбрать, какое состояние вы готовы нести ради какого свойства**. Отзыв — ровно тот случай, когда немного состояния покупает мгновенную силу.
 
-В Me2em это оформлено в интерфейс из одного метода:
+В Me2eM это оформлено в интерфейс из одного метода:
 
 ```typescript
 interface RevocationChecker {
@@ -155,7 +155,7 @@ async isRevoked(jti: string): Promise<boolean> {
 | Риск | отозванный токен проскочит в окно недоступности | полный простой системы |
 | Кому подходит | мессенджеры, соцсети, контентные платформы | банки, military, системы с ценой пропуска > ценой простоя |
 
-Me2em оставляет выбор приложению — протокол фиксирует только интерфейс. Но документируйте выбор явно: fail-open, при котором отозванный токен может проскочить, и fail-closed с тотальным простоем — это разные катастрофы, и команда должна знать, какая из них выбрана.
+Me2eM оставляет выбор приложению — протокол фиксирует только интерфейс. Но документируйте выбор явно: fail-open, при котором отозванный токен может проскочить, и fail-closed с тотальным простоем — это разные катастрофы, и команда должна знать, какая из них выбрана.
 
 ## TTL записей отзыва: не вечные надгробия
 
@@ -205,7 +205,7 @@ class AttestationRevocationChecker implements RevocationChecker { ... }
 class SessionRevocationChecker implements RevocationChecker { ... }
 ```
 
-Me2em не навязывает — приложение выбирает. Но выбирайте осознанно и документируйте.
+Me2eM не навязывает — приложение выбирает. Но выбирайте осознанно и документируйте.
 
 ## Проверка на каждом уровне цепочки
 
@@ -244,8 +244,8 @@ flowchart TD
 
 ## Что читать дальше
 
-- **[Stateless-бэкенд для Me2em](/ru/blog/me2em-stateless-backend)** — как подключить RevocationChecker на сервере: Guard, 400/401/403, multi-root
+- **[Stateless-бэкенд для Me2eM](/ru/blog/me2em-stateless-backend)** — как подключить RevocationChecker на сервере: Guard, 400/401/403, multi-root
 - **[Stateless-сессии: авторизация без базы данных](/ru/blog/stateless-sessions-no-database)** — что внутри токена и какие семь проверок проходит сессия
 - **[Аттестационные цепочки: делегирование доверия без сервера](/ru/blog/attestation-chains-delegated-trust)** — Mode 2: как аттестационный jti выключает всю ветку
-- **[Me2em: идентичность из seed-фразы](/ru/blog/me2em-seed-derived-identity)** — фундамент: откуда берётся дерево ключей
+- **[Me2eM: идентичность из seed-фразы](/ru/blog/me2em-seed-derived-identity)** — фундамент: откуда берётся дерево ключей
 - **[USE_CASES.md](https://github.com/me2em-org/me2em-protocol/blob/main/packages/core/USE_CASES.md)** — production-пример Redis RevocationChecker в контексте сценариев
