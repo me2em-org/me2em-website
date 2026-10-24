@@ -1,7 +1,7 @@
 ---
 title: "Multi-App SSO"
 locale: en
-description: "One Me2em instance lets a user into every application in the ecosystem. The account is a seed phrase: there is no user database — nothing to maintain, leak, or correlate."
+description: "One Me2eM instance lets a user into every application in the ecosystem. The account is a seed phrase: there is no user database — nothing to maintain, leak, or correlate."
 icon: "fingerprint"
 tags: ["sso", "stateless", "privacy", "isolation"]
 featured: true
@@ -30,7 +30,7 @@ the next app in the ecosystem recognizes the cookie and signs the user in.
 sequenceDiagram
     participant U as User
     participant A as App A (taxi)
-    participant M as Me2em instance
+    participant M as Me2eM instance
     participant B as App B (freelance)
     U->>A: enters seed phrase (locally)
     A->>M: auth request, Handle @taxi
@@ -60,7 +60,7 @@ one signature check per request.
 
 - **The seed is the only key back in.** Lose the phrase — lose every account
   in the ecosystem; there is no reset by design.
-- **An instance must run.** SSO needs the Me2em service (cloud or self-hosted)
+- **An instance must run.** SSO needs the Me2eM service (cloud or self-hosted)
   reachable at sign-in; it is infrastructure, not a static asset.
 - **Same-domain requirement.** Cookie auto-login works for apps under the
   instance's domain (or subdomains); fully external apps go through Mode 2
