@@ -1,6 +1,6 @@
 # Working in this codebase
 
-Me2em is a production website, not a starter theme. You are here to help develop the site itself — pages, components, content and configuration. This file tells you where everything lives and which conventions to follow, so you can make changes that fit rather than changes that merely work.
+Me2eM is a production website, not a starter theme. You are here to help develop the site itself — pages, components, content and configuration. This file tells you where everything lives and which conventions to follow, so you can make changes that fit rather than changes that merely work.
 
 ## The shape of the project
 
@@ -140,3 +140,10 @@ schemas and the link validation, and it fails on problems a dev server hides.
 
 Run `pnpm build`. Then confirm what you changed is actually visible on the page
 you changed it on — not merely that the command exited without an error.
+
+## Brand & terminology (2026-10)
+
+- **Me2eM / me2em.** `Me2eM` — вся человеческая проза (brand, UI copy, documentation, frontmatter display text). `me2em` — машинные идентификаторы: npm-пакеты (`@me2em/*`), код (`Me2emProvider`, `Me2emIdentity`), домен, URL-пути, CLI. Форма `Me2em` запрещена в прозе. Бренд не склоняется («правило iPhone»).
+- **use cases → «Сценарии использования»** (RU), **使用场景** (ZH, draft). Роуты `/usecases` не переименовывать.
+- **tutorials → «Практические руководства»** (RU), **实用指南** (ZH, draft).
+- Полное определение — в [`GLOSSARY.md`](./GLOSSARY.md).
