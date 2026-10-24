@@ -40,28 +40,27 @@ describe('i18n t() helper', () => {
 
 describe('i18n tData() helper', () => {
   it('returns a structured (array) value by dotted key', () => {
-    // Asserts the shape rather than the copy. The previous version read
-    // `pages.sandbox.hero` and checked for a literal; the sandbox page was
-    // later restructured, `hero` stopped existing, and the test failed for a
-    // reason that had nothing to do with tData().
-    const items = tData<{ icon: string; title: string; description: string }[]>(
-      'pages.sandbox.whatYouGet.items',
+    // Asserts the shape rather than the copy. Repointed from
+    // `pages.sandbox.whatYouGet.items` (deleted in ТЗ-17) to the live
+    // `pages.docs.faq.cards` which shares the same array-of-objects shape.
+    const cards = tData<{ icon: string; title: string; items: unknown[] }[]>(
+      'pages.docs.faq.cards',
       'en'
     );
-    expect(Array.isArray(items)).toBe(true);
-    expect(items?.length).toBeGreaterThan(0);
-    expect(items?.[0]).toEqual(
+    expect(Array.isArray(cards)).toBe(true);
+    expect(cards?.length).toBeGreaterThan(0);
+    expect(cards?.[0]).toEqual(
       expect.objectContaining({
         icon: expect.any(String),
         title: expect.any(String),
-        description: expect.any(String),
+        items: expect.any(Array),
       })
     );
   });
 
   it('falls back to the default-locale value when the locale has no entry', () => {
     // 'de' has no dictionary loaded yet — should fall back to the English data
-    const cards = tData<unknown[]>('pages.sandbox.whatYouGet.items', 'de');
+    const cards = tData<unknown[]>('pages.docs.faq.cards', 'de');
     expect(Array.isArray(cards)).toBe(true);
     expect(cards?.length).toBeGreaterThan(0);
   });
