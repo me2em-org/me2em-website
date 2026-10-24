@@ -25,6 +25,7 @@ import { SITE_NAME, THEME_COLOR } from './src/config/branding.ts';
 // Плагины для якорных ссылок в заголовках (для оглавления и шеринга частей статьи)
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import { unified } from '@astrojs/markdown-remark';
 
 // Загрузка .env (как в оригинале)
 for (const file of ['.env.local', '.env']) {
@@ -302,13 +303,14 @@ export default defineConfig({
       theme: 'github-dark',
       wrap: true,
     },
-    // Добавлено для поддержки якорных ссылок и оглавления в блоге
-    rehypePlugins: [
-      rehypeSlug,
-      [rehypeAutolinkHeadings, { 
-        behavior: 'wrap', 
-        properties: { class: 'heading-anchor' } 
-      }],
-    ],
+    processor: unified({
+      rehypePlugins: [
+        rehypeSlug,
+        [rehypeAutolinkHeadings, { 
+          behavior: 'wrap', 
+          properties: { class: 'heading-anchor' } 
+        }],
+      ],
+    }),
   },
 });
