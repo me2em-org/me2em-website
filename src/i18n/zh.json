@@ -220,9 +220,7 @@
           { "title": "Conception", "description": "12 words give birth to a root Identity. No registration, no server." },
           { "title": "Faces", "description": "Human, IoT, AI agent: each world gets its own Handles, isolated to the last byte." },
           { "title": "Proof", "description": "Sessions are signed and verified with one signature check. No databases involved." }
-        ],
-        "status": "The interactive sandbox is in development. Until then, touch the protocol in the docs.",
-        "ctaLabel": "Open the docs"
+        ]
       },
       "sandboxSeed": {
         "badge": "Step 1 — Conception",
