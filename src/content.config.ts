@@ -78,18 +78,6 @@ const authors = defineCollection({
     }),
 });
 
-// FAQs collection (for JSON-LD FAQ schema)
-const faqs = defineCollection({
-  loader: glob({ pattern: '**/*.json', base: './src/content/faqs' }),
-  schema: z.object({
-    question: z.string(),
-    answer: z.string(),
-    category: z.string().optional(),
-    order: z.number().default(0),
-    locale: localeSchema,
-  }),
-});
-
 // Usecases collection — one MDX file per usecase
 const usecases = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/usecases' }),
@@ -173,7 +161,6 @@ const stack = defineCollection({
 export const collections = {
   blog,
   authors,
-  faqs,
   stack,
   usecases,
 };

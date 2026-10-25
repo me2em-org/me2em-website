@@ -325,21 +325,6 @@
       },
       "premium": false
     },
-    "form-field": {
-      "name": "FormField",
-      "category": "patterns",
-      "files": [
-        "src/components/patterns/FormField.astro"
-      ],
-      "dependencies": {
-        "utilities": [
-          "cn"
-        ],
-        "components": []
-      },
-      "premium": false
-    },
-
     "header": {
       "name": "Header",
       "category": "layout",
