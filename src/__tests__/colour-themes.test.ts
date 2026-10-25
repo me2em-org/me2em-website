@@ -19,8 +19,6 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { colourThemes, selectorThemes } from '../lib/themes';
-import en from '../i18n/en.json';
-import ru from '../i18n/ru.json';
 import siteConfig from '../config/site.config';
 
 const COUNT = colourThemes.length;
@@ -109,11 +107,10 @@ describe('colour themes', () => {
     }
   });
 
-  it('site.config and all locale files quote the count', () => {
+  // Locale-file assertions removed: owner decision bans implementation-specific
+  // numbers ("8 colour themes") on site. These were donor-marketing checks.
+  it('site.config quotes the count', () => {
     expect(siteConfig.description).toContain(`${COUNT} colour themes`);
-    expect(JSON.stringify(en)).toContain(`${COUNT} colour themes`);
-    expect(JSON.stringify(ru)).toContain(`${COUNT} цветовых тем`);
-    // zh.json no longer references Me2eM's colour-theme count.
   });
 
   it('the README quotes the count', () => {

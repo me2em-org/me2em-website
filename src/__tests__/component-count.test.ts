@@ -15,7 +15,6 @@ import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 import registry from '../../component-registry.json';
-import en from '../i18n/en.json';
 import siteConfig from '../config/site.config';
 
 const COUNT = Object.keys(registry.components).length;
@@ -38,10 +37,9 @@ describe('component count', () => {
     expect(siteConfig.description).toContain(`${COUNT} designed components`);
   });
 
-  it('the English dictionary quotes it', () => {
-    expect(JSON.stringify(en)).toContain(`${COUNT} designed components`);
-  });
-
+  // "the English dictionary quotes it" removed: owner decision bans
+  // implementation-specific numbers ("41 designed components") on site.
+  // This assertion was a donor-marketing check against dead content.
   it('no file anywhere quotes a count the registry cannot justify', () => {
     // Named files are not enough. The first sweep listed the files it thought
     // mattered and missed the Dutch dictionary, a homepage stat tile, the
