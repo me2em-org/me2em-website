@@ -202,16 +202,6 @@
         "typingWordsMobile": ["One phrase.", "Many Handles.", "Stateless."],
         "description": "A hands-on demo of the protocol: generate a real seed phrase in your browser, watch Handles derive from it, and see one identity serve a person, a device, and an AI agent — with no personal data stored anywhere."
       },
-      "sandbox": {
-        "badge": "How it will work",
-        "heading": "Three steps, one seed",
-        "lead": "The sandbox will walk you through the protocol by doing, not reading.",
-        "steps": [
-          { "title": "Conception", "description": "12 words give birth to a root Identity. No registration, no server." },
-          { "title": "Faces", "description": "Human, IoT, AI agent: each world gets its own Handles, isolated to the last byte." },
-          { "title": "Proof", "description": "Sessions are signed and verified with one signature check. No databases involved." }
-        ]
-      },
       "sandboxSeed": {
         "badge": "Step 1 — Conception",
         "heading": "Create your digital world",

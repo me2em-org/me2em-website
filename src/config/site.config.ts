@@ -245,8 +245,8 @@ const siteConfig: SiteConfig = {
   name: SITE_NAME,
   description:
     'A decentralized, seed-derived identity and authorization protocol built on Ed25519 — for people, IoT fleets and AI agents. No user database, no personal data to leak.',
-  tagline: 'Astro 7 starter theme to build anything on',
-  footerNote: 'Free & open source · MIT licensed',
+  tagline: 'A decentralized, seed-derived identity protocol on Ed25519',
+  footerNote: 'Free & open source · Apache-2.0',
   url: SITE_URL || SITE_URL_FALLBACK,
   // Generated at build time from `name`, `tagline` and the brand colour below.
   // Point this at a file in `public/` to use your own — it has to be a raster
