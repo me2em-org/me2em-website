@@ -244,7 +244,7 @@ const siteConfig: SiteConfig = {
   // import this file, uses the same values. Change them there.
   name: SITE_NAME,
   description:
-    'A free, fast Astro 7 starter theme to build anything on: 41 designed components, 8 colour themes, dark mode, and built-in i18n.',
+    'A decentralized, seed-derived identity and authorization protocol built on Ed25519 — for people, IoT fleets and AI agents. No user database, no personal data to leak.',
   tagline: 'Astro 7 starter theme to build anything on',
   footerNote: 'Free & open source · MIT licensed',
   url: SITE_URL || SITE_URL_FALLBACK,

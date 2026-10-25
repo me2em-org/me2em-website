@@ -109,8 +109,10 @@ describe('colour themes', () => {
 
   // Locale-file assertions removed: owner decision bans implementation-specific
   // numbers ("8 colour themes") on site. These were donor-marketing checks.
-  it('site.config quotes the count', () => {
-    expect(siteConfig.description).toContain(`${COUNT} colour themes`);
+  // Owner decision: implementation-specific numbers ("8 colour themes") are
+  // banned on site. The description must not quote the count.
+  it('site.config does not quote the count', () => {
+    expect(siteConfig.description).not.toMatch(/\d+ colour themes/);
   });
 
   it('the README quotes the count', () => {

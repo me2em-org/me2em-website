@@ -33,8 +33,10 @@ describe('component count', () => {
     }
   });
 
-  it('site.config quotes it', () => {
-    expect(siteConfig.description).toContain(`${COUNT} designed components`);
+  // Owner decision: implementation-specific numbers ("41 designed components")
+  // are banned on site. The description must not quote the count.
+  it('site.config does not quote the count', () => {
+    expect(siteConfig.description).not.toMatch(/\d+ designed components/);
   });
 
   // "the English dictionary quotes it" removed: owner decision bans
