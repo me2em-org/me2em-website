@@ -70,6 +70,13 @@ than a feature the theme carries and nobody maintains.
 - **Zero JavaScript unless it earns its place.** Astro ships none by default;
   reach for a `<script>` only when the interaction genuinely needs one.
 
+## No implementation-specific numbers
+
+> Ban implementation-specific numbers on site: component count, theme count,
+> page/test counts, etc. Code and themes change — the site must not require
+> edits on every revision. New copy is written without such numbers; found
+> ones are reported to the owner, not deleted without a task.
+
 ## Commit messages
 
 This repository is public. Its history is read by people deciding whether to
