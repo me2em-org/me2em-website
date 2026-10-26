@@ -17,6 +17,7 @@ import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
 import CtaBand from '@/components/patterns/CtaBand.astro';
 import { t, tData, defaultLocale, localizedPath } from '@/i18n';
+import { createFAQSchema } from '@/lib/schema';
 
 interface Props {
   /** Locale whose copy this page renders. Defaults to the site default. */
@@ -71,6 +72,10 @@ const processSection = tData<{ badge: string; heading: string; lead: string; ste
   locale
 )!;
 const faq = tData<{ badge: string; heading: string; lead: string; cards: FaqCard[] }>('pages.docs.faq', locale)!;
+
+const faqSchema = faq.cards
+  ? createFAQSchema(faq.cards.flatMap((c) => c.items.map(({ question, answer }) => ({ question, answer }))))
+  : null;
 const cta = tData<{ badge: string; heading: string; description: string; primary: string; secondary: string; tertiary: string }>(
   'pages.docs.cta',
   locale
@@ -104,6 +109,7 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
   title={t('pages.docs.meta.title', locale)}
   description={t('pages.docs.meta.description', locale)}
   footerBackground="secondary"
+  extraSchemas={faqSchema ? [faqSchema] : []}
 >
   <Hero layout="centered" size="sm" class="isolate docs-hero pb-[calc(var(--space-section-sm)_+_var(--space-stack-lg))]" showHeroHalo>
     <Badge slot="badge" variant="brand" pill>

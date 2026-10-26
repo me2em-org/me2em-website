@@ -12,7 +12,7 @@ import TableOfContents from '@/components/blog/TableOfContents.astro';
 import Comments from '@/components/blog/Comments.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
-import { createBlogPostSchema, createFAQSchema } from '@/lib/schema';
+import { createBlogPostSchema, createFAQSchema, createAuthorPersonSchema, resolveAuthorForSchema } from '@/lib/schema';
 import { getBlogOgPath, getDefaultOgPath, isShareableImage } from '@/lib/og/svg';
 import { t, getLocaleFromPath, localizedPath, getLocales } from '@/i18n';
 import { getPostSlug, getBlogBaseUrl } from '@/lib/blog';
@@ -112,6 +112,7 @@ const breadcrumbs = [
 // Get full URL for sharing
 const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
+const resolvedAuthor = resolveAuthorForSchema(author);
 const blogPostingSchema = createBlogPostSchema({
   title,
   description,
@@ -119,11 +120,13 @@ const blogPostingSchema = createBlogPostSchema({
   image: new URL(ogImage, Astro.site).toString(),
   datePublished: publishedAt,
   dateModified: updatedAt,
-  author: { name: author, url: siteConfig.url },
+  author: resolvedAuthor,
 });
 
 const faqSchema = faqs && faqs.length > 0 ? createFAQSchema(faqs) : null;
-const schemas = faqSchema ? [blogPostingSchema, faqSchema] : [blogPostingSchema];
+const schemas = faqSchema
+  ? [blogPostingSchema, faqSchema, createAuthorPersonSchema()]
+  : [blogPostingSchema, createAuthorPersonSchema()];
 
 // Resolve this post's real per-locale URLs so the hreflang tags and the
 // LanguageSwitcher point at the correct translation — which may live at a

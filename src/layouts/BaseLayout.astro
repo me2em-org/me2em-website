@@ -7,7 +7,7 @@ import JsonLd from '@/components/seo/JsonLd.astro';
 import Analytics from '@/components/layout/Analytics.astro';
 import ConsentBanner from '@/components/ui/overlay/ConsentBanner';
 import CursorTrail from '@/components/effects/CursorTrail.astro';
-import { createWebsiteSchema, createOrganizationSchema, createPersonSchema, createProfessionalServiceSchema } from '@/lib/schema';
+import { createWebsiteSchema, createOrganizationSchema, createAuthorPersonSchema, createSoftwareApplicationSchema } from '@/lib/schema';
 import type { Thing, WithContext } from 'schema-dts';
 import siteConfig from '@/config/site.config';
 import { t, getLocaleFromPath } from '@/i18n';
@@ -27,8 +27,7 @@ interface Props {
   noindex?: boolean;
   nofollow?: boolean;
   includeOrgSchema?: boolean;
-  includePersonSchema?: boolean;
-  includeProfessionalServiceSchema?: boolean;
+
   extraSchemas?: WithContext<Thing>[];
   eagerReveal?: boolean;
   /** Verified locale alternates for this page, forwarded to SEO for hreflang. */
@@ -44,8 +43,6 @@ const {
   noindex = false,
   nofollow = false,
   includeOrgSchema = false,
-  includePersonSchema = false,
-  includeProfessionalServiceSchema = false,
   extraSchemas = [],
   eagerReveal = false,
   localeAlternates,
@@ -55,12 +52,6 @@ const {
 const schemas: WithContext<Thing>[] = [createWebsiteSchema()];
 if (includeOrgSchema) {
   schemas.push(createOrganizationSchema());
-}
-if (includePersonSchema) {
-  schemas.push(createPersonSchema());
-}
-if (includeProfessionalServiceSchema) {
-  schemas.push(createProfessionalServiceSchema());
 }
 schemas.push(...extraSchemas);
 

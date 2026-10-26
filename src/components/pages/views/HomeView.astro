@@ -25,6 +25,7 @@ import { getPostUrl, getPublishedPosts } from '@/lib/blog';
 import { getVisibleUsecases } from '@/lib/usecases';
 import UsecaseCard from '@/components/usecases/UsecaseCard.astro';
 import { t, tData, defaultLocale, localizedPath } from '@/i18n';
+import { createSoftwareApplicationSchema } from '@/lib/schema';
 
 interface Props {
   /** Locale whose copy and content this page renders. Defaults to the site default. */
@@ -148,8 +149,8 @@ const tutorialsPara1 = t('pages.home.tutorials.para1', locale);
 <LandingLayout
   title={t('pages.home.meta.title', locale)}
   description={t('pages.home.meta.description', locale)}
-  includePersonSchema={true}
-  includeProfessionalServiceSchema={true}
+  includeOrgSchema={true}
+  extraSchemas={[createSoftwareApplicationSchema()]}
 >
   <!-- Hero -->
   <!-- data-header-flip-anchor: the floating header keeps its over-the-hero

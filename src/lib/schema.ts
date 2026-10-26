@@ -2,7 +2,7 @@ import type {
   WebSite,
   Organization,
   Person,
-  LocalBusiness,
+  SoftwareApplication,
   BlogPosting,
   BreadcrumbList,
   FAQPage,
@@ -24,37 +24,51 @@ export function createWebsiteSchema(): WithContext<WebSite> {
 }
 
 /**
- * Create Person schema for Me2eM
+ * Author profile — single source of truth for the author Person JSON-LD,
+ * llms.txt, and resolveAuthorForSchema().
  */
-export function createPersonSchema(): WithContext<Person> {
+export const AUTHOR_PROFILE = {
+  name: 'Serge Lubimov',
+  jobTitle: 'Author & maintainer of the Me2eM protocol',
+  url: 'https://selub.github.io',
+  sameAs: [
+    'https://www.linkedin.com/in/serge-lubimov',
+    'https://github.com/selub',
+    'https://selub.github.io',
+  ],
+  knowsAbout: ['seed phrase', 'zero-knowledge proofs', 'stateless authentication', 'AI agent delegation'],
+} as const;
+
+/**
+ * Create Person schema for the site author (Serge Lubimov)
+ */
+export function createAuthorPersonSchema(): WithContext<Person> {
   return {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: 'Me2eM',
-    jobTitle: 'Web Designer & Developer',
-    url: siteConfig.url,
-    email: siteConfig.email,
-    ...(siteConfig.authorImage ? { image: `${siteConfig.url}${siteConfig.authorImage}` } : {}),
-    sameAs: siteConfig.socialLinks,
+    name: AUTHOR_PROFILE.name,
+    jobTitle: AUTHOR_PROFILE.jobTitle,
+    url: AUTHOR_PROFILE.url,
+    sameAs: [...AUTHOR_PROFILE.sameAs],
+    knowsAbout: [...AUTHOR_PROFILE.knowsAbout],
   };
 }
 
 /**
- * Create ProfessionalService schema for local SEO
+ * Create SoftwareApplication schema
  */
-export function createProfessionalServiceSchema(): WithContext<LocalBusiness> {
+export function createSoftwareApplicationSchema(): WithContext<SoftwareApplication> {
   return {
     '@context': 'https://schema.org',
-    '@type': 'ProfessionalService' as 'LocalBusiness',
+    '@type': 'SoftwareApplication',
     name: siteConfig.name,
     url: siteConfig.url,
-    email: siteConfig.email,
-    ...(siteConfig.phone ? { telephone: siteConfig.phone } : {}),
-    ...(siteConfig.authorImage ? { image: `${siteConfig.url}${siteConfig.authorImage}` } : {}),
-    areaServed: [
-      { '@type': 'Country', name: 'Worldwide' },
-    ],
-    sameAs: siteConfig.socialLinks,
+    description: siteConfig.description,
+    applicationCategory: 'DeveloperApplication',
+    isAccessibleForFree: true,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    license: 'https://www.apache.org/licenses/LICENSE-2.0',
+    author: { '@type': 'Organization', name: siteConfig.name, url: siteConfig.url },
   };
 }
 
@@ -83,6 +97,17 @@ export function createOrganizationSchema(): WithContext<Organization> {
 }
 
 /**
+ * Resolve a frontmatter author slug into schema-ready author data.
+ * Falls back to the slug as-is (preserving donor behaviour for 'Team').
+ */
+export function resolveAuthorForSchema(authorSlug: string): { name: string; url: string; sameAs?: string[] } {
+  if (authorSlug === 'serge-lubimov') {
+    return { name: AUTHOR_PROFILE.name, url: AUTHOR_PROFILE.url, sameAs: [...AUTHOR_PROFILE.sameAs] };
+  }
+  return { name: authorSlug, url: siteConfig.url };
+}
+
+/**
  * Create BlogPosting schema for blog posts
  */
 export function createBlogPostSchema(post: {
@@ -92,8 +117,15 @@ export function createBlogPostSchema(post: {
   image: string;
   datePublished: Date;
   dateModified?: Date;
-  author: { name: string; url?: string };
+  author: { name: string; url?: string; sameAs?: string[] };
 }): WithContext<BlogPosting> {
+  const authorObj: { '@type': string; name: string; url?: string; sameAs?: string[] } = {
+    '@type': 'Person',
+    name: post.author.name,
+  };
+  if (post.author.url) authorObj.url = post.author.url;
+  if (post.author.sameAs) authorObj.sameAs = post.author.sameAs;
+
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -103,11 +135,7 @@ export function createBlogPostSchema(post: {
     image: post.image,
     datePublished: post.datePublished.toISOString(),
     dateModified: post.dateModified?.toISOString() || post.datePublished.toISOString(),
-    author: {
-      '@type': 'Person',
-      name: post.author.name,
-      url: post.author.url,
-    },
+    author: authorObj,
     publisher: {
       '@type': 'Organization',
       name: siteConfig.name,

@@ -7,6 +7,7 @@
 import BaseLayout from './BaseLayout.astro';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
+import type { Thing, WithContext } from 'schema-dts';
 
 interface Props {
   title?: string;
@@ -24,9 +25,10 @@ interface Props {
    * - last section `bg-background-secondary` → footer `default`
    */
   footerBackground?: 'default' | 'secondary' | 'invert';
+  extraSchemas?: WithContext<Thing>[];
 }
 
-const { title, description, image, imageAlt, noindex, nofollow, showScrollProgress = false, eagerReveal = false, footerBackground = 'default' } = Astro.props;
+const { title, description, image, imageAlt, noindex, nofollow, showScrollProgress = false, eagerReveal = false, footerBackground = 'default', extraSchemas = [] } = Astro.props;
 
 ---
 
@@ -38,6 +40,7 @@ const { title, description, image, imageAlt, noindex, nofollow, showScrollProgre
   noindex={noindex}
   nofollow={nofollow}
   eagerReveal={eagerReveal}
+  extraSchemas={extraSchemas}
 >
   <Header
     slot="header"
