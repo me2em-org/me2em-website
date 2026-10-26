@@ -13,6 +13,7 @@ import Comments from '@/components/blog/Comments.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import { createBlogPostSchema, createFAQSchema, createAuthorPersonSchema, resolveAuthorForSchema } from '@/lib/schema';
+import { displayAuthorName } from '@/lib/authors';
 import { getBlogOgPath, getDefaultOgPath, isShareableImage } from '@/lib/og/svg';
 import { t, getLocaleFromPath, localizedPath, getLocales } from '@/i18n';
 import { getPostSlug, getBlogBaseUrl } from '@/lib/blog';
@@ -128,6 +129,8 @@ const schemas = faqSchema
   ? [blogPostingSchema, faqSchema, createAuthorPersonSchema()]
   : [blogPostingSchema, createAuthorPersonSchema()];
 
+const authorName = await displayAuthorName(author);
+
 // Resolve this post's real per-locale URLs so the hreflang tags and the
 // LanguageSwitcher point at the correct translation — which may live at a
 // different slug — instead of blindly swapping the locale segment of the URL.
@@ -149,7 +152,7 @@ const languageAlternates = Object.fromEntries(
   article={{
     publishedTime: publishedAt,
     modifiedTime: updatedAt,
-    authors: [author],
+    authors: [authorName],
     tags,
   }}
   extraSchemas={schemas}
@@ -174,7 +177,7 @@ const languageAlternates = Object.fromEntries(
     description={description}
     publishedAt={publishedAt}
     updatedAt={updatedAt}
-    author={author}
+    author={authorName}
     tags={tags}
     image={image}
     imageAlt={imageAlt}
