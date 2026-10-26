@@ -1,8 +1,6 @@
 {
   "nav": {
     "skipToContent": "Skip to content",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu",
     "selectLanguage": "Select language",
     "currentLanguage": "Current language",
     "mainNav": "Main navigation",
@@ -23,20 +21,11 @@
     }
   },
   "common": {
-    "readMore": "Read more",
-    "loading": "Loading…",
     "backToTop": "Back to top",
     "search": "Search",
-    "submit": "Submit",
-    "cancel": "Cancel",
-    "next": "Next",
-    "previous": "Previous",
     "home": "Home",
 
-    "themeModeTitle": "Theme: {mode} (click to cycle)",
-
     "progress": "Progress",
-    "themeMode": "Theme: {mode}",
     "browseByTag": "Browse by tag",
     "techStack": "Tech stack",
     "togglePassword": "Toggle password visibility",
@@ -50,17 +39,9 @@
   },
   "blog": {
     "title": "Blog",
-    "description": "Latest articles and updates",
-    "readingTime": "{minutes} min read",
-    "publishedOn": "Published on {date}",
-    "updatedOn": "Updated on {date}",
-    "writtenBy": "Written by {author}",
-    "tagsLabel": "Tags",
     "featured": "Featured",
-    "draft": "Draft",
-    "noPostsFound": "No posts found.",
+    "readingTime": "{minutes} min read",
     "tableOfContents": "Table of contents",
-    "shareThisPost": "Share this post",
     "relatedPosts": "Related Posts",
     "share": "Share:",
     "shareOn": "Share on {platform}",
@@ -96,17 +77,9 @@
   },
   "usecases": {
     "title": "Use cases",
-    "description": "Three documented scenarios — people, IoT, AI agents.",
-    "viewUsecase": "View usecase",
-    "viewSource": "View source",
-    "noUsecasesFound": "No use cases found.",
+    "carouselPreviousSlide": "Previous slide",
     "carouselChooseSlide": "Choose slide",
     "carouselNextSlide": "Next slide",
-    "carouselPreviousSlide": "Previous slide",
-    "galleryLabel": "Media lightbox",
-    "galleryClose": "Close lightbox",
-    "galleryNextImage": "Next image",
-    "galleryPreviousImage": "Previous image",
     "metaTitle": "Use cases",
     "metaDescription": "Documented scenarios on the Me2em protocol — AI agent delegation, IoT hierarchies, and multi-context identity.",
     "heroBadge": "Use cases",
@@ -124,7 +97,6 @@
     "tagBackToAll": "Back to all use cases",
     "backToUsecases": "Back to use cases",
     "moreUsecases": "More use cases",
-    "ctaBadge": "Start building",
     "ctaHeading": "Build this on Me2em",
     "ctaLead": "Every scenario here runs on the same three packages. Follow a quick start and issue your first Handle-backed session in minutes.",
     "ctaPrimary": "Read the docs",
@@ -133,16 +105,12 @@
     "closingLead": "Whether it's a new build or something that needs a fresh perspective — I'd love to hear about it."
   },
   "pagination": {
-    "page": "Page {current} of {total}",
     "label": "Pagination",
     "previousPage": "Previous page",
     "nextPage": "Next page",
     "morePages": "More pages"
   },
   "errors": {
-    "pageNotFound": "Page not found",
-    "pageNotFoundMessage": "The page you're looking for doesn't exist or has moved.",
-    "goHome": "Go to homepage",
     "metaTitle": "Page not found",
     "metaDescription": "This page has moved, been removed, or never existed in the first place.",
     "badge": "404 — page not found",
@@ -180,7 +148,6 @@
   "footer": {
     "copyright": "© {year} {siteName}",
     "credit": "Theme by <a href=\"https://hansmartens.dev\" class=\"transition-colors hover:text-foreground\" target=\"_blank\" rel=\"noopener noreferrer\">Hans Martens Dev</a>",
-    "builtWith": "Built with Astro",
     "groups": {
       "site": "Site",
       "topics": "Topics",
@@ -479,17 +446,6 @@
         "heading": "What you can build",
         "lead": "Documented scenarios — people, devices, and AI agents, read through different domains.",
         "viewAll": "All use cases"
-      },
-      "testimonials": {
-        "badge": "From the alpha",
-        "heading": "What early testers say",
-        "lead": "Feedback from teams building on the protocol.",
-        "items": [
-          { "quote": "We verify partner devices with nothing but our public key. No shared secrets, no database sync — the attestation chain just works.", "name": "Daniel Reyes", "role": "CTO, EV-charging platform" },
-          { "quote": "The seed UX components saved us weeks. Show-once display, verification grid, per-word import — our security review signed off on the first pass.", "name": "Priya Sharma", "role": "Indie developer, E2EE messenger" },
-          { "quote": "Revoking a compromised agent is one call. That single property changed how we design delegation for our AI tooling.", "name": "Tomasz Weber", "role": "Platform engineer, AI orchestration" },
-          { "quote": "Verification is one signature check. We sized our auth servers for a database that no longer exists.", "name": "Marcus Hale", "role": "Backend engineer, credential tooling" }
-        ]
       },
 "tutorials": {
   "badge": "Tutorials",

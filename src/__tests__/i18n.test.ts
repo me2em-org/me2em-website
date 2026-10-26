@@ -17,12 +17,12 @@ import zhDict from '../i18n/zh.json';
 
 describe('i18n t() helper', () => {
   it('returns a translation for a valid dotted key', () => {
-    expect(t('common.readMore', 'en')).toBe('Read more');
+    expect(t('blog.title', 'en')).toBe('Blog');
   });
 
   it('falls back to the default-locale string when the locale has no entry', () => {
     // 'de' has no dictionary loaded yet — should fall back to English
-    expect(t('common.readMore', 'de')).toBe('Read more');
+    expect(t('blog.title', 'de')).toBe('Blog');
   });
 
   it('returns the key itself when no translation exists in any dictionary', () => {

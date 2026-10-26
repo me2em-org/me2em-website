@@ -1,8 +1,6 @@
 {
   "nav": {
     "skipToContent": "跳转到内容",
-    "openMenu": "打开菜单",
-    "closeMenu": "关闭菜单",
     "selectLanguage": "选择语言",
     "currentLanguage": "当前语言",
     "mainNav": "主导航",
@@ -23,20 +21,11 @@
     }
   },
   "common": {
-    "readMore": "阅读更多",
-    "loading": "加载中…",
     "backToTop": "回到顶部",
     "search": "搜索",
-    "submit": "提交",
-    "cancel": "取消",
-    "next": "下一步",
-    "previous": "上一步",
     "home": "首页",
 
-    "themeModeTitle": "主题：{mode}（点击切换）",
-
     "progress": "进度",
-    "themeMode": "主题：{mode}",
     "browseByTag": "按标签浏览",
     "techStack": "技术栈",
     "togglePassword": "切换密码可见性",
@@ -50,17 +39,9 @@
   },
   "blog": {
     "title": "博客",
-    "description": "最新文章和更新",
-    "readingTime": "{minutes} 分钟阅读",
-    "publishedOn": "发布于 {date}",
-    "updatedOn": "更新于 {date}",
-    "writtenBy": "作者：{author}",
-    "tagsLabel": "标签",
     "featured": "精选",
-    "draft": "草稿",
-    "noPostsFound": "未找到文章。",
+    "readingTime": "{minutes} 分钟阅读",
     "tableOfContents": "目录",
-    "shareThisPost": "分享此文章",
     "relatedPosts": "相关文章",
     "share": "分享：",
     "shareOn": "在{platform}上分享",
@@ -96,17 +77,9 @@
   },
   "usecases": {
     "title": "Use cases",
-    "description": "Nine documented scenarios — people, devices, AI agents.",
-    "viewUsecase": "Open scenario",
-    "viewSource": "View source",
-    "noUsecasesFound": "No usecases found.",
+    "carouselPreviousSlide": "Previous slide",
     "carouselChooseSlide": "Choose slide",
     "carouselNextSlide": "Next slide",
-    "carouselPreviousSlide": "Previous slide",
-    "galleryLabel": "Media lightbox",
-    "galleryClose": "Close lightbox",
-    "galleryNextImage": "Next image",
-    "galleryPreviousImage": "Previous image",
     "metaTitle": "Use cases",
     "metaDescription": "Documented Me2em protocol scenarios — AI agent delegation, IoT device hierarchies, multi-context identity, and SSO without a user database.",
     "heroBadge": "Use cases",
@@ -124,7 +97,6 @@
     "tagBackToAll": "Back to all use cases",
     "backToUsecases": "Back to use cases",
     "moreUsecases": "More use cases",
-    "ctaBadge": "Start building",
     "ctaHeading": "Build this on Me2em",
     "ctaLead": "Each scenario runs on the same three packages. Go through the quick start and ship your first session in minutes.",
     "ctaPrimary": "Read the docs",
@@ -133,16 +105,12 @@
     "closingLead": "The protocol's terms are domain-neutral — new scenarios map to the same primitives. Start with the quick start or read how attestations carry delegatable trust."
   },
   "pagination": {
-    "page": "第{current}页，共{total}页",
     "label": "分页",
     "previousPage": "上一页",
     "nextPage": "下一页",
     "morePages": "更多页面"
   },
   "errors": {
-    "pageNotFound": "页面未找到",
-    "pageNotFoundMessage": "你寻找的页面不存在或已移动。",
-    "goHome": "前往首页",
     "metaTitle": "页面未找到",
     "metaDescription": "此页面已移动、被删除或从未存在过。",
     "badge": "404 — 页面未找到",
@@ -180,7 +148,6 @@
   "footer": {
     "copyright": "© {year} {siteName}",
     "credit": "Theme by <a href=\"https://hansmartens.dev\" class=\"transition-colors hover:text-foreground\" target=\"_blank\" rel=\"noopener noreferrer\">Hans Martens Dev</a>",
-    "builtWith": "基于Astro构建",
     "groups": {
       "site": "网站",
       "topics": "主题",
@@ -533,33 +500,6 @@
         "heading": "What you can build",
         "lead": "Documented scenarios — people, devices, and AI agents, read through different domains.",
         "viewAll": "All use cases"
-      },
-      "testimonials": {
-        "badge": "评价",
-        "heading": "客户怎么说",
-        "lead": "来自完成项目的真实话语。",
-        "items": [
-          {
-            "quote": "新网站按时发布并达到了我们设定的所有目标。性能大幅改善——加载时间下降，客户反馈 overwhelmingly 积极。",
-            "name": "Alex Morgan",
-            "role": "创始人，Bright Studio"
-          },
-          {
-            "quote": "从第一次对话到最后交付都很 straightforward。问了正确的问题，我们全程保持知情，最终结果超出了我们的想象。毫不犹豫地推荐。",
-            "name": "Sarah Chen",
-            "role": "CEO，Luma Agency"
-          },
-          {
-            "quote": "Revoking a compromised agent is one call. That single property changed how we design delegation for our AI tooling.",
-            "name": "Tomasz Weber",
-            "role": "Platform engineer, AI orchestration"
-          },
-          {
-            "quote": "Verification is one signature check. We sized our auth servers for a database that no longer exists.",
-            "name": "Marcus Hale",
-            "role": "Backend engineer, credential tooling"
-          }
-        ]
       },
       "tutorials": {
         "badge": "Tutorials",
