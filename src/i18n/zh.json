@@ -14,7 +14,7 @@
     "items": {
       "home": "首页",
       "services": "服务",
-      "usecases": "用例",
+      "usecases": "使用场景",
       "blog": "博客",
       "sandbox": "沙盒",
       "contact": "社区"
@@ -150,7 +150,7 @@
     "groups": {
       "site": "网站",
       "topics": "主题",
-      "usecases": "用例",
+      "usecases": "使用场景",
       "questions": "有问题？"
     },
     "followOn": "在{platform}上关注我们"
@@ -159,13 +159,13 @@
     "sandbox": {
       "meta": {
         "title": "沙盒",
-        "description": "Me2eM协议沙盒：真实的seed短语、派生的Handle、stateless会话——全部在你的浏览器中运行。"
+        "description": "Me2eM协议沙盒：真实的种子短语、派生的Handle、stateless会话——全部在你的浏览器中运行。"
       },
       "hero": {
         "badge": "沙盒",
         "titleLead": "Me2eM —",
         "typingWords": [
-          "一个seed短语。",
+          "一个种子短语。",
           "多个Handle。",
           "隔离的上下文。",
           "Stateless会话。",
@@ -176,30 +176,30 @@
           "多个Handle。",
           "无状态。"
         ],
-        "description": "实时协议演示：在你的浏览器中生成一个真实的seed短语，观察它派生Handle，并看到一个身份服务于人类、设备和AI代理——任何服务器上都没有个人数据字节。"
+        "description": "实时协议演示：在你的浏览器中生成一个真实的种子短语，观察它派生Handle，并看到一个身份服务于人类、设备和AI代理——任何服务器上都没有个人数据字节。"
       },
       "sandboxSeed": {
         "badge": "步骤1——诞生",
         "heading": "创建你的数字世界",
         "lead": "真正的加密，直接在浏览器中：12个词，不在其他地方存在。",
-        "ctaStart": "生成seed短语",
+        "ctaStart": "生成种子短语",
         "generating": "派生根…",
         "disclaimer": "⚠️ 演示：这个短语是真正的加密，但它与任何东西都不相连。它只存在于这个页面上，当你离开时就会消失。不要把它当作真正的钱包使用。",
         "copied": "已复制到剪贴板。这是为了测试方便。在现实生活中，你必须将seed写在纸上并存放在保险箱中（或使用类似Ledger的设备生成seed）。下面我们将模拟你的纸张。点击「隐藏」——seed将被永久地从计算机内存中擦除。没有人能够恢复它。",
         "panelHidden": "Seed已生成。这是你最主要的秘密。点击「显示」按钮来查看它。",
-        "panelRevealed": "seed短语是打包成易记单词的128位熵。整个密钥层次结构从中确定性地派生：Identity → Handle → SubHandle——相同的seed在任何设备上产生相同的密钥。暴力破解是不可能的：即使每秒一万亿次猜测——也需要数十亿年。点击：复制全部",
+        "panelRevealed": "种子短语是打包成易记单词的128位熵。整个密钥层次结构从中确定性地派生：Identity → Handle → SubHandle——相同的种子在任何设备上产生相同的密钥。暴力破解是不可能的：即使每秒一万亿次猜测——也需要数十亿年。点击：复制全部",
         "revealButton": "显示",
         "hideButton": "隐藏",
         "copyAllButton": "复制全部",
         "paperTitle": "你的纸张文件",
         "paperPasteHint": "将剪贴板中的seed粘贴到这里。",
         "paperNote": "Seed必须离线存储：纸质——是；截图、云笔记、密码管理器——否。电子副本是攻击面。如果这些词泄露，你的身份也会泄露。",
-        "verifyPrompt": "输入你的seed短语中的{a}、{b}和{c}词",
+        "verifyPrompt": "输入你的种子短语中的{a}、{b}和{c}词",
         "verifyWordLabel": "12个词中的第{n}个",
         "verifyPlaceholder": "???",
         "verifyConfirm": "确认身份",
-        "verifyError": "这些词与你的seed短语不匹配。检查你的笔记。",
-        "verifySeeAgain": "我需要再次查看seed短语",
+        "verifyError": "这些词与你的种子短语不匹配。检查你的笔记。",
+        "verifySeeAgain": "我需要再次查看种子短语",
         "paperMissing": "你还没有写下seed。返回并将seed复制到纸上——未记录的seed无法保存。",
         "paperBadgeHint": "点击纸张上的一个词来填充字段。",
         "bornTitle": "🌱 你的数字世界已创建",
@@ -215,14 +215,14 @@
     "docs": {
       "meta": {
         "title": "文档",
-        "description": "每个包的API参考、术语表、quick start和指南——从第一个seed短语到已验证的会话。"
+        "description": "每个包的API参考、术语表、quick start和指南——从第一个种子短语到已验证的会话。"
       },
       "includedLabel": "你得到什么",
       "hero": {
         "badge": "文档",
         "titleLead": "你需要的一切",
         "titleHighlight": "在Me2eM上构建",
-        "description": "所有包的API参考、术语表、quick start和指南——从第一个seed短语到已验证的会话。",
+        "description": "所有包的API参考、术语表、quick start和指南——从第一个种子短语到已验证的会话。",
         "jumpLabels": [
           "@me2em/core",
           "@me2em/crypto",
@@ -233,7 +233,7 @@
         "badge": "@me2em/core",
         "heading": "核心实体",
         "paragraphs": [
-          "协议的核心：从seed短语派生的根Identity、上下文Handles和stateless签名会话。",
+          "协议的核心：从种子短语派生的根Identity、上下文Handles和stateless签名会话。",
           "这里不存储也不查找：服务器通过一次签名检查验证会话，第三方仅使用你的根公钥验证委托访问。证明链携带audiences、scopes和TTL限制，在验证时强制执行——信任可以委托和撤销，无需共享私钥。"
         ],
         "included": [
@@ -295,8 +295,8 @@
         "badge": "@me2em/react",
         "heading": "React SDK",
         "paragraphs": [
-          "将协议转化为产品UI的React绑定：身份钩子、seed短语屏幕、自更新会话。",
-          "seed短语是用户绝不能丢失的那个秘密——所以它的UX是安全模型的一部分。单词只显示一次，通过顺序网格验证，导入时逐词验证。派生密钥仅作为非提取的CryptoKeys持久化，每个身份隔离。headless层保持每个状态机框架无关——未来的@me2em/sdk。"
+          "将协议转化为产品UI的React绑定：身份钩子、种子短语屏幕、自更新会话。",
+          "种子短语是用户绝不能丢失的那个秘密——所以它的UX是安全模型的一部分。单词只显示一次，通过顺序网格验证，导入时逐词验证。派生密钥仅作为非提取的CryptoKeys持久化，每个身份隔离。headless层保持每个状态机框架无关——未来的@me2em/sdk。"
         ],
         "included": [
           {
@@ -352,7 +352,7 @@
         "terms": [
           {
             "term": "Identity",
-            "definition": "从seed短语派生的根加密身份。永远不变。"
+            "definition": "从种子短语派生的根加密身份。永远不变。"
           },
           {
             "term": "Handle",
@@ -395,10 +395,10 @@
             "items": [
               {
                 "question": "我需要在任何地方注册吗？",
-                "answer": "不需要。Identity在你的设备上从你的seed短语派生。没有需要创建的账户——也没有可能泄露的数据库。"
+                "answer": "不需要。Identity在你的设备上从你的种子短语派生。没有需要创建的账户——也没有可能泄露的数据库。"
               },
               {
-                "question": "如果我丢失了seed短语会怎样？",
+                "question": "如果我丢失了种子短语会怎样？",
                 "answer": "身份无法恢复——这是设计使然。seed是唯一的永久身份载体；没有重置链接，因为服务器上没有什么可重置的。"
               },
               {
@@ -449,7 +449,7 @@
         "badge": "实用指南",
         "headingLine1": "协议",
         "headingLine2": "在实际工作中。",
-        "para1": "每个已记录的场景——充电网络、出售其相机访问权的无人机舰队、企业消息传递、委托AI代理——都有一个从seed短语到已验证会话的分步指南，使用真实代码。包永远不会改变；改变的只是角色。",
+        "para1": "每个已记录的场景——充电网络、出售其相机访问权的无人机舰队、企业消息传递、委托AI代理——都有一个从种子短语到已验证会话的分步指南，使用真实代码。包永远不会改变；改变的只是角色。",
         "para2": "随着协议的增长，新的实用指南会出现在博客中。",
         "casesIntro": "一个协议，多种场景。",
         "moreTutorials": "阅读实用指南"
@@ -491,7 +491,7 @@
         },
         "discussions": {
           "label": "问答和想法",
-          "note": "分享用例和模式"
+          "note": "分享使用场景和模式"
         },
         "npm": {
           "label": "npm包",
@@ -520,8 +520,8 @@
     },
     "home": {
       "meta": {
-        "title": "基于seed短语的身份协议",
-        "description": "一个seed短语、多个隔离Handle、stateless会话和可委托信任。基于Ed25519的去中心化身份协议——没有可以被盗的用户数据库。"
+        "title": "基于种子短语的身份协议",
+        "description": "一个种子短语、多个隔离Handle、stateless会话和可委托信任。基于Ed25519的去中心化身份协议——没有可以被盗的用户数据库。"
       },
       "hero": {
         "badge": "接受新项目",
@@ -536,7 +536,7 @@
       "intro": {
         "badge": "协议",
         "heading": "整个想法，一段话说完",
-        "body": "Me2em是一个基于Ed25519加密和标准密钥协商原语的去中心化身份和授权协议。无需注册，无需存储密码：人、设备或AI代理由从单个seed短语在本地派生的密钥表示。每个上下文保持自己的隔离身份，访问通过签名证明进行委托和撤销，服务器通过一次签名检查确认会话——无服务器认证，最小延迟，最小化或完全消除你需要运行和保护的数据库。Me2em适用于安全地变成多人的单一用户：单独的配置文件（工作、家庭、健身房）、IoT设备和无人机层次结构、签名授权下的自主AI代理、E2EE加密通道和第三方服务的确定性密码。"
+        "body": "Me2em是一个基于Ed25519加密和标准密钥协商原语的去中心化身份和授权协议。无需注册，无需存储密码：人、设备或AI代理由从单个种子短语在本地派生的密钥表示。每个上下文保持自己的隔离身份，访问通过签名证明进行委托和撤销，服务器通过一次签名检查确认会话——无服务器认证，最小延迟，最小化或完全消除你需要运行和保护的数据库。Me2em适用于安全地变成多人的单一用户：单独的配置文件（工作、家庭、健身房）、IoT设备和无人机层次结构、签名授权下的自主AI代理、E2EE加密通道和第三方服务的确定性密码。"
       },
       "packages": {
         "badge": "软件包",
@@ -569,7 +569,7 @@
           {
             "icon": "sprout",
             "title": "Seed起源",
-            "description": "身份存在于seed短语中；密钥按需重新计算。被黑的服务器什么也不存储。"
+            "description": "身份存在于种子短语中；密钥按需重新计算。被黑的服务器什么也不存储。"
           },
           {
             "icon": "eye-off",
