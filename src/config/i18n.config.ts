@@ -39,7 +39,7 @@ const i18nConfig: I18nConfig = {
   localeNames: {
     en: 'English',
     ru: 'Russian',
-    zh: 'China',
+    zh: '中文',
   },
   detectBrowserLocale: false,
 };

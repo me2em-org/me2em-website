@@ -108,7 +108,7 @@ describe('i18n locale helpers', () => {
   it('returns the display name when configured, otherwise the code', () => {
     expect(getLocaleName('en')).toBe('English');
     expect(getLocaleName('ru')).toBe('Russian');
-    expect(getLocaleName('zh')).toBe('China');
+    expect(getLocaleName('zh')).toBe('中文');
     expect(getLocaleName('xx')).toBe('xx');
   });
 });

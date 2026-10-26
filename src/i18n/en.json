@@ -47,13 +47,13 @@
     "shareOn": "Share on {platform}",
     "copyLink": "Copy link",
     "metaTitle": "Blog",
-    "metaDescription": "The Me2em blog: protocol deep dives, security notes, and practical guides to building on seed-derived identity.",
+    "metaDescription": "The Me2eM blog: protocol deep dives, security notes, and practical guides to building on seed-derived identity.",
     "heroBadge": "All posts",
-    "heroDescription": "Protocol deep dives, tutorials, and architecture notes — everything you need to build on Me2em.",
+    "heroDescription": "Protocol deep dives, tutorials, and architecture notes — everything you need to build on Me2eM.",
     "allPosts": "All posts",
     "noPosts": "No posts found",
     "pageMetaTitle": "Blog — Page {page}",
-    "pageMetaDescription": "Page {page} of {total} — protocol deep dives, tutorials, and architecture notes from the Me2em blog.",
+    "pageMetaDescription": "Page {page} of {total} — protocol deep dives, tutorials, and architecture notes from the Me2eM blog.",
     "pageBadge": "Page {page} of {total}",
     "newestPosts": "Newest posts",
     "tagMetaTitle": "#{tag} — Blog",
@@ -81,12 +81,12 @@
     "carouselChooseSlide": "Choose slide",
     "carouselNextSlide": "Next slide",
     "metaTitle": "Use cases",
-    "metaDescription": "Documented scenarios on the Me2em protocol — AI agent delegation, IoT hierarchies, multi-context identity, and SSO without a user database.",
+    "metaDescription": "Documented scenarios on the Me2eM protocol — AI agent delegation, IoT hierarchies, multi-context identity, and SSO without a user database.",
     "heroBadge": "Use cases",
     "heroDescription": "The same primitives, read through different domains.",
     "allUsecases": "All use cases",
     "pageMetaTitle": "Use cases — Page {page}",
-    "pageMetaDescription": "Page {page} of {total} — documented scenarios of the Me2em protocol.",
+    "pageMetaDescription": "Page {page} of {total} — documented scenarios of the Me2eM protocol.",
     "pageBadge": "Page {page} of {total}",
     "tagMetaTitle": "#{tag} — Use cases",
     "tagMetaDescription": "Use cases tagged \"{tag}\".",
@@ -97,7 +97,7 @@
     "tagBackToAll": "Back to all use cases",
     "backToUsecases": "Back to use cases",
     "moreUsecases": "More use cases",
-    "ctaHeading": "Build this on Me2em",
+    "ctaHeading": "Build this on Me2eM",
     "ctaLead": "Every scenario here runs on the same three packages. Follow a quick start and issue your first Handle-backed session in minutes.",
     "ctaPrimary": "Read the docs",
     "ctaSecondary": "View on GitHub",
@@ -160,7 +160,7 @@
     "sandbox": {
       "meta": {
         "title": "Sandbox",
-        "description": "A hands-on sandbox for the Me2em protocol: real seed phrases, derived Handles, stateless sessions — right in your browser."
+        "description": "A hands-on sandbox for the Me2eM protocol: real seed phrases, derived Handles, stateless sessions — right in your browser."
       },
       "hero": {
         "badge": "Sandbox",
@@ -212,7 +212,7 @@
       "hero": {
         "badge": "Documentation",
         "titleLead": "Everything you need",
-        "titleHighlight": "to build on Me2em",
+        "titleHighlight": "to build on Me2eM",
         "description": "API references for all packages, glossary, quick starts, and guides — from first seed phrase to a verified session.",
         "jumpLabels": ["@me2em/core","@me2em/crypto","@me2em/react"]
       },
@@ -298,7 +298,7 @@
     { "icon": "shield-check", "title": "The protocol", "items": [
       { "question": "Do I need to register anywhere?", "answer": "No. An Identity is derived from your seed phrase on your device. There is no account to create — and no database that could leak it." },
       { "question": "What happens if I lose my seed phrase?", "answer": "The identity is unrecoverable — by design. The seed is the only permanent carrier of identity; there is no reset link because there is nothing on a server to reset." },
-      { "question": "Is Me2em a blockchain?", "answer": "No. Derivation and verification are pure cryptography — Ed25519 and HKDF — offline, with no network and no consensus. A session verifies in about a millisecond." },
+      { "question": "Is Me2eM a blockchain?", "answer": "No. Derivation and verification are pure cryptography — Ed25519 and HKDF — offline, with no network and no consensus. A session verifies in about a millisecond." },
       { "question": "Is it production-ready?", "answer": "The packages are alpha (core 0.7, crypto 0.1, react 0.1), moving toward a v1.0 API freeze. Fine for evaluation and prototypes today; pin versions and expect changes in production." }
     ]},
     { "icon": "code-2", "title": "Building on it", "items": [
@@ -311,7 +311,7 @@
       "icon": "shield-check",
       "title": "License",
       "items": [
-        { "question": "Is it free to use?", "answer": "Yes, completely free. The Me2em protocol is Apache-2.0 licensed (with patent grant). The theme is MIT licensed — use it for personal and commercial projects, no attribution required." }
+        { "question": "Is it free to use?", "answer": "Yes, completely free. The Me2eM protocol is Apache-2.0 licensed (with patent grant). The theme is MIT licensed — use it for personal and commercial projects, no attribution required." }
       ]
     }
   ]
@@ -407,7 +407,7 @@
       "intro": {
       "badge": "The protocol",
       "heading": "The whole idea in one paragraph",
-      "body": "Me2em is a decentralized identity and authorization protocol built on Ed25519 cryptography and standard key-agreement primitives. Nothing to register, no passwords to store: a person, a device, or an AI agent is represented by keys derived locally from a single seed phrase. Every context keeps its own isolated identity, access is delegated and revoked through signed attestations, and servers confirm a session with a single signature check — serverless authentication with minimal latency that minimizes, or removes entirely, the database you have to run and protect. Me2em is for one user who safely becomes many: separate profiles (work, home, the gym), hierarchies of IoT devices and drones, autonomous AI agents under signed mandates, E2EE-encrypted channels, and deterministic passwords for third-party services."
+      "body": "Me2eM is a decentralized identity and authorization protocol built on Ed25519 cryptography and standard key-agreement primitives. Nothing to register, no passwords to store: a person, a device, or an AI agent is represented by keys derived locally from a single seed phrase. Every context keeps its own isolated identity, access is delegated and revoked through signed attestations, and servers confirm a session with a single signature check — serverless authentication with minimal latency that minimizes, or removes entirely, the database you have to run and protect. Me2eM is for one user who safely becomes many: separate profiles (work, home, the gym), hierarchies of IoT devices and drones, autonomous AI agents under signed mandates, E2EE-encrypted channels, and deterministic passwords for third-party services."
       },
        "packages": {
        "badge": "Packages",
@@ -415,9 +415,9 @@
        "lead": "Everything derives from the same Ed25519 root — start with the core, add encryption and UI when you need them.",
        "learnMore": "Read the docs",
        "cards": [
-         { "icon": "layout", "title": "@me2em/core", "description": "Core primitives for the Me2em authorization protocol: hierarchical deterministic identities, stateless signed sessions, and parent-signed attestation for delegatable, externally verifiable authorization." },
-         { "icon": "code", "title": "@me2em/crypto", "description": "Cryptographic mechanisms for the Me2em protocol: E2EE channels, X3DH key exchange, purpose-based key derivation, and envelope patterns for offline recipients and media chunk encryption." },
-         { "icon": "atom", "title": "@me2em/react", "description": "React bindings for the Me2em protocol: identity lifecycle hooks, seed-phrase UX components, session management, and an encrypted per-identity context cache." }
+         { "icon": "layout", "title": "@me2em/core", "description": "Core primitives for the Me2eM authorization protocol: hierarchical deterministic identities, stateless signed sessions, and parent-signed attestation for delegatable, externally verifiable authorization." },
+         { "icon": "code", "title": "@me2em/crypto", "description": "Cryptographic mechanisms for the Me2eM protocol: E2EE channels, X3DH key exchange, purpose-based key derivation, and envelope patterns for offline recipients and media chunk encryption." },
+         { "icon": "atom", "title": "@me2em/react", "description": "React bindings for the Me2eM protocol: identity lifecycle hooks, seed-phrase UX components, session management, and an encrypted per-identity context cache." }
        ]
        },
       "workWithMe": {
