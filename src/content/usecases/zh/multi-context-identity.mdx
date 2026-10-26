@@ -1,0 +1,45 @@
+---
+title: "多上下文身份"
+locale: zh
+description: "一个种子、多个身份——每个上下文一个单独的 Handle，每个有自己的密钥对。工作、作品集、家庭、个人——没有链接标识符，没有用户数据库，每个设备确定性导出。"
+icon: "user-cog"
+tags: ["identity", "isolation", "privacy", "deterministic"]
+featured: true
+order: 5
+uc: "UC-3"
+url: "https://github.com/me2em-org/me2em-protocol/blob/main/packages/core/USE_CASES.md#scenario-5-multi-context-identity-uc-3--personas"
+services: ["@me2em/core 0.7", "@me2em/crypto 0.1", "@me2em/react 0.1"]
+meta: ["一个种子——多张面孔", "隔离的密钥对", "无链接标识符", "服务器一无所有"]
+draft: false
+---
+
+## 你可以构建什么
+
+用户身份在每个上下文中保持分离——工作、个人、家庭、设备——没有链接它们的中央数据库。每个 Handle 是一个单独的 Ed25519 密钥对，从同一个种子导出，每个设备从种子短语重新计算相同的密钥。
+
+## 它是如何工作的
+
+用户为每个上下文导出 Handle。每个 Handle 携带自己的密钥对、自己的证明链和自己的会话。应用仅看到用户提交的 Handle 并根据根公钥验证。
+
+```typescript
+const work = await identity.deriveHandle('work');
+const home = await identity.deriveHandle('home');
+const devices = await identity.deriveHandle('devices');
+```
+
+## 优势
+
+- **按构造隔离。** 一个 Handle 被入侵永远不会暴露另一个——不同的密钥，不同的授权。
+- **无状态。** 服务器仅用根公钥验证会话——无需维护或保护的用户数据库。
+- **新上下文一行。** 新角色是一次导出——无需注册、无需批准、无需泄露的数据。
+- **确定性。** 相同种子、相同 Handle——总是如此。每个设备一个身份，无需同步。
+
+## 权衡
+
+- **种子丢失 = 按设计丢失身份。** 没有恢复——种子是身份的唯一永久载体。
+- **用户教育。** 角色需要解释：用户必须了解何时提交哪个 Handle 以及为什么隔离很重要。
+- **Alpha。** 包 API 是 1.0 之前版本；固定版本。
+
+## 链接
+
+- 场景 5 在[协议使用场景指南](https://github.com/me2em-org/me2em-protocol/blob/main/packages/core/USE_CASES.md#scenario-5-multi-context-identity-uc-3--personas)
