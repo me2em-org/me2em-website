@@ -25,7 +25,7 @@ import { getNavItems } from '@/config/nav.config';
  * The Pages list used to be five hardcoded lines and had already drifted: it
  * named Home, Sandbox, Usecases, Blog and Contact while the nav also carried
  * Services, and it never mentioned the components page at all — so an
- * assistant asked about this theme had no way to learn that the page
+ * assistant asked about this site had no way to learn that the page
  * documenting every component exists. It now comes from `getNavItems`, so it
  * follows whatever nav a site configures.
  *
@@ -34,7 +34,7 @@ import { getNavItems } from '@/config/nav.config';
  *
  * Multi-language sites: the default locale is listed, since llms.txt is meant
  * to stay short. Translated pages remain discoverable through the sitemap and
- * the hreflang tags the theme already emits.
+ * the hreflang tags the site already emits.
  */
 
 /**
@@ -75,7 +75,7 @@ export const GET: APIRoute = async ({ site }) => {
       line(
         'Components',
         `${base}/components`,
-        'Every component in the theme, rendered, with its props and variants'
+        'Every UI component, rendered, with its props and variants'
       )
     );
   }
@@ -85,10 +85,30 @@ export const GET: APIRoute = async ({ site }) => {
     ``,
     `> ${siteConfig.description}`,
     ``,
+    `One Identity → Many Handles → Stateless Sessions`,
+    ``,
     `## Pages`,
     ``,
     ...pageLines,
   ];
+
+  sections.push(``, `## Technical specification`, ``,
+    `- Seed-derived identity: an Identity is derived from a seed phrase on the user's`,
+    `  device — Ed25519 and HKDF, offline, with no network and no consensus.`,
+    `- Hierarchy: Identity → Handle → SubHandle (SubHandle is the leaf, MAX_DEPTH = 2);`,
+    `  a device derives its own SubHandles and child attestations, fully offline.`,
+    `- Stateless sessions: verifiers need no user database and no server-side session`,
+    `  store — verification is pure cryptography, with no accounts to breach.`,
+    `- Delegatable trust: signed attestation chains and mandates; revoking one`,
+    `  attestation jti disables the entire branch — current and future sessions — on`,
+    `  every verifier that checks revocations.`,
+    `- Verification modes: verifyStateless for backends that hold the root key;`,
+    `  verifyAttested for everyone else — grants enforced at verification time, with`,
+    `  the root public key only.`,
+    `- Packages: @me2em/core, @me2em/crypto, @me2em/react on npm — alpha, moving`,
+    `  toward a v1.0 API freeze.`,
+    `- License: Apache-2.0, free and open source.`,
+  );
 
   if (usecaseLines) {
     sections.push(``, `## Usecases`, ``, usecaseLines);
@@ -104,6 +124,8 @@ export const GET: APIRoute = async ({ site }) => {
     ``,
     line('Sitemap', `${base}/sitemap-index.xml`),
     line('RSS feed', `${base}${getRssUrl(defaultLocale)}`),
+    ``,
+    `- Author: [Serge Lubimov](https://selub.github.io) — author and maintainer of the Me2eM protocol ([LinkedIn](https://www.linkedin.com/in/serge-lubimov), [GitHub](https://github.com/selub))`,
     ``,
     `---`,
     ``,
