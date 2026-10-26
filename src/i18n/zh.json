@@ -16,7 +16,7 @@
       "services": "服务",
       "usecases": "用例",
       "blog": "博客",
-      "sandbox": "Sandbox",
+      "sandbox": "沙盒",
       "contact": "社区"
     }
   },
@@ -24,7 +24,6 @@
     "backToTop": "回到顶部",
     "search": "搜索",
     "home": "首页",
-
     "progress": "进度",
     "browseByTag": "按标签浏览",
     "techStack": "技术栈",
@@ -47,13 +46,13 @@
     "shareOn": "在{platform}上分享",
     "copyLink": "复制链接",
     "metaTitle": "博客",
-    "metaDescription": "Me2em博客：有关设置、配置和使用该主题的实用指南。",
+    "metaDescription": "Me2eM博客：协议解析、安全笔记和基于seed派生身份构建的实用指南。",
     "heroBadge": "所有文章",
-    "heroDescription": "关于Astro Rocket你需要知道的一切，用实用指南来解释。",
+    "heroDescription": "协议解析、实用指南和架构笔记——所有构建Me2eM的内容。",
     "allPosts": "所有文章",
     "noPosts": "未找到文章",
     "pageMetaTitle": "博客 — 第{page}页",
-    "pageMetaDescription": "第{page}页，共{total}页 — 有关设置、配置和使用Me2em的实用指南。",
+    "pageMetaDescription": "第{page}页，共{total}页——Me2eM博客中的协议解析、实用指南和架构笔记。",
     "pageBadge": "第{page}页，共{total}页",
     "newestPosts": "最新文章",
     "tagMetaTitle": "#{tag} — 博客",
@@ -68,41 +67,41 @@
     "tocHide": "隐藏",
     "backToBlog": "返回博客",
     "updated": "已更新",
-    "rssFeed": "RSS订阅",
+    "rssFeed": "RSS频道",
     "cta": {
       "heading": "准备开始了吗？",
-        "description": "克隆Me2em，选择一个主题，在几分钟内启动你的下一个项目。",
+      "description": "安装一个包，完成quick start，在几分钟内启动你的第一个场景。",
       "button": "开始使用"
     }
   },
   "usecases": {
-    "title": "Use cases",
-    "carouselPreviousSlide": "Previous slide",
-    "carouselChooseSlide": "Choose slide",
-    "carouselNextSlide": "Next slide",
-    "metaTitle": "Use cases",
-    "metaDescription": "Documented Me2em protocol scenarios — AI agent delegation, IoT device hierarchies, multi-context identity, and SSO without a user database.",
-    "heroBadge": "Use cases",
-    "heroDescription": "The same primitives — read through different domains.",
-    "allUsecases": "All use cases",
-    "pageMetaTitle": "Use cases — page {page}",
-    "pageMetaDescription": "Page {page} of {total} — documented Me2em protocol scenarios.",
-    "pageBadge": "Page {page} of {total}",
-    "tagMetaTitle": "#{tag} — Use cases",
-    "tagMetaDescription": "Use cases tagged \"{tag}\".",
-    "tagBadge": "Tag",
-    "tagCountOne": "{count} use case tagged \"{tag}\".",
-    "tagCountOther": "{count} use cases tagged \"{tag}\".",
-    "tagEmpty": "No use cases with this tag.",
-    "tagBackToAll": "Back to all use cases",
-    "backToUsecases": "Back to use cases",
-    "moreUsecases": "More use cases",
-    "ctaHeading": "Build this on Me2em",
-    "ctaLead": "Each scenario runs on the same three packages. Go through the quick start and ship your first session in minutes.",
-    "ctaPrimary": "Read the docs",
-    "ctaSecondary": "Open GitHub",
-    "closingHeading": "Your scenario isn't here?",
-    "closingLead": "The protocol's terms are domain-neutral — new scenarios map to the same primitives. Start with the quick start or read how attestations carry delegatable trust."
+    "title": "使用场景",
+    "carouselPreviousSlide": "上一张幻灯片",
+    "carouselChooseSlide": "选择幻灯片",
+    "carouselNextSlide": "下一张幻灯片",
+    "metaTitle": "使用场景",
+    "metaDescription": "已记录的Me2eM协议场景——AI代理委托、IoT设备层级、多上下文身份和无用户数据库的SSO。",
+    "heroBadge": "使用场景",
+    "heroDescription": "相同的原语——通过不同领域阅读。",
+    "allUsecases": "所有使用场景",
+    "pageMetaTitle": "使用场景 — 第{page}页",
+    "pageMetaDescription": "第{page}页，共{total}页——已记录的Me2eM协议场景。",
+    "pageBadge": "第{page}页，共{total}页",
+    "tagMetaTitle": "#{tag} — 使用场景",
+    "tagMetaDescription": "标记为\"{tag}\"的使用场景。",
+    "tagBadge": "标签",
+    "tagCountOne": "有{count}个使用场景标记为\"{tag}\"。",
+    "tagCountOther": "有{count}个使用场景标记为\"{tag}\"。",
+    "tagEmpty": "没有标记为此标签的使用场景。",
+    "tagBackToAll": "返回所有使用场景",
+    "backToUsecases": "返回使用场景",
+    "moreUsecases": "更多使用场景",
+    "ctaHeading": "在Me2eM上构建这个",
+    "ctaLead": "每个场景都运行在相同的三个包上。完成quick start并在几分钟内发布你的第一个会话。",
+    "ctaPrimary": "阅读文档",
+    "ctaSecondary": "打开GitHub",
+    "closingHeading": "没有找到你的场景？",
+    "closingLead": "协议的术语是领域中立的——新场景映射到相同的原语。从quick start开始或阅读证明如何携带可委托信任。"
   },
   "pagination": {
     "label": "分页",
@@ -120,8 +119,8 @@
     "backHome": "返回首页",
     "browseBlog": "浏览博客",
     "tryInstead": "试试这些",
-    "usecasesDesc": "精选作品和案例研究。",
-    "blogDesc": "关于设计、代码和技艺的笔记。",
+    "usecasesDesc": "已记录的方案——代理、设备、身份。",
+    "blogDesc": "协议解析、实用指南、架构笔记。",
     "contactTitle": "社区",
     "contactDesc": "问题、反馈和安全报告。"
   },
@@ -135,10 +134,10 @@
     "dark": "深色",
     "currentlyLight": "当前为浅色",
     "currentlyDark": "当前为深色",
-    "swatchLabel": "{name}主题"
+    "swatchLabel": "「{name}」主题"
   },
   "search": {
-    "placeholder": "搜索文章、项目和页面…",
+    "placeholder": "搜索文章、使用场景和页面…",
     "inputLabel": "搜索查询",
     "resultsLabel": "搜索结果",
     "hint": "开始输入以搜索网站。",
@@ -159,190 +158,310 @@
   "pages": {
     "sandbox": {
       "meta": {
-        "title": "Sandbox",
-        "description": "Me2em protocol sandbox: real seed phrases, derived Handles, stateless sessions — all running in your browser."
+        "title": "沙盒",
+        "description": "Me2eM协议沙盒：真实的seed短语、派生的Handle、stateless会话——全部在你的浏览器中运行。"
       },
       "hero": {
-        "badge": "Sandbox",
+        "badge": "沙盒",
         "titleLead": "Me2eM —",
         "typingWords": [
-          "One seed phrase.",
-          "Many Handles.",
-          "Isolated contexts.",
-          "Stateless sessions.",
-          "Zero storage."
+          "一个seed短语。",
+          "多个Handle。",
+          "隔离的上下文。",
+          "Stateless会话。",
+          "零存储。"
         ],
         "typingWordsMobile": [
-          "One phrase.",
-          "Many Handles.",
-          "Stateless."
+          "一个短语。",
+          "多个Handle。",
+          "无状态。"
         ],
-        "description": "Live protocol demo: generate a real seed phrase right in your browser, watch it derive Handles, and see one identity serve a human, a device, and an AI agent — with zero bytes of personal data on any server."
+        "description": "实时协议演示：在你的浏览器中生成一个真实的seed短语，观察它派生Handle，并看到一个身份服务于人类、设备和AI代理——任何服务器上都没有个人数据字节。"
       },
       "sandboxSeed": {
-        "badge": "Step 1 — Conception",
-        "heading": "Create your digital world",
-        "lead": "Real cryptography, right in the browser: 12 words that exist nowhere else.",
-        "ctaStart": "Generate a seed phrase",
-        "generating": "Deriving the root…",
-        "disclaimer": "⚠️ Demo: this phrase is real cryptography, but it is connected to nothing. It lives only on this page and vanishes when you leave. Do not use it as a real wallet.",
-        "copied": "Copied to the clipboard. This is a convenience for testing. In real life you must write the seed down on paper. Press Hide — and the seed will be erased from this computer's memory, beyond recovery.",
-        "panelHidden": "The seed is generated. This is the single most important secret of your world. Press Reveal to see it.",
-        "panelRevealed": "The phrase is 128 bits of entropy packed into memorable words. The entire key hierarchy derives deterministically from it: Identity → Handle → SubHandle — the same seed yields the same keys on every device. Brute-forcing it is impossible: even a trillion guesses per second means billions of years.",
-        "revealButton": "Reveal",
-        "hideButton": "Hide",
-        "copyAllButton": "Copy All",
-        "paperTitle": "Your paper file",
-        "paperPasteHint": "Paste the seed from the clipboard here.",
-        "paperNote": "Seed must be stored offline: paper — yes; screenshots, cloud notes, password managers — no. Electronic copies are attack surface. If these words leak, your identity leaks with them.",
-        "verifyPrompt": "Enter words {a}, {b} and {c} of your seed phrase",
-        "verifyWordLabel": "Word {n} of 12",
+        "badge": "步骤1——诞生",
+        "heading": "创建你的数字世界",
+        "lead": "真正的加密，直接在浏览器中：12个词，不在其他地方存在。",
+        "ctaStart": "生成seed短语",
+        "generating": "派生根…",
+        "disclaimer": "⚠️ 演示：这个短语是真正的加密，但它与任何东西都不相连。它只存在于这个页面上，当你离开时就会消失。不要把它当作真正的钱包使用。",
+        "copied": "已复制到剪贴板。这是为了测试方便。在现实生活中，你必须将seed写在纸上并存放在保险箱中（或使用类似Ledger的设备生成seed）。下面我们将模拟你的纸张。点击「隐藏」——seed将被永久地从计算机内存中擦除。没有人能够恢复它。",
+        "panelHidden": "Seed已生成。这是你最主要的秘密。点击「显示」按钮来查看它。",
+        "panelRevealed": "seed短语是打包成易记单词的128位熵。整个密钥层次结构从中确定性地派生：Identity → Handle → SubHandle——相同的seed在任何设备上产生相同的密钥。暴力破解是不可能的：即使每秒一万亿次猜测——也需要数十亿年。点击：复制全部",
+        "revealButton": "显示",
+        "hideButton": "隐藏",
+        "copyAllButton": "复制全部",
+        "paperTitle": "你的纸张文件",
+        "paperPasteHint": "将剪贴板中的seed粘贴到这里。",
+        "paperNote": "Seed必须离线存储：纸质——是；截图、云笔记、密码管理器——否。电子副本是攻击面。如果这些词泄露，你的身份也会泄露。",
+        "verifyPrompt": "输入你的seed短语中的{a}、{b}和{c}词",
+        "verifyWordLabel": "12个词中的第{n}个",
         "verifyPlaceholder": "???",
-        "verifyConfirm": "Confirm identity",
-        "verifyError": "The words do not match your seed phrase. Check your notes.",
-        "verifySeeAgain": "I need to see the seed phrase again",
-        "paperMissing": "You haven't written the seed down. Go back and copy the seed onto your paper — a seed that isn't recorded cannot be kept.",
-        "paperBadgeHint": "Click a word from your paper to fill the field.",
-        "bornTitle": "🌱 Your digital world is created",
-        "bornText": "The entire key hierarchy derives deterministically from these 12 words: Identity → Handle → SubHandle. Zero bytes on the server.",
-        "createdSequence": "What just happened: you generated 128 bits of entropy in your browser — it derived your root Identity — you proved you hold the paper — your world exists. Nowhere along the way was a single byte stored on a server.",
-        "nextLabel": "Next step of the sandbox",
-        "nextHuman": "Human: work, family, fitness club",
-        "nextIot": "Satellite: selling capacity",
-        "nextAgent": "AI agent: mandate and revocation",
-        "restart": "Start over (the seed will vanish)"
+        "verifyConfirm": "确认身份",
+        "verifyError": "这些词与你的seed短语不匹配。检查你的笔记。",
+        "verifySeeAgain": "我需要再次查看seed短语",
+        "paperMissing": "你还没有写下seed。返回并将seed复制到纸上——未记录的seed无法保存。",
+        "paperBadgeHint": "点击纸张上的一个词来填充字段。",
+        "bornTitle": "🌱 你的数字世界已创建",
+        "bornText": "整个密钥层次结构从这12个词中确定性地派生：Identity → Handle → SubHandle。服务器上零字节。",
+        "createdSequence": "刚刚发生了什么：你在浏览器中生成了128位熵——它派生了你的根Identity——你证明你持有纸张——你的世界存在。在任何地方都没有一个字节存储在服务器上。",
+        "nextLabel": "沙盒的下一步",
+        "nextHuman": "人类：工作、家庭、健身房",
+        "nextIot": "卫星：出售资源",
+        "nextAgent": "AI代理：授权和撤销",
+        "restart": "重新开始（seed将消失）"
       }
     },
     "docs": {
       "meta": {
-        "title": "Documentation",
-        "description": "API references for every package, a glossary, quick starts, and guides — from first seed phrase to a verified session."
+        "title": "文档",
+        "description": "每个包的API参考、术语表、quick start和指南——从第一个seed短语到已验证的会话。"
       },
-      "includedLabel": "What you get",
+      "includedLabel": "你得到什么",
       "hero": {
-        "badge": "Documentation",
-        "titleLead": "Everything you need",
-        "titleHighlight": "to build on Me2em",
-        "description": "API references for all packages, glossary, quick starts, and guides — from first seed phrase to a verified session.",
-        "jumpLabels": ["@me2em/core","@me2em/crypto","@me2em/react"]
+        "badge": "文档",
+        "titleLead": "你需要的一切",
+        "titleHighlight": "在Me2eM上构建",
+        "description": "所有包的API参考、术语表、quick start和指南——从第一个seed短语到已验证的会话。",
+        "jumpLabels": [
+          "@me2em/core",
+          "@me2em/crypto",
+          "@me2em/react"
+        ]
       },
       "design": {
         "badge": "@me2em/core",
-        "heading": "Core entities",
-      "paragraphs": [
-        "The core of the protocol: a root Identity derived from a seed phrase, contextual Handles, and stateless signed sessions.",
-        "Nothing here is stored or looked up: a server verifies a session with one signature check, and a third party verifies delegated access using only your root public key. Attestation chains carry audiences, scopes and TTL caps enforced at verification time — trust can be delegated, and revoked, without sharing a private key."
-      ],
-    "included": [
-      { "lead": "A seed-derived Identity", "text": "from 32 bytes or a 12/24-word phrase — constant forever, stored nowhere." },
-      { "lead": "Isolated Handles", "text": "a separate Ed25519 keypair per context; compromising one reveals nothing about the others." },
-      { "lead": "Attestation chains", "text": "parent-signed grants with audiences, scopes and TTL caps, verified offline by any third party." },
-      { "lead": "Stateless sessions", "text": "verifyStateless for your backend, verifyAttested for partners — with instant branch revocation." },
-      { "lead": "Derivations built in", "text": "deterministic passwords, channel keys and X25519 shared secrets, plus BIP39 passphrase support." }
-    ],
-    "ctaLabel": "Read the core guide"
+        "heading": "核心实体",
+        "paragraphs": [
+          "协议的核心：从seed短语派生的根Identity、上下文Handles和stateless签名会话。",
+          "这里不存储也不查找：服务器通过一次签名检查验证会话，第三方仅使用你的根公钥验证委托访问。证明链携带audiences、scopes和TTL限制，在验证时强制执行——信任可以委托和撤销，无需共享私钥。"
+        ],
+        "included": [
+          {
+            "lead": "从seed派生的Identity",
+            "text": "来自32字节或12/24词短语——永远不变，不存储在任何地方。"
+          },
+          {
+            "lead": "隔离的Handles",
+            "text": "每个上下文一个独立的Ed25519密钥对； compromised一个不会泄露其他的。"
+          },
+          {
+            "lead": "证明链",
+            "text": "父级签名的授权，带有audiences、scopes和TTL限制，由任何第三方离线验证。"
+          },
+          {
+            "lead": "Stateless会话",
+            "text": "verifyStateless用于你的后端，verifyAttested用于合作伙伴——带有即时分支撤销。"
+          },
+          {
+            "lead": "内置派生",
+            "text": "确定性密码、通道密钥和X25519共享密钥，以及BIP39 passphrase支持。"
+          }
+        ],
+        "ctaLabel": "阅读core指南"
       },
       "development": {
         "badge": "@me2em/crypto",
-      "heading": "End-to-end encryption",
-      "paragraphs": [
-        "Protocol cryptography for real communication: canonical Signal X3DH, long-lived encrypted channels, and envelopes for recipients who are offline.",
-        "Channels derive a fresh key for every message and rotate epochs, so what was encrypted stays sealed even if a key leaks later. Pre-keys make asynchronous delivery work: you can encrypt for someone who hasn't been online for days. Underneath sit audited primitives — HKDF, X25519, AES-256-GCM — with Argon2id protecting passwords at the edges."
-      ],
-      "included": [
-        { "lead": "Canonical X3DH", "text": "Signal's key agreement with mandatory one-time pre-keys — no zero-fallback, MITM-resistant." },
-        { "lead": "Channels with forward secrecy", "text": "per-message keys, strictly-increasing replay protection, epoch rotation at defined points." },
-        { "lead": "Envelopes for the offline", "text": "X3DH-wrapped keys reach recipients who haven't been online; every envelope is self-contained." },
-        { "lead": "Argon2id password hardening", "text": "named profiles for interactive and sensitive use, strength checks and HIBP breach lookup." },
-        { "lead": "Verified primitives", "text": "HKDF against RFC 5869 test vectors, X25519, AES-256-GCM, secure key wipe." }
-      ],
-      "ctaLabel": "Explore the crypto guide"
+        "heading": "端到端加密",
+        "paragraphs": [
+          "用于实际通信的协议加密：标准Signal X3DH、长寿命加密通道和用于离线接收者的信封。",
+          "通道为每条消息派生新密钥并旋转纪元，所以即使密钥后来泄露，加密内容仍然密封。预密钥使异步交付可行：你可以加密发送给几天未上线的人。底层有审计过的原语——HKDF、X25519、AES-256-GCM——Argon2id在边缘保护密码。"
+        ],
+        "included": [
+          {
+            "lead": "标准X3DH",
+            "text": "Signal的密钥协商，带有强制的一次性预密钥——无零回退，抗MITM。"
+          },
+          {
+            "lead": "前向安全的通道",
+            "text": "每条消息的密钥、严格递增的重放保护、在定义点的纪元旋转。"
+          },
+          {
+            "lead": "离线信封",
+            "text": "X3DH封装的密钥到达未上线的接收者；每个信封都是自包含的。"
+          },
+          {
+            "lead": "Argon2id密码加固",
+            "text": "交互式和高敏感用途的命名配置，强度检查和HIBP泄露查询。"
+          },
+          {
+            "lead": "验证过的原语",
+            "text": "HKDF针对RFC 5869测试向量、X25519、AES-256-GCM、安全密钥擦除。"
+          }
+        ],
+        "ctaLabel": "探索crypto指南"
       },
       "performance": {
         "badge": "@me2em/react",
-      "heading": "React SDK",
-      "paragraphs": [
-        "React bindings that turn the protocol into product UI: identity hooks, seed-phrase screens, self-renewing sessions.",
-        "The seed phrase is the one secret users must never lose — so its UX is part of the security model. Words are shown once, verified by an order grid, validated word by word on import. Derived keys persist only as non-extractable CryptoKeys, isolated per identity. A headless layer keeps every state machine framework-agnostic — the future @me2em/sdk."
-      ],
-      "included": [
-        { "lead": "Identity hooks", "text": "useCreateIdentity, useImportSeed, useHandle, useSubHandle — the full identity lifecycle." },
-        { "lead": "Seed UX that prevents disasters", "text": "show-once display, single copy, order-verification grid, per-word import validation." },
-        { "lead": "Sessions that renew themselves", "text": "useSession tracks expiry and auto-renews at half-life." },
-        { "lead": "Encrypted context cache", "text": "per-identity IndexedDB isolation with non-extractable persisted CryptoKeys." },
-        { "lead": "Headless layer", "text": "framework-agnostic state machines with zero React imports." }
-      ],
-      "ctaLabel": "Try the React SDK"
+        "heading": "React SDK",
+        "paragraphs": [
+          "将协议转化为产品UI的React绑定：身份钩子、seed短语屏幕、自更新会话。",
+          "seed短语是用户绝不能丢失的那个秘密——所以它的UX是安全模型的一部分。单词只显示一次，通过顺序网格验证，导入时逐词验证。派生密钥仅作为非提取的CryptoKeys持久化，每个身份隔离。headless层保持每个状态机框架无关——未来的@me2em/sdk。"
+        ],
+        "included": [
+          {
+            "lead": "身份钩子",
+            "text": "useCreateIdentity、useImportSeed、useHandle、useSubHandle——完整的身份生命周期。"
+          },
+          {
+            "lead": "防止灾难的seed UX",
+            "text": "一次性显示、单次复制、顺序验证网格、导入时逐词验证。"
+          },
+          {
+            "lead": "自更新会话",
+            "text": "useSession跟踪过期并在半衰期自动续期。"
+          },
+          {
+            "lead": "Encrypted context cache",
+            "text": "每个身份的IndexedDB隔离，带有非提取的持久化CryptoKeys。"
+          },
+          {
+            "lead": "Headless层",
+            "text": "框架无关的状态机，零React导入。"
+          }
+        ],
+        "ctaLabel": "试用React SDK"
       },
-"process": {
-  "badge": "How it works",
-  "heading": "From seed to verified session",
-  "lead": "Four steps — the same in every scenario, from a messenger to a charging network.",
-  "steps": [
-    { "title": "Write the seed", "description": "12 or 24 BIP39 words on paper. The only permanent carrier of identity — never transmitted, never stored." },
-    { "title": "Derive the root", "description": "The Identity is computed locally by HKDF. Handles for each context — work, personal, devices — derive offline from it." },
-    { "title": "Delegate & sign", "description": "Attestation chains grant scoped, time-boxed access to devices, partners, and AI agents. Sessions are stateless signed tokens." },
-    { "title": "Verify & revoke", "description": "Any third party verifies with the root public key alone. One revoked jti disables an entire branch — instantly." }
-  ]
-},
-"glossary": {
-  "badge": "Glossary",
-  "heading": "Speak the protocol",
-  "lead": "A shared vocabulary for the whole model — each term is defined once, here, and used everywhere else.",
-  "terms": [
-    { "term": "Identity", "definition": "Root cryptographic identity derived from a seed phrase. Constant forever." },
-    { "term": "Handle", "definition": "A derived, attested, named key representing a distinct identity context." },
-    { "term": "SubHandle", "definition": "A leaf child of a Handle." },
-    { "term": "Attestation", "definition": "A parent-signed statement binding a child key to a name and a grant." },
-    { "term": "Session", "definition": "A stateless signed authorization token." },
-    { "term": "Channel", "definition": "A long-lived E2EE relationship derived from an X3DH shared secret." },
-    { "term": "Transient material", "definition": "Key bytes existing only in RAM at the moment of use." },
-    { "term": "Ephemeral material", "definition": "TTL-bound rotating material (SPK/OTK, cache keys, session tokens)." }
-  ]
-},
-"faq": {
-  "badge": "Good to know",
-  "heading": "Frequently asked questions",
-  "lead": "The questions that come up before the first derivation.",
-  "cards": [
-    { "icon": "shield-check", "title": "The protocol", "items": [
-      { "question": "Do I need to register anywhere?", "answer": "No. An Identity is derived from your seed phrase on your device. There is no account to create — and no database that could leak it." },
-      { "question": "What happens if I lose my seed phrase?", "answer": "The identity is unrecoverable — by design. The seed is the only permanent carrier of identity; there is no reset link because there is nothing on a server to reset." },
-      { "question": "Is Me2em a blockchain?", "answer": "No. Derivation and verification are pure cryptography — Ed25519 and HKDF — offline, with no network and no consensus. A session verifies in about a millisecond." },
-      { "question": "Is it production-ready?", "answer": "The packages are alpha (core 0.7, crypto 0.1, react 0.1), moving toward a v1.0 API freeze. Fine for evaluation and prototypes today; pin versions and expect changes in production." }
-    ]},
-    { "icon": "code-2", "title": "Building on it", "items": [
-      { "question": "Which verification mode should I use?", "answer": "verifyStateless for backends you control — they already hold the root key. verifyAttested for anyone else: grants are enforced at verification time, with the root public key only." },
-      { "question": "How deep can the hierarchy go?", "answer": "Identity → Handle → SubHandle, where SubHandle is the leaf (MAX_DEPTH = 2). A device derives its own SubHandles and child attestations — fully offline." },
-      { "question": "Can I revoke a device or an AI agent?", "answer": "Yes. Revoking one attestation jti disables the entire branch — current and future sessions — on every verifier that checks revocations." },
-      { "question": "Where do I report a vulnerability?", "answer": "See SECURITY.md in the me2em-protocol repository — responsible disclosure, with credit." }
-    ]},
-    {
-      "icon": "shield-check",
-      "title": "许可",
-      "items": [
-        { "question": "使用免费吗？", "answer": "是的，完全免费。Me2em协议采用Apache-2.0许可证（含专利授权）。主题采用MIT许可证——用于个人和商业项目，不需要署名。" }
-      ]
-    }
-  ]
-},
-"tutorials": {
-  "badge": "Tutorials",
-  "headingLine1": "The protocol",
-  "headingLine2": "at work.",
-  "para1": "Every documented scenario — a charging network, a fleet of drones selling access to its cameras, a corporate messenger, a delegated AI agent — has a walkthrough that builds it from a seed phrase to a verified session, in real code. The packages never change; only the roles do.",
-  "para2": "New tutorials land in the blog as the protocol grows.",
-  "casesIntro": "One protocol, many scenarios.",
-  "moreTutorials": "Read the tutorials"
-},
-"cta": {
-  "badge": "Get started",
-  "heading": "Your first session in minutes",
-  "description": "Install a package, derive a Handle, and verify a stateless session — the quick start runs across all three packages.",
-  "primary": "Get started",
-  "secondary": "Browse on npm",
-  "tertiary": "Star on GitHub"
-}
+      "process": {
+        "badge": "工作原理",
+        "heading": "从seed到已验证的会话",
+        "lead": "四个步骤——在每个场景中相同，从消息传递到充电网络。",
+        "steps": [
+          {
+            "title": "写下seed",
+            "description": "纸上的12或24个BIP39单词。唯一的永久身份载体——永不传输，永不存储。"
+          },
+          {
+            "title": "派生根",
+            "description": "Identity通过HKDF在本地计算。每个上下文的Handle——工作、个人、设备——从中离线派生。"
+          },
+          {
+            "title": "委托和签名",
+            "description": "证明链授予对设备、合作伙伴和AI代理的受限、限时访问。会话是stateless签名令牌。"
+          },
+          {
+            "title": "验证和撤销",
+            "description": "任何第三方仅用根公钥验证。一个撤销的jti立即禁用整个分支。"
+          }
+        ]
+      },
+      "glossary": {
+        "badge": "术语表",
+        "heading": "协议语言",
+        "lead": "整个模型的共享词汇表——每个术语在此定义一次，然后在别处使用。",
+        "terms": [
+          {
+            "term": "Identity",
+            "definition": "从seed短语派生的根加密身份。永远不变。"
+          },
+          {
+            "term": "Handle",
+            "definition": "一个派生的、有证明的、命名的密钥，代表一个独立的身份上下文。"
+          },
+          {
+            "term": "SubHandle",
+            "definition": "Handle的子叶节点。"
+          },
+          {
+            "term": "Attestation",
+            "definition": "父级签名的记录，将子密钥与名称和授权绑定。"
+          },
+          {
+            "term": "Session",
+            "definition": "无状态签名授权令牌。"
+          },
+          {
+            "term": "Channel",
+            "definition": "从X3DH共享密钥派生的长寿命E2EE关系。"
+          },
+          {
+            "term": "Transient material",
+            "definition": "仅在使用的瞬间存在于RAM中的密钥字节。"
+          },
+          {
+            "term": "Ephemeral material",
+            "definition": "带TTL和旋转的材料（SPK/OTK、缓存密钥、会话令牌）。"
+          }
+        ]
+      },
+      "faq": {
+        "badge": "值得了解",
+        "heading": "常见问题",
+        "lead": "第一次派生之前会提出的问题。",
+        "cards": [
+          {
+            "icon": "shield-check",
+            "title": "协议",
+            "items": [
+              {
+                "question": "我需要在任何地方注册吗？",
+                "answer": "不需要。Identity在你的设备上从你的seed短语派生。没有需要创建的账户——也没有可能泄露的数据库。"
+              },
+              {
+                "question": "如果我丢失了seed短语会怎样？",
+                "answer": "身份无法恢复——这是设计使然。seed是唯一的永久身份载体；没有重置链接，因为服务器上没有什么可重置的。"
+              },
+              {
+                "question": "Me2em是区块链吗？",
+                "answer": "不是。派生和验证是纯加密——Ed25519和HKDF——离线，无网络和共识。一个会话验证大约需要一毫秒。"
+              },
+              {
+                "question": "是否生产就绪？",
+                "answer": "包处于alpha阶段（core 0.7、crypto 0.1、react 0.1），正朝向v1.0 API冻结。今天用于评估和原型很好；在生产中固定版本并预期变化。"
+              }
+            ]
+          },
+          {
+            "icon": "code-2",
+            "title": "在其上构建",
+            "items": [
+              {
+                "question": "我应该使用哪种验证模式？",
+                "answer": "verifyStateless用于你控制的后台——它们已经持有根密钥。verifyAttested用于其他人：授权在验证时强制执行，仅使用根公钥。"
+              },
+              {
+                "question": "层次结构可以有多深？",
+                "answer": "Identity → Handle → SubHandle，其中SubHandle是叶节点（MAX_DEPTH = 2）。设备派生自己的SubHandle和子证明——完全离线。"
+              },
+              {
+                "question": "我可以撤销设备或AI代理吗？",
+                "answer": "可以。撤销一个证明jti会禁用整个分支——当前和未来的会话——在所有检查撤销的验证器上。"
+              },
+              {
+                "question": "我在哪里报告漏洞？",
+                "answer": "参见me2em-protocol仓库中的SECURITY.md——负责任的披露，并署名。"
+              }
+            ]
+          },
+          {
+            "icon": "shield-check",
+            "title": "许可",
+            "items": [
+              {
+                "question": "使用免费吗？",
+                "answer": "是的，完全免费。Me2em协议采用Apache-2.0许可证（含专利授权）。主题采用MIT许可证——用于个人和商业项目，不需要署名。"
+              }
+            ]
+          }
+        ]
+      },
+      "tutorials": {
+        "badge": "实用指南",
+        "headingLine1": "协议",
+        "headingLine2": "在实际工作中。",
+        "para1": "每个已记录的场景——充电网络、出售其相机访问权的无人机舰队、企业消息传递、委托AI代理——都有一个从seed短语到已验证会话的分步指南，使用真实代码。包永远不会改变；改变的只是角色。",
+        "para2": "随着协议的增长，新的实用指南会出现在博客中。",
+        "casesIntro": "一个协议，多种场景。",
+        "moreTutorials": "阅读实用指南"
+      },
+      "cta": {
+        "badge": "开始使用",
+        "heading": "几分钟内完成你的第一个会话",
+        "description": "安装一个包，派生一个Handle，并验证一个stateless会话——quick start贯穿所有三个包。",
+        "primary": "开始",
+        "secondary": "在npm上浏览",
+        "tertiary": "在GitHub上标星"
+      }
     },
     "community": {
       "meta": {
@@ -360,14 +479,14 @@
       "channels": {
         "security": {
           "label": "负责任的披露",
-          "note": "私有 — security@me2em.com"
+          "note": "私有——security@me2em.com"
         },
         "telegram": {
           "label": "Telegram",
           "note": "社区和快速问题"
         },
         "issues": {
-          "label": "Bug报告和功能请求",
+          "label": "Bug和功能",
           "note": "在GitHub上提交issue"
         },
         "discussions": {
@@ -376,7 +495,7 @@
         },
         "npm": {
           "label": "npm包",
-          "note": "npm上的@me2em"
+          "note": "@me2em在npm上"
         },
         "docs": {
           "label": "文档",
@@ -387,42 +506,42 @@
       "faq": [
         {
           "question": "文档在哪里？",
-          "answer": "所有文档都在 <a href=\"/docs\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">/docs</a> — 核心指南、API参考、术语表和快速入门。"
+          "answer": "所有文档都在 <a href=\"/docs\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">/docs</a>——指南、API参考、术语表和quick start。"
         },
         {
           "question": "如何报告漏洞？",
-          "answer": "发送邮件至 <a href=\"mailto:security@me2em.com\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">security@me2em.com</a> — 这是唯一的私有渠道。详见协议仓库中的 <a href=\"https://github.com/me2em-org/me2em-protocol/blob/main/SECURITY.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">SECURITY.md</a>。"
+          "answer": "发送邮件至 <a href=\"mailto:security@me2em.com\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">security@me2em.com</a>——这是唯一的私有渠道。参见协议仓库中的 <a href=\"https://github.com/me2em-org/me2em-protocol/blob/main/SECURITY.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">SECURITY.md</a>。"
         },
         {
           "question": "如何贡献？",
-          "answer": "查看协议仓库中的 <a href=\"https://github.com/me2em-org/me2em-protocol/blob/main/CONTRIBUTING.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">CONTRIBUTING.md</a> — 了解提交issue、创建PR和参与讨论的指南。"
+          "answer": "参见协议仓库中的 <a href=\"https://github.com/me2em-org/me2em-protocol/blob/main/CONTRIBUTING.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">CONTRIBUTING.md</a>——关于提交issue、创建PR和参与讨论的指南。"
         }
       ]
     },
     "home": {
       "meta": {
-        "title": "免费开源Astro 7主题",
-        "description": "一个免费、快速的Astro 7启动主题，可以在其上构建任何内容：41个设计组件、8个颜色主题、深色模式和内置i18n。"
+        "title": "基于seed短语的身份协议",
+        "description": "一个seed短语、多个隔离Handle、stateless会话和可委托信任。基于Ed25519的去中心化身份协议——没有可以被盗的用户数据库。"
       },
       "hero": {
         "badge": "接受新项目",
         "titleLine1": "Me2em —",
         "titleLine2": "网页设计师",
         "titleLine3": "& 开发者",
-        "description": "一个免费、闪电般的Astro 7启动主题，可以在其上构建任何内容：41个设计组件、8个颜色主题和深色模式。",
-        "descriptionMobile": "一个免费、闪电般的Astro 7启动主题，可以在其上构建任何内容：41个设计组件和8个颜色主题。",
+        "description": "基于Ed25519的去中心化身份和授权协议——适用于人、IoT和AI代理。没有可以被盗的用户数据库和个人数据。",
+        "descriptionMobile": "基于Ed25519的去中心化身份协议——适用于人、IoT和AI代理。",
         "github": "在GitHub上获取",
         "getStarted": "开始使用"
       },
       "intro": {
-        "badge": "The protocol",
-        "heading": "The whole idea, in one paragraph",
-        "body": "Me2em is a decentralized identity and authorization protocol built on Ed25519 cryptography and standard key-agreement primitives. Nothing to register, no passwords to store: a person, a device, or an AI agent is represented by keys derived locally from a single seed phrase. Every context keeps its own isolated identity, access is delegated and revoked through signed attestations, and servers confirm a session with a single signature check — serverless authentication with minimal latency that minimizes, or removes entirely, the database you have to run and protect. Me2em is for one user who safely becomes many: separate profiles (work, home, the gym), hierarchies of IoT devices and drones, autonomous AI agents under signed mandates, E2EE-encrypted channels, and deterministic passwords for third-party services."
+        "badge": "协议",
+        "heading": "整个想法，一段话说完",
+        "body": "Me2em是一个基于Ed25519加密和标准密钥协商原语的去中心化身份和授权协议。无需注册，无需存储密码：人、设备或AI代理由从单个seed短语在本地派生的密钥表示。每个上下文保持自己的隔离身份，访问通过签名证明进行委托和撤销，服务器通过一次签名检查确认会话——无服务器认证，最小延迟，最小化或完全消除你需要运行和保护的数据库。Me2em适用于安全地变成多人的单一用户：单独的配置文件（工作、家庭、健身房）、IoT设备和无人机层次结构、签名授权下的自主AI代理、E2EE加密通道和第三方服务的确定性密码。"
       },
       "packages": {
         "badge": "软件包",
         "heading": "三个软件包，一个种子",
-        "lead": "一切都源自同一个 Ed25519 根——从核心开始，在需要时添加加密和 UI。",
+        "lead": "一切从同一个Ed25519根派生——从核心开始，按需添加加密和UI。",
         "learnMore": "阅读文档",
         "cards": [
           {
@@ -443,87 +562,87 @@
         ]
       },
       "workWithMe": {
-        "badge": "与我合作",
-        "heading": "让我们一起构建你的网站",
-        "lead": "与你合作时你得到什么。",
+        "badge": "功能",
+        "heading": "保证——加密的",
+        "lead": "协议的八个属性——数学，而非承诺。",
         "cards": [
           {
-            "icon": "palette",
-            "title": "定制设计",
-            "description": "围绕你的业务、内容和客户设计。"
+            "icon": "sprout",
+            "title": "Seed起源",
+            "description": "身份存在于seed短语中；密钥按需重新计算。被黑的服务器什么也不存储。"
+          },
+          {
+            "icon": "eye-off",
+            "title": "零知识",
+            "description": "私钥永远不会离开设备。服务器验证签名，不识别你是谁。"
+          },
+          {
+            "icon": "repeat",
+            "title": "确定性",
+            "description": "同样的seed——同样的密钥，永远如此。所有设备上一个身份——无需同步。"
+          },
+          {
+            "icon": "box",
+            "title": "隔离性",
+            "description": "每个Handle是一个单独的密钥对。一个上下文被入侵不会泄露其他的。"
           },
           {
             "icon": "zap",
-            "title": "闪电般的网站",
-            "description": "在任何手机和任何连接上立即打开的页面。"
-          },
-          {
-            "icon": "search",
-            "title": "被Google和AI找到",
-            "description": "每个页面构建得让搜索引擎和AI助手能干净地读取它，客户可以找到你。"
-          },
-          {
-            "icon": "shield-check",
-            "title": "零维护",
-            "description": "通过维护计划保持更新和安全，让你专注于你的业务。"
-          },
-          {
-            "icon": "zap",
-            "title": "Stateless",
-            "description": "No session database. Any server — or any third party — verifies a token with one signature check."
+            "title": "无状态",
+            "description": "没有会话数据库。任何服务器——或任何第三方——通过一次签名检查验证令牌。"
           },
           {
             "icon": "share-2",
-            "title": "Delegatable",
-            "description": "Attestation chains hand scoped, time-boxed access to partners, IoT devices, and AI agents."
+            "title": "可委托",
+            "description": "证明链将受限的权限和限时访问传递给合作伙伴、IoT设备和AI代理。"
           },
           {
             "icon": "git-branch",
-            "title": "Hierarchical",
-            "description": "Identity → Handle → SubHandle: a whole device fleet under one root, provisioned offline."
+            "title": "层次性",
+            "description": "Identity → Handle → SubHandle：整个设备 fleet 在一个根下，离线配置。"
           },
           {
             "icon": "ban",
-            "title": "Revocable",
-            "description": "One revoked attestation disables an entire branch — current and future sessions, instantly."
+            "title": "可撤销",
+            "description": "一个撤销的证明禁用整个分支——当前和未来的会话，即时生效。"
           }
         ],
-        "cta": "阅读我的服务页面"
+        "cta": "阅读文档"
       },
       "stack": {
-        "badge": "Under the hood",
-        "heading": "The stack",
-        "lead": "Audited primitives and a lean toolchain — every tile links to its source."
+        "badge": "底层",
+        "heading": "技术栈",
+        "lead": "审计过的原语和精简工具链——每个图块链接到其源码。"
       },
       "portfolio": {
-        "badge": "Use cases",
-        "heading": "What you can build",
-        "lead": "Documented scenarios — people, devices, and AI agents, read through different domains.",
-        "viewAll": "All use cases"
+        "badge": "使用场景",
+        "heading": "你可以构建什么",
+        "lead": "已记录的场景——人、设备和AI代理，通过不同领域阅读。",
+        "viewAll": "所有使用场景"
       },
       "tutorials": {
-        "badge": "Tutorials",
-        "headingLine1": "From examples —",
-        "headingLine2": "to working code.",
-        "para1": "Different scenarios use the same primitives to work in very different worlds: autonomous AI agents, a drone fleet, a satellite selling imaging windows, a corporate messenger, and a charging network. None of them requires changing the protocol. One protocol, different use cases.",
-        "para2": "The blog walks each scenario to a step-by-step tutorial.",
-        "moreTutorials": "Read more",
-        "casesIntro": "Four use cases, one protocol.",
+        "badge": "实用指南",
+        "headingLine1": "从示例——",
+        "headingLine2": "到工作代码。",
+        "para1": "不同场景使用相同的原语在不同的世界中工作：自主AI代理、无人机舰队、出售成像窗口的卫星、企业消息传递和充电网络。它们中的任何一个都不需要更改协议。一个协议，多种使用场景。",
+        "para2": "博客将每个场景引导至分步实用指南。",
+        "moreTutorials": "阅读更多",
+        "casesIntro": "四个使用场景，一个协议。",
         "cases": [
           {
-            "title": "AI Agent Delegation",
+            "title": "AI代理委托",
             "href": "/usecases/ai-agent-delegation"
           },
           {
-            "title": "Drone Fleet",
+            "title": "无人机舰队",
             "href": "/usecases/drone-fleet-management"
           },
           {
-            "title": "Corporate Messenger",
+            "title": "企业消息传递",
             "href": "/usecases/corporate-messenger"
           },
           {
-            "title": "EV Charging Station",
+            "title": "EV充电站",
             "href": "/usecases/ev-charging-network"
           }
         ]
