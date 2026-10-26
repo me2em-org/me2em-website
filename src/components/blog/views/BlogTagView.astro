@@ -17,6 +17,7 @@ import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
 import { t, defaultLocale } from '@/i18n';
 import { getBlogBaseUrl, getPostUrl, tagToSlug } from '@/lib/blog';
+import { displayAuthorName } from '@/lib/authors';
 import { getBlogTagOgPath } from '@/lib/og/svg';
 import BlogCta from '@/components/blog/BlogCta.astro';
 
@@ -35,6 +36,14 @@ const { locale = defaultLocale, tag, posts, visibleTags } = Astro.props;
 
 const blogHref = getBlogBaseUrl(locale);
 const countKey = posts.length === 1 ? 'blog.tagCountOne' : 'blog.tagCountOther';
+
+const authorNames = new Map<string, string>();
+const resolveAuthor = async (slug: string): Promise<string> => {
+  if (!authorNames.has(slug)) {
+    authorNames.set(slug, await displayAuthorName(slug));
+  }
+  return authorNames.get(slug)!;
+};
 ---
 
 <PageLayout
@@ -77,14 +86,14 @@ const countKey = posts.length === 1 ? 'blog.tagCountOne' : 'blog.tagCountOther';
 
       {posts.length > 0 ? (
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post, index) => (
+          {posts.map(async (post, index) => (
             <BlogCard
               title={post.data.title}
               description={post.data.description}
               href={getPostUrl(post.id, locale)}
               publishedAt={post.data.publishedAt}
               tags={post.data.tags}
-              author={post.data.author}
+              author={await resolveAuthor(post.data.author)}
               image={post.data.image}
               svgSlug={post.data.svgSlug}
               body={post.body}

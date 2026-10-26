@@ -25,6 +25,7 @@ import {
   getPostUrl,
   getPublishedPosts,
 } from '@/lib/blog';
+import { displayAuthorName } from '@/lib/authors';
 
 interface Props {
   /** Locale whose posts this page renders. Defaults to the site default. */
@@ -45,6 +46,14 @@ const start = (page - 1) * BLOG_POSTS_PER_PAGE;
 const pagePosts = regularPostsAll.slice(start, start + BLOG_POSTS_PER_PAGE);
 
 const topTags = collectTopTags(posts, BLOG_TAG_CLOUD_LIMIT);
+
+const authorNames = new Map<string, string>();
+const resolveAuthor = async (slug: string): Promise<string> => {
+  if (!authorNames.has(slug)) {
+    authorNames.set(slug, await displayAuthorName(slug));
+  }
+  return authorNames.get(slug)!;
+};
 
 ---
 
@@ -83,14 +92,14 @@ const topTags = collectTopTags(posts, BLOG_TAG_CLOUD_LIMIT);
       </div>
 
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {pagePosts.map((post, index) => (
+        {pagePosts.map(async (post, index) => (
           <BlogCard
             title={post.data.title}
             description={post.data.description}
             href={getPostUrl(post.id, locale)}
             publishedAt={post.data.publishedAt}
             tags={post.data.tags}
-            author={post.data.author}
+            author={await resolveAuthor(post.data.author)}
             image={post.data.image}
             svgSlug={post.data.svgSlug}
             body={post.body}
