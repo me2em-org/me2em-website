@@ -54,7 +54,7 @@ Translation is natural (not literal); terms follow the approved terminology tabl
 | seed-derived | seed-derived | seed-derived | Adjective; preserved in zh prose. |
 | attestation | аттестация | 证明 | Attestation chain = аттестационная цепочка / 证明链. |
 | attestation chain | аттестационная цепочка | 证明链 | |
-| mandate | мандат | 授权 | Signed authority granted to an agent. |
+| mandate | мандат | 授权 | Signed authority granted to an agent. Distinct from grant (授予). |
 | revocation | отзыв | 撤销 | Also: ревокация (ru i18n). |
 | revoke | отзывать | 撤销 | `revokeAttestation(jti)` = отзыв аттестации. |
 | verifier | верификатор | 验证器 | |
@@ -69,7 +69,7 @@ Translation is natural (not literal); terms follow the approved terminology tabl
 | epoch | эпоха | 纪元 | Epoch rotation = ротация эпох. |
 | session | сессия | 会话 | Stateless session = stateless-сессия / stateless会话. |
 | password manager | менеджер паролей | 密码管理器 | Deterministic password manager = детерминированный менеджер паролей. |
-| guard rails | guard rails | — | Also: страховка (ru body text). [NEW] |
+| guard rails | guard rails | 护栏 | Also: страховка (ru body text). |
 | derive / derived | выводить / выведенный | 派生 / 派生的 | derivation = деривация / 派生. |
 | offline | офлайн | 离线 | |
 | replay protection | replay protection | 重放保护 | Also: защита от replay. |
@@ -78,7 +78,7 @@ Translation is natural (not literal); terms follow the approved terminology tabl
 | provisioning | provisioning | 预配 | Also: provision. |
 | airframe | airframe | 飞行器 | Drone hardware unit. |
 | TTL (Time To Live) | TTL | TTL | TTL cap = TTL-лимит; ttlSeconds = ttlSeconds. |
-| grant | грант | 授权 | Attestation grant = грант аттестации. |
+| grant | грант | 授予 | Attestation grant = грант аттестации. |
 | scope | scope | 范围 | API scope; also: ограниченный по scope. |
 | audience | аудитория | 受众 | `audiences` array in attestation. |
 | persona | персона | 角色 | Contextual identity. |
@@ -103,7 +103,6 @@ Translation is natural (not literal); terms follow the approved terminology tabl
 | onboarding | онбординг | 入职 | Instant onboarding = мгновенный онбординг. |
 | offboarding | offboarding | 离职 | One-operation offboarding. |
 | contractor | подрядчик | 承包商 | Contractor self-expiry. |
-| airframe | airframe | 飞行器 | Drone hardware unit. |
 | hangar | ангар | 机库 | Drone fleet operations. |
 | telemetry | telemetry | 遥测 | Flight telemetry = телеметрия полёта. |
 | gimbal | gimbal | 云台 | Camera gimbal. |
@@ -133,9 +132,7 @@ Translation is natural (not literal); terms follow the approved terminology tabl
 
 ## ZH neologisms for approval
 
-Terms marked `[NEW]` that are not yet present in `src/i18n/zh.json`:
-
-1. **guard rails → [NEW]** — Recommended: 护栏. Alternative: 防护栏. Context: `@me2em/crypto` adds guard rails for password secrets. No existing zh.json entry; "护栏" is the standard security/engineering term in Chinese.
+(none pending — approved neologisms are merged into § Terminology)
 
 ## Licenses
 
