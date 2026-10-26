@@ -81,19 +81,19 @@
     "carouselChooseSlide": "Choose slide",
     "carouselNextSlide": "Next slide",
     "metaTitle": "Use cases",
-    "metaDescription": "Documented scenarios on the Me2em protocol — AI agent delegation, IoT hierarchies, and multi-context identity.",
+    "metaDescription": "Documented scenarios on the Me2em protocol — AI agent delegation, IoT hierarchies, multi-context identity, and SSO without a user database.",
     "heroBadge": "Use cases",
     "heroDescription": "The same primitives, read through different domains.",
     "allUsecases": "All use cases",
     "pageMetaTitle": "Use cases — Page {page}",
-    "pageMetaDescription": "Page {page} of {total} — selected use cases by Me2eM.",
+    "pageMetaDescription": "Page {page} of {total} — documented scenarios of the Me2em protocol.",
     "pageBadge": "Page {page} of {total}",
     "tagMetaTitle": "#{tag} — Use cases",
-    "tagMetaDescription": "Usecases tagged \"{tag}\".",
+    "tagMetaDescription": "Use cases tagged \"{tag}\".",
     "tagBadge": "Tag",
     "tagCountOne": "{count} use case tagged \"{tag}\".",
     "tagCountOther": "{count} use cases tagged \"{tag}\".",
-    "tagEmpty": "No usecases found for this tag.",
+    "tagEmpty": "No use cases found for this tag.",
     "tagBackToAll": "Back to all use cases",
     "backToUsecases": "Back to use cases",
     "moreUsecases": "More use cases",
@@ -101,8 +101,8 @@
     "ctaLead": "Every scenario here runs on the same three packages. Follow a quick start and issue your first Handle-backed session in minutes.",
     "ctaPrimary": "Read the docs",
     "ctaSecondary": "View on GitHub",
-    "closingHeading": "Have a project in mind?",
-    "closingLead": "Whether it's a new build or something that needs a fresh perspective — I'd love to hear about it."
+    "closingHeading": "Your scenario not listed here?",
+    "closingLead": "The protocol's terms are domain-neutral — new scenarios map to the same primitives. Start with a quick start or read how attestations carry delegatable trust."
   },
   "pagination": {
     "label": "Pagination",
@@ -406,7 +406,7 @@
       },
       "intro": {
       "badge": "The protocol",
-      "heading": "What Me2em is",
+      "heading": "The whole idea in one paragraph",
       "body": "Me2em is a decentralized identity and authorization protocol built on Ed25519 cryptography and standard key-agreement primitives. Nothing to register, no passwords to store: a person, a device, or an AI agent is represented by keys derived locally from a single seed phrase. Every context keeps its own isolated identity, access is delegated and revoked through signed attestations, and servers confirm a session with a single signature check — serverless authentication with minimal latency that minimizes, or removes entirely, the database you have to run and protect. Me2em is for one user who safely becomes many: separate profiles (work, home, the gym), hierarchies of IoT devices and drones, autonomous AI agents under signed mandates, E2EE-encrypted channels, and deterministic passwords for third-party services."
       },
        "packages": {
@@ -444,7 +444,7 @@
       "portfolio": {
         "badge": "Use cases",
         "heading": "What you can build",
-        "lead": "Documented scenarios — people, devices, and AI agents, read through different domains.",
+        "lead": "Documented scenarios — people, devices, and AI agents: the same primitives across different domains.",
         "viewAll": "All use cases"
       },
 "tutorials": {
