@@ -9,7 +9,7 @@ locale: en
 uid: "attestation-chains-delegated-trust"
 ---
 
-From the seed phrase a tree of keys is derived deterministically: Identity → Handle → SubHandle — full breakdown in [«Me2eM: identity from a seed phrase»](/en/blog/me2em-seed-derived-identity). The tree gives everyone — user, device, agent — their own keypair. But a keypair on its own answers only the question «who signed». It does not answer the questions that turn a signature into *authorization*:
+From the seed phrase a tree of keys is derived deterministically: Identity → Handle → SubHandle — full breakdown in [«Me2eM: identity from a seed phrase»](/blog/me2em-seed-derived-identity). The tree gives everyone — user, device, agent — their own keypair. But a keypair on its own answers only the question «who signed». It does not answer the questions that turn a signature into *authorization*:
 
 - Who allowed this key to exist?
 - What exactly may it do — and for whom?
@@ -196,7 +196,7 @@ Attestations do not protect against compromise of the root — the root generate
 
 ## The link to the key tree
 
-An attestation does not create keys. It **binds an existing (deterministically derived) key to a name and a grant**. Returning to [the derivation article's tree](/en/blog/me2em-seed-derived-identity):
+An attestation does not create keys. It **binds an existing (deterministically derived) key to a name and a grant**. Returning to [the derivation article's tree](/blog/me2em-seed-derived-identity):
 
 ```text
 Seed → Identity → Handle → SubHandle     ← the tree (determinism)
@@ -211,6 +211,6 @@ The tree answers «which key belongs to this name». An attestation answers «wh
 ## What to read next
 
 - **[Selling Access: Signed Receipt as Product](/ru/blog/me2em-selling-access)** — Mode 2 in its pure form: drones, satellite windows, offline purchase verification (RU)
-- **[Instant Revocation: revoking in a stateless world](/en/blog/revocation-checker-instant-revocation)** — how `jti` revocation works at every level of the chain: granularity, fail-open/closed, record TTLs
+- **[Instant Revocation: revoking in a stateless world](/blog/revocation-checker-instant-revocation)** — how `jti` revocation works at every level of the chain: granularity, fail-open/closed, record TTLs
 - **[Stateless Sessions: authorization without a database](/ru/blog/stateless-sessions-no-database)** — what is inside the token and which seven checks a session passes (RU)
-- **[Me2eM: identity from a seed phrase](/en/blog/me2em-seed-derived-identity)** — the foundation: where the tree comes from
+- **[Me2eM: identity from a seed phrase](/blog/me2em-seed-derived-identity)** — the foundation: where the tree comes from
