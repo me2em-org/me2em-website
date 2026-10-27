@@ -9,7 +9,7 @@ locale: en
 uid: "anonymous-e2ee-messenger"
 ---
 
-> **Level: concept deep-dive for engineers.** The mechanics of derivation — in the base article [Me2eM: Identity from a Seed Phrase](/en/blog/me2em-seed-derived-identity); the implementation of the session-bound profile — in [E2EE Without Storing Private Keys](/en/blog/e2ee-seed-derived-identity).
+> **Level: concept deep-dive for engineers.** The mechanics of derivation — in the base article [Me2eM: Identity from a Seed Phrase](/blog/me2em-seed-derived-identity); the implementation of the session-bound profile — in [E2EE Without Storing Private Keys](/blog/e2ee-seed-derived-identity).
 
 A common misconception: if messages are encrypted end-to-end, the messenger is private. That is not so. Signal and Matrix solve the content problem, but the server remains the trusted arbiter of authentication: it stores tables of users, devices and sessions; it knows who connected when and whose traffic was delivered where. A database compromise — or a regulator's request — reveals everything except the message text. Content encryption becomes a technical detail against the backdrop of total loss of contextual privacy.
 
@@ -90,7 +90,7 @@ sequenceDiagram
     Note over D: non-extractable CryptoKey<br/>survives browser restarts
 ```
 
-After cold start the application does not ask for the seed for ordinary operations — until the cache TTL expires or logout. The details of the non-extractable cache are covered in [the article on the session-bound profile](/en/blog/e2ee-seed-derived-identity); here we fix the boundary beyond which we deliberately do not go: **the seed is never encrypted under a PIN and never put into the cloud**, unlike crypto wallets. Any encrypted envelope returns offline brute force, against which neither Argon2id nor non-extractable keys protect. Seed — paper only.
+After cold start the application does not ask for the seed for ordinary operations — until the cache TTL expires or logout. The details of the non-extractable cache are covered in [the article on the session-bound profile](/blog/e2ee-seed-derived-identity); here we fix the boundary beyond which we deliberately do not go: **the seed is never encrypted under a PIN and never put into the cloud**, unlike crypto wallets. Any encrypted envelope returns offline brute force, against which neither Argon2id nor non-extractable keys protect. Seed — paper only.
 
 ## 3. Handles: Unlinkable Contexts
 

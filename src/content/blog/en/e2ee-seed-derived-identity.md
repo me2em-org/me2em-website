@@ -9,7 +9,7 @@ locale: en
 uid: "e2ee-seed-derived-identity"
 ---
 
-> **Level: engineering deep-dive.** The fundamentals of deterministic derivation — in the base article: [Me2eM: Identity from a Seed Phrase](/en/blog/me2em-seed-derived-identity).
+> **Level: engineering deep-dive.** The fundamentals of deterministic derivation — in the base article: [Me2eM: Identity from a Seed Phrase](/blog/me2em-seed-derived-identity).
 
 Open any E2EE application in your browser and ask a simple question: **where is your private key right now?**
 
@@ -67,7 +67,7 @@ The word **constant** carries the main load here — and this is exactly where m
 - This is not a "new key" or a "rotated key." It is *the same key, reproduced*.
 - Nothing in the identity, handles, or their public keys changes. Ever.
 
-A step-by-step breakdown of the key tree — in the base article: [Me2eM: Identity from a Seed Phrase](/en/blog/me2em-seed-derived-identity).
+A step-by-step breakdown of the key tree — in the base article: [Me2eM: Identity from a Seed Phrase](/blog/me2em-seed-derived-identity).
 
 Determinism is the property that makes non-persistent identity possible. But it has a trap for the unprepared, and it is worth stating precisely, because we have seen two independent implementations fall into it:
 
@@ -254,7 +254,7 @@ Replay protection in channels: strictly increasing sequence number. Redelivery i
 
 ## Group chats and revocation
 
-This section is an example of a concrete implementation (group chats are not part of the current protocol packages); it shows how the session-bound pattern scales to groups. The full messenger concept on these primitives — in the article [Anonymous E2EE Messenger on Me2eM](/en/blog/anonymous-e2ee-messenger).
+This section is an example of a concrete implementation (group chats are not part of the current protocol packages); it shows how the session-bound pattern scales to groups. The full messenger concept on these primitives — in the article [Anonymous E2EE Messenger on Me2eM](/blog/anonymous-e2ee-messenger).
 
 Groups work through **Group Key + Epoch**:
 
