@@ -165,7 +165,7 @@ The same seed on another device — the same tree, the same keys, the same ident
 
 ## What to read next
 
-- **[E2EE Without Storing Private Keys: Seed-Phrase-Based Identity Architecture](/en/blog/e2ee-seed-derived-identity)** — an engineering deep-dive: session-bound profile, non-extractable CryptoKey, canonical X3DH and three traps that pass "green" tests
+- **[E2EE Without Storing Private Keys: Seed-Phrase-Based Identity Architecture](/blog/e2ee-seed-derived-identity)** — an engineering deep-dive: session-bound profile, non-extractable CryptoKey, canonical X3DH and three traps that pass "green" tests
 - **[Attestation Chains: Delegating Trust Without a Server](/ru/blog/attestation-chains-delegated-trust)** — how parent signatures turn a key tree into delegatable trust: grants, audiences, TTL and instant revocation of an entire branch (RU)
 - **[A Password Manager That Stores Nothing: Me2eM's Deterministic Cryptography](/ru/blog/me2em-deterministic-password-keeper)** — the same mechanics in practice: a password for each service is derived from the key tree and stored nowhere (RU)
-- **[Anonymous E2EE Messenger on Me2eM](/en/blog/anonymous-e2ee-messenger)** — concept: how communication is assembled from a key tree such that the server knows nothing
+- **[Anonymous E2EE Messenger on Me2eM](/blog/anonymous-e2ee-messenger)** — concept: how communication is assembled from a key tree such that the server knows nothing
