@@ -132,7 +132,7 @@ const channel = await establishChannel(sharedSecret, 'chat-42');
 // channelId 与爱丽丝的通道匹配——这是同一个通道
 ```
 
-此处的 `completeX3DH` 调用是简化的；确切的参数契约——参见 [crypto.me2em.com](https://crypto.me2em.com) 文档。
+此处的 `completeX3DH` 调用是简化的；确切的参数契约——参见 [`crypto.me2em.com`](https://crypto.me2em.com) 文档。
 
 ## 第 4 步：加密和解密消息
 
@@ -194,7 +194,7 @@ const verified = await Session.verifyAttested(
 
 证明防止的是服务器上的权利替换，而非对等方之间的 MITM；后者需要外部信任通道。Mode 2 的详细信息——参见 [关于证明链的文章](/zh/blog/attestation-chains-delegated-trust)。
 
-## 第 6 步：上下文缓存（ survive 重启）
+## 第 6 步：上下文缓存（跨重启存活）
 
 为避免每次进入时输入 seed，上下文缓存存储在加密的 IndexedDB 中：
 
