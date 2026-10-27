@@ -141,8 +141,8 @@ The corporate tree derives from a corporate seed:
 ```text
 Company Identity (seed in a safe; the private root never leaves the issuance ceremony)
   └─ Handle: department-engineering  ◀─ attestHandle('department-engineering', grant)
-        │   the department key + attestation A live on the HR machine — no root there
-        └─ SubHandle: worker-alice     ◀─ HR: deriveSubHandle + attestSubHandle
+       │   the department key + attestation A live on the HR machine — no root there
+       └─ SubHandle: worker-alice     ◀─ HR: deriveSubHandle + attestSubHandle
 ```
 
 The HR machine hires employees without access to the root: it derives the SubHandle, issues attestation B, hands the material over to the device. The department's grant is a ceiling that cannot be bypassed: an attempt to issue a child attestation with a scope outside the parent grant is rejected by any verifier (`SCOPE_EXCEEDED` at the ROOT level). Firing someone is revoking attestation B's `jti`: all of the employee's current and future sessions die in every service that checks revocations. The full breakdown of this topology — in [Attestation Chains: Delegating Trust Without a Server](/ru/blog/attestation-chains-delegated-trust) (RU).

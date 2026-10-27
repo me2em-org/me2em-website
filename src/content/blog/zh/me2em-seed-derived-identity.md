@@ -168,4 +168,4 @@ const session = await Session.create(connector, {
 - **[E2EE 不存储私钥：基于种子短语的身份架构](/zh/blog/e2ee-seed-derived-identity)**——工程级深度解析：session-bound 配置、non-extractable CryptoKey、规范 X3DH 和三个通过"绿色"测试的陷阱
 - **[证明链：无服务器的信任委托](/ru/blog/attestation-chains-delegated-trust)**——父级签名如何将密钥树变成可委托的信任：授予、受众、TTL 和整个分支的即时撤销 (RU)
 - **[不存储任何东西的密码管理器：Me2eM 的确定性密码学](/ru/blog/me2em-deterministic-password-keeper)**——同样的机制在实践中：每个服务的密码从密钥树派生，不存储在任何地方 (RU)
-- **[Me2eM 上的匿名 E2EE messenger](/ru/blog/anonymous-e2ee-messenger)**——概念：如何从密钥树组装通信，使服务器什么都不知道 (RU)
+- **[Me2eM 上的匿名 E2EE messenger](/zh/blog/anonymous-e2ee-messenger)**——概念：如何从密钥树组装通信，使服务器什么都不知道

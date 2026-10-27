@@ -56,9 +56,9 @@ uid: "e2ee-seed-derived-identity"
 ```text
 种子短语 (BIP39，在用户头脑中和他的纸上)
   └─ seed (32 字节，瞬态)
-      └─ IdentityPrivateKey = HKDF(seed)          [常量]
-           └─ HandlePrivateKey = HKDF(identity, "work")    [常量]
-                └─ SubHandlePrivateKey = HKDF(handle, "connector-1")  [常量]
+       └─ IdentityPrivateKey = HKDF(seed)          [常量]
+            └─ HandlePrivateKey = HKDF(identity, "work")    [常量]
+                 └─ SubHandlePrivateKey = HKDF(handle, "connector-1")  [常量]
 ```
 
 **常量**这个词在这里承担主要负载——而正是这里大多数第一直觉被打破。当用户登录、我们重新计算这棵树时：
@@ -167,9 +167,9 @@ return shared.slice(1); // Skip the prefix byte, return 32-byte shared secret
 **正确实现：**
 
 ```typescript
-// ✅ Явное конструирование при необходимости:
+// ✅ 需要时显式构造：
 return new Uint8Array(shared.buffer, shared.byteOffset, 32);
-// Или просто вернуть как есть — noble уже возвращает ровно 32 байта.
+// 或者直接原样返回——noble 已经恰好返回 32 字节。
 ```
 
 **教训：** 在每个密码学函数的边界添加长度断言。`expect(result.length).toBe(32)`——一个便宜的测试，永久捕获这类退化。
@@ -204,7 +204,7 @@ const dh3 = computeX25519SharedSecret(mySPK_x, theirEK_x);   // SPK 而非 EK！
 ### 陷阱三：zero-fallback OTK
 
 ```typescript
-// ❌ Реализовано:
+// ❌ 已实现：
 let dh4: Uint8Array;
 if (myOneTimeKey) {
   dh4 = await computeX25519SharedSecret(myOTK_x, theirEK_x);
@@ -218,7 +218,7 @@ if (myOneTimeKey) {
 **正确行为：**
 
 ```typescript
-// ✅ Если OTK нет — отказ, не деградация.
+// ✅ 如果没有 OTK —— 拒绝，而不是退化。
 if (!theirBundle.oneTimePreKeyPublicKey) {
   throw new Error(
     'recipient bundle must include a One-Time Pre-Key (zero-fallback not allowed)'
@@ -253,7 +253,7 @@ if (!theirBundle.oneTimePreKeyPublicKey) {
 
 ## 群聊和撤销
 
-这一节是具体实现的示例（群聊不属于当前协议包）；它展示 session-bound 模式如何扩展到群组。基于这些原语的完整 messenger 概念——见文章 [Me2eM 上的匿名 E2EE messenger](/ru/blog/anonymous-e2ee-messenger) (RU)。
+这一节是具体实现的示例（群聊不属于当前协议包）；它展示 session-bound 模式如何扩展到群组。基于这些原语的完整 messenger 概念——见文章 [Me2eM 上的匿名 E2EE messenger](/zh/blog/anonymous-e2ee-messenger)。
 
 群组通过 **Group Key + Epoch** 工作：
 
@@ -315,8 +315,8 @@ Signal Protocol 仍然是具有持久密钥存储的移动 messenger 的黄金�
 ---
 
 *References:*
-- *Sergey Lubimov, ["Beyond Signal — E2EE Architecture for the Web Without Persistent Private Keys"](https://www.linkedin.com/pulse/beyond-signal-e2ee-architecture-web-without-private-keys-lubimov-lpmuf/) — концептуальная рамка.*
-- *Signal, ["The X3DH Key Agreement Protocol"](https://signal.org/docs/specifications/x3dh/) — каноническая спецификация X3DH.*
+- *Sergey Lubimov, ["Beyond Signal — E2EE Architecture for the Web Without Persistent Private Keys"](https://www.linkedin.com/pulse/beyond-signal-e2ee-architecture-web-without-private-keys-lubimov-lpmuf/) — 概念框架.*
+- *Signal, ["The X3DH Key Agreement Protocol"](https://signal.org/docs/specifications/x3dh/) — X3DH 规范规格书.*
 - *RFC 5869 — HKDF specification.*
 - *RFC 9106 — Argon2id specification.*
 - *NIST SP 800-56C — Key derivation recommendations.*

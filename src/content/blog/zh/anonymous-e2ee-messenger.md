@@ -65,7 +65,7 @@ const identity = await Identity.fromSeed(seedBytes);
 
 | 类别 | 存在哪里 | 寿命 |
 |---|---|---|
-| Seed-фраза | 纸与头脑中 | 无限期 |
+| 种子短语 | 纸与头脑中 | 无限期 |
 | Seed 字节与私钥 | RAM，仅在登录期间 | 数秒，随后 `fill(0)` |
 | 派生物（cacheKey、pre-keys、聊天缓存） | IndexedDB 下的 non-extractable CryptoKey | 直到 logout / TTL |
 
@@ -141,8 +141,8 @@ Token 自包含且短命；当 TTL 到期时，SubHandle 签发新的 token—�
 ```text
 Company Identity (seed in a safe; the private root never leaves the issuance ceremony)
   └─ Handle: department-engineering  ◀─ attestHandle('department-engineering', grant)
-        │   the department key + attestation A live on the HR machine — no root there
-        └─ SubHandle: worker-alice     ◀─ HR: deriveSubHandle + attestSubHandle
+       │   the department key + attestation A live on the HR machine — no root there
+       └─ SubHandle: worker-alice     ◀─ HR: deriveSubHandle + attestSubHandle
 ```
 
 HR 机器在无根访问权限的情况下雇佣员工：它派生 SubHandle、签发 attestation B，然后把材料交给设备。部门级的授权（grant）是不可逾越的上限：任何试图以超出父级授权的 scope 发布子 attestation 的行为都会被任意验证器拒绝（ROOT 层级返回 `SCOPE_EXCEEDED`）。解雇一名员工就是撤销其 attestation B 的 `jti`：该员工所有当前和未来的 session 都会在每一个检查 revocation 的服务中消亡。此拓扑结构的完整拆解见 [Attestation Chains: Delegating Trust Without a Server](/ru/blog/attestation-chains-delegated-trust) (RU)。
@@ -157,16 +157,16 @@ sequenceDiagram
     participant S as Relay Server
     participant B as Bob (offline)
 
-    Note over B: publishes pre-key bundle:<br/>IK, SPK, OPK pool
-    B->>S: upload bundle (public keys only)
-    A->>S: requests Bob's bundle
+    Note over B: 发布 pre-key bundle：<br/>IK、SPK、OPK 池
+    B->>S: upload bundle（仅公钥）
+    A->>S: 请求 Bob 的 bundle
     S-->>A: bundle
-    Note over A: local X3DH:<br/>DH1...DH4 -> SK = HKDF(...)
-    A->>S: X3DH envelope + first message
-    Note over S: content unavailable to the server
-    S->>B: delivers the envelope
-    Note over B: completeX3DH -> same SK.<br/>OPK marked consumed
-    B->>S: reply — channel established
+    Note over A: 本地 X3DH：<br/>DH1…DH4 → SK = HKDF(...)
+    A->>S: X3DH 信封 + 第一条消息
+    Note over S: 内容对服务器不可见
+    S->>B: 投递信封
+    Note over B: completeX3DH → 相同的 SK。<br/>OPK 标记为已使用
+    B->>S: 回复——通道建立完成
 ```
 
 服务器的职责是存储公钥并中继 envelope。它不参与 DH、看不到共享密钥、也无法解密第一条消息或后续任何一条消息。消耗 OTK 同时充当 replay guard：每一个 envelope 都是唯一的。

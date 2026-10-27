@@ -56,9 +56,9 @@ The derivation chain looks like this:
 ```text
 seed phrase (BIP39, in the user's head and on their paper)
   └─ seed (32 bytes, transient)
-      └─ IdentityPrivateKey = HKDF(seed)          [constant]
-           └─ HandlePrivateKey = HKDF(identity, "work")    [constant]
-                └─ SubHandlePrivateKey = HKDF(handle, "connector-1")  [constant]
+       └─ IdentityPrivateKey = HKDF(seed)          [constant]
+            └─ HandlePrivateKey = HKDF(identity, "work")    [constant]
+                 └─ SubHandlePrivateKey = HKDF(handle, "connector-1")  [constant]
 ```
 
 The word **constant** carries the main load here — and this is exactly where most first intuitions break. When the user logs in and we recompute this tree:
@@ -254,7 +254,7 @@ Replay protection in channels: strictly increasing sequence number. Redelivery i
 
 ## Group chats and revocation
 
-This section is an example of a concrete implementation (group chats are not part of the current protocol packages); it shows how the session-bound pattern scales to groups. The full messenger concept on these primitives — in the article [Anonymous E2EE Messenger on Me2eM](/ru/blog/anonymous-e2ee-messenger) (RU).
+This section is an example of a concrete implementation (group chats are not part of the current protocol packages); it shows how the session-bound pattern scales to groups. The full messenger concept on these primitives — in the article [Anonymous E2EE Messenger on Me2eM](/en/blog/anonymous-e2ee-messenger).
 
 Groups work through **Group Key + Epoch**:
 
