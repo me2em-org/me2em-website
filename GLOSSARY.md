@@ -76,7 +76,7 @@ Translation is natural (not literal); terms follow the approved terminology tabl
 | forward secrecy | forward secrecy | 前向安全 | Also: message-level forward secrecy. |
 | PreKeyBundle | PreKeyBundle | PreKeyBundle | Protocol term; not translated. |
 | provisioning | provisioning | 预配 | Also: provision. |
-| airframe | airframe | 飞行器 | Drone hardware unit. |
+| airframe | airframe | 机体 | Drone hardware unit. |
 | TTL (Time To Live) | TTL | TTL | TTL cap = TTL-лимит; ttlSeconds = ttlSeconds. |
 | grant | грант | 授予 | Attestation grant = грант аттестации. |
 | scope | scope | 范围 | API scope; also: ограниченный по scope. |
