@@ -20,7 +20,7 @@ This article is a complete breakdown of the mechanism: how 12 words become a key
 The starting point — a BIP39 phrase: 12 or 24 words from a 2048-element dictionary. This is not a coincidence — the words encode entropy (128 or 256 bits) plus a checksum that catches typos during entry.
 
 ```text
-12 слов → BIP39 → seed 64 байта → SHA-256 → seed 32 байта
+12 words → BIP39 → seed 64 bytes → SHA-256 → seed 32 bytes
 ```
 
 > Terminology note: the 64-byte value is the "seed" per the BIP39 standard. In Me2eM we call the final 32 bytes — the result of SHA-256 over the BIP39 seed — the "seed"; these are what is passed to `Identity.fromSeed()`.
@@ -42,7 +42,7 @@ From the root identity, contexts branch off. Each Handle is an isolated persona 
 HandlePrivateKey = HKDF-SHA256(
   ikm  = IdentityPrivateKey,
   salt = "",
-  info = "me2em/handle/v1/{имя}",
+  info = "me2em/handle/v1/{name}",
   len  = 32
 )
 ```
@@ -62,13 +62,13 @@ SubHandlePrivateKey = HKDF-SHA256(
 
 ```mermaid
 flowchart TD
-    S["BIP39 Seed<br/>12 или 24 слова<br/>бумага + голова"] -->|"HKDF"| I["Identity Private Key<br/>── КОНСТАНТА ──"]
-    I -->|"HKDF + work"| H1["Handle: work<br/>персона пользователя"]
-    I -->|"HKDF + personal"| H2["Handle: personal<br/>персона пользователя"]
-    I -->|"HKDF + имя"| H3["Handle: station-001<br/>автономное устройство"]
-    H1 -->|"HKDF + имя"| SH1["SubHandle: mcp-github<br/>агент с правами"]
-    H3 -->|"HKDF + имя"| SH2["SubHandle: connector-ccs<br/>разъём станции"]
-    H3 -->|"HKDF + имя"| SH3["SubHandle: meter-001<br/>счётчик энергии"]
+    S["BIP39 Seed<br/>12 or 24 words<br/>paper + head"] -->|"HKDF"| I["Identity Private Key<br/>── CONSTANT ──"]
+    I -->|"HKDF + work"| H1["Handle: work<br/>user persona"]
+    I -->|"HKDF + personal"| H2["Handle: personal<br/>user persona"]
+    I -->|"HKDF + name"| H3["Handle: station-001<br/>autonomous device"]
+    H1 -->|"HKDF + name"| SH1["SubHandle: mcp-github<br/>agent with privileges"]
+    H3 -->|"HKDF + name"| SH2["SubHandle: connector-ccs<br/>station connector"]
+    H3 -->|"HKDF + name"| SH3["SubHandle: meter-001<br/>energy meter"]
 ```
 
 Each branch of the tree is an independent cryptographic persona: its own Ed25519 keypair, its own signatures, its own sessions. At the same time no branch knows about the existence of others — isolation is built into the derivation.
@@ -79,23 +79,23 @@ A key property of the protocol: any point in the tree is reachable **two ways**,
 
 ```mermaid
 flowchart LR
-    subgraph OnDevice ["На устройстве (Handle)"]
+    subgraph OnDevice ["On device (Handle)"]
         A1["stationHandle<br/>deriveSubHandle('connector-ccs')"]
     end
-    subgraph OnServer ["На сервере (Identity)"]
+    subgraph OnServer ["On server (Identity)"]
         A2["networkIdentity<br/>deriveSubHandle('station-001', 'connector-ccs')"]
     end
-    A1 -.->|"тот же ключ"| A2
+    A1 -.->|"same key"| A2
 ```
 
 ```typescript
-// Способ 1: автономно, на устройстве (Handle знает себя)
+// Method 1: autonomously, on the device (the Handle knows itself)
 const viaHandle = await stationHandle.deriveSubHandle('connector-ccs');
 
-// Способ 2: атомарно, на верификаторе (Identity пересчитывает путь)
+// Method 2: atomically, on the verifier (Identity recomputes the path)
 const viaIdentity = await identity.deriveSubHandle('station-001', 'connector-ccs');
 
-// viaHandle.getPublicKey() === viaIdentity.getPublicKey() — гарантировано
+// viaHandle.getPublicKey() === viaIdentity.getPublicKey() — guaranteed
 ```
 
 The guarantee is provided mechanically: both methods use one info string from a single source (`crypto/derivation-paths.ts`). This allows the server to **verify any handle's signature without storing keys** — it recomputes the pubkey by name from the token. Stateless verification is a direct consequence of determinism.
@@ -141,19 +141,19 @@ Everything described is implemented in `@me2em/core`:
 ```typescript
 import { Identity, Session, generateSeedPhrase, get32ByteSeedFromMnemonic } from '@me2em/core';
 
-// 1. Пользователь создаёт seed-фразу
-const phrase = generateSeedPhrase(128);  // 12 слов
+// 1. The user creates a seed phrase
+const phrase = generateSeedPhrase(128);  // 12 words
 
-// 2. Пользователь записывает её. С этого момента seed — только бумага.
+// 2. The user writes it down. From this moment the seed is paper only.
 const seed = await get32ByteSeedFromMnemonic(phrase);
 const identity = await Identity.fromSeed(seed);
 
-// 3. Деривация контекстов
+// 3. Derivation of contexts
 const work = await identity.deriveHandle('work');
 const station = await identity.deriveHandle('station-001');
 const connector = await station.deriveSubHandle('connector-ccs');
 
-// 4. Сессии подписываются листовыми ключами
+// 4. Sessions are signed by leaf keys
 const session = await Session.create(connector, {
   audience: 'ev-app.com',
   scopes: ['charge:start'],

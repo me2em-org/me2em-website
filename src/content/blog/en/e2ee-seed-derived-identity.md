@@ -56,9 +56,9 @@ The derivation chain looks like this:
 ```text
 seed phrase (BIP39, in the user's head and on their paper)
   └─ seed (32 bytes, transient)
-        └─ IdentityPrivateKey = HKDF(seed)          [constant]
-             └─ HandlePrivateKey = HKDF(identity, "work")    [constant]
-                  └─ SubHandlePrivateKey = HKDF(handle, "connector-1")  [constant]
+      └─ IdentityPrivateKey = HKDF(seed)          [constant]
+           └─ HandlePrivateKey = HKDF(identity, "work")    [constant]
+                └─ SubHandlePrivateKey = HKDF(handle, "connector-1")  [constant]
 ```
 
 The word **constant** carries the main load here — and this is exactly where most first intuitions break. When the user logs in and we recompute this tree:

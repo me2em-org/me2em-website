@@ -20,7 +20,7 @@ uid: "me2em-seed-derived-identity"
 起点——BIP39 短语：来自 2048 元素字典的 12 或 24 个词。这不是巧合——这些词编码熵（128 或 256 位）加上捕获输入时拼写错误的校验和。
 
 ```text
-12 слов → BIP39 → seed 64 байта → SHA-256 → seed 32 байта
+12 个词 → BIP39 → seed 64 字节 → SHA-256 → seed 32 字节
 ```
 
 > 术语说明：64 字节值按 BIP39 标准是"seed"。在 Me2eM 中，我们把最终的 32 字节——BIP39 seed 的 SHA-256 结果——称为"seed"；正是它们被传入 `Identity.fromSeed()`。
@@ -42,7 +42,7 @@ IdentityPublicKey  = Ed25519(IdentityPrivateKey)
 HandlePrivateKey = HKDF-SHA256(
   ikm  = IdentityPrivateKey,
   salt = "",
-  info = "me2em/handle/v1/{имя}",
+  info = "me2em/handle/v1/{名称}",
   len  = 32
 )
 ```
@@ -62,13 +62,13 @@ SubHandlePrivateKey = HKDF-SHA256(
 
 ```mermaid
 flowchart TD
-    S["BIP39 Seed<br/>12 или 24 слова<br/>бумага + голова"] -->|"HKDF"| I["Identity Private Key<br/>── КОНСТАНТА ──"]
-    I -->|"HKDF + work"| H1["Handle: work<br/>персона пользователя"]
-    I -->|"HKDF + personal"| H2["Handle: personal<br/>персона пользователя"]
-    I -->|"HKDF + имя"| H3["Handle: station-001<br/>автономное устройство"]
-    H1 -->|"HKDF + имя"| SH1["SubHandle: mcp-github<br/>агент с правами"]
-    H3 -->|"HKDF + имя"| SH2["SubHandle: connector-ccs<br/>разъём станции"]
-    H3 -->|"HKDF + имя"| SH3["SubHandle: meter-001<br/>счётчик энергии"]
+    S["BIP39 Seed<br/>12 或 24 个词<br/>纸 + 头脑"] -->|"HKDF"| I["Identity Private Key<br/>── 常量 ──"]
+    I -->|"HKDF + work"| H1["Handle: work<br/>用户角色"]
+    I -->|"HKDF + personal"| H2["Handle: personal<br/>用户角色"]
+    I -->|"HKDF + 名称"| H3["Handle: station-001<br/>自主设备"]
+    H1 -->|"HKDF + 名称"| SH1["SubHandle: mcp-github<br/>有权限的代理"]
+    H3 -->|"HKDF + 名称"| SH2["SubHandle: connector-ccs<br/>充电站连接器"]
+    H3 -->|"HKDF + 名称"| SH3["SubHandle: meter-001<br/>电能表"]
 ```
 
 树的每个分支都是独立的密码学 persona：自己的 Ed25519 密钥对、自己的签名、自己的 session。同时没有任何分支知道其他分支的存在——隔离内建于派生中。
@@ -79,23 +79,23 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph OnDevice ["На устройстве (Handle)"]
+    subgraph OnDevice ["在设备上 (Handle)"]
         A1["stationHandle<br/>deriveSubHandle('connector-ccs')"]
     end
-    subgraph OnServer ["На сервере (Identity)"]
+    subgraph OnServer ["在服务器上 (Identity)"]
         A2["networkIdentity<br/>deriveSubHandle('station-001', 'connector-ccs')"]
     end
-    A1 -.->|"тот же ключ"| A2
+    A1 -.->|"同一个密钥"| A2
 ```
 
 ```typescript
-// Способ 1: автономно, на устройстве (Handle знает себя)
+// 方式一：自主地，在设备上（Handle 知道自己）
 const viaHandle = await stationHandle.deriveSubHandle('connector-ccs');
 
-// Способ 2: атомарно, на верификаторе (Identity пересчитывает путь)
+// 方式二：原子地，在验证器上（Identity 重新计算路径）
 const viaIdentity = await identity.deriveSubHandle('station-001', 'connector-ccs');
 
-// viaHandle.getPublicKey() === viaIdentity.getPublicKey() — гарантировано
+// viaHandle.getPublicKey() === viaIdentity.getPublicKey()——保证
 ```
 
 保证是机械提供的：两个方法使用来自单一来源（`crypto/derivation-paths.ts`）的同一个 info 字符串。这允许服务器**不存储密钥就验证任何 handle 的签名**——它从令牌中的名称重新计算 pubkey。Stateless 验证是确定性的直接结果。
@@ -141,19 +141,19 @@ const viaIdentity = await identity.deriveSubHandle('station-001', 'connector-ccs
 ```typescript
 import { Identity, Session, generateSeedPhrase, get32ByteSeedFromMnemonic } from '@me2em/core';
 
-// 1. Пользователь создаёт seed-фразу
-const phrase = generateSeedPhrase(128);  // 12 слов
+// 1. 用户创建种子短语
+const phrase = generateSeedPhrase(128);  // 12 个词
 
-// 2. Пользователь записывает её. С этого момента seed — только бумага.
+// 2. 用户把它写下来。从这一刻起 seed 只是纸。
 const seed = await get32ByteSeedFromMnemonic(phrase);
 const identity = await Identity.fromSeed(seed);
 
-// 3. Деривация контекстов
+// 3. 上下文派生
 const work = await identity.deriveHandle('work');
 const station = await identity.deriveHandle('station-001');
 const connector = await station.deriveSubHandle('connector-ccs');
 
-// 4. Сессии подписываются листовыми ключами
+// 4. 会话由叶子密钥签署
 const session = await Session.create(connector, {
   audience: 'ev-app.com',
   scopes: ['charge:start'],

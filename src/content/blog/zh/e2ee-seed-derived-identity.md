@@ -54,11 +54,11 @@ uid: "e2ee-seed-derived-identity"
 派生链看起来是这样的：
 
 ```text
-seed-фраза (BIP39, в голове пользователя и на его бумаге)
-  └─ seed (32 байта, транзиторно)
-        └─ IdentityPrivateKey = HKDF(seed)          [константа]
-             └─ HandlePrivateKey = HKDF(identity, "work")    [константа]
-                  └─ SubHandlePrivateKey = HKDF(handle, "connector-1")  [константа]
+种子短语 (BIP39，在用户头脑中和他的纸上)
+  └─ seed (32 字节，瞬态)
+      └─ IdentityPrivateKey = HKDF(seed)          [常量]
+           └─ HandlePrivateKey = HKDF(identity, "work")    [常量]
+                └─ SubHandlePrivateKey = HKDF(handle, "connector-1")  [常量]
 ```
 
 **常量**这个词在这里承担主要负载——而正是这里大多数第一直觉被打破。当用户登录、我们重新计算这棵树时：
@@ -87,10 +87,10 @@ seed-фраза (BIP39, в голове пользователя и на его 
 这是整个架构的技术中心。WebCrypto 提供了一个很少被充分利用的机制：**密钥可以作为没有可导出字节的对象存储在 IndexedDB 中**。
 
 ```typescript
-// Материал сессии (выведен из приватного ключа, который сейчас будет стёрт)
+// 会话材料（从即将擦除的私钥派生）
 const rawMaterial = await hashIdentityMaterial(pkBytes, identityId);
 
-// Обёртка в non-extractable CryptoKey
+// 包装为 non-extractable CryptoKey
 const key = await crypto.subtle.importKey(
   'raw',
   rawMaterial.buffer as ArrayBuffer,
@@ -99,12 +99,11 @@ const key = await crypto.subtle.importKey(
   ['encrypt', 'decrypt']
 );
 
-// Персистенция: CryptoKey structured-cloneable в IndexedDB
-// — переживает перезапуск браузера, НЕ переживает своё байтовое
-//   представление (его нет)
+// 持久化：CryptoKey 在 IndexedDB 中可 structured-clone
+// —— 能存活浏览器重启，但不能存活其字节表示（不存在）
 await idb.put('cryptoKeys', { id: identityId, key });
 
-// rawMaterial затирается немедленно
+// rawMaterial 立即擦除
 rawMaterial.fill(0);
 ```
 
@@ -126,11 +125,11 @@ rawMaterial.fill(0);
 
 ```mermaid
 stateDiagram-v2
-    [*] --> ColdLogin: первый запуск / TTL кэша истёк
-    ColdLogin: seed → PK → hashIdentityMaterial<br/>→ non-extractable cacheKey<br/>→ зашифрованный кэш в IndexedDB<br/>→ wipe seed и PK
-    ColdLogin --> WarmSessions: кэш готов
-    WarmSessions: работа без seed<br/>пер-сессионные ключи<br/>auto-renewal session tokens
-    WarmSessions --> ColdLogin: TTL истёк / logout
+    [*] --> ColdLogin: 首次运行 / 缓存 TTL 已过期
+    ColdLogin: seed → PK → hashIdentityMaterial<br/>→ non-extractable cacheKey<br/>→ IndexedDB 中的加密缓存<br/>→ wipe seed 和 PK
+    ColdLogin --> WarmSessions: 缓存就绪
+    WarmSessions: 无 seed 工作<br/>每会话密钥<br/>auto-renewal session tokens
+    WarmSessions --> ColdLogin: TTL 已过期 / logout
     WarmSessions --> [*]: cleanup
 ```
 
@@ -152,7 +151,7 @@ stateDiagram-v2
 ### 陷阱一：shared secret 截断
 
 ```typescript
-// ❌ Это выглядело корректно:
+// ❌ 这看起来正确：
 const shared = x25519.getSharedSecret(privateKey, publicKey);
 return shared.slice(1); // Skip the prefix byte, return 32-byte shared secret
 ```
@@ -180,19 +179,19 @@ return new Uint8Array(shared.buffer, shared.byteOffset, 32);
 Signal 规范（§3.3）中的规范 DH 组合顺序：
 
 ```text
-DH1 = DH(IK_A,  SPK_B)   // identity инициатора × signed prekey получателя
-DH2 = DH(EK_A,  IK_B)    // ephemeral × identity получателя
-DH3 = DH(EK_A,  SPK_B)   // ephemeral × signed prekey получателя
-DH4 = DH(EK_A,  OPK_B)   // ephemeral × one-time prekey получателя
+DH1 = DH(IK_A,  SPK_B)   // 发起方 identity × 接收方 signed prekey
+DH2 = DH(EK_A,  IK_B)    // ephemeral × 接收方 identity
+DH3 = DH(EK_A,  SPK_B)   // ephemeral × 接收方 signed prekey
+DH4 = DH(EK_A,  OPK_B)   // ephemeral × 接收方 one-time prekey
 ```
 
 一个错误实现在 DH2 和 DH3 中混淆了 ephemeral 和 signed prekey：
 
 ```typescript
-// ❌ Реализовано (перепутаны роли):
+// ❌ 已实现（角色互换）：
 const dh1 = computeX25519SharedSecret(myIK_x, theirSPK_x);   // OK
-const dh2 = computeX25519SharedSecret(mySPK_x, theirIK_x);   // SPK вместо EK!
-const dh3 = computeX25519SharedSecret(mySPK_x, theirEK_x);   // SPK вместо EK!
+const dh2 = computeX25519SharedSecret(mySPK_x, theirIK_x);   // SPK 而非 EK！
+const dh3 = computeX25519SharedSecret(mySPK_x, theirEK_x);   // SPK 而非 EK！
 ```
 
 这不是破解——本地秘密收敛（双方使用相同的顺序）。但是：
@@ -259,12 +258,12 @@ if (!theirBundle.oneTimePreKeyPublicKey) {
 群组通过 **Group Key + Epoch** 工作：
 
 ```text
-1. Инициатор создаёт случайный 256-битный groupKey
-2. Для каждого участника — X3DH handshake (через его pre-key)
-3. groupKey шифруется под результатом X3DH и доставляется
-4. Все сообщения шифруются напрямую под groupKey (быстро)
-5. Когда участник выходит — новый groupKey, новая эпоха
-6. Новые участники НЕ видят прошлые сообщения (no backfill)
+1. 发起方创建随机 256 位 groupKey
+2. 对每个参与者——X3DH handshake（通过其 pre-key）
+3. groupKey 用 X3DH 结果加密并投递
+4. 所有消息直接用 groupKey 加密（快速）
+5. 当参与者离开——新 groupKey，新纪元
+6. 新参与者不看到过去的消息（no backfill）
 ```
 
 撤销参与者 = 一个操作：撤销该参与者的证明 `jti`。整个分支（所有 session 和 future sessions）被验证器立即拒绝，无论 TTL 如何。
