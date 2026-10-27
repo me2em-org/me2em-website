@@ -222,6 +222,6 @@ const A = await identity.attestHandle('analytics-partner', {
 
 - **[Stateless 会话：无数据库的授权](/ru/blog/stateless-sessions-no-database)** (RU)—— 此处放在 HttpOnly cookie 中的令牌内部有什么
 - **[证明链：无服务器的信任委托](/zh/blog/attestation-chains-delegated-trust)** —— 每应用角色所依赖的授予机制
-- **[Me2eM 的 Stateless 后端](/ru/blog/me2em-stateless-backend) (RU)—— Guard、状态清单、multi-root
-- **[为什么我们不存储你的 seed](/ru/blog/why-we-dont-store-your-seed) (RU)—— 模式生长出的哲学
+- **[Me2eM 的 Stateless 后端](/ru/blog/me2em-stateless-backend)** (RU)—— Guard、状态清单、multi-root
+- **[为什么我们不存储你的 seed](/ru/blog/why-we-dont-store-your-seed)** (RU)—— 模式生长出的哲学
 - **[@me2em/core 在 npm 上](https://www.npmjs.com/package/@me2em/core)** —— 模式的全部机制

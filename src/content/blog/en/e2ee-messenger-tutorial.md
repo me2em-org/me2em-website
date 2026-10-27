@@ -132,7 +132,7 @@ const channel = await establishChannel(sharedSecret, 'chat-42');
 // channelId matches Alice's channel — this is the same channel
 ```
 
-The `completeX3DH` call here is simplified; the exact parameter contract — in the [crypto.me2em.com](https://crypto.me2em.com) documentation.
+The `completeX3DH` call here is simplified; the exact parameter contract — in the [`crypto.me2em.com`](https://crypto.me2em.com) documentation.
 
 ## Step 4: Encrypting and decrypting messages
 
