@@ -24,8 +24,8 @@ EV 充电网络是具有严格安全要求的分布式基础设施：
 
 ```mermaid
 flowchart TD
-    ROOT["Identity: EV-Network-Main<br/>网络所有者 — seed 在保险柜"] -->|"attestHandle"| ST1["Handle: station-001<br/>柏林，50 kW"]
-    ROOT -->|"attestHandle"| ST2["Handle: station-002<br/>慕尼黑，150 kW"]
+    ROOT["Identity: EV-Network-Main<br/>网络所有者 — seed 在保险柜"] -->|"attestHandle"| ST1["Handle: station-001<br/>Berlin, 50 kW"]
+    ROOT -->|"attestHandle"| ST2["Handle: station-002<br/>Munich, 150 kW"]
     ST1 -->|"attestSubHandle"| C1["SubHandle: connector-ccs<br/>CCS 50 kW"]
     ST1 -->|"attestSubHandle"| C2["SubHandle: connector-type2<br/>Type 2, 22 kW"]
     ST1 -->|"attestSubHandle"| M1["SubHandle: meter-001<br/>电能表"]
