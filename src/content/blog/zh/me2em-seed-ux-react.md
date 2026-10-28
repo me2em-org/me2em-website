@@ -214,7 +214,7 @@ function App({ seedBytes }: { seedBytes: Uint8Array }) {
 三个属性使缓存安全：
 
 1. **内容仅派生。** 缓存中没有 seed 也没有私钥——只有从短语毫秒内重新计算的内容。
-2. **non-extractable CryptoKey 下的加密。** 每次登录都导出缓存密钥，使用**新鲜随机盐值**——一个纪元密钥被泄露不会读取下一个纪元的缓存（解决方案在[后记](/ru/blog/core-evolution-post-mortem) (RU) 中固定，DR-6）。密钥本身是 non-extractable：字节不在 JS 堆中，XSS 在标签页存活时可以使用它，但无法窃取。此方案的技术中心——见[关于 session-bound 配置的文章](/zh/blog/e2ee-seed-derived-identity)。
+2. **non-extractable CryptoKey 下的加密。** 每次登录都导出缓存密钥，使用**新鲜随机盐值**——一个纪元密钥被泄露不会读取下一个纪元的缓存（解决方案在[后记](/zh/blog/core-evolution-post-mortem) 中固定，DR-6）。密钥本身是 non-extractable：字节不在 JS 堆中，XSS 在标签页存活时可以使用它，但无法窃取。此方案的技术中心——见[关于 session-bound 配置的文章](/zh/blog/e2ee-seed-derived-identity)。
 3. **按身份隔离。** 每个身份获得自己的 IndexedDB 数据库（名称是标识符的哈希）：同一设备上的两个账户不会由一个字节交叉。
 
 清除浏览器数据会销毁缓存——但不会销毁任何重要的东西：下一个短语恢复一切。

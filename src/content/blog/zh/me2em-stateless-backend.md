@@ -165,7 +165,7 @@ export class Me2emAuthGuard implements CanActivate {
 export class ApiController { /* ... */ }
 ```
 
-对于可以信任根的内部基础设施，核心相同，但用 `Session.verifyStateless(token, identity, audience, checker)` 替代 `verifyAttested`：验证器持有 `Identity` 并自己重算密钥。模式选择规则——见[关于证明链的文章](/zh/blog/attestation-chains-delegated-trust)；简而言之：Mode 2 用于所有外部，Mode 1 仅用于自有边界。在活 IoT 示例上对两个顶点的拆解——见[EV 网络教程](/ru/blog/ev-charging-network-tutorial) (RU)。
+对于可以信任根的内部基础设施，核心相同，但用 `Session.verifyStateless(token, identity, audience, checker)` 替代 `verifyAttested`：验证器持有 `Identity` 并自己重算密钥。模式选择规则——见[关于证明链的文章](/zh/blog/attestation-chains-delegated-trust)；简而言之：Mode 2 用于所有外部，Mode 1 仅用于自有边界。在活 IoT 示例上对两个顶点的拆解——见[EV 网络教程](/zh/blog/ev-charging-network-tutorial)。
 
 ```mermaid
 flowchart LR
@@ -275,5 +275,5 @@ if (!rootPublicKey) throw new UnauthorizedFormatError('unknown root');
 - **[Stateless 会话：无数据库的授权](/zh/blog/stateless-sessions-no-database)** —— 令牌内部有什么，以及一个 session 要经历哪七项检查
 - **[证明链：无服务器的信任委托](/zh/blog/attestation-chains-delegated-trust)** —— 授予机制和模式选择
 - **[即时撤销：stateless 世界里的撤销](/zh/blog/revocation-checker-instant-revocation)** —— 第 5 节的 `RevocationChecker` Redis 实现
-- **[带离线授权的 EV 充电网络](/ru/blog/ev-charging-network-tutorial)** (RU) —— 活场景中的两种验证模式
+- **[带离线授权的 EV 充电网络](/zh/blog/ev-charging-network-tutorial)** —— 活场景中的两种验证模式
 - **[@me2em/core 在 npm 上](https://www.npmjs.com/package/@me2em/core)** —— 本文中所有服务端逻辑都基于此包

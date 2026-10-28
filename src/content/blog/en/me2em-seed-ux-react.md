@@ -214,7 +214,7 @@ function App({ seedBytes }: { seedBytes: Uint8Array }) {
 Three properties make the cache secure:
 
 1. **Content is derived only.** No seed and no private keys in the cache — only what is recalculated from the phrase in milliseconds.
-2. **Encryption under a non-extractable CryptoKey.** The cache key is derived on every login with a **fresh random salt** — compromising one epoch's key doesn't read the next epoch's cache (solution fixed in [post-mortem](/ru/blog/core-evolution-post-mortem) (RU), DR-6). The key itself is non-extractable: no bytes in the JS heap, XSS can use it while the tab is alive, but cannot steal it. Technical center of this scheme — in [the article on session-bound profile](/blog/e2ee-seed-derived-identity).
+2. **Encryption under a non-extractable CryptoKey.** The cache key is derived on every login with a **fresh random salt** — compromising one epoch's key doesn't read the next epoch's cache (solution fixed in [post-mortem](/blog/core-evolution-post-mortem), DR-6). The key itself is non-extractable: no bytes in the JS heap, XSS can use it while the tab is alive, but cannot steal it. Technical center of this scheme — in [the article on session-bound profile](/blog/e2ee-seed-derived-identity).
 3. **Identity isolation.** Each identity gets its own IndexedDB database (name is a hash of the identifier): two accounts on one device don't intersect by a single byte.
 
 Clearing browser data destroys the cache — and destroys nothing important: the next phrase restores everything.
