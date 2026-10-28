@@ -171,7 +171,7 @@ export class ApiController { /* ... */ }
 flowchart LR
     REQ["请求:<br/>Bearer token + chain"] --> GUARD["Me2emAuthGuard"]
     GUARD --> PARSE{"格式,<br/>链解压"}
-    PARSE -->|"plain Error"| R400["400 Bad Request"]
+    PARSE -->|"普通错误"| R400["400 Bad Request"]
     PARSE -->|"ok"| VA["Session.verifyAttested:<br/>签名、时间、授予"]
     VA -->|"AttestationError"| R401["401 Unauthorized"]
     VA -->|"ok"| REV["RevocationChecker:<br/>每层的 jti"]
@@ -223,7 +223,7 @@ sendMessage(@Req() req: Request) {
 `handle → attestation_jti` 映射是唯一的"用户"表，且是可选的。撤销通过 `jti` 工作，但人类管理员以"封禁员工"而非"撤销 UUID"的类别思考。映射将一种翻译成另一种：
 
 ```typescript
-// 管理 API：封禁句柄（设备/员工/代理）
+// 管理 API：封禁句柄 (设备/员工/代理)
 app.post('/admin/revoke', async (req, res) => {
   const { handleId } = req.body;
   const row = await db.adminMapping.findByHandle(handleId);
@@ -245,7 +245,7 @@ const TRUSTED_ROOTS: Record<string, Uint8Array> = {
   org_b: hexToUint8Array(process.env.ORG_B_ROOT_PK),
 };
 
-// 客户端用头部指示根（约定，非协议）：
+// 客户端用头部指示根 (约定，非协议)：
 // X-Me2em-Root: org_a
 const rootPublicKey = TRUSTED_ROOTS[rootId];
 if (!rootPublicKey) throw new UnauthorizedFormatError('unknown root');

@@ -32,7 +32,7 @@ const session = await Session.create(connector, {
 ```typescript
 interface SessionPayload {
   hId: string;        // 谁：句柄公钥的 base64url
-  hNm: string;        // 句柄名（规范名）
+  hNm: string;        // 句柄名 (规范名)
   hPath?: string[];   // SubHandle 的派生路径：['station-001', 'connector-ccs']
   aud: string;        // 受众
   scp: string[];      // 权限
@@ -98,7 +98,7 @@ interface RevocationChecker {
 想要即时撤销会话（不等 TTL 到期）的服务器实现这个接口——例如基于 Redis SET：
 
 ```typescript
-// 撤销单个会话（jti——来自被撤销令牌的已签名 payload）：
+// 撤销单个会话 (jti——来自被撤销令牌的已签名 payload)：
 await redis.sadd('me2em:revoked', jti);
 
 // 检查——O(1)，每层约 0.1 毫秒：
