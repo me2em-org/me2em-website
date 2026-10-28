@@ -9,7 +9,7 @@ locale: en
 uid: "why-we-dont-store-your-seed"
 ---
 
-> **Level: protocol philosophy.** The derivation mechanics are in [Me2eM: Identity from a Seed Phrase](/blog/me2em-seed-derived-identity); the custody practice is in [a password manager that stores nothing](/ru/blog/me2em-deterministic-password-keeper) (RU).
+> **Level: protocol philosophy.** The derivation mechanics are in [Me2eM: Identity from a Seed Phrase](/blog/me2em-seed-derived-identity); the custody practice is in [a password manager that stores nothing](/blog/me2em-deterministic-password-keeper).
 
 Every service you use offers you "secure storage" of your data. Save contacts — we'll sync them. Upload photos — we'll back them up. Enter a card — we'll remember it for convenience.
 
@@ -152,6 +152,6 @@ The difference is fundamental. A password is an **authorization secret** for acc
 
 - **[Why seed-phrase UX is so paranoid](/blog/me2em-seed-ux-react)** — how the @me2em/react package compensates for human errors
 - **[Me2eM: Identity from a Seed Phrase](/blog/me2em-seed-derived-identity)** — deterministic key tree
-- **[A password manager that stores nothing](/ru/blog/me2em-deterministic-password-keeper)** — the same custody model in practice (RU)
+- **[A password manager that stores nothing](/blog/me2em-deterministic-password-keeper)** — the same custody model in practice
 - **[Instant revocation: revocation in a stateless world](/blog/revocation-checker-instant-revocation)** — why revocation does not require storing seed: branches are revocable, root is not
 - **[`@me2em/core` on npm](https://www.npmjs.com/package/@me2em/core)** — implementation

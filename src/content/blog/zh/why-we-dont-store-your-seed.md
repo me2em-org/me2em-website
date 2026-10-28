@@ -9,7 +9,7 @@ locale: zh
 uid: "why-we-dont-store-your-seed"
 ---
 
-> **层级：协议哲学。** 派生机制见[Me2eM：从种子短语到身份](/zh/blog/me2em-seed-derived-identity)；保管实践见[什么都不存的密码管理器](/ru/blog/me2em-deterministic-password-keeper) (RU)。
+> **层级：协议哲学。** 派生机制见[Me2eM：从种子短语到身份](/zh/blog/me2em-seed-derived-identity)；保管实践见[什么都不存的密码管理器](/zh/blog/me2em-deterministic-password-keeper)。
 
 你使用的每项服务都为你提供数据的"安全存储"。保存联系人——我们会同步。上传照片——我们会备份。输入银行卡——我们会记住以便下次方便使用。
 
@@ -152,6 +152,6 @@ Me2eM做的是相反的事：**我们不存储你的种子。任何地方都不�
 
 - **[为什么种子短语 UX 如此偏执](/zh/blog/me2em-seed-ux-react)**——@me2em/react 包如何弥补人为错误
 - **[Me2eM：从种子短语到身份](/zh/blog/me2em-seed-derived-identity)**——确定性密钥树
-- **[什么都不存的密码管理器](/ru/blog/me2em-deterministic-password-keeper)**——同样的保管模式在实践中 (RU)
+- **[什么都不存的密码管理器](/zh/blog/me2em-deterministic-password-keeper)**——同样的保管模式在实践中
 - **[即时撤销：无状态世界中的撤销](/zh/blog/revocation-checker-instant-revocation)**——为什么撤销不需要存储种子：分支可撤销，根不可撤销
 - **[`@me2em/core` 在 npm 上](https://www.npmjs.com/package/@me2em/core)**——实现

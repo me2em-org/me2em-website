@@ -112,7 +112,7 @@ Passphrase (BIP39's "25th word") adds a second degree of freedom: the same phras
 - NFKC-normalized (but normalization doesn't save from a different keyboard layout or an extra space);
 - an error triggers neither an error nor a warning — just silently derives a different identity with a different tree and empty branches.
 
-`showWarnings` enables a warning precisely about this: the passphrase must be remembered as reliably as the words themselves — "phrase without a code word" and "phrase with a code word" are two different identities, and the first is empty for the owner of the second. Storage discipline is in [the article on the password manager without storage](/ru/blog/me2em-deterministic-password-keeper) (RU); here we note the interface choice: the warning is shown at entry, not after — when it is too late to change.
+`showWarnings` enables a warning precisely about this: the passphrase must be remembered as reliably as the words themselves — "phrase without a code word" and "phrase with a code word" are two different identities, and the first is empty for the owner of the second. Storage discipline is in [the article on the password manager without storage](/blog/me2em-deterministic-password-keeper); here we note the interface choice: the warning is shown at entry, not after — when it is too late to change.
 
 ## State machine and headless layer
 
