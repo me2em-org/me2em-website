@@ -71,7 +71,7 @@ Let's start with the structure — it already reveals the philosophy.
 ### Me2eM Session
 
 ```typescript
-// Me2em session payload:
+// Me2eM session payload:
 {
   "hId": "base64url-handle-pubkey",
   "hNm": "work",

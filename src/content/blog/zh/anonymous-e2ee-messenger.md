@@ -145,7 +145,7 @@ Company Identity (seed in a safe; the private root never leaves the issuance cer
        └─ SubHandle: worker-alice     ◀─ HR: deriveSubHandle + attestSubHandle
 ```
 
-HR 机器在无根访问权限的情况下雇佣员工：它派生 SubHandle、签发 attestation B，然后把材料交给设备。部门级的授权（grant）是不可逾越的上限：任何试图以超出父级授权的 scope 发布子 attestation 的行为都会被任意验证器拒绝（ROOT 层级返回 `SCOPE_EXCEEDED`）。解雇一名员工就是撤销其 attestation B 的 `jti`：该员工所有当前和未来的 session 都会在每一个检查 revocation 的服务中消亡。此拓扑结构的完整拆解见 [Attestation Chains: Delegating Trust Without a Server](/ru/blog/attestation-chains-delegated-trust) (RU)。
+HR 机器在无根访问权限的情况下雇佣员工：它派生 SubHandle、签发 attestation B，然后把材料交给设备。部门级的授权（grant）是不可逾越的上限：任何试图以超出父级授权的 scope 发布子 attestation 的行为都会被任意验证器拒绝（ROOT 层级返回 `SCOPE_EXCEEDED`）。解雇一名员工就是撤销其 attestation B 的 `jti`：该员工所有当前和未来的 session 都会在每一个检查 revocation 的服务中消亡。此拓扑结构的完整拆解见 [Attestation Chains: Delegating Trust Without a Server](/zh/blog/attestation-chains-delegated-trust)。
 
 ## 4. One-to-One Chats: X3DH
 
