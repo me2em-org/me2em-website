@@ -171,7 +171,7 @@ sequenceDiagram
 
 服务器的职责是存储公钥并中继 envelope。它不参与 DH、看不到共享密钥、也无法解密第一条消息或后续任何一条消息。消耗 OTK 同时充当 replay guard：每一个 envelope 都是唯一的。
 
-随后 channels module 接管工作：从共享密钥建立通道，每条消息用通过 HKDF 加递增计数器派生的独立 key 加密。严格递增的 sequence number 提供重放保护——重复投递会被 `REPLAY_DETECTED` 拒绝。Channel key rotation（`rotateChannel`）设定 forward secrecy 边界：当前 key 被攻破不会暴露过去的 epoch。该模块的系统性拆解见 [@me2em/crypto guide](/ru/blog/me2em-crypto-guide) (RU)。
+随后 channels module 接管工作：从共享密钥建立通道，每条消息用通过 HKDF 加递增计数器派生的独立 key 加密。严格递增的 sequence number 提供重放保护——重复投递会被 `REPLAY_DETECTED` 拒绝。Channel key rotation（`rotateChannel`）设定 forward secrecy 边界：当前 key 被攻破不会暴露过去的 epoch。该模块的系统性拆解见 [@me2em/crypto guide](/zh/blog/me2em-crypto-guide)。
 
 ```typescript
 import { establishChannel, encryptChannelMessage } from '@me2em/crypto';
