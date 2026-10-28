@@ -204,5 +204,5 @@ if (myOneTimeKey) {
 - **[Me2eM：从 seed 短语生成身份](/zh/blog/me2em-seed-derived-identity)** — 确定性树
 - **[证明链：无需服务器的委托信任](/zh/blog/attestation-chains-delegated-trust)** — 信任委派（DR-3、DR-4 在实际中）
 - **[无存储的 E2EE](/zh/blog/e2ee-seed-derived-identity)** — session-bound 配置（DR-1、DR-6、DR-7 带测试课程）
-- **[DevSecOps 用于密码学 monorepo](/ru/blog/devsecops-crypto-monorepo)** — 这些决策如何在 CI 中得到保护 (RU)
+- **[DevSecOps 用于密码学 monorepo](/zh/blog/devsecops-crypto-monorepo)** — 这些决策如何在 CI 中得到保护
 - **[BACKLOG.md](https://github.com/me2em-org/me2em-protocol/blob/main/BACKLOG.md)** — 当前 backlog 和计划（建议性）
