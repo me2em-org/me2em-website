@@ -33,7 +33,7 @@ JWT、OAuth 2.0 和 Me2eM 解决同一个任务：向服务器证明客户端有
 
 ```typescript
 // 标准 JWT 结构：
-// header.payload.signature（全部 — base64url）
+// header.payload.signature (全部 — base64url)
 
 // Header：
 { "alg": "HS256", "typ": "JWT" }
@@ -54,7 +54,7 @@ JWT、OAuth 2.0 和 Me2eM 解决同一个任务：向服务器证明客户端有
 ### OAuth 2.0 Access Token
 
 ```typescript
-// OAuth 令牌——通常是无状态的（opaque）：
+// OAuth 令牌——通常是无状态的 (opaque)：
 // 授权服务器颁发一个随机字符串并将其值存储在自己那边
 {
   "access_token": "at-9f2XkQ7Lm4Vn8pR3tW6yZ1cB5dE8gH2j"  // 随机字符串；
@@ -71,7 +71,7 @@ JWT、OAuth 2.0 和 Me2eM 解决同一个任务：向服务器证明客户端有
 ### Me2eM Session
 
 ```typescript
-// Me2em session payload：
+// Me2eM 会话 payload：
 {
   "hId": "base64url-handle-pubkey",
   "hNm": "work",
@@ -97,7 +97,7 @@ JWT、OAuth 2.0 和 Me2eM 解决同一个任务：向服务器证明客户端有
 ### JWT：服务器签名
 
 ```text
-1. 用户登录（密码、OAuth 提供商、...）
+1. 用户登录(密码、OAuth 提供商、...)
 2. 服务器创建 payload { sub, role, exp, ... }
 3. 服务器用自己的密钥签名 payload
 4. 客户端接收 JWT 并在每次请求时传递
@@ -109,12 +109,12 @@ JWT、OAuth 2.0 和 Me2eM 解决同一个任务：向服务器证明客户端有
 ### Me2eM：客户端签名
 
 ```text
-1. 用户输入 seed 短语（每次会话一次）
+1. 用户输入 seed 短语(每次会话一次)
 2. 确定性计算 Handle：私钥
 3. 客户端创建 payload { hId, aud, scp, exp, ... }
 4. 客户端用 HANDLE 密钥对 payload 签名
 5. 服务器用 HANDLE 公钥验证签名
-   （从令牌中的名称重新计算）
+   (从令牌中的名称重新计算)
 ```
 
 服务器**不能**为用户创建令牌——它没有用户的私钥。用户不能创建具有扩展权限的令牌——payload 已签名，修改字段而不使签名失效是不可能的。权限由客户端声明并由签名锁定，在 Mode 2 下验证器还会在每次验证时强制将其转换为 attest 授权。
@@ -151,7 +151,7 @@ OAuth 的复杂性在于实体的数量：授权服务器、资源服务器、�
                               服务器可以：
                               - 颁发任何权限
                               - 撤销任何会话
-                              - 读取 payload（未加密）
+                              - 读取 payload(未加密)
                               - 丢失密钥 → 所有令牌泄露
 ```
 
@@ -168,7 +168,7 @@ OAuth 的复杂性在于实体的数量：授权服务器、资源服务器、�
 ```text
 用户 → 拥有 → Seed 短语 → 确定性 → 所有密钥
 客户端 → 签名 → 令牌 → 提交
-服务器 → 验证 → 签名 + attestations → 公钥根（Mode 2）
+服务器 → 验证 → 签名 + attestations → 公钥根(Mode 2)
         ← 服务器不能创建他人令牌——只能验证
         ← payload 内容公开，但无法伪造
 ```
@@ -183,7 +183,7 @@ OAuth 的复杂性在于实体的数量：授权服务器、资源服务器、�
 密钥泄露 → 攻击者可以为任何用户颁发令牌
          → 任何权限、任何 exp、任何 sub
          → 直到密钥轮换
-         → 无痕迹（无创建日志）
+         → 无痕迹(无创建日志)
 缓解：密钥轮换 → 所有 JWT 失效 → 所有
       用户登出
 ```
@@ -192,10 +192,10 @@ OAuth 的复杂性在于实体的数量：授权服务器、资源服务器、�
 
 ```text
 Handle 私钥泄露 → 攻击者可以为该
-                         handle 签名会话（在其权限范围内）
-缓解 1：撤销 handle attestation（Mode 2）——立即终止
+                         handle 签名会话(在其权限范围内)
+缓解 1：撤销 handle attestation(Mode 2)——立即终止
         所有服务中的当前和将来会话
-缓解 2：短 TTL（建议——不超过一小时）——攻击
+缓解 2：短 TTL(建议——不超过一小时)——攻击
         窗口受限
 风险限于 HANDLE——同一用户的其他 handle 不受影响
 ```
@@ -207,8 +207,8 @@ Seed 泄露 → 攻击者导出整棵树：所有 handle、所有密钥
           → 身份完全泄露
           → 无可轮换：确定性始终复现相同密钥
 缓解：seed 仅存于纸上，永不在设备和云端；
-      passphrase（"第 25 个词"）——第二自由度：不带
-      密码词的短语生成不同的（对攻击者为空的）
+      passphrase("第 25 个词")——第二自由度：不带
+      密码词的短语生成不同的(对攻击者为空的)
       身份
 ```
 
@@ -268,19 +268,19 @@ const { active, scope, sub } = await introspect.json();
 ```typescript
 import { Identity, Session } from '@me2em/core';
 
-// 唯一入口——seed 短语（在纸上）。无需注册：
+// 唯一入口——seed 短语 (在纸上)。无需注册：
 // 所有 handle 已存在，它们是确定性的。
 const identity = await Identity.fromSeed(seedBytes);
 const handle = await identity.deriveHandle('work');
 
-// 创建会话（在客户端，无需服务器）：
+// 创建会话 (在客户端，无需服务器)：
 const session = await Session.create(handle, {
   audience: 'app.example.com',
   scopes: ['read', 'write'],
   ttl: 3600,
 });
 
-// 验证（在服务器，无需数据库）：
+// 验证 (在服务器，无需数据库)：
 const verified = await Session.verifyStateless(
   session.token,
   serverIdentity,     // Identity — 重新计算 handle 公钥
