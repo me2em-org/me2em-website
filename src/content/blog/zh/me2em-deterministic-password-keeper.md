@@ -17,7 +17,7 @@ Me2eM 协议提供了不同的答案：**从存储到计算**。服务的密码�
 
 ## 从 12 个词到秘密之树
 
-核心——分层确定性派生：与 Bitcoin 世界中 BIP32 相同的理念，但建立在带域分离的 HKDF-SHA256 之上，而非链码。一切始于 BIP39 种子短语（12 或 24 个词）。从中派生出根 `Identity`，从中派生出隔离的 `Handle`，从句柄的密钥——具体秘密。
+核心——分层确定性派生：与 Bitcoin 世界中 BIP32 相同的理念，但建立在带域分离的 HKDF-SHA256 之上，而非链码。一切始于 BIP39 种子短语（12 或 24 个词）。从中派生出根 `Identity`，从中派生出隔离的 `Handle`，从 Handle 的密钥——具体秘密。
 
 ```mermaid
 flowchart TD
@@ -40,7 +40,7 @@ const phrase = generateSeedPhrase(128);      // 12 个词——写到纸上
 const seed = await get32ByteSeedFromMnemonic(phrase);
 const identity = await Identity.fromSeed(seed);
 
-// 句柄 = 一个服务上下文。名称自动规范化：
+// Handle = 一个服务上下文。名称自动规范化：
 // 'GitHub.com' 和 'github.com' 产生相同的密钥。
 const github = await identity.deriveHandle('github.com');
 
@@ -48,7 +48,7 @@ const github = await identity.deriveHandle('github.com');
 const loginPassword = github.derivePassword('login', 24);   // base64url
 const apiToken = github.derivePassword('api-token', 32);
 
-// 不同服务——不同句柄——完全无关的秘密
+// 不同服务——不同Handle——完全无关的秘密
 const bank = await identity.deriveHandle('bank.example');
 const bankPassword = bank.derivePassword('login', 24);
 ```
@@ -63,13 +63,13 @@ const b = github.derivePassword('login', 24);
 // a === b — 字节对字节。永远如此。
 ```
 
-### 为什么句柄是服务
+### 为什么 Handle 是服务
 
-"一个服务一个句柄"模型不是任意选择。服务之间的隔离**在树层面**存在：`github.com` 和 `bank.example` 的密钥是不同的分支，从根以不同名称派生。一个密码被入侵既不给其他密码的密钥，也不给树的上行路径——根不在设备上存储，从句柄密钥无法派生兄弟节点。
+"一个服务一个 Handle"模型不是任意选择。服务之间的隔离**在树层面**存在：`github.com` 和 `bank.example` 的密钥是不同的分支，从根以不同名称派生。一个密码被入侵既不给其他密码的密钥，也不给树的上行路径——根不在设备上存储，从 Handle 密钥无法派生兄弟节点。
 
-`derivePassword` 的上下文对于第二个维度——**秘密类型**——保持自由。你不需要记住你使用的是 `'github'` 还是 `'github.com'` 作为上下文字符串：域名已经在句柄名称中可见并由库规范化。上下文命名服务内构成一个秘密的内容。
+`derivePassword` 的上下文对于第二个维度——**秘密类型**——保持自由。你不需要记住你使用的是 `'github'` 还是 `'github.com'` 作为上下文字符串：域名已经在 Handle 名称中可见并由库规范化。上下文命名服务内构成一个秘密的内容。
 
-如果需要额外的维度——同一服务的个人和工作账户——它放在句柄名称中：`deriveHandle('work.github.com')` 派生一个单独的分支。句柄名称按照模式 `/^[a-z0-9][a-z0-9._@-]{0,62}$/` 验证——允许点号，前缀开箱即用。
+如果需要额外的维度——同一服务的个人和工作账户——它放在 Handle 名称中：`deriveHandle('work.github.com')` 派生一个单独的分支。Handle 名称按照模式 `/^[a-z0-9][a-z0-9._@-]{0,62}$/` 验证——允许点号，前缀开箱即用。
 
 ## 不舒服的问题一："种子只是一个新的主密码。存储在哪里？"
 
@@ -86,7 +86,7 @@ const b = github.derivePassword('login', 24);
 
 不——这一点必须清楚说明，因为这个问题对两个不同的实体听起来是一样的。
 
-**上下文字符串不是秘密。** 这是一个公开标签：没有句柄密钥，知道 `'login'` 什么都给不了。它可以存储在公开笔记中——在我们的模型中几乎不需要存储：秘密类型是一个小而重复的集合（`login`、`api-token`、`recovery`、`ssh`）。
+**上下文字符串不是秘密。** 这是一个公开标签：没有 Handle 密钥，知道 `'login'` 什么都给不了。它可以存储在公开笔记中——在我们的模型中几乎不需要存储：秘密类型是一个小而重复的集合（`login`、`api-token`、`recovery`、`ssh`）。
 
 **规范化是自动的。** 所有派生输入都被规范化（`NFKC → lowercase → trim`）：`'GitHub.com'` 和 `'github.com'` 产生一个密钥；非 ASCII 名称会拒绝并报错，而不是静默创建不同的秘密。
 
@@ -124,9 +124,9 @@ const rotated = github.derivePassword('login@2', 24);
 
 ## 实用建议
 
-1. **句柄名称 = 服务规范域名。** 规范化会原谅大小写，但仍保持域名约定：句柄是多年的分支地址。
+1. **Handle 名称 = 服务规范域名。** 规范化会原谅大小写，但仍保持域名约定：Handle 是多年的分支地址。
 2. **上下文类型集合——小而稳定。** `login`、`api-token`、`recovery` 覆盖 90% 的情况；有意识地添加新类型，不是凭心情。
-3. **维度——在句柄名称中。** `work.github.com` 用于工作账户，如果个人和工作必须生活在不同分支中。
+3. **维度——在 Handle 名称中。** `work.github.com` 用于工作账户，如果个人和工作必须生活在不同分支中。
 4. **短语备份——坚不可摧。** 钢铁对抗水火，关键身份的两个地理位置，永不拍照。
 
 ## 适合谁——不适合谁
