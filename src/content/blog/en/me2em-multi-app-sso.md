@@ -13,7 +13,7 @@ Classic SSO is a story about centralization. A platform with a set of applicatio
 
 The Multi-App SSO pattern on Me2eM delivers the same result — one login opens all platform applications — but with the opposite kind of centralization: **the user's account is their seed phrase, and no user database exists at all**. Not "anonymized" and "encrypted" — it does not exist. The platform stores only revocations and hashed SSO-session refresh tokens; everything else is presented in every request as signed proofs.
 
-> **Level: concept pattern.** Session and verification mechanics are covered in [stateless sessions](/ru/blog/stateless-sessions-no-database) (RU) and [attestation chains](/blog/attestation-chains-delegated-trust); the server-side scaffolding — in [stateless backend](/ru/blog/me2em-stateless-backend) (RU). Here is how these blocks assemble into a multi-application platform.
+> **Level: concept pattern.** Session and verification mechanics are covered in [stateless sessions](/blog/stateless-sessions-no-database) and [attestation chains](/blog/attestation-chains-delegated-trust); the server-side scaffolding — in [stateless backend](/blog/me2em-stateless-backend). Here is how these blocks assemble into a multi-application platform.
 
 ## Model: who is who
 
@@ -171,7 +171,7 @@ And the honest caveat: applications **of the same platform** correlate the user 
 
 ## Ban without a database: by root, not by handle
 
-The most subtle question of the pattern: how does the platform block a user when it has no record of them? The worst answer — ban by handle: determinism allows deriving `admin2`, `admin3`… infinitely. The only robust level is **identity root**: the user can change handles, but not the root (determinism is not rotated; this is the same property that makes the seed irrevocable — see [why we don't store your seed](/ru/blog/why-we-dont-store-your-seed) (RU)).
+The most subtle question of the pattern: how does the platform block a user when it has no record of them? The worst answer — ban by handle: determinism allows deriving `admin2`, `admin3`… infinitely. The only robust level is **identity root**: the user can change handles, but not the root (determinism is not rotated; this is the same property that makes the seed irrevocable — see [why we don't store your seed](/blog/why-we-dont-store-your-seed)).
 
 The platform's shared revocation store maintains three types of entries:
 
@@ -203,7 +203,7 @@ The partner verifies sessions itself — the platform does not participate in it
 
 ## Operations and trade-offs
 
-The pattern's infrastructure is minimal: static applications, shared revocation store (Redis, O(1)-read), verification in each application. Scaling — as in the whole protocol: stateless checks, instances behind a load balancer without sticky sessions. Detailed server scaffolding (Guard, 400/401/403 routing, multi-root) — in [the stateless backend article](/ru/blog/me2em-stateless-backend) (RU).
+The pattern's infrastructure is minimal: static applications, shared revocation store (Redis, O(1)-read), verification in each application. Scaling — as in the whole protocol: stateless checks, instances behind a load balancer without sticky sessions. Detailed server scaffolding (Guard, 400/401/403 routing, multi-root) — in [the stateless backend article](/blog/me2em-stateless-backend).
 
 | | We get | We pay |
 |--|----------|--------|
@@ -220,8 +220,8 @@ Multi-App SSO is the extreme case of the protocol's philosophy: a platform where
 
 ## What to read next
 
-- **[Stateless sessions: authorization without a database](/ru/blog/stateless-sessions-no-database)** (RU) — what is inside the token that sits in the HttpOnly cookie here
+- **[Stateless sessions: authorization without a database](/blog/stateless-sessions-no-database)** — what is inside the token that sits in the HttpOnly cookie here
 - **[Attestation chains: delegating trust without a server](/blog/attestation-chains-delegated-trust)** — the grant mechanics that per-app personas stand on
-- **[Stateless backend for Me2eM](/ru/blog/me2em-stateless-backend)** (RU) — Guard, state inventory, multi-root
-- **[Why we don't store your seed](/ru/blog/why-we-dont-store-your-seed)** (RU) — the philosophy from which the pattern grew
+- **[Stateless backend for Me2eM](/blog/me2em-stateless-backend)** — Guard, state inventory, multi-root
+- **[Why we don't store your seed](/blog/why-we-dont-store-your-seed)** — the philosophy from which the pattern grew
 - **[`@me2em/core` on npm](https://www.npmjs.com/package/@me2em/core)** — the full mechanics of the pattern

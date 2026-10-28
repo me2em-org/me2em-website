@@ -244,8 +244,8 @@ Stateless 世界里的撤销不是妥协，而是一个**设计决策**。你选
 
 ## 接下来阅读什么
 
-- **[Me2eM 的 stateless backend](/ru/blog/me2em-stateless-backend)** —— 如何在服务器端接入 RevocationChecker: Guard, 400/401/403, multi-root (RU)
-- **[Stateless 会话：无数据库的授权](/ru/blog/stateless-sessions-no-database)** —— token 内部有什么，以及一个 session 要经历哪七项检查 (RU)
+- **[Me2eM 的 stateless backend](/zh/blog/me2em-stateless-backend)** —— 如何在服务器端接入 RevocationChecker: Guard, 400/401/403, multi-root
+- **[Stateless 会话：无数据库的授权](/zh/blog/stateless-sessions-no-database)** —— token 内部有什么，以及一个 session 要经历哪七项检查
 - **[证明链：无服务器的信任委托](/zh/blog/attestation-chains-delegated-trust)** —— Mode 2：一条 attestation 的 `jti` 如何关掉整条分支
 - **[Me2eM: identity from a seed phrase](/zh/blog/me2em-seed-derived-identity)** —— 基础篇：这棵树从何处而来
 - **[USE_CASES.md](https://github.com/me2em-org/me2em-protocol/blob/main/packages/core/USE_CASES.md)** —— production 场景下的 Redis revocation checker 实例

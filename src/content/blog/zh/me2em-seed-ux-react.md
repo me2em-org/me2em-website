@@ -181,7 +181,7 @@ function ChatScreen() {
 }
 ```
 
-Hook 用句柄密钥签署令牌，并在 **TTL 的一半时自动续期**（通过 `autoRenew: false` 禁用）。续期机制——新令牌带新 `jti`，短 TTL 保持；unmount 时清理计时器。用户数周无需输入短语——服务器上没有任何长寿命会话。服务器在这些令牌中检查什么——见[关于 stateless 会话的文章](/ru/blog/stateless-sessions-no-database) (RU)。
+Hook 用句柄密钥签署令牌，并在 **TTL 的一半时自动续期**（通过 `autoRenew: false` 禁用）。续期机制——新令牌带新 `jti`，短 TTL 保持；unmount 时清理计时器。用户数周无需输入短语——服务器上没有任何长寿命会话。服务器在这些令牌中检查什么——见[关于 stateless 会话的文章](/zh/blog/stateless-sessions-no-database)。
 
 ## 上下文缓存：安全的浏览器存储
 
