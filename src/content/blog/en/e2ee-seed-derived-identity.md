@@ -311,7 +311,7 @@ If you are building a system with E2EE, IoT authorization, or agent identity —
 
 ## What to read next
 
-- **[@me2em/crypto guide](/ru/blog/me2em-crypto-guide)** — X3DH, channels and envelopes: a systematic tour of the crypto layer (RU)
+- **[@me2em/crypto guide](/blog/me2em-crypto-guide)** — X3DH, channels and envelopes: a systematic tour of the crypto layer
 
 ---
 

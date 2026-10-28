@@ -171,7 +171,7 @@ sequenceDiagram
 
 The server's role is to store public keys and relay envelopes. It does not participate in DH, never sees the shared secret and cannot decrypt either the first message or any subsequent ones. Consuming an OTK doubles as a replay guard: every envelope is unique.
 
-Then the channels module takes over: from the shared secret a channel is established, and each message is encrypted under its own key derived via HKDF with an incrementing counter. A strictly increasing sequence number gives protection against redelivery — duplicates are rejected with `REPLAY_DETECTED`. Channel key rotation (`rotateChannel`) sets forward secrecy boundaries: compromising the current key does not reveal past epochs. The systematic breakdown of the module — in [the @me2em/crypto guide](/ru/blog/me2em-crypto-guide) (RU).
+Then the channels module takes over: from the shared secret a channel is established, and each message is encrypted under its own key derived via HKDF with an incrementing counter. A strictly increasing sequence number gives protection against redelivery — duplicates are rejected with `REPLAY_DETECTED`. Channel key rotation (`rotateChannel`) sets forward secrecy boundaries: compromising the current key does not reveal past epochs. The systematic breakdown of the module — in [the @me2em/crypto guide](/blog/me2em-crypto-guide).
 
 ```typescript
 import { establishChannel, encryptChannelMessage } from '@me2em/crypto';

@@ -310,7 +310,7 @@ Signal Protocol 仍然是具有持久密钥存储的移动 messenger 的黄金�
 
 ## 接下来阅读什么
 
-- **[@me2em/crypto 指南](/ru/blog/me2em-crypto-guide)**——X3DH、通道和信封：加密层的系统导览 (RU)
+- **[@me2em/crypto 指南](/zh/blog/me2em-crypto-guide)**——X3DH、通道和信封：加密层的系统导览
 
 ---
 
