@@ -327,7 +327,7 @@ GitHub 上的 Security → Code scanning alerts。CodeQL 不在 job 日志中打
 
 ## 继续阅读
 
-- **[后记：@me2em/core 的演进](/zh/blog/core-evolution-post-mortem)**——这个流水线保护的的设计决策
+- **[后记：@me2em/core 的演进](/zh/blog/core-evolution-post-mortem)**——这个流水线所保护的设计决策
 - **[E2EE 不存储私钥](/zh/blog/e2ee-seed-derived-identity)**——三个保护回路存在的代码
 - **[Me2eM：从种子短语到身份](/zh/blog/me2em-seed-derived-identity)**——协议的基础
 
