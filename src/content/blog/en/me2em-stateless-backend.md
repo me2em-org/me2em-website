@@ -165,7 +165,7 @@ Usage:
 export class ApiController { /* ... */ }
 ```
 
-For internal infrastructure that can be trusted with the root, the core is the same but instead of `verifyAttested` — `Session.verifyStateless(token, identity, audience, checker)`: the verifier holds `Identity` and recomputes keys itself. The mode selection rule — in the article [on attestation chains](/blog/attestation-chains-delegated-trust); briefly: Mode 2 for all external, Mode 1 only for your own perimeter. Breakdown of both vertices on a live IoT example — in [the EV network tutorial](/ru/blog/ev-charging-network-tutorial) (RU).
+For internal infrastructure that can be trusted with the root, the core is the same but instead of `verifyAttested` — `Session.verifyStateless(token, identity, audience, checker)`: the verifier holds `Identity` and recomputes keys itself. The mode selection rule — in the article [on attestation chains](/blog/attestation-chains-delegated-trust); briefly: Mode 2 for all external, Mode 1 only for your own perimeter. Breakdown of both vertices on a live IoT example — in [the EV network tutorial](/blog/ev-charging-network-tutorial).
 
 ```mermaid
 flowchart LR
@@ -275,5 +275,5 @@ Alternative — separate routes/subdomains per root, then the root is unambiguou
 - **[Stateless Sessions: Authorization Without a Database](/blog/stateless-sessions-no-database)** — what's inside the token and which seven checks a session passes
 - **[Attestation Chains: Delegating Trust Without a Server](/blog/attestation-chains-delegated-trust)** — grant mechanics and mode selection
 - **[Instant Revocation: Revocation in a Stateless World](/blog/revocation-checker-instant-revocation)** — Redis implementation of `RevocationChecker` for section 5
-- **[EV Charging Network with Offline Authorization](/ru/blog/ev-charging-network-tutorial)** (RU) — both verification modes in a live scenario
+- **[EV Charging Network with Offline Authorization](/blog/ev-charging-network-tutorial)** — both verification modes in a live scenario
 - **[`@me2em/core` on npm](https://www.npmjs.com/package/@me2em/core)** — all server logic in this article runs on top of this package

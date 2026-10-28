@@ -210,7 +210,7 @@ Seed → Identity → Handle → SubHandle     ← 树（确定性）
 
 ## 接下来阅读什么
 
-- **[出售访问权：作为商品的已签收据](/ru/blog/me2em-selling-access)** —— Mode 2 的纯粹形态：无人机、卫星窗口、离线购买校验 (RU)
+- **[出售访问权：作为商品的已签收据](/zh/blog/me2em-selling-access)** —— Mode 2 的纯粹形态：无人机、卫星窗口、离线购买校验
 - **[即时撤销：stateless 世界里的 revocation](/zh/blog/revocation-checker-instant-revocation)** —— `jti` 如何在链条的每一层被撤销：粒度、fail-open/closed、记录 TTL
 - **[Stateless 会话：无数据库的授权](/zh/blog/stateless-sessions-no-database)** —— token 内部有什么，以及一个 session 要经历哪七项检查
 - **[Me2eM: identity from a seed phrase](/zh/blog/me2em-seed-derived-identity)** —— 基础篇：这棵树从何处而来
