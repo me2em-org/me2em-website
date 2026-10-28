@@ -30,7 +30,7 @@ flowchart LR
     AE -->|"通过中继的信封"| BD
 ```
 
-用户输入种子短语 → 确定性派生句柄 → 建立 X3DH 通道 → 消息用逐消息密钥加密。服务器（中继）传递信封而不理解其内容。
+用户输入种子短语 → 确定性派生 Handle → 建立 X3DH 通道 → 消息用逐消息密钥加密。服务器（中继）传递信封而不理解其内容。
 
 ## 前置条件
 
@@ -83,7 +83,7 @@ function IdentityScreen() {
 
 `SeedPhraseDisplay` 和 `SeedPhraseVerify` 组件只显示一次词语，允许恰好复制一次，并验证用户记住了短语（按词语网格的顺序验证）。确认之后 seed 从内存中擦除。
 
-## 第 2 步：Messenger 的句柄
+## 第 2 步：Messenger 的 Handle
 
 ```tsx
 import { useHandle } from '@me2em/react';
@@ -91,13 +91,13 @@ import { useHandle } from '@me2em/react';
 function MessengerScreen() {
   const handle = useHandle('messenger');
 
-  if (!handle) return <p>派生句柄中...</p>;
+  if (!handle) return <p>派生Handle中...</p>;
 
   return <ChatScreen handle={handle} />;
 }
 ```
 
-`useHandle('messenger')` 从 identity 确定性派生句柄密钥。同一 seed 在另一台设备上——相同的句柄、相同的联系人、相同的历史。
+`useHandle('messenger')` 从 identity 确定性派生 Handle 密钥。同一 seed 在另一台设备上——相同的 Handle、相同的联系人、相同的历史。
 
 ## 第 3 步：与对话伙伴建立 X3DH 通道
 
@@ -187,7 +187,7 @@ import { Session } from '@me2em/core';
 const verified = await Session.verifyAttested(
   session.token, ROOT_PUB, [A.token], 'app.example.com',
 );
-// verified.handleName —— 谁的句柄，verified.scopes —— 允许什么
+// verified.handleName —— 谁的Handle，verified.scopes —— 允许什么
 ```
 
 **"这真的是鲍勃，我想与之交谈的那个人吗？"** ——这是一个 p2p 认证问题，通过外部通道比较 identity 密钥来解决——就像 Signal 中的"安全号码"：将鲍勃 pre-key bundle 中的 `identityPub` 与鲍勃在可信位置发布的进行比较。
@@ -250,7 +250,7 @@ src/
 
 - **生产传输** —— ChannelMessage 的 WebSocket 中继
 - **服务器上的 PreKeyBundle** —— 通过 API 发布和获取
-- **群聊** —— group key + epoch 轮换（拆解——参见 [messenger 概念](/zh/blog/anonymous-e2ee-messenger)）
+- **群聊** —— group key + epoch 旋转（拆解——参见 [messenger 概念](/zh/blog/anonymous-e2ee-messenger)）
 - **设备撤销** —— 证明和 RevocationChecker
 
 ## 接下来阅读

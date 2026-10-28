@@ -1,6 +1,6 @@
 ---
 title: "@me2em/crypto 指南：X3DH、通道、信封和选择方法的规则"
-description: "对 Me2eM 密码学包的系统导览：HKDF 和域隔离、带强制 OTK 的 X3DH、带纪元轮换的通道、面向离线接收者的信封、媒体加密和密码保护护栏。"
+description: "对 Me2eM 密码学包的系统导览：HKDF 和域隔离、带强制 OTK 的 X3DH、带纪元旋转的通道、面向离线接收者的信封、媒体加密和密码保护护栏。"
 publishedAt: 2026-10-06
 author: "Me2eM Organization"
 tags: ["e2ee", "cryptography", "tutorial"]
@@ -24,7 +24,7 @@ uid: "me2em-crypto-guide"
 flowchart TD
     CORE["core/<br/>原语：HKDF、ECDH、<br/>AEAD、签名、wipe"] --> KDF["kdf/<br/>Argon2id、HIBP、<br/>seed 验证"]
     CORE --> X3DH["x3dh/<br/>标准握手、<br/>SPK/OTK 管理"]
-    X3DH --> CH["channels/<br/>带纪元轮换的<br/>E2EE 通道"]
+    X3DH --> CH["channels/<br/>带纪元旋转的<br/>E2EE 通道"]
     X3DH --> ENV["envelopes/<br/>面向离线接收者的<br/>密钥信封、确定性媒体 nonce"]
 ```
 
@@ -82,7 +82,7 @@ const shared = await completeX3DH(myIdentity, myStoredPreKeys, envelope);
 2. **OTK 是强制的，零回退禁止。** bundle 中没有一次性密钥——握手以错误失败，而不是在缺少一次性贡献的情况下计算秘密。新鲜属性的降级不能悄无声息地发生。
 3. **OTK 消耗 = 重放防护。** 每个信封消耗一个 OTK；具有相同 OTK 的重复信封被拒绝。
 
-## channels/：带纪元轮换的消息流
+## channels/：带纪元旋转的消息流
 
 X3DH 共享秘密是一次性协议。`channels/` 将其转化为长生命周期加密通道：
 
@@ -96,7 +96,7 @@ const msg = await encryptChannelMessage(channel, seq++, plaintext);
 
 const plaintextBack = await decryptChannelMessage(channel, msg);
 
-// 纪元轮换——按事件或计划：
+// 纪元旋转——按事件或计划：
 channel = await rotateChannel(channel);
 // 新的根材料；旧密钥已擦除
 ```
@@ -105,7 +105,7 @@ channel = await rotateChannel(channel);
 
 - **每条消息密钥。** 每条消息密钥通过 HKDF 从通道根材料派生——泄露一条消息的密钥不会暴露相邻消息。
 - **每方向重放保护**——按 sequence number；重复投递被拒绝（`REPLAY_DETECTED`）。
-- **纪元轮换。** `rotateChannel` 派生新的根材料并擦除旧的：前向保密边界与纪元边界重合。不宣称完整的后泄露安全（状态泄露后的自愈——Double Ratchet）；轮换将损害限制在泄露时刻。
+- **纪元旋转。** `rotateChannel` 派生新的根材料并擦除旧的：前向保密边界与纪元边界重合。不宣称完整的后泄露安全（状态泄露后的自愈——Double Ratchet）；旋转将损害限制在泄露时刻。
 
 channels 和身份如何在真实应用中共存——注册、投递、群组——见[ messenger 概念](/zh/blog/anonymous-e2ee-messenger)；这里是机制，那里是架构。
 

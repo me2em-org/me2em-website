@@ -1,6 +1,6 @@
 ---
 title: "Me2eM 上的匿名 E2EE messenger：从种子短语到群聊"
-description: "零服务器信任的 messenger 概念：无注册的身份、stateless 会话验证、X3DH 聊天、群组密钥 epoch 轮换，以及隐私的诚实代价。"
+description: "零服务器信任的 messenger 概念：无注册的身份、stateless 会话验证、X3DH 聊天、群组密钥 epoch 旋转，以及隐私的诚实代价。"
 publishedAt: 2026-09-23
 author: "Me2eM Organization"
 tags: ["e2ee", "security", "architecture"]
