@@ -204,5 +204,5 @@ The common pattern: **cryptographic correctness must be built in from the first 
 - **[Me2eM: Identity from a Seed Phrase](/blog/me2em-seed-derived-identity)** — deterministic tree
 - **[Attestation Chains: Delegated Trust Without a Server](/blog/attestation-chains-delegated-trust)** — trust delegation (DR-3, DR-4 in action)
 - **[E2EE Without Storing Private Keys](/blog/e2ee-seed-derived-identity)** — session-bound profile (DR-1, DR-6, DR-7 with test lessons)
-- **[DevSecOps for a Cryptographic Monorepo](/ru/blog/devsecops-crypto-monorepo)** — how these decisions are guarded in CI
+- **[DevSecOps for a Cryptographic Monorepo](/ru/blog/devsecops-crypto-monorepo)** — how these decisions are guarded in CI (RU)
 - **[BACKLOG.md](https://github.com/me2em-org/me2em-protocol/blob/main/BACKLOG.md)** — current backlog and plans (advisory)
