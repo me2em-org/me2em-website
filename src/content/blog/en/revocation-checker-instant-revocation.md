@@ -244,8 +244,8 @@ Revocation in a stateless world is not a compromise but a **design decision**. Y
 
 ## What to read next
 
-- **[Stateless Backend for Me2eM](/ru/blog/me2em-stateless-backend)** — how to wire up the RevocationChecker on the server side: Guard, 400/401/403, multi-root (RU)
-- **[Stateless Sessions: authorization without a database](/ru/blog/stateless-sessions-no-database)** — what is inside the token and which seven checks a session passes (RU)
+- **[Stateless Backend for Me2eM](/blog/me2em-stateless-backend)** — how to wire up the RevocationChecker on the server side: Guard, 400/401/403, multi-root
+- **[Stateless Sessions: authorization without a database](/blog/stateless-sessions-no-database)** — what is inside the token and which seven checks a session passes
 - **[Attestation Chains: Delegating Trust Without a Server](/blog/attestation-chains-delegated-trust)** — Mode 2: how an attestation `jti` switches off an entire branch
 - **[Me2eM: identity from a seed phrase](/blog/me2em-seed-derived-identity)** — the foundation: where the tree comes from
 - **[USE_CASES.md](https://github.com/me2em-org/me2em-protocol/blob/main/packages/core/USE_CASES.md)** — production-grade Redis revocation checker in the context of the scenarios

@@ -13,7 +13,7 @@ uid: "me2em-multi-app-sso"
 
 Me2eM 上的多应用 SSO 模式达成同样的结果——一次登录打开平台所有应用——但采用相反的集中化方式：**用户的账户就是其种子短语，根本不存在用户数据库**。不是"匿名化"和"加密"——而是压根不存在。平台只存储撤销记录和 SSO 会话的 hashed refresh 令牌；其余一切在每次请求中以签名证明的形式出示。
 
-> **层级：概念模式。** 会话和验证机制在 [stateless 会话](/ru/blog/stateless-sessions-no-database) (RU)和 [证明链](/zh/blog/attestation-chains-delegated-trust) 中有详细拆解；服务端支撑在 [stateless 后端](/ru/blog/me2em-stateless-backend) (RU)中。这里展示这些模块如何组装成多应用平台。
+> **层级：概念模式。** 会话和验证机制在 [stateless 会话](/zh/blog/stateless-sessions-no-database)和 [证明链](/zh/blog/attestation-chains-delegated-trust) 中有详细拆解；服务端支撑在 [stateless 后端](/zh/blog/me2em-stateless-backend)中。这里展示这些模块如何组装成多应用平台。
 
 ## 模型：谁是谁
 
@@ -171,7 +171,7 @@ async function requireSession(req): Promise<Session> {
 
 ## 无数据库封禁：按根节点而非句柄
 
-模式最微妙的一个问题：平台没有用户记录时如何封禁用户？最差的方案——按句柄封禁：确定性允许无限派生 `admin2`、`admin3`… 唯一稳健的层级是**身份根节点**：用户可以更换句柄，但不能更换根节点（确定性不轮换；这与 seed 不可撤销是同一属性——见 [为什么我们不存储你的 seed](/ru/blog/why-we-dont-store-your-seed) (RU)）。
+模式最微妙的一个问题：平台没有用户记录时如何封禁用户？最差的方案——按句柄封禁：确定性允许无限派生 `admin2`、`admin3`… 唯一稳健的层级是**身份根节点**：用户可以更换句柄，但不能更换根节点（确定性不轮换；这与 seed 不可撤销是同一属性——见 [为什么我们不存储你的 seed](/zh/blog/why-we-dont-store-your-seed)）。
 
 平台共享撤销存储维护三种类型的条目：
 
@@ -203,7 +203,7 @@ const A = await identity.attestHandle('analytics-partner', {
 
 ## 运营与权衡
 
-模式的基础设施极简：静态应用、共享撤销存储（Redis，O(1) 读取）、各应用内验证。扩展方式——与整个协议一致：无状态检查、负载均衡器后的实例无需 sticky session。详细的服务端支撑（Guard、400/401/403 路由、multi-root）在 [stateless 后端文章](/ru/blog/me2em-stateless-backend) (RU)中。
+模式的基础设施极简：静态应用、共享撤销存储（Redis，O(1) 读取）、各应用内验证。扩展方式——与整个协议一致：无状态检查、负载均衡器后的实例无需 sticky session。详细的服务端支撑（Guard、400/401/403 路由、multi-root）在 [stateless 后端文章](/zh/blog/me2em-stateless-backend)中。
 
 | | 获得 | 付出 |
 |--|----------|--------|
@@ -220,8 +220,8 @@ const A = await identity.attestHandle('analytics-partner', {
 
 ## 接下来阅读
 
-- **[Stateless 会话：无数据库的授权](/ru/blog/stateless-sessions-no-database)** (RU)—— 此处放在 HttpOnly cookie 中的令牌内部有什么
+- **[Stateless 会话：无数据库的授权](/zh/blog/stateless-sessions-no-database)**—— 此处放在 HttpOnly cookie 中的令牌内部有什么
 - **[证明链：无服务器的信任委托](/zh/blog/attestation-chains-delegated-trust)** —— 每应用角色所依赖的授予机制
-- **[Me2eM 的 Stateless 后端](/ru/blog/me2em-stateless-backend)** (RU)—— Guard、状态清单、multi-root
-- **[为什么我们不存储你的 seed](/ru/blog/why-we-dont-store-your-seed)** (RU)—— 模式生长出的哲学
+- **[Me2eM 的 Stateless 后端](/zh/blog/me2em-stateless-backend)**—— Guard、状态清单、multi-root
+- **[为什么我们不存储你的 seed](/zh/blog/why-we-dont-store-your-seed)**—— 模式生长出的哲学
 - **[@me2em/core 在 npm 上](https://www.npmjs.com/package/@me2em/core)** —— 模式的全部机制

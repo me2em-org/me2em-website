@@ -212,5 +212,5 @@ The tree answers «which key belongs to this name». An attestation answers «wh
 
 - **[Selling Access: Signed Receipt as Product](/ru/blog/me2em-selling-access)** — Mode 2 in its pure form: drones, satellite windows, offline purchase verification (RU)
 - **[Instant Revocation: revoking in a stateless world](/blog/revocation-checker-instant-revocation)** — how `jti` revocation works at every level of the chain: granularity, fail-open/closed, record TTLs
-- **[Stateless Sessions: authorization without a database](/ru/blog/stateless-sessions-no-database)** — what is inside the token and which seven checks a session passes (RU)
+- **[Stateless Sessions: authorization without a database](/blog/stateless-sessions-no-database)** — what is inside the token and which seven checks a session passes
 - **[Me2eM: identity from a seed phrase](/blog/me2em-seed-derived-identity)** — the foundation: where the tree comes from

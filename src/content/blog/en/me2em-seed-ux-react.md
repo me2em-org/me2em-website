@@ -181,7 +181,7 @@ function ChatScreen() {
 }
 ```
 
-The hook signs tokens with the handle key and **renews them automatically at half TTL** (disabled with `autoRenew: false`). Renewal mechanics — a new token with a new `jti`, short TTL preserved; timers cleaned on unmount. The user works for weeks without entering the phrase — and not a single long-lived session on the server. A breakdown of what the server checks in these tokens is in [the article on stateless sessions](/ru/blog/stateless-sessions-no-database) (RU).
+The hook signs tokens with the handle key and **renews them automatically at half TTL** (disabled with `autoRenew: false`). Renewal mechanics — a new token with a new `jti`, short TTL preserved; timers cleaned on unmount. The user works for weeks without entering the phrase — and not a single long-lived session on the server. A breakdown of what the server checks in these tokens is in [the article on stateless sessions](/blog/stateless-sessions-no-database).
 
 ## Context cache: secure browser memory
 
