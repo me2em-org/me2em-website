@@ -48,8 +48,8 @@ importers:
         specifier: ^6.0.2
         version: 6.0.2(react@19.2.4)
       '@me2em/react':
-        specifier: 0.1.0-alpha.1
-        version: 0.1.0-alpha.1(react@19.2.4)
+        specifier: 0.1.0-alpha.2
+        version: 0.1.0-alpha.2(react@19.2.4)
       astro:
         specifier: 7.3.1
         version: 7.3.1(@astrojs/markdown-remark@7.3.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@netlify/blobs@10.7.9)(@types/node@22.19.7)(@vercel/functions@3.4.3)(jiti@2.7.0)(yaml@2.9.0)
@@ -1521,11 +1521,11 @@ packages:
   '@mdx-js/mdx@3.1.1':
     resolution: {integrity: sha512-f6ZO2ifpwAQIpzGWaBQT2TXxPv6z3RBzQKpVftEWN78Vl/YweF1uwussDx8ECAXVtr3Rs89fKyG9YlzUs9DyGQ==}
 
-  '@me2em/core@0.7.0-alpha.1':
-    resolution: {integrity: sha512-GkCRfTxZfyb/MlvGoi+SA9oE5o2cgj3qwOBNeJKOHQpca87aZ2W3kRj/zIQsHbtGOPx2o7Mby1lDgy78ptv22w==}
+  '@me2em/core@0.7.0-alpha.2':
+    resolution: {integrity: sha512-c8251xPN7/jTkAjHx0WoWfTVUkxfmFXaJNCw8FBoQa94PGo5ZgkwFhd6dpcmKodjYk49hawUBYRsZ0+6ZerArA==}
 
-  '@me2em/react@0.1.0-alpha.1':
-    resolution: {integrity: sha512-nro2eCG+7fkVbw+um1EiCqHTTM4+RPFOMbkZeGF7NYj23Ku/spHHAxPNQjNRhajf2bR/ZqQrUOcFFxgaMYiZsg==}
+  '@me2em/react@0.1.0-alpha.2':
+    resolution: {integrity: sha512-qTL0TC2MFrs+Xmnw83JrRBNo6+7i2+tqxRM/n9I2TCcBPEtHwNYVPGqLAXweg9tL/o0Mx2GDoR1foMMsdQNdnw==}
     peerDependencies:
       react: '>=18.0.0'
 
@@ -8066,16 +8066,16 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@me2em/core@0.7.0-alpha.1':
+  '@me2em/core@0.7.0-alpha.2':
     dependencies:
       '@noble/curves': 1.9.7
       '@noble/ed25519': 3.2.0
       '@noble/hashes': 2.4.0
       '@scure/bip39': 1.6.0
 
-  '@me2em/react@0.1.0-alpha.1(react@19.2.4)':
+  '@me2em/react@0.1.0-alpha.2(react@19.2.4)':
     dependencies:
-      '@me2em/core': 0.7.0-alpha.1
+      '@me2em/core': 0.7.0-alpha.2
       react: 19.2.4
 
   '@mermaid-js/parser@2.0.0':
