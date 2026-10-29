@@ -24,8 +24,7 @@
   "scripts": {
     "dev": "ASTRO_DEV=1 astro dev",
     "build": "astro build",
-    "build:netlify": "DEPLOY_TARGET=netlify astro build",
-    "build:cloudflare": "DEPLOY_TARGET=cloudflare astro build",
+
     "verify": "node scripts/verify-build.mjs",
     "preview": "astro preview",
     "check": "astro check",
