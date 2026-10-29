@@ -185,35 +185,26 @@
           "description": "Me2eM 标志和品牌标识仅可用于信息和编辑目的。未经书面同意，不允许重新分发、修改用于商业用途或以第三方商标注册。"
         }
       },
-      "expertise": {
-        "title": "专业知识",
-        "description": "该协议面向所有开发者开放——欢迎分享您在密码学身份、安全或开发者工具方面的专业知识。",
-        "author": {
-          "src": "https://avatars.githubusercontent.com/u/75365981?s=400&u=9753bae30d0f22b148465de5bc701fd291fa551a&v=4",
-          "alt": "Sergey Lubimov (SeLub)",
-          "url": "https://github.com/SeLub"
-        }
-      },
-      "faq": {
-        "title": "常见问题",
-        "items": [
+      "cta": {
+        "title": "联系我们",
+        "channels": [
           {
-            "question": "谁维护 Me2eM？",
-            "answer": "该协议由 <a href=\"https://selub.github.io\" target=\"_blank\" rel=\"noopener noreferrer\">Serge Lubimov</a> 编写和维护，他也是本网站的维护者。"
+            "label": "Email",
+            "note": "security@me2em.com",
+            "href": "mailto:security@me2em.com"
           },
           {
-            "question": "为什么协议名称这样大小写？",
-            "answer": "\"Me2eM\" 是面向人类文本中唯一正确的形式。全小写变体保留用于机器标识符（代码、URL、包）。品牌不进行变格——「iPhone 规则」。"
+            "label": "Telegram",
+            "note": "社区和快速问题",
+            "href": "https://t.me/me2em_protocol"
           },
           {
-            "question": "源代码在哪里？",
-            "answer": "协议源代码在 <a href=\"https://github.com/me2em-org/me2em-protocol\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a> 上，采用 Apache 2.0 许可证。"
-          },
-          {
-            "question": "如何报告漏洞？",
-            "answer": "发送邮件到 <a href=\"mailto:security@me2em.com\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">security@me2em.com</a> — 这是唯一的私有渠道。"
+            "label": "文档",
+            "note": "指南、API参考、术语表",
+            "href": "/docs"
           }
-        ]
+        ],
+        "more": "所有渠道 → Community"
       }
     },
     "sandbox": {
@@ -563,20 +554,61 @@
         }
       },
       "faqTitle": "常见问题",
-      "faq": [
-        {
-          "question": "文档在哪里？",
-          "answer": "所有文档都在 <a href=\"/docs\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">/docs</a>——指南、API参考、术语表和quick start。"
+      "expertise": {
+        "title": "专业知识",
+        "description": "该协议面向所有开发者开放——欢迎分享您在密码学身份、安全或开发者工具方面的专业知识。",
+        "author": {
+          "src": "https://avatars.githubusercontent.com/u/75365981?s=400&u=9753bae30d0f22b148465de5bc701fd291fa551a&v=4",
+          "alt": "Sergey Lubimov (SeLub)",
+          "url": "https://github.com/SeLub"
         },
-        {
-          "question": "如何报告漏洞？",
-          "answer": "发送邮件至 <a href=\"mailto:security@me2em.com\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">security@me2em.com</a>——这是唯一的私有渠道。参见协议仓库中的 <a href=\"https://github.com/me2em-org/me2em-protocol/blob/main/SECURITY.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">SECURITY.md</a>。"
-        },
-        {
-          "question": "如何贡献？",
-          "answer": "参见协议仓库中的 <a href=\"https://github.com/me2em-org/me2em-protocol/blob/main/CONTRIBUTING.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">CONTRIBUTING.md</a>——关于提交issue、创建PR和参与讨论的指南。"
-        }
-      ]
+        "avatarAlt": "Sergey Lubimov (SeLub)",
+        "team": [
+          {
+            "letter": "A",
+            "color": "brand",
+            "alt": "Team member 1"
+          },
+          {
+            "letter": "B",
+            "color": "amber",
+            "alt": "Team member 2"
+          },
+          {
+            "letter": "C",
+            "color": "emerald",
+            "alt": "Team member 3"
+          }
+        ]
+      },
+      "faq": {
+        "items": [
+          {
+            "question": "Who maintains Me2eM?",
+            "answer": ""
+          },
+          {
+            "question": "Why is the protocol name capitalised the way it is?",
+            "answer": ""
+          },
+          {
+            "question": "Where is the source code?",
+            "answer": ""
+          },
+          {
+            "question": "Where is the documentation?",
+            "answer": ""
+          },
+          {
+            "question": "How do I report a vulnerability?",
+            "answer": ""
+          },
+          {
+            "question": "How can I contribute?",
+            "answer": ""
+          }
+        ]
+      }
     },
     "home": {
       "meta": {
