@@ -33,6 +33,14 @@ const teamAuthor = authors.get('team');
 
 const channels = [
   {
+    icon: 'mail',
+    label: t('pages.community.channels.email.label', locale),
+    value: 'hello@me2em.com',
+    note: t('pages.community.channels.email.note', locale),
+    href: 'mailto:hello@me2em.com',
+    external: false,
+  },
+  {
     icon: 'shield-check',
     label: t('pages.community.channels.security.label', locale),
     value: 'security@me2em.com',
@@ -124,7 +132,7 @@ const teamConfig = expertiseData?.team ?? [];
         </p>
       </div>
 
-      <!-- Channel table: 6 rows, stacks on mobile -->
+      <!-- Channel table: 7 rows, stacks on mobile -->
       <div class="space-y-3" data-reveal data-reveal-delay="1">
         {channels.map((ch) => (
           <a

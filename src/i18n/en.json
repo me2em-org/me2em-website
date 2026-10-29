@@ -531,6 +531,10 @@
       "channelsTitle": "Pick the channel that fits",
       "channelsSubtitle": "We sort mail by topic so your message lands where it belongs.",
       "channels": {
+        "email": {
+          "label": "Email",
+          "note": "General questions and feedback"
+        },
         "security": {
           "label": "Responsible disclosure",
           "note": "Private — security@me2em.com"
@@ -554,10 +558,6 @@
         "docs": {
           "label": "Documentation",
           "note": "Guides, API references, glossary"
-        },
-        "email": {
-          "label": "General inquiries",
-          "note": "hello@me2em.com"
         }
       },
       "faqTitle": "Frequently asked",

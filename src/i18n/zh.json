@@ -531,6 +531,10 @@
       "channelsTitle": "选择适合的渠道",
       "channelsSubtitle": "我们按主题分类邮件，确保您的消息到达正确的地方。",
       "channels": {
+        "email": {
+          "label": "电子邮件",
+          "note": "一般问题与反馈"
+        },
         "security": {
           "label": "负责任的披露",
           "note": "私有——security@me2em.com"
@@ -554,10 +558,6 @@
         "docs": {
           "label": "文档",
           "note": "指南、API参考、术语表"
-        },
-        "email": {
-          "label": "一般咨询",
-          "note": "hello@me2em.com"
         }
       },
       "faqTitle": "常见问题",
