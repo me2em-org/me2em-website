@@ -22,7 +22,7 @@ Me2eM 上的多应用 SSO 模式达成同样的结果——一次登录打开平
 | **平台实例** | 一次部署，N 个应用（门户、仪表盘、管理面板、报表…） | 共享撤销存储 + SSO 会话的 hashed refresh 令牌。仅此而已。 |
 | **门户** | 种子短语输入入口 | 无。它只是一页，不是账户服务。 |
 | **应用** | 平台的独立产品 | 仅自身的撤销决策（通过共享存储共享）。 |
-| **每应用角色（Handle）** | 为用户在特定应用上派生的Handle | 不存储于任何地方——从 seed 计算得出。 |
+| **每应用角色（Handle）** | 为用户在特定应用上派生的 Handle | 不存储于任何地方——从 seed 计算得出。 |
 | **用户 Identity** | 用户树的根，纸上的 seed | 平台甚至不知道或不存储其公钥。 |
 
 最后一行是最出人意料的。在经典 SSO 中平台拥有账户。这里平台甚至不知道用户的公钥级别：根节点伴随每次请求到达，签名通过数学验证，而平台按设计就不该知道"这是谁"。
@@ -34,7 +34,7 @@ Me2eM 上的多应用 SSO 模式达成同样的结果——一次登录打开平
 | **注册** | 必需：邮箱/电话，数据库中的档案 | 不存在：seed = 账户 |
 | **IdP** | 带数据库的独立服务及其自身威胁模型 | 不存在；密码学扮演 IdP 角色 |
 | **用户数据库** | 中心，首要目标 | 零——无物可盗 |
-| **应用会话** | IdP 签发，不透明或 JWT | 由用户自身Handle签名 |
+| **应用会话** | IdP 签发，不透明或 JWT | 由用户自身 Handle 签名 |
 | **会话存储** | Cookie + IdP 服务端状态 | HttpOnly cookie，无状态验证 |
 | **用户撤销** | 数据库中的 DELETE | 共享封禁列表中的根节点条目 |
 | **平台被攻破** | 所有账户转储 | 被撤销密钥列表的转储 |
@@ -50,7 +50,7 @@ sequenceDiagram
     participant D as Dashboard app
 
     U->>P: 输入种子短语
-    P->>P: 从 seed 生成 Identity，派生每应用Handle
+    P->>P: 从 seed 生成 Identity，派生每应用 Handle
     U->>P: 打开 Dashboard
     P->>P: 为 dashboard 受众签发 attestHandle
     P->>P: 从 dashboard Handle 创建 Session
@@ -63,7 +63,7 @@ sequenceDiagram
 
 ### 在门户：每个应用一个会话
 
-模式的关键设计决策是**每应用角色**：每个应用用户派生一个独立的Handle并单独证明它。会话按应用逐个创建——在首次访问时创建：
+模式的关键设计决策是**每应用角色**：每个应用用户派生一个独立的 Handle 并单独证明它。会话按应用逐个创建——在首次访问时创建：
 
 ```typescript
 import { Identity, Session } from '@me2em/core';
@@ -75,7 +75,7 @@ async function openApp(appName: string, appDomain: string) {
   // 1. 应用角色：从用户树中隔离的密钥
   const handle = await identity.deriveHandle(appName);
 
-  // 2. Handle证明——最小 Mode 2 链：
+  // 2. Handle 证明——最小 Mode 2 链：
   //    用户根节点确认此密钥是其
   //    在此应用中的角色，在此边界内
   const A = await identity.attestHandle(appName, {
@@ -84,7 +84,7 @@ async function openApp(appName: string, appDomain: string) {
     maxSessionTtl: 3600,
   });
 
-  // 3. 应用会话，由每应用Handle签名
+  // 3. 应用会话，由每应用 Handle 签名
   const session = await Session.create(handle, {
     audience: appDomain,
     scopes: ['read', 'write'],
@@ -101,7 +101,7 @@ async function openApp(appName: string, appDomain: string) {
 }
 ```
 
-既然Handle已从同一棵树派生，为何还要证明？因为验证者不是用户：应用无法重新计算Handle密钥（这需要用户的 seed）。它需要一条追溯到公共根节点的链——否则 Mode 2 根本无法工作。此处的证明不是严格意义上的"委托"，而是**角色凭证**："此密钥是我的此应用角色，在此边界内行动。"
+既然 Handle 已从同一棵树派生，为何还要证明？因为验证者不是用户：应用无法重新计算 Handle 密钥（这需要用户的 seed）。它需要一条追溯到公共根节点的链——否则 Mode 2 根本无法工作。此处的证明不是严格意义上的"委托"，而是**角色凭证**："此密钥是我的此应用角色，在此边界内行动。"
 
 ### 交付：通过 fragment-bridge 的 HttpOnly cookie
 
@@ -157,21 +157,21 @@ async function requireSession(req): Promise<Session> {
 }
 ```
 
-注意应用对用户的了解仅限于令牌和证明中签名的一切：角色的公钥、Handle名、scopes、TTL。加上公共根节点——但不是作为"用户记录"，而仅作为一次性验证参数。
+注意应用对用户的了解仅限于令牌和证明中签名的一切：角色的公钥、Handle 名、scopes、TTL。加上公共根节点——但不是作为"用户记录"，而仅作为一次性验证参数。
 
 ## 应用隔离：为何每应用一个角色
 
-简化为"一个Handle覆盖所有平台应用"的诱惑会破坏模式的核心属性。使用每应用角色：
+简化为"一个 Handle 覆盖所有平台应用"的诱惑会破坏模式的核心属性。使用每应用角色：
 
 - **一个应用的 cookie 泄露不会打开其他应用。** 仪表盘的会话由 `dashboard` Handle 密钥签名；管理面板用 `admin` Handle 密钥验证，通过受众和签名拒绝外来令牌。在经典 SSO 中，被盗的 SSO-cookie 往往意味着"全部暴露"。
 - **授予相互独立。** 每个角色的证明设定自己的 scopes 和 TTL 上限：报表应用仅读，管理面板更广。嵌套授予检查在每次请求时由验证器强制执行。
 - **撤销精准。** 用户可以仅撤销一个应用的访问而不影响其余——通过撤销该角色的证明。
 
-诚实的说明：同一平台的各个应用会在运营商层面关联用户——它们都查阅同一个共享存储并看到相同的根节点。此处的隔离是密码学的（攻破和权限），而非元数据层面的。如果需要服务间的不可关联性——这不是 SSO 平台，而是独立实例，为它们派生的Handle来自树的不同分支。
+诚实的说明：同一平台的各个应用会在运营商层面关联用户——它们都查阅同一个共享存储并看到相同的根节点。此处的隔离是密码学的（攻破和权限），而非元数据层面的。如果需要服务间的不可关联性——这不是 SSO 平台，而是独立实例，为它们派生的 Handle 来自树的不同分支。
 
-## 无数据库封禁：按根节点而非Handle
+## 无数据库封禁：按根节点而非 Handle
 
-模式最微妙的一个问题：平台没有用户记录时如何封禁用户？最差的方案——按Handle封禁：确定性允许无限派生 `admin2`、`admin3`… 唯一稳健的层级是**身份根节点**：用户可以更换Handle，但不能更换根节点（确定性不旋转；这与 seed 不可撤销是同一属性——见 [为什么我们不存储你的 seed](/zh/blog/why-we-dont-store-your-seed)）。
+模式最微妙的一个问题：平台没有用户记录时如何封禁用户？最差的方案——按 Handle 封禁：确定性允许无限派生 `admin2`、`admin3`… 唯一稳健的层级是**身份根节点**：用户可以更换 Handle，但不能更换根节点（确定性不旋转；这与 seed 不可撤销是同一属性——见 [为什么我们不存储你的 seed](/zh/blog/why-we-dont-store-your-seed)）。
 
 平台共享撤销存储维护三种类型的条目：
 

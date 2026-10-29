@@ -211,19 +211,19 @@ sendMessage(@Req() req: Request) {
 |------|--------|-----|--------|
 | 公钥信任根 | 配置 / env | 字节 | 链验证（Mode 2） |
 | 已撤销 `jti` | Redis SET | 每条记录约 36 字节 | 即时撤销 |
-| Handle → 证明 `jti` 映射 | PostgreSQL *(可选)* | 每个Handle一行 | 管理员的"封禁"按钮 |
+| Handle → 证明 `jti` 映射 | PostgreSQL *(可选)* | 每个 Handle 一行 | 管理员的"封禁"按钮 |
 
 清单上**没有**的东西——值得明确说明：
 
 - **用户表。** 没有邮箱、电话号码、密码哈希。身份在每次请求中出示。
 - **会话表。** 每个会话自包含；请求状态存在于令牌中。
 - **签名密钥**（Mode 2 下）。服务器无法签发令牌——即使完全被攻破，也无法伪造他人的会话。
-- **Handle之间的关系。** 服务器不知道 `work` 和 `personal` 属于同一个人——除非用户自己揭示。
+- **Handle 之间的关系。** 服务器不知道 `work` 和 `personal` 属于同一个人——除非用户自己揭示。
 
 `handle → attestation_jti` 映射是唯一的"用户"表，且是可选的。撤销通过 `jti` 工作，但人类管理员以"封禁员工"而非"撤销 UUID"的类别思考。映射将一种翻译成另一种：
 
 ```typescript
-// 管理 API：封禁Handle (设备/员工/代理)
+// 管理 API：封禁 Handle (设备/员工/代理)
 app.post('/admin/revoke', async (req, res) => {
   const { handleId } = req.body;
   const row = await db.adminMapping.findByHandle(handleId);
@@ -257,7 +257,7 @@ if (!rootPublicKey) throw new UnauthorizedFormatError('unknown root');
 
 **扩展。** Stateless 和 CPU 轻量验证：负载均衡器后的实例无需 sticky 会话，纯粹的水平扩展。唯一的状态（撤销）——在具有 O(1) 读取的外部存储中；其扩展性概况在撤销文章中讨论。
 
-**日志。** 无 PII——也无密钥材料：无 seed 短语、私钥、payload。可以记录什么：`path`（Handle名）、`jti`、失败的 `code`/`level`、路由。Handle名是与公钥关联的别名——不是个人数据，但请记住：对外部观察者而言它们是活动标识符。
+**日志。** 无 PII——也无密钥材料：无 seed 短语、私钥、payload。可以记录什么：`path`（Handle 名）、`jti`、失败的 `code`/`level`、路由。Handle 名是与公钥关联的别名——不是个人数据，但请记住：对外部观察者而言它们是活动标识符。
 
 **实施清单：**
 

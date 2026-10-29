@@ -48,7 +48,7 @@ const github = await identity.deriveHandle('github.com');
 const loginPassword = github.derivePassword('login', 24);   // base64url
 const apiToken = github.derivePassword('api-token', 32);
 
-// 不同服务——不同Handle——完全无关的秘密
+// 不同服务——不同 Handle——完全无关的秘密
 const bank = await identity.deriveHandle('bank.example');
 const bankPassword = bank.derivePassword('login', 24);
 ```
