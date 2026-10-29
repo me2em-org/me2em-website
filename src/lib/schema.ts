@@ -6,6 +6,7 @@ import type {
   BlogPosting,
   BreadcrumbList,
   FAQPage,
+  AboutPage,
   WithContext,
 } from 'schema-dts';
 import siteConfig from '@/config/site.config';
@@ -119,7 +120,7 @@ export function createBlogPostSchema(post: {
   dateModified?: Date;
   author: { name: string; url?: string; sameAs?: string[] };
 }): WithContext<BlogPosting> {
-  const authorObj: { '@type': string; name: string; url?: string; sameAs?: string[] } = {
+  const authorObj: { '@type': 'Person'; name: string; url?: string; sameAs?: string[] } = {
     '@type': 'Person',
     name: post.author.name,
   };
@@ -192,3 +193,20 @@ export function createFAQSchema(
     })),
   };
 }
+
+/**
+ * AboutPage schema — signals to search engines that this page describes
+ * the organization / protocol and its creators.
+ */
+export const ABOUT_PAGE_SCHEMA: WithContext<AboutPage> = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: `About ${siteConfig.name}`,
+  description: siteConfig.description,
+  mainEntity: {
+    '@type': 'Organization',
+    name: siteConfig.name,
+    url: siteConfig.url,
+    sameAs: siteConfig.socialLinks,
+  },
+};

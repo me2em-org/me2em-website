@@ -32,6 +32,7 @@ describe('nav config — locale resolution (en default, ru secondary)', () => {
       '/ru/blog',
       '/ru/sandbox',
       '/ru/community',
+      '/ru/about',
     ]);
   });
 

@@ -17,7 +17,8 @@
       "usecases": "使用场景",
       "blog": "博客",
       "sandbox": "沙盒",
-      "contact": "社区"
+      "contact": "社区",
+      "about": "关于"
     }
   },
   "common": {
@@ -156,6 +157,65 @@
     "followOn": "在{platform}上关注我们"
   },
   "pages": {
+    "about": {
+      "meta": {
+        "title": "关于",
+        "description": "谁构建和维护 Me2eM 协议、品牌书写规范以及代码背后的人们。"
+      },
+      "hero": {
+        "badge": "关于",
+        "titleLead": "我们的",
+        "titleHighlight": "使命",
+        "description": "打造 AI 智能体、物联网设备和人类都喜欢使用的工具。我们的团队致力于创造卓越的体验。"
+      },
+      "brand": {
+        "title": "品牌规范",
+        "description": "协议名称在面向人类的文本中有一种正确的写法，在机器标识符中有另一种写法。这由测试来保证。",
+        "prose": "面向人类的文本：UI 文案、文档、博客文章和 frontmatter 显示文本。",
+        "machine": "机器标识符：npm 包、代码、域名、URL 路径、CLI 命令。",
+        "forbidden": "此形式在正文中禁止使用。品牌不进行变格或变位。",
+        "logo": {
+          "alt": "Me2eM 标志"
+        }
+      },
+      "terms": {
+        "title": "标志使用",
+        "logo": {
+          "title": "使用条款",
+          "description": "Me2eM 标志和品牌标识仅可用于信息和编辑目的。未经书面同意，不允许重新分发、修改用于商业用途或以第三方商标注册。"
+        }
+      },
+      "expertise": {
+        "title": "专业知识",
+        "description": "该协议面向所有开发者开放——欢迎分享您在密码学身份、安全或开发者工具方面的专业知识。",
+        "author": {
+          "src": "https://avatars.githubusercontent.com/u/75365981?s=400&u=9753bae30d0f22b148465de5bc701fd291fa551a&v=4",
+          "alt": "Sergey Lubimov (SeLub)",
+          "url": "https://github.com/SeLub"
+        }
+      },
+      "faq": {
+        "title": "常见问题",
+        "items": [
+          {
+            "question": "谁维护 Me2eM？",
+            "answer": "该协议由 <a href=\"https://selub.github.io\" target=\"_blank\" rel=\"noopener noreferrer\">Serge Lubimov</a> 编写和维护，他也是本网站的维护者。"
+          },
+          {
+            "question": "为什么协议名称这样大小写？",
+            "answer": "\"Me2eM\" 是面向人类文本中唯一正确的形式。全小写变体保留用于机器标识符（代码、URL、包）。品牌不进行变格——「iPhone 规则」。"
+          },
+          {
+            "question": "源代码在哪里？",
+            "answer": "协议源代码在 <a href=\"https://github.com/me2em-org/me2em-protocol\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a> 上，采用 Apache 2.0 许可证。"
+          },
+          {
+            "question": "如何报告漏洞？",
+            "answer": "发送邮件到 <a href=\"mailto:security@me2em.com\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">security@me2em.com</a> — 这是唯一的私有渠道。"
+          }
+        ]
+      }
+    },
     "sandbox": {
       "meta": {
         "title": "沙盒",
