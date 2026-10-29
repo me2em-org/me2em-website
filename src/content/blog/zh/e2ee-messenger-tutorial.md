@@ -91,7 +91,7 @@ import { useHandle } from '@me2em/react';
 function MessengerScreen() {
   const handle = useHandle('messenger');
 
-  if (!handle) return <p>派生Handle中...</p>;
+  if (!handle) return <p>派生 Handle 中...</p>;
 
   return <ChatScreen handle={handle} />;
 }
@@ -187,7 +187,7 @@ import { Session } from '@me2em/core';
 const verified = await Session.verifyAttested(
   session.token, ROOT_PUB, [A.token], 'app.example.com',
 );
-// verified.handleName —— 谁的Handle，verified.scopes —— 允许什么
+// verified.handleName —— 谁的 Handle，verified.scopes —— 允许什么
 ```
 
 **"这真的是鲍勃，我想与之交谈的那个人吗？"** ——这是一个 p2p 认证问题，通过外部通道比较 identity 密钥来解决——就像 Signal 中的"安全号码"：将鲍勃 pre-key bundle 中的 `identityPub` 与鲍勃在可信位置发布的进行比较。
