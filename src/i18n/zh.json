@@ -554,6 +554,10 @@
         "docs": {
           "label": "文档",
           "note": "指南、API参考、术语表"
+        },
+        "email": {
+          "label": "一般咨询",
+          "note": "hello@me2em.com"
         }
       },
       "faqTitle": "常见问题",
@@ -588,19 +592,19 @@
         "items": [
           {
             "question": "谁维护 Me2eM？",
-            "answer": "该协议由 <a href=\"https://selub.github.io\" target=\"_blank\" rel=\"noopener noreferrer\">Serge Lubimov</a> 编写和维护，他也是本网站的维护者。"
+            "answer": "Me2eM 以志愿方式开发：协议、程序包和本网站由 GitHub 上 <a href=\"https://github.com/me2em-org\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">me2em-org</a> 组织的志愿者维护。项目需要赞助支持——赞助将直接用于开发和基础设施。"
           },
           {
             "question": "为什么协议名称这样大小写？",
-            "answer": "\"Me2eM\" 是面向人类文本中唯一正确的形式。全小写变体保留用于机器标识符（代码、URL、包）。品牌不进行变格——「iPhone 规则」。"
+            "answer": "\"Me2eM\" 是面向人类文本中唯一正确的形式。全小写变体保留用于机器标识符（代码、URL、包）。品牌不进行变格——「iPhone 规则」。 完整规则见 <a href=\"https://github.com/me2em-org/me2em-website/blob/main/BRAND-GUIDELINES.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">Brand Guidelines</a>。"
           },
           {
-            "question": "源代码在哪里？",
-            "answer": "协议源代码在 <a href=\"https://github.com/me2em-org/me2em-protocol\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a> 上，采用 Apache 2.0 许可证。"
+            "question": "可以使用 Me2eM 的代码、名称和标志吗？",
+            "answer": "可以。协议源代码（<a href=\"https://github.com/me2em-org/me2em-protocol\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">GitHub</a>）采用 Apache 2.0 许可证，本网站采用 MIT。名称和标志可用于指代协议及兼容实现——请遵循品牌规范：名称写作 Me2eM，标志原样使用。完整规则：<a href=\"https://github.com/me2em-org/me2em-website/blob/main/BRAND-GUIDELINES.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">Brand Guidelines</a>。"
           },
           {
             "question": "文档在哪里？",
-            "answer": "所有文档都在 <a href=\"/docs\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">/docs</a>——指南、API参考、术语表和quick start。"
+            "answer": "所有文档都在 <a href=\"/docs\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">/docs</a>——指南、API参考、术语表和quick start。 包参考文档：<a href=\"https://core.me2em.com\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">@me2em/core</a>、<a href=\"https://crypto.me2em.com\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">@me2em/crypto</a>、<a href=\"https://react.me2em.com\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">@me2em/react</a>。"
           },
           {
             "question": "如何报告漏洞？",

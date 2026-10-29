@@ -554,6 +554,10 @@
         "docs": {
           "label": "Документация",
           "note": "Руководства, справочники API, глоссарий"
+        },
+        "email": {
+          "label": "Общие вопросы",
+          "note": "hello@me2em.com"
         }
       },
       "faqTitle": "Частые вопросы",
@@ -588,19 +592,19 @@
         "items": [
           {
             "question": "Кто поддерживает Me2eM?",
-            "answer": "Протокол авторизован и поддерживается <a href=\"https://selub.github.io\" target=\"_blank\" rel=\"noopener noreferrer\">Сергеем Любимовым</a>, который также поддерживает этот сайт."
+            "answer": "Me2eM развивается на добровольных началах: протокол, пакеты и этот сайт поддерживают волонтёры под эгидой организации <a href=\"https://github.com/me2em-org\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">me2em-org</a> на GitHub. Проект нуждается в спонсорской поддержке — взносы напрямую финансируют разработку и инфраструктуру."
           },
           {
             "question": "Почему название протокола написано именно так?",
-            "answer": "\"Me2eM\" — единственно правильная форма в тексте для людей. Строчный вариант зарезервирован для машинных идентификаторов (код, URL, пакеты). Бренд не склоняется — «правило iPhone»."
+            "answer": "\"Me2eM\" — единственно правильная форма в тексте для людей. Строчный вариант зарезервирован для машинных идентификаторов (код, URL, пакеты). Бренд не склоняется — «правило iPhone». Полные правила — в <a href=\"https://github.com/me2em-org/me2em-website/blob/main/BRAND-GUIDELINES.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">Brand Guidelines</a>."
           },
           {
-            "question": "Где исходный код?",
-            "answer": "Исходный код протокола на <a href=\"https://github.com/me2em-org/me2em-protocol\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a> под лицензией Apache 2.0."
+            "question": "Можно ли использовать код, имя и логотип Me2eM?",
+            "answer": "Да. Исходный код протокола (<a href=\"https://github.com/me2em-org/me2em-protocol\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">GitHub</a>) лицензирован под Apache 2.0, этот сайт — под MIT. Имя и логотип можно использовать для указания на протокол и совместимые реализации — при соблюдении канона бренда: имя пишется Me2eM, логотип используется как есть. Полные правила: <a href=\"https://github.com/me2em-org/me2em-website/blob/main/BRAND-GUIDELINES.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">Brand Guidelines</a>."
           },
           {
             "question": "Где документация?",
-            "answer": "Вся документация на <a href=\"/docs\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">/docs</a> — руководства, справочники API, глоссарий и quick start."
+            "answer": "Вся документация на <a href=\"/docs\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">/docs</a> — руководства, справочники API, глоссарий и quick start. Справочники пакетов: <a href=\"https://core.me2em.com\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">@me2em/core</a>, <a href=\"https://crypto.me2em.com\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">@me2em/crypto</a>, <a href=\"https://react.me2em.com\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">@me2em/react</a>."
           },
           {
             "question": "Как сообщить об уязвимости?",
