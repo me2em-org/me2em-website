@@ -281,7 +281,7 @@ export default defineConfig({
     }),
     react(),
     mdx(),
-    sitemap(),
+    sitemap({ filter: (page) => !/\/contact\/?$/.test(page) }),
     icon(),
     siteUrlCheck(),
     pagefind(),
