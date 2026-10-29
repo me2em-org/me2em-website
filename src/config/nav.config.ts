@@ -91,6 +91,7 @@ export const navItems: NavItem[] = [
   { label: 'Blog', href: '/blog', order: 3, labelKey: 'nav.items.blog' },
   { label: 'Sandbox', href: '/sandbox', order: 4, labelKey: 'nav.items.sandbox' },
   { label: 'Community', href: '/community', order: 5, labelKey: 'nav.items.contact' },
+  { label: 'About', href: '/about', order: 6, labelKey: 'nav.items.about' },
 ];
 
 export const footerNavItems: NavItem[] = [
@@ -100,7 +101,8 @@ export const footerNavItems: NavItem[] = [
   { label: 'Blog', href: '/blog', order: 3, labelKey: 'nav.items.blog' },
   { label: 'Sandbox', href: '/sandbox', order: 4, labelKey: 'nav.items.sandbox' },
   { label: 'Community', href: '/community', order: 5, labelKey: 'nav.items.contact' },
-  { label: 'GitHub', href: 'https://github.com/me2em-org/me2em-protocol', order: 6, external: true },
+  { label: 'About', href: '/about', order: 6, labelKey: 'nav.items.about' },
+  { label: 'GitHub', href: 'https://github.com/me2em-org/me2em-protocol', order: 7, external: true },
 ];
 
 export const legalLinks: LegalLink[] = [];

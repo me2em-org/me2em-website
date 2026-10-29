@@ -17,14 +17,14 @@
       "usecases": "Использование",
       "blog": "Блог",
       "sandbox": "Песочница",
-      "contact": "Сообщество"
+      "contact": "Сообщество",
+      "about": "О нас"
     }
   },
   "common": {
     "backToTop": "Наверх",
     "search": "Поиск",
     "home": "Главная",
-
     "progress": "Прогресс",
     "browseByTag": "Просмотр по тегам",
     "techStack": "Технологии",
@@ -157,6 +157,65 @@
     "followOn": "Подписывайтесь на {platform}"
   },
   "pages": {
+    "about": {
+      "meta": {
+        "title": "О нас",
+        "description": "Кто создаёт и поддерживает протокол Me2eM, как пишется бренд и люди, стоящие за кодом."
+      },
+      "hero": {
+        "badge": "О нас",
+        "titleLead": "Наша",
+        "titleHighlight": "миссия",
+        "description": "Создаём инструменты, которые любят использовать AI-агенты, IoT-устройства и люди. Наша команда стремится к созданию исключительного опыта."
+      },
+      "brand": {
+        "title": "Канон бренда",
+        "description": "Название протокола имеет одну правильную форму в тексте для людей и другую — для машинных идентификаторов. Это enforced тестами.",
+        "prose": "Текст для людей: UI-копия, документация, посты в блоге и текст в frontmatter.",
+        "machine": "Машинные идентификаторы: npm-пакеты, код, домен, URL-пути, команды CLI.",
+        "forbidden": "Эта форма запрещена в прозе. Бренд не склоняется и не спрягается.",
+        "logo": {
+          "alt": "Логотип Me2eM"
+        }
+      },
+      "terms": {
+        "title": "Использование логотипа",
+        "logo": {
+          "title": "Условия использования",
+          "description": "Логотип и фирменный знак Me2eM могут использоваться только в информационных и редакционных целях. Перераспределение, модификация для коммерческого использования или регистрация в качестве товарного знака третьими лицами не допускается без письменного согласия."
+        }
+      },
+      "expertise": {
+        "title": "Экспертиза",
+        "description": "Протокол открыт для разработчиков — поделитесь своей экспертизой в криптографической идентичности, безопасности или инструментах для разработчиков.",
+        "author": {
+          "src": "https://avatars.githubusercontent.com/u/75365981?s=400&u=9753bae30d0f22b148465de5bc701fd291fa551a&v=4",
+          "alt": "Сергей Любимов (SeLub)",
+          "url": "https://github.com/SeLub"
+        }
+      },
+      "faq": {
+        "title": "Часто задаваемые вопросы",
+        "items": [
+          {
+            "question": "Кто поддерживает Me2eM?",
+            "answer": "Протокол авторизован и поддерживается <a href=\"https://selub.github.io\" target=\"_blank\" rel=\"noopener noreferrer\">Сергеем Любимовым</a>, который также поддерживает этот сайт."
+          },
+          {
+            "question": "Почему название протокола написано именно так?",
+            "answer": "\"Me2eM\" — единственно правильная форма в тексте для людей. Строчный вариант зарезервирован для машинных идентификаторов (код, URL, пакеты). Бренд не склоняется — «правило iPhone»."
+          },
+          {
+            "question": "Где исходный код?",
+            "answer": "Исходный код протокола на <a href=\"https://github.com/me2em-org/me2em-protocol\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a> под лицензией Apache 2.0."
+          },
+          {
+            "question": "Как сообщить об уязвимости?",
+            "answer": "Напишите на <a href=\"mailto:security@me2em.com\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">security@me2em.com</a> — это единственный приватный канал."
+          }
+        ]
+      }
+    },
     "sandbox": {
       "meta": {
         "title": "Песочница",
@@ -224,7 +283,11 @@
         "titleLead": "Всё, что нужно",
         "titleHighlight": "чтобы строить на Me2eM",
         "description": "Справочники API всех пакетов, глоссарий, quick start и руководства — от первой seed-фразы до проверенной сессии.",
-        "jumpLabels": ["@me2em/core", "@me2em/crypto", "@me2em/react"]
+        "jumpLabels": [
+          "@me2em/core",
+          "@me2em/crypto",
+          "@me2em/react"
+        ]
       },
       "design": {
         "badge": "@me2em/core",
@@ -234,11 +297,26 @@
           "Ничто здесь не хранится и не ищется: сервер проверяет сессию одной проверкой подписи, а третья сторона проверяет делегируемый доступ по одному лишь корневому публичному ключу. Аттестационные цепочки несут audiences, scopes и TTL-лимиты, применяемые при проверке — доверие можно делегировать и отозвать, не передавая приватный ключ."
         ],
         "included": [
-          { "lead": "Выведенная из seed Identity", "text": "из 32 байт или 12/24-словной фразы — неизменна навсегда, нигде не хранится." },
-          { "lead": "Изолированные Handles", "text": "отдельная Ed25519 keypair на контекст; компрометация одного не раскрывает остальные." },
-          { "lead": "Аттестационные цепочки", "text": "подписанные родителем гранты с audiences, scopes и TTL-лимитами, проверяемые офлайн любой третьей стороной." },
-          { "lead": "Stateless-сессии", "text": "verifyStateless для бэкенда, verifyAttested для партнёров — с мгновенной ревокацией ветки." },
-          { "lead": "Деривации built-in", "text": "детерминированные пароли, ключи каналов и X25519 shared secrets, плюс поддержка BIP39 passphrase." }
+          {
+            "lead": "Выведенная из seed Identity",
+            "text": "из 32 байт или 12/24-словной фразы — неизменна навсегда, нигде не хранится."
+          },
+          {
+            "lead": "Изолированные Handles",
+            "text": "отдельная Ed25519 keypair на контекст; компрометация одного не раскрывает остальные."
+          },
+          {
+            "lead": "Аттестационные цепочки",
+            "text": "подписанные родителем гранты с audiences, scopes и TTL-лимитами, проверяемые офлайн любой третьей стороной."
+          },
+          {
+            "lead": "Stateless-сессии",
+            "text": "verifyStateless для бэкенда, verifyAttested для партнёров — с мгновенной ревокацией ветки."
+          },
+          {
+            "lead": "Деривации built-in",
+            "text": "детерминированные пароли, ключи каналов и X25519 shared secrets, плюс поддержка BIP39 passphrase."
+          }
         ],
         "ctaLabel": "Читать руководство по core"
       },
@@ -250,11 +328,26 @@
           "Каналы выводят свежий ключ для каждого сообщения и ротируют эпохи, так что зашифрованное остаётся запечатанным даже если ключ позже утечёт. Pre-keys делают асинхронную доставку рабочей: можно шифровать для того, кто не заходил в сеть днями. В основе — аудированные примитивы: HKDF, X25519, AES-256-GCM — с Argon2id для защиты паролей на периферии."
         ],
         "included": [
-          { "lead": "Каноничный X3DH", "text": "соглашение о ключе Signal с обязательными one-time pre-keys — без zero-fallback, устойчиво к MITM." },
-          { "lead": "Каналы с forward secrecy", "text": "ключ на сообщение, строго возрастающая защита от replay, ротация эпох в определённых точках." },
-          { "lead": "Конверты для офлайн", "text": "X3DH-обёрнутые ключи достигают получателей, не заходивших в сеть; каждый конверт self-contained." },
-          { "lead": "Argon2id для паролей", "text": "именованные профили для интерактивного и чувствительного использования, проверки сложности и HIBP breach lookup." },
-          { "lead": "Проверенные примитивы", "text": "HKDF против RFC 5869 test vectors, X25519, AES-256-GCM, secure key wipe." }
+          {
+            "lead": "Каноничный X3DH",
+            "text": "соглашение о ключе Signal с обязательными one-time pre-keys — без zero-fallback, устойчиво к MITM."
+          },
+          {
+            "lead": "Каналы с forward secrecy",
+            "text": "ключ на сообщение, строго возрастающая защита от replay, ротация эпох в определённых точках."
+          },
+          {
+            "lead": "Конверты для офлайн",
+            "text": "X3DH-обёрнутые ключи достигают получателей, не заходивших в сеть; каждый конверт self-contained."
+          },
+          {
+            "lead": "Argon2id для паролей",
+            "text": "именованные профили для интерактивного и чувствительного использования, проверки сложности и HIBP breach lookup."
+          },
+          {
+            "lead": "Проверенные примитивы",
+            "text": "HKDF против RFC 5869 test vectors, X25519, AES-256-GCM, secure key wipe."
+          }
         ],
         "ctaLabel": "Изучить руководство по crypto"
       },
@@ -266,11 +359,26 @@
           "Seed-фраза — тот секрет, который пользователь не должен потерять — поэтому её UX часть security-модели. Слова показываются один раз, проверяются order-сеткой, валидируются по слову при импорте. Производные ключи сохраняются как non-extractable CryptoKeys, изолированные на каждую Identity. Headless-слой держит каждый state machine framework-agnostic — будущий @me2em/sdk."
         ],
         "included": [
-          { "lead": "Identity-хуки", "text": "useCreateIdentity, useImportSeed, useHandle, useSubHandle — полный жизненный цикл идентичности." },
-          { "lead": "UX seed-фразы, предотвращающий катастрофы", "text": "show-once display, одиночное копирование, order-verification grid, per-word валидация при импорте." },
-          { "lead": "Сессии, которые обновляются сами", "text": "useSession отслеживает expiry и auto-renews на half-life." },
-          { "lead": "Encrypted context cache", "text": "per-identity IndexedDB isolation с non-extractable persisted CryptoKeys." },
-          { "lead": "Headless-слой", "text": "framework-agnostic state machines с нулём React-импортов." }
+          {
+            "lead": "Identity-хуки",
+            "text": "useCreateIdentity, useImportSeed, useHandle, useSubHandle — полный жизненный цикл идентичности."
+          },
+          {
+            "lead": "UX seed-фразы, предотвращающий катастрофы",
+            "text": "show-once display, одиночное копирование, order-verification grid, per-word валидация при импорте."
+          },
+          {
+            "lead": "Сессии, которые обновляются сами",
+            "text": "useSession отслеживает expiry и auto-renews на half-life."
+          },
+          {
+            "lead": "Encrypted context cache",
+            "text": "per-identity IndexedDB isolation с non-extractable persisted CryptoKeys."
+          },
+          {
+            "lead": "Headless-слой",
+            "text": "framework-agnostic state machines с нулём React-импортов."
+          }
         ],
         "ctaLabel": "Попробовать React SDK"
       },

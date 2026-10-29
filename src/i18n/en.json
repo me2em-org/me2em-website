@@ -17,14 +17,14 @@
       "usecases": "Use cases",
       "blog": "Blog",
       "sandbox": "Sandbox",
-      "contact": "Community"
+      "contact": "Community",
+      "about": "About"
     }
   },
   "common": {
     "backToTop": "Back to top",
     "search": "Search",
     "home": "Home",
-
     "progress": "Progress",
     "browseByTag": "Browse by tag",
     "techStack": "Tech stack",
@@ -157,6 +157,65 @@
     "followOn": "Follow us on {platform}"
   },
   "pages": {
+    "about": {
+      "meta": {
+        "title": "About",
+        "description": "Who builds and maintains the Me2eM protocol, how the brand is written, and the people behind the code."
+      },
+      "hero": {
+        "badge": "About",
+        "titleLead": "We're on a",
+        "titleHighlight": "mission",
+        "description": "Building the tool AI agents, IoT devices and human love to use. Our team is dedicated to creating exceptional experiences."
+      },
+      "brand": {
+        "title": "Brand canon",
+        "description": "The protocol name has one correct form in human-facing prose and a different one for machine identifiers. This is enforced by tests.",
+        "prose": "Human-facing text: UI copy, documentation, blog posts, and frontmatter display text.",
+        "machine": "Machine identifiers: npm packages, code, domain, URLs, CLI commands.",
+        "forbidden": "This form is forbidden in prose. The brand does not decline or conjugate.",
+        "logo": {
+          "alt": "Me2eM logo"
+        }
+      },
+      "terms": {
+        "title": "Logo usage",
+        "logo": {
+          "title": "Terms of Use",
+          "description": "The Me2eM logo and brand mark may be used for informational and editorial purposes only. Redistribution, modification for commercial use, or registration as a trademark by third parties is not permitted without written consent."
+        }
+      },
+      "expertise": {
+        "title": "Expertise",
+        "description": "The protocol is open to developers — share your expertise in cryptographic identity, security, or developer tooling.",
+        "author": {
+          "src": "https://avatars.githubusercontent.com/u/75365981?s=400&u=9753bae30d0f22b148465de5bc701fd291fa551a&v=4",
+          "alt": "Sergey Lubimov (SeLub)",
+          "url": "https://github.com/SeLub"
+        }
+      },
+      "faq": {
+        "title": "Frequently asked",
+        "items": [
+          {
+            "question": "Who maintains Me2eM?",
+            "answer": "The protocol is authored and maintained by <a href=\"https://selub.github.io\" target=\"_blank\" rel=\"noopener noreferrer\">Serge Lubimov</a>, who also maintains this website."
+          },
+          {
+            "question": "Why is the protocol name capitalised the way it is?",
+            "answer": "\"Me2eM\" is the only correct form in human-facing prose. The all-lowercase variant is reserved for machine identifiers (code, URLs, packages). The brand does not decline or conjugate — the \"iPhone rule\"."
+          },
+          {
+            "question": "Where is the source code?",
+            "answer": "The protocol source is on <a href=\"https://github.com/me2em-org/me2em-protocol\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a> under the Apache 2.0 license."
+          },
+          {
+            "question": "How can I report a vulnerability?",
+            "answer": "Email <a href=\"mailto:security@me2em.com\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">security@me2em.com</a> — this is the only private channel."
+          }
+        ]
+      }
+    },
     "sandbox": {
       "meta": {
         "title": "Sandbox",
@@ -165,8 +224,18 @@
       "hero": {
         "badge": "Sandbox",
         "titleLead": "Me2eM —",
-        "typingWords": ["One seed phrase.", "Many Handles.", "Isolated contexts.", "Stateless sessions.", "Zero storage."],
-        "typingWordsMobile": ["One phrase.", "Many Handles.", "Stateless."],
+        "typingWords": [
+          "One seed phrase.",
+          "Many Handles.",
+          "Isolated contexts.",
+          "Stateless sessions.",
+          "Zero storage."
+        ],
+        "typingWordsMobile": [
+          "One phrase.",
+          "Many Handles.",
+          "Stateless."
+        ],
         "description": "A hands-on demo of the protocol: generate a real seed phrase in your browser, watch Handles derive from it, and see one identity serve a person, a device, and an AI agent — with no personal data stored anywhere."
       },
       "sandboxSeed": {
@@ -214,125 +283,245 @@
         "titleLead": "Everything you need",
         "titleHighlight": "to build on Me2eM",
         "description": "API references for all packages, glossary, quick starts, and guides — from first seed phrase to a verified session.",
-        "jumpLabels": ["@me2em/core","@me2em/crypto","@me2em/react"]
+        "jumpLabels": [
+          "@me2em/core",
+          "@me2em/crypto",
+          "@me2em/react"
+        ]
       },
       "design": {
         "badge": "@me2em/core",
         "heading": "Core entities",
-      "paragraphs": [
-        "The core of the protocol: a root Identity derived from a seed phrase, contextual Handles, and stateless signed sessions.",
-        "Nothing here is stored or looked up: a server verifies a session with one signature check, and a third party verifies delegated access using only your root public key. Attestation chains carry audiences, scopes and TTL caps enforced at verification time — trust can be delegated, and revoked, without sharing a private key."
-      ],
-    "included": [
-      { "lead": "A seed-derived Identity", "text": "from 32 bytes or a 12/24-word phrase — constant forever, stored nowhere." },
-      { "lead": "Isolated Handles", "text": "a separate Ed25519 keypair per context; compromising one reveals nothing about the others." },
-      { "lead": "Attestation chains", "text": "parent-signed grants with audiences, scopes and TTL caps, verified offline by any third party." },
-      { "lead": "Stateless sessions", "text": "verifyStateless for your backend, verifyAttested for partners — with instant branch revocation." },
-      { "lead": "Derivations built in", "text": "deterministic passwords, channel keys and X25519 shared secrets, plus BIP39 passphrase support." }
-    ],
-    "ctaLabel": "Read the core guide"
+        "paragraphs": [
+          "The core of the protocol: a root Identity derived from a seed phrase, contextual Handles, and stateless signed sessions.",
+          "Nothing here is stored or looked up: a server verifies a session with one signature check, and a third party verifies delegated access using only your root public key. Attestation chains carry audiences, scopes and TTL caps enforced at verification time — trust can be delegated, and revoked, without sharing a private key."
+        ],
+        "included": [
+          {
+            "lead": "A seed-derived Identity",
+            "text": "from 32 bytes or a 12/24-word phrase — constant forever, stored nowhere."
+          },
+          {
+            "lead": "Isolated Handles",
+            "text": "a separate Ed25519 keypair per context; compromising one reveals nothing about the others."
+          },
+          {
+            "lead": "Attestation chains",
+            "text": "parent-signed grants with audiences, scopes and TTL caps, verified offline by any third party."
+          },
+          {
+            "lead": "Stateless sessions",
+            "text": "verifyStateless for your backend, verifyAttested for partners — with instant branch revocation."
+          },
+          {
+            "lead": "Derivations built in",
+            "text": "deterministic passwords, channel keys and X25519 shared secrets, plus BIP39 passphrase support."
+          }
+        ],
+        "ctaLabel": "Read the core guide"
       },
       "development": {
         "badge": "@me2em/crypto",
-      "heading": "End-to-end encryption",
-      "paragraphs": [
-        "Protocol cryptography for real communication: canonical Signal X3DH, long-lived encrypted channels, and envelopes for recipients who are offline.",
-        "Channels derive a fresh key for every message and rotate epochs, so what was encrypted stays sealed even if a key leaks later. Pre-keys make asynchronous delivery work: you can encrypt for someone who hasn't been online for days. Underneath sit audited primitives — HKDF, X25519, AES-256-GCM — with Argon2id protecting passwords at the edges."
-      ],
-      "included": [
-        { "lead": "Canonical X3DH", "text": "Signal's key agreement with mandatory one-time pre-keys — no zero-fallback, MITM-resistant." },
-        { "lead": "Channels with forward secrecy", "text": "per-message keys, strictly-increasing replay protection, epoch rotation at defined points." },
-        { "lead": "Envelopes for the offline", "text": "X3DH-wrapped keys reach recipients who haven't been online; every envelope is self-contained." },
-        { "lead": "Argon2id password hardening", "text": "named profiles for interactive and sensitive use, strength checks and HIBP breach lookup." },
-        { "lead": "Verified primitives", "text": "HKDF against RFC 5869 test vectors, X25519, AES-256-GCM, secure key wipe." }
-      ],
-      "ctaLabel": "Explore the crypto guide"
+        "heading": "End-to-end encryption",
+        "paragraphs": [
+          "Protocol cryptography for real communication: canonical Signal X3DH, long-lived encrypted channels, and envelopes for recipients who are offline.",
+          "Channels derive a fresh key for every message and rotate epochs, so what was encrypted stays sealed even if a key leaks later. Pre-keys make asynchronous delivery work: you can encrypt for someone who hasn't been online for days. Underneath sit audited primitives — HKDF, X25519, AES-256-GCM — with Argon2id protecting passwords at the edges."
+        ],
+        "included": [
+          {
+            "lead": "Canonical X3DH",
+            "text": "Signal's key agreement with mandatory one-time pre-keys — no zero-fallback, MITM-resistant."
+          },
+          {
+            "lead": "Channels with forward secrecy",
+            "text": "per-message keys, strictly-increasing replay protection, epoch rotation at defined points."
+          },
+          {
+            "lead": "Envelopes for the offline",
+            "text": "X3DH-wrapped keys reach recipients who haven't been online; every envelope is self-contained."
+          },
+          {
+            "lead": "Argon2id password hardening",
+            "text": "named profiles for interactive and sensitive use, strength checks and HIBP breach lookup."
+          },
+          {
+            "lead": "Verified primitives",
+            "text": "HKDF against RFC 5869 test vectors, X25519, AES-256-GCM, secure key wipe."
+          }
+        ],
+        "ctaLabel": "Explore the crypto guide"
       },
       "performance": {
         "badge": "@me2em/react",
-      "heading": "React SDK",
-      "paragraphs": [
-        "React bindings that turn the protocol into product UI: identity hooks, seed-phrase screens, self-renewing sessions.",
-        "The seed phrase is the one secret users must never lose — so its UX is part of the security model. Words are shown once, verified by an order grid, validated word by word on import. Derived keys persist only as non-extractable CryptoKeys, isolated per identity. A headless layer keeps every state machine framework-agnostic — the future @me2em/sdk."
-      ],
-      "included": [
-        { "lead": "Identity hooks", "text": "useCreateIdentity, useImportSeed, useHandle, useSubHandle — the full identity lifecycle." },
-        { "lead": "Seed UX that prevents disasters", "text": "show-once display, single copy, order-verification grid, per-word import validation." },
-        { "lead": "Sessions that renew themselves", "text": "useSession tracks expiry and auto-renews at half-life." },
-        { "lead": "Encrypted context cache", "text": "per-identity IndexedDB isolation with non-extractable persisted CryptoKeys." },
-        { "lead": "Headless layer", "text": "framework-agnostic state machines with zero React imports." }
-      ],
-      "ctaLabel": "Try the React SDK"
+        "heading": "React SDK",
+        "paragraphs": [
+          "React bindings that turn the protocol into product UI: identity hooks, seed-phrase screens, self-renewing sessions.",
+          "The seed phrase is the one secret users must never lose — so its UX is part of the security model. Words are shown once, verified by an order grid, validated word by word on import. Derived keys persist only as non-extractable CryptoKeys, isolated per identity. A headless layer keeps every state machine framework-agnostic — the future @me2em/sdk."
+        ],
+        "included": [
+          {
+            "lead": "Identity hooks",
+            "text": "useCreateIdentity, useImportSeed, useHandle, useSubHandle — the full identity lifecycle."
+          },
+          {
+            "lead": "Seed UX that prevents disasters",
+            "text": "show-once display, single copy, order-verification grid, per-word import validation."
+          },
+          {
+            "lead": "Sessions that renew themselves",
+            "text": "useSession tracks expiry and auto-renews at half-life."
+          },
+          {
+            "lead": "Encrypted context cache",
+            "text": "per-identity IndexedDB isolation with non-extractable persisted CryptoKeys."
+          },
+          {
+            "lead": "Headless layer",
+            "text": "framework-agnostic state machines with zero React imports."
+          }
+        ],
+        "ctaLabel": "Try the React SDK"
       },
-"process": {
-  "badge": "How it works",
-  "heading": "From seed to verified session",
-  "lead": "Four steps — the same in every scenario, from a messenger to a charging network.",
-  "steps": [
-    { "title": "Write the seed", "description": "12 or 24 BIP39 words on paper. The only permanent carrier of identity — never transmitted, never stored." },
-    { "title": "Derive the root", "description": "The Identity is computed locally by HKDF. Handles for each context — work, personal, devices — derive offline from it." },
-    { "title": "Delegate & sign", "description": "Attestation chains grant scoped, time-boxed access to devices, partners, and AI agents. Sessions are stateless signed tokens." },
-    { "title": "Verify & revoke", "description": "Any third party verifies with the root public key alone. One revoked jti disables an entire branch — instantly." }
-  ]
-},
-"glossary": {
-  "badge": "Glossary",
-  "heading": "Speak the protocol",
-  "lead": "A shared vocabulary for the whole model — each term is defined once, here, and used everywhere else.",
-  "terms": [
-    { "term": "Identity", "definition": "Root cryptographic identity derived from a seed phrase. Constant forever." },
-    { "term": "Handle", "definition": "A derived, attested, named key representing a distinct identity context." },
-    { "term": "SubHandle", "definition": "A leaf child of a Handle." },
-    { "term": "Attestation", "definition": "A parent-signed statement binding a child key to a name and a grant." },
-    { "term": "Session", "definition": "A stateless signed authorization token." },
-    { "term": "Channel", "definition": "A long-lived E2EE relationship derived from an X3DH shared secret." },
-    { "term": "Transient material", "definition": "Key bytes existing only in RAM at the moment of use." },
-    { "term": "Ephemeral material", "definition": "TTL-bound rotating material (SPK/OTK, cache keys, session tokens)." }
-  ]
-},
-"faq": {
-  "badge": "Good to know",
-  "heading": "Frequently asked questions",
-  "lead": "The questions that come up before the first derivation.",
-  "cards": [
-    { "icon": "shield-check", "title": "The protocol", "items": [
-      { "question": "Do I need to register anywhere?", "answer": "No. An Identity is derived from your seed phrase on your device. There is no account to create — and no database that could leak it." },
-      { "question": "What happens if I lose my seed phrase?", "answer": "The identity is unrecoverable — by design. The seed is the only permanent carrier of identity; there is no reset link because there is nothing on a server to reset." },
-      { "question": "Is Me2eM a blockchain?", "answer": "No. Derivation and verification are pure cryptography — Ed25519 and HKDF — offline, with no network and no consensus. A session verifies in about a millisecond." },
-      { "question": "Is it production-ready?", "answer": "The packages are alpha (core 0.7, crypto 0.1, react 0.1), moving toward a v1.0 API freeze. Fine for evaluation and prototypes today; pin versions and expect changes in production." }
-    ]},
-    { "icon": "code-2", "title": "Building on it", "items": [
-      { "question": "Which verification mode should I use?", "answer": "verifyStateless for backends you control — they already hold the root key. verifyAttested for anyone else: grants are enforced at verification time, with the root public key only." },
-      { "question": "How deep can the hierarchy go?", "answer": "Identity → Handle → SubHandle, where SubHandle is the leaf (MAX_DEPTH = 2). A device derives its own SubHandles and child attestations — fully offline." },
-      { "question": "Can I revoke a device or an AI agent?", "answer": "Yes. Revoking one attestation jti disables the entire branch — current and future sessions — on every verifier that checks revocations." },
-      { "question": "Where do I report a vulnerability?", "answer": "See SECURITY.md in the me2em-protocol repository — responsible disclosure, with credit." }
-    ]},
-    {
-      "icon": "shield-check",
-      "title": "License",
-      "items": [
-        { "question": "Is it free to use?", "answer": "Yes, completely free. The Me2eM protocol is Apache-2.0 licensed (with patent grant). The theme is MIT licensed — use it for personal and commercial projects, no attribution required." }
-      ]
-    }
-  ]
-},
-"tutorials": {
-  "badge": "Tutorials",
-  "headingLine1": "The protocol",
-  "headingLine2": "at work.",
-   "para1": "This is a collection of action guides for the use cases — protocol code examples across industries. Every scenario becomes a step-by-step tutorial. Take them as a base for your own projects: read the docs, study the examples, build.",
-  "para2": "New tutorials land in the blog as the protocol grows.",
-  "casesIntro": "One protocol, many scenarios.",
-  "moreTutorials": "Read the tutorials"
-},
-"cta": {
-  "badge": "Get started",
-  "heading": "Your first session in minutes",
-  "description": "Install a package, derive a Handle, and verify a stateless session — the quick start runs across all three packages.",
-  "primary": "Get started",
-  "secondary": "Browse on npm",
-  "tertiary": "Star on GitHub"
-}
+      "process": {
+        "badge": "How it works",
+        "heading": "From seed to verified session",
+        "lead": "Four steps — the same in every scenario, from a messenger to a charging network.",
+        "steps": [
+          {
+            "title": "Write the seed",
+            "description": "12 or 24 BIP39 words on paper. The only permanent carrier of identity — never transmitted, never stored."
+          },
+          {
+            "title": "Derive the root",
+            "description": "The Identity is computed locally by HKDF. Handles for each context — work, personal, devices — derive offline from it."
+          },
+          {
+            "title": "Delegate & sign",
+            "description": "Attestation chains grant scoped, time-boxed access to devices, partners, and AI agents. Sessions are stateless signed tokens."
+          },
+          {
+            "title": "Verify & revoke",
+            "description": "Any third party verifies with the root public key alone. One revoked jti disables an entire branch — instantly."
+          }
+        ]
+      },
+      "glossary": {
+        "badge": "Glossary",
+        "heading": "Speak the protocol",
+        "lead": "A shared vocabulary for the whole model — each term is defined once, here, and used everywhere else.",
+        "terms": [
+          {
+            "term": "Identity",
+            "definition": "Root cryptographic identity derived from a seed phrase. Constant forever."
+          },
+          {
+            "term": "Handle",
+            "definition": "A derived, attested, named key representing a distinct identity context."
+          },
+          {
+            "term": "SubHandle",
+            "definition": "A leaf child of a Handle."
+          },
+          {
+            "term": "Attestation",
+            "definition": "A parent-signed statement binding a child key to a name and a grant."
+          },
+          {
+            "term": "Session",
+            "definition": "A stateless signed authorization token."
+          },
+          {
+            "term": "Channel",
+            "definition": "A long-lived E2EE relationship derived from an X3DH shared secret."
+          },
+          {
+            "term": "Transient material",
+            "definition": "Key bytes existing only in RAM at the moment of use."
+          },
+          {
+            "term": "Ephemeral material",
+            "definition": "TTL-bound rotating material (SPK/OTK, cache keys, session tokens)."
+          }
+        ]
+      },
+      "faq": {
+        "badge": "Good to know",
+        "heading": "Frequently asked questions",
+        "lead": "The questions that come up before the first derivation.",
+        "cards": [
+          {
+            "icon": "shield-check",
+            "title": "The protocol",
+            "items": [
+              {
+                "question": "Do I need to register anywhere?",
+                "answer": "No. An Identity is derived from your seed phrase on your device. There is no account to create — and no database that could leak it."
+              },
+              {
+                "question": "What happens if I lose my seed phrase?",
+                "answer": "The identity is unrecoverable — by design. The seed is the only permanent carrier of identity; there is no reset link because there is nothing on a server to reset."
+              },
+              {
+                "question": "Is Me2eM a blockchain?",
+                "answer": "No. Derivation and verification are pure cryptography — Ed25519 and HKDF — offline, with no network and no consensus. A session verifies in about a millisecond."
+              },
+              {
+                "question": "Is it production-ready?",
+                "answer": "The packages are alpha (core 0.7, crypto 0.1, react 0.1), moving toward a v1.0 API freeze. Fine for evaluation and prototypes today; pin versions and expect changes in production."
+              }
+            ]
+          },
+          {
+            "icon": "code-2",
+            "title": "Building on it",
+            "items": [
+              {
+                "question": "Which verification mode should I use?",
+                "answer": "verifyStateless for backends you control — they already hold the root key. verifyAttested for anyone else: grants are enforced at verification time, with the root public key only."
+              },
+              {
+                "question": "How deep can the hierarchy go?",
+                "answer": "Identity → Handle → SubHandle, where SubHandle is the leaf (MAX_DEPTH = 2). A device derives its own SubHandles and child attestations — fully offline."
+              },
+              {
+                "question": "Can I revoke a device or an AI agent?",
+                "answer": "Yes. Revoking one attestation jti disables the entire branch — current and future sessions — on every verifier that checks revocations."
+              },
+              {
+                "question": "Where do I report a vulnerability?",
+                "answer": "See SECURITY.md in the me2em-protocol repository — responsible disclosure, with credit."
+              }
+            ]
+          },
+          {
+            "icon": "shield-check",
+            "title": "License",
+            "items": [
+              {
+                "question": "Is it free to use?",
+                "answer": "Yes, completely free. The Me2eM protocol is Apache-2.0 licensed (with patent grant). The theme is MIT licensed — use it for personal and commercial projects, no attribution required."
+              }
+            ]
+          }
+        ]
+      },
+      "tutorials": {
+        "badge": "Tutorials",
+        "headingLine1": "The protocol",
+        "headingLine2": "at work.",
+        "para1": "This is a collection of action guides for the use cases — protocol code examples across industries. Every scenario becomes a step-by-step tutorial. Take them as a base for your own projects: read the docs, study the examples, build.",
+        "para2": "New tutorials land in the blog as the protocol grows.",
+        "casesIntro": "One protocol, many scenarios.",
+        "moreTutorials": "Read the tutorials"
+      },
+      "cta": {
+        "badge": "Get started",
+        "heading": "Your first session in minutes",
+        "description": "Install a package, derive a Handle, and verify a stateless session — the quick start runs across all three packages.",
+        "primary": "Get started",
+        "secondary": "Browse on npm",
+        "tertiary": "Star on GitHub"
+      }
     },
     "community": {
       "meta": {
@@ -405,34 +594,78 @@
         "getStarted": "Get started"
       },
       "intro": {
-      "badge": "The protocol",
-      "heading": "The whole idea in one paragraph",
-      "body": "Me2eM is a decentralized identity and authorization protocol built on Ed25519 cryptography and standard key-agreement primitives. Nothing to register, no passwords to store: a person, a device, or an AI agent is represented by keys derived locally from a single seed phrase. Every context keeps its own isolated identity, access is delegated and revoked through signed attestations, and servers confirm a session with a single signature check — serverless authentication with minimal latency that minimizes, or removes entirely, the database you have to run and protect. Me2eM is for one user who safely becomes many: separate profiles (work, home, the gym), hierarchies of IoT devices and drones, autonomous AI agents under signed mandates, E2EE-encrypted channels, and deterministic passwords for third-party services."
+        "badge": "The protocol",
+        "heading": "The whole idea in one paragraph",
+        "body": "Me2eM is a decentralized identity and authorization protocol built on Ed25519 cryptography and standard key-agreement primitives. Nothing to register, no passwords to store: a person, a device, or an AI agent is represented by keys derived locally from a single seed phrase. Every context keeps its own isolated identity, access is delegated and revoked through signed attestations, and servers confirm a session with a single signature check — serverless authentication with minimal latency that minimizes, or removes entirely, the database you have to run and protect. Me2eM is for one user who safely becomes many: separate profiles (work, home, the gym), hierarchies of IoT devices and drones, autonomous AI agents under signed mandates, E2EE-encrypted channels, and deterministic passwords for third-party services."
       },
-       "packages": {
-       "badge": "Packages",
-       "heading": "Three packages, one seed",
-       "lead": "Everything derives from the same Ed25519 root — start with the core, add encryption and UI when you need them.",
-       "learnMore": "Read the docs",
-       "cards": [
-         { "icon": "layout", "title": "@me2em/core", "description": "Core primitives for the Me2eM authorization protocol: hierarchical deterministic identities, stateless signed sessions, and parent-signed attestation for delegatable, externally verifiable authorization." },
-         { "icon": "code", "title": "@me2em/crypto", "description": "Cryptographic mechanisms for the Me2eM protocol: E2EE channels, X3DH key exchange, purpose-based key derivation, and envelope patterns for offline recipients and media chunk encryption." },
-         { "icon": "atom", "title": "@me2em/react", "description": "React bindings for the Me2eM protocol: identity lifecycle hooks, seed-phrase UX components, session management, and an encrypted per-identity context cache." }
-       ]
-       },
+      "packages": {
+        "badge": "Packages",
+        "heading": "Three packages, one seed",
+        "lead": "Everything derives from the same Ed25519 root — start with the core, add encryption and UI when you need them.",
+        "learnMore": "Read the docs",
+        "cards": [
+          {
+            "icon": "layout",
+            "title": "@me2em/core",
+            "description": "Core primitives for the Me2eM authorization protocol: hierarchical deterministic identities, stateless signed sessions, and parent-signed attestation for delegatable, externally verifiable authorization."
+          },
+          {
+            "icon": "code",
+            "title": "@me2em/crypto",
+            "description": "Cryptographic mechanisms for the Me2eM protocol: E2EE channels, X3DH key exchange, purpose-based key derivation, and envelope patterns for offline recipients and media chunk encryption."
+          },
+          {
+            "icon": "atom",
+            "title": "@me2em/react",
+            "description": "React bindings for the Me2eM protocol: identity lifecycle hooks, seed-phrase UX components, session management, and an encrypted per-identity context cache."
+          }
+        ]
+      },
       "workWithMe": {
         "badge": "Features",
         "heading": "Guaranteed by cryptography",
         "lead": "Eight properties of the protocol — math, not promises.",
         "cards": [
-          { "icon": "sprout",     "title": "Seed-derived",   "description": "Your identity lives in a seed phrase; keys are recomputed on demand. A breached server holds nothing." },
-          { "icon": "eye-off",    "title": "Zero-knowledge", "description": "Private keys never leave your device. Servers verify signatures without ever learning who you are." },
-          { "icon": "repeat",     "title": "Deterministic",  "description": "Same seed, same keys — always. One identity on every device, with nothing to sync." },
-          { "icon": "box",        "title": "Isolated",       "description": "Every Handle is a separate keypair. Compromising one context reveals nothing about the others." },
-          { "icon": "zap",        "title": "Stateless",      "description": "No session database. Any server — or any third party — verifies a token with one signature check." },
-          { "icon": "share-2",    "title": "Delegatable",    "description": "Attestation chains hand scoped, time-boxed access to partners, IoT devices, and AI agents." },
-          { "icon": "git-branch", "title": "Hierarchical",   "description": "Identity → Handle → SubHandle: a whole device fleet under one root, provisioned offline." },
-          { "icon": "ban",        "title": "Revocable",      "description": "One revoked attestation disables an entire branch — current and future sessions, instantly." }
+          {
+            "icon": "sprout",
+            "title": "Seed-derived",
+            "description": "Your identity lives in a seed phrase; keys are recomputed on demand. A breached server holds nothing."
+          },
+          {
+            "icon": "eye-off",
+            "title": "Zero-knowledge",
+            "description": "Private keys never leave your device. Servers verify signatures without ever learning who you are."
+          },
+          {
+            "icon": "repeat",
+            "title": "Deterministic",
+            "description": "Same seed, same keys — always. One identity on every device, with nothing to sync."
+          },
+          {
+            "icon": "box",
+            "title": "Isolated",
+            "description": "Every Handle is a separate keypair. Compromising one context reveals nothing about the others."
+          },
+          {
+            "icon": "zap",
+            "title": "Stateless",
+            "description": "No session database. Any server — or any third party — verifies a token with one signature check."
+          },
+          {
+            "icon": "share-2",
+            "title": "Delegatable",
+            "description": "Attestation chains hand scoped, time-boxed access to partners, IoT devices, and AI agents."
+          },
+          {
+            "icon": "git-branch",
+            "title": "Hierarchical",
+            "description": "Identity → Handle → SubHandle: a whole device fleet under one root, provisioned offline."
+          },
+          {
+            "icon": "ban",
+            "title": "Revocable",
+            "description": "One revoked attestation disables an entire branch — current and future sessions, instantly."
+          }
         ],
         "cta": "Read the docs"
       },
@@ -447,33 +680,45 @@
         "lead": "Documented scenarios — people, devices, and AI agents: the same primitives across different domains.",
         "viewAll": "All use cases"
       },
-"tutorials": {
-  "badge": "Tutorials",
-  "headingLine1": "From examples —",
-  "headingLine2": "to working code.",
-  "para1": "Different scenarios use the same primitives to work in very different worlds: autonomous AI agents, a drone fleet, a satellite selling imaging windows, a corporate messenger, and a charging network. None of them requires changing the protocol. One protocol, different use cases.",
-  "para2": "The blog walks each scenario to a step-by-step tutorial.",
-  "moreTutorials": "Read more",
-  "casesIntro": "Four use cases, one protocol.",
-  "cases": [
-    { "title": "AI Agent Delegation", "href": "/usecases/ai-agent-delegation" },
-    { "title": "Drone Fleet", "href": "/usecases/drone-fleet-management" },
-    { "title": "Corporate Messenger", "href": "/usecases/corporate-messenger" },
-    { "title": "EV Charging Station", "href": "/usecases/ev-charging-network" }
-  ]
-},
+      "tutorials": {
+        "badge": "Tutorials",
+        "headingLine1": "From examples —",
+        "headingLine2": "to working code.",
+        "para1": "Different scenarios use the same primitives to work in very different worlds: autonomous AI agents, a drone fleet, a satellite selling imaging windows, a corporate messenger, and a charging network. None of them requires changing the protocol. One protocol, different use cases.",
+        "para2": "The blog walks each scenario to a step-by-step tutorial.",
+        "moreTutorials": "Read more",
+        "casesIntro": "Four use cases, one protocol.",
+        "cases": [
+          {
+            "title": "AI Agent Delegation",
+            "href": "/usecases/ai-agent-delegation"
+          },
+          {
+            "title": "Drone Fleet",
+            "href": "/usecases/drone-fleet-management"
+          },
+          {
+            "title": "Corporate Messenger",
+            "href": "/usecases/corporate-messenger"
+          },
+          {
+            "title": "EV Charging Station",
+            "href": "/usecases/ev-charging-network"
+          }
+        ]
+      },
       "blog": {
         "badge": "From the blog",
         "heading": "Featured",
         "viewAll": "View all posts"
       },
-"cta": {
-  "badge": "Start building",
-  "heading": "Build on your own seed",
-  "description": "From first seed phrase to verified session — the quick start covers all three packages, end to end.",
-  "primary": "Read the docs",
-  "secondary": "View on GitHub"
-}
+      "cta": {
+        "badge": "Start building",
+        "heading": "Build on your own seed",
+        "description": "From first seed phrase to verified session — the quick start covers all three packages, end to end.",
+        "primary": "Read the docs",
+        "secondary": "View on GitHub"
+      }
     }
   }
 }
