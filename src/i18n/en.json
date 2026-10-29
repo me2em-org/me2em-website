@@ -554,6 +554,10 @@
         "docs": {
           "label": "Documentation",
           "note": "Guides, API references, glossary"
+        },
+        "email": {
+          "label": "General inquiries",
+          "note": "hello@me2em.com"
         }
       },
       "faqTitle": "Frequently asked",
@@ -588,19 +592,19 @@
         "items": [
           {
             "question": "Who maintains Me2eM?",
-            "answer": "The protocol is authored and maintained by <a href=\"https://selub.github.io\" target=\"_blank\" rel=\"noopener noreferrer\">Serge Lubimov</a>, who also maintains this website."
+            "answer": "Me2eM is developed on a voluntary basis: the protocol, the packages, and this website are maintained by volunteers under the <a href=\"https://github.com/me2em-org\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">me2em-org</a> organization on GitHub. The project needs sponsorship — contributions directly fund development and infrastructure."
           },
           {
             "question": "Why is the protocol name capitalised the way it is?",
-            "answer": "\"Me2eM\" is the only correct form in human-facing prose. The all-lowercase variant is reserved for machine identifiers (code, URLs, packages). The brand does not decline or conjugate — the \"iPhone rule\"."
+            "answer": "\"Me2eM\" is the only correct form in human-facing prose. The all-lowercase variant is reserved for machine identifiers (code, URLs, packages). The brand does not decline or conjugate — the \"iPhone rule\". The full rules live in the <a href=\"https://github.com/me2em-org/me2em-website/blob/main/BRAND-GUIDELINES.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">Brand Guidelines</a>."
           },
           {
-            "question": "Where is the source code?",
-            "answer": "The protocol source is on <a href=\"https://github.com/me2em-org/me2em-protocol\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a> under the Apache 2.0 license."
+            "question": "Can I use the Me2eM code, name, and logo?",
+            "answer": "Yes. The protocol source (<a href=\"https://github.com/me2em-org/me2em-protocol\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">GitHub</a>) is licensed under Apache 2.0, and this website under MIT. The name and logo may be used to refer to the protocol and compatible implementations, provided the brand canon is respected: the name is written Me2eM, the logo is used as-is. Full rules: <a href=\"https://github.com/me2em-org/me2em-website/blob/main/BRAND-GUIDELINES.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">Brand Guidelines</a>."
           },
           {
             "question": "Where is the documentation?",
-            "answer": "All documentation lives at <a href=\"/docs\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">/docs</a> — core guides, API references, glossary, and quick starts."
+            "answer": "All documentation lives at <a href=\"/docs\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">/docs</a> — core guides, API references, glossary, and quick starts. Package references: <a href=\"https://core.me2em.com\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">@me2em/core</a>, <a href=\"https://crypto.me2em.com\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">@me2em/crypto</a>, <a href=\"https://react.me2em.com\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">@me2em/react</a>."
           },
           {
             "question": "How do I report a vulnerability?",
