@@ -185,35 +185,26 @@
           "description": "The Me2eM logo and brand mark may be used for informational and editorial purposes only. Redistribution, modification for commercial use, or registration as a trademark by third parties is not permitted without written consent."
         }
       },
-      "expertise": {
-        "title": "Expertise",
-        "description": "The protocol is open to developers — share your expertise in cryptographic identity, security, or developer tooling.",
-        "author": {
-          "src": "https://avatars.githubusercontent.com/u/75365981?s=400&u=9753bae30d0f22b148465de5bc701fd291fa551a&v=4",
-          "alt": "Sergey Lubimov (SeLub)",
-          "url": "https://github.com/SeLub"
-        }
-      },
-      "faq": {
-        "title": "Frequently asked",
-        "items": [
+      "cta": {
+        "title": "Get in touch",
+        "channels": [
           {
-            "question": "Who maintains Me2eM?",
-            "answer": "The protocol is authored and maintained by <a href=\"https://selub.github.io\" target=\"_blank\" rel=\"noopener noreferrer\">Serge Lubimov</a>, who also maintains this website."
+            "label": "Email",
+            "note": "security@me2em.com",
+            "href": "mailto:security@me2em.com"
           },
           {
-            "question": "Why is the protocol name capitalised the way it is?",
-            "answer": "\"Me2eM\" is the only correct form in human-facing prose. The all-lowercase variant is reserved for machine identifiers (code, URLs, packages). The brand does not decline or conjugate — the \"iPhone rule\"."
+            "label": "Telegram",
+            "note": "Community and quick questions",
+            "href": "https://t.me/me2em_protocol"
           },
           {
-            "question": "Where is the source code?",
-            "answer": "The protocol source is on <a href=\"https://github.com/me2em-org/me2em-protocol\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a> under the Apache 2.0 license."
-          },
-          {
-            "question": "How can I report a vulnerability?",
-            "answer": "Email <a href=\"mailto:security@me2em.com\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">security@me2em.com</a> — this is the only private channel."
+            "label": "Documentation",
+            "note": "Guides, API references, glossary",
+            "href": "/docs"
           }
-        ]
+        ],
+        "more": "All channels → Community"
       }
     },
     "sandbox": {
@@ -563,20 +554,61 @@
         }
       },
       "faqTitle": "Frequently asked",
-      "faq": [
-        {
-          "question": "Where is the documentation?",
-          "answer": "All documentation lives at <a href=\"/docs\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">/docs</a> — core guides, API references, glossary, and quick starts."
+      "expertise": {
+        "title": "Expertise",
+        "description": "The protocol is open to developers — share your expertise in cryptographic identity, security, or developer tooling.",
+        "author": {
+          "src": "https://avatars.githubusercontent.com/u/75365981?s=400&u=9753bae30d0f22b148465de5bc701fd291fa551a&v=4",
+          "alt": "Sergey Lubimov (SeLub)",
+          "url": "https://github.com/SeLub"
         },
-        {
-          "question": "How do I report a vulnerability?",
-          "answer": "Email <a href=\"mailto:security@me2em.com\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">security@me2em.com</a> — this is the only private channel. See <a href=\"https://github.com/me2em-org/me2em-protocol/blob/main/SECURITY.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">SECURITY.md</a> in the protocol repository for details."
-        },
-        {
-          "question": "How can I contribute?",
-          "answer": "Check <a href=\"https://github.com/me2em-org/me2em-protocol/blob/main/CONTRIBUTING.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">CONTRIBUTING.md</a> in the protocol repository for guidelines on filing issues, opening pull requests, and joining discussions."
-        }
-      ]
+        "avatarAlt": "Sergey Lubimov (SeLub)",
+        "team": [
+          {
+            "letter": "A",
+            "color": "brand",
+            "alt": "Team member 1"
+          },
+          {
+            "letter": "B",
+            "color": "amber",
+            "alt": "Team member 2"
+          },
+          {
+            "letter": "C",
+            "color": "emerald",
+            "alt": "Team member 3"
+          }
+        ]
+      },
+      "faq": {
+        "items": [
+          {
+            "question": "Who maintains Me2eM?",
+            "answer": "The protocol is authored and maintained by <a href=\"https://selub.github.io\" target=\"_blank\" rel=\"noopener noreferrer\">Serge Lubimov</a>, who also maintains this website."
+          },
+          {
+            "question": "Why is the protocol name capitalised the way it is?",
+            "answer": "\"Me2eM\" is the only correct form in human-facing prose. The all-lowercase variant is reserved for machine identifiers (code, URLs, packages). The brand does not decline or conjugate — the \"iPhone rule\"."
+          },
+          {
+            "question": "Where is the source code?",
+            "answer": "The protocol source is on <a href=\"https://github.com/me2em-org/me2em-protocol\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a> under the Apache 2.0 license."
+          },
+          {
+            "question": "Where is the documentation?",
+            "answer": "All documentation lives at <a href=\"/docs\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">/docs</a> — core guides, API references, glossary, and quick starts."
+          },
+          {
+            "question": "How do I report a vulnerability?",
+            "answer": "Email <a href=\"mailto:security@me2em.com\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">security@me2em.com</a> — this is the only private channel. See <a href=\"https://github.com/me2em-org/me2em-protocol/blob/main/SECURITY.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">SECURITY.md</a> in the protocol repository for details."
+          },
+          {
+            "question": "How can I contribute?",
+            "answer": "Check <a href=\"https://github.com/me2em-org/me2em-protocol/blob/main/CONTRIBUTING.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">CONTRIBUTING.md</a> in the protocol repository for guidelines on filing issues, opening pull requests, and joining discussions."
+          }
+        ]
+      }
     },
     "home": {
       "meta": {

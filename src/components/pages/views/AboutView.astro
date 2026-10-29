@@ -10,13 +10,8 @@ import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import { Hero } from '@/components/hero';
-import { getAuthorsMap } from '@/lib/authors';
+import { ABOUT_PAGE_SCHEMA } from '@/lib/schema';
 import { t, tData, defaultLocale } from '@/i18n';
-
-interface FAQItem {
-  question: string;
-  answer: string;
-}
 
 interface Props {
   /** Locale whose copy this page renders. Defaults to the site default. */
@@ -30,18 +25,18 @@ const hero = tData<{ badge: string; titleLead: string; titleHighlight: string; d
   locale
 )!;
 
-const authors = await getAuthorsMap();
-const teamAuthor = authors.get('team');
+const ctaChannels = tData('pages.about.cta.channels', locale) as Array<{ label: string; note: string; href: string }> | undefined;
 ---
 
 <PageLayout
   title={tData('pages.about.meta.title', locale)}
   description={tData('pages.about.meta.description', locale)}
   eagerReveal
+  extraSchemas={[ABOUT_PAGE_SCHEMA]}
 >
   <Hero layout="centered" size="sm" class="isolate" showHeroHalo>
     <Badge slot="badge" variant="brand" pill>
-      <Icon name="users" size="sm" />
+      <Icon name="sparkles" size="sm" />
       {hero.badge}
     </Badge>
 
@@ -120,84 +115,40 @@ const teamAuthor = authors.get('team');
     </div>
   </section>
 
-  <!-- Expertise / Author Section -->
-  <section class="relative isolate overflow-hidden py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+  <!-- CTA Strip -->
+  <section class="relative isolate py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="relative z-10 mx-auto max-w-5xl px-6">
-      <div class="text-center mb-8" data-reveal>
+      <div class="text-center mb-6" data-reveal>
         <h2 class="font-display text-2xl font-bold text-foreground">
-          {t('pages.about.expertise.title', locale)}
+          {t('pages.about.cta.title', locale)}
         </h2>
-        <p class="text-foreground-muted mt-2 max-w-2xl mx-auto">
-          {t('pages.about.expertise.description', locale)}
-        </p>
       </div>
       <div class="max-w-3xl mx-auto" data-reveal data-reveal-delay="1">
-        {(() => {
-          const author = teamAuthor;
-          if (!author) return null;
-          return (
-            <Card class="p-8 text-center space-y-4">
-              <a href="https://github.com/me2em-org/me2em-protocol" target="_blank" rel="noopener noreferrer">
-                <img
-                  src="/logo-outline.png"
-                  alt={author.name}
-                  class="w-20 h-20 mx-auto rounded-full object-contain ring-4 ring-brand-500"
-                />
-              </a>
-              <h3 class="text-xl font-semibold text-foreground">{author.name}</h3>
-              {author.bio && <p class="text-foreground-muted">{author.bio}</p>}
-              <a href="https://github.com/SeLub" target="_blank" rel="noopener noreferrer" class="inline-block">
-                <div class="flex -space-x-7">
-                  <div class="w-10 h-10 rounded-full overflow-hidden bg-brand-500 text-white flex items-center justify-center ring-2 ring-background font-medium text-sm shrink-0">
-                    A
-                  </div>
-                  <div class="w-10 h-10 rounded-full overflow-hidden bg-amber-500 text-white flex items-center justify-center ring-2 ring-background font-medium text-sm shrink-0">
-                    B
-                  </div>
-                  <div class="w-10 h-10 rounded-full overflow-hidden bg-emerald-500 text-white flex items-center justify-center ring-2 ring-background font-medium text-sm shrink-0">
-                    C
-                  </div>
-                  <img
-                    src="https://avatars.githubusercontent.com/u/75365981?s=400&u=9753bae30d0f22b148465de5bc701fd291fa551a&v=4"
-                    alt="Sergey Lubimov (SeLub)"
-                    class="w-10 h-10 rounded-full object-cover ring-2 ring-background shrink-0"
-                  />
+        <Card class="p-6 space-y-3">
+          {ctaChannels?.map((ch) => (
+            <a
+              href={ch.href}
+              {...(ch.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              class="block group"
+            >
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
+                  <Icon name="arrow-up-right" size="sm" />
                 </div>
-              </a>
-            </Card>
-          );
-        })()}
+                <div class="min-w-0 flex-1">
+                  <p class="font-semibold text-sm text-foreground">{ch.label}</p>
+                  <p class="text-xs text-foreground-muted truncate">{ch.note}</p>
+                </div>
+                <Icon name="arrow-up-right" size="sm" class="text-foreground-muted group-hover:text-brand-500 transition-colors shrink-0" />
+              </div>
+            </a>
+          ))}
+        </Card>
       </div>
-    </div>
-  </section>
-
-  <!-- FAQ Section -->
-  <section class="relative isolate py-[var(--space-section-md)]">
-    <div class="relative z-10 mx-auto max-w-5xl px-6">
-      <div class="text-center mb-8" data-reveal>
-        <h2 class="font-display text-2xl font-bold text-foreground">
-          {t('pages.about.faq.title', locale)}
-        </h2>
-      </div>
-
-      <div class="space-y-3 max-w-3xl mx-auto" data-reveal data-reveal-delay="1">
-        {(() => {
-          const faqItems = tData('pages.about.faq.items', locale) as FAQItem[] | undefined;
-          if (!Array.isArray(faqItems)) return null;
-          return (
-            <>
-              {faqItems.map((item) => (
-                <details class="group rounded-xl border border-border overflow-hidden">
-                  <summary class="flex cursor-pointer items-center gap-3 px-5 py-4 font-semibold text-sm text-foreground hover:bg-secondary/50 transition-colors list-none [&::-webkit-details-marker]:hidden">
-                    <Icon name="chevron-down" size="sm" class="shrink-0 text-foreground-muted group-open:rotate-180 transition-transform" />
-                    {item.question}
-                  </summary>
-                  <div class="px-5 pb-4 pt-1 text-sm text-foreground-muted leading-relaxed" set:html={item.answer} />
-                </details>
-              ))}
-            </>
-          );
-        })()}
+      <div class="text-center mt-4" data-reveal data-reveal-delay="2">
+        <a href="/community" class="text-sm text-brand-500 hover:underline">
+          {t('pages.about.cta.more', locale)}
+        </a>
       </div>
     </div>
   </section>

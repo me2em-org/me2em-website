@@ -11,7 +11,10 @@ import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import { Hero } from '@/components/hero';
+import { getAuthorsMap } from '@/lib/authors';
+import { createFAQSchema } from '@/lib/schema';
 import { t, tData, defaultLocale } from '@/i18n';
+import { cn } from '@/lib/cn';
 
 interface Props {
   /** Locale whose copy this page renders. Defaults to the site default. */
@@ -24,6 +27,9 @@ const hero = tData<{ badge: string; titleLead: string; titleHighlight: string; d
   'pages.community.hero',
   locale
 )!;
+
+const authors = await getAuthorsMap();
+const teamAuthor = authors.get('team');
 
 const channels = [
   {
@@ -76,26 +82,20 @@ const channels = [
   },
 ];
 
-const faq = [
-  {
-    question: t('pages.community.faq.0.question', locale),
-    answer: t('pages.community.faq.0.answer', locale),
-  },
-  {
-    question: t('pages.community.faq.1.question', locale),
-    answer: t('pages.community.faq.1.answer', locale),
-  },
-  {
-    question: t('pages.community.faq.2.question', locale),
-    answer: t('pages.community.faq.2.answer', locale),
-  },
-];
+const faqItems = tData<Array<{ question: string; answer: string }>>('pages.community.faq.items', locale) ?? [];
+
+const faqSchema = faqItems.length > 0 ? createFAQSchema(faqItems) : null;
+
+const expertiseData = tData('pages.community.expertise', locale) as { author: { src: string; url: string }; avatarAlt: string; team: Array<{ letter: string; color: string }> } | undefined;
+const avatarConfig = expertiseData?.author;
+const teamConfig = expertiseData?.team ?? [];
 ---
 
 <PageLayout
   title={t('pages.community.meta.title', locale)}
   description={t('pages.community.meta.description', locale)}
   eagerReveal
+  extraSchemas={faqSchema ? [faqSchema] : []}
 >
   <Hero layout="centered" size="sm" class="isolate" showHeroHalo>
     <Badge slot="badge" variant="brand" pill>
@@ -150,6 +150,56 @@ const faq = [
     </div>
   </section>
 
+  <!-- Expertise Section -->
+  <section class="relative isolate overflow-hidden py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="relative z-10 mx-auto max-w-5xl px-6">
+      <div class="text-center mb-8" data-reveal>
+        <h2 class="font-display text-2xl font-bold text-foreground">
+          {t('pages.community.expertise.title', locale)}
+        </h2>
+        <p class="text-foreground-muted mt-2 max-w-2xl mx-auto">
+          {t('pages.community.expertise.description', locale)}
+        </p>
+      </div>
+      <div class="max-w-3xl mx-auto" data-reveal data-reveal-delay="1">
+        {teamAuthor ? (
+          <Card class="p-8 text-center space-y-4">
+            <a href="https://github.com/me2em-org/me2em-protocol" target="_blank" rel="noopener noreferrer">
+              <img
+                src="/logo-outline.png"
+                alt={teamAuthor.name}
+                class="w-20 h-20 mx-auto rounded-full object-contain ring-4 ring-brand-500"
+              />
+            </a>
+            <h3 class="text-xl font-semibold text-foreground">{teamAuthor.name}</h3>
+            {teamAuthor.bio && <p class="text-foreground-muted">{teamAuthor.bio}</p>}
+            <a href={avatarConfig?.url ?? 'https://github.com/selub'} target="_blank" rel="noopener noreferrer" class="inline-block">
+              <div class="flex -space-x-7">
+                {teamConfig.map((member) => {
+                  const bgColor = member.color === 'brand' ? 'bg-brand-500' : member.color === 'amber' ? 'bg-amber-500' : 'bg-emerald-500';
+                  return (
+                    <div
+                      class={cn('w-10 h-10 rounded-full overflow-hidden text-white flex items-center justify-center ring-2 ring-background font-medium text-sm shrink-0', bgColor)}
+                    >
+                      {member.letter}
+                    </div>
+                  );
+                })}
+                {avatarConfig ? (
+                  <img
+                    src={avatarConfig.src}
+                    alt={t('pages.community.expertise.avatarAlt', locale)}
+                    class="w-10 h-10 rounded-full object-cover ring-2 ring-background shrink-0"
+                  />
+                ) : null}
+              </div>
+            </a>
+          </Card>
+        ) : null}
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ Section -->
   <section class="relative isolate py-[var(--space-section-md)]">
     <div class="relative z-10 mx-auto max-w-5xl px-6">
@@ -160,7 +210,7 @@ const faq = [
       </div>
 
       <div class="space-y-3 max-w-3xl mx-auto" data-reveal data-reveal-delay="1">
-        {faq.map((item) => (
+        {faqItems.map((item) => (
           <details class="group rounded-xl border border-border overflow-hidden">
             <summary class="flex cursor-pointer items-center gap-3 px-5 py-4 font-semibold text-sm text-foreground hover:bg-secondary/50 transition-colors list-none [&::-webkit-details-marker]:hidden">
               <Icon name="chevron-down" size="sm" class="shrink-0 text-foreground-muted group-open:rotate-180 transition-transform" />
