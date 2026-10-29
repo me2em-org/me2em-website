@@ -670,22 +670,6 @@
       },
       "premium": false
     },
-    "terminal-demo": {
-      "name": "TerminalDemo",
-      "category": "ui",
-      "subcategory": "marketing",
-      "files": [
-        "src/components/ui/marketing/TerminalDemo/TerminalDemo.tsx",
-        "src/components/ui/marketing/TerminalDemo/index.ts"
-      ],
-      "dependencies": {
-        "utilities": [
-          "cn"
-        ],
-        "components": []
-      },
-      "premium": false
-    },
     "textarea": {
       "name": "Textarea",
       "category": "ui",

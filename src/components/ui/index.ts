@@ -12,7 +12,7 @@
  * - layout: Separator
  * - primitives: Icon
  * - content: CodeBlock
- * - marketing: Logo, CTA, NpmCopyButton, SocialProof, TerminalDemo
+ * - marketing: Logo, CTA, NpmCopyButton, SocialProof
  */
 
 // Form Components
