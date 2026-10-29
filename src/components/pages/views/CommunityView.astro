@@ -173,27 +173,27 @@ const teamConfig = expertiseData?.team ?? [];
             </a>
             <h3 class="text-xl font-semibold text-foreground">{teamAuthor.name}</h3>
             {teamAuthor.bio && <p class="text-foreground-muted">{teamAuthor.bio}</p>}
-            <a href={avatarConfig?.url ?? 'https://github.com/selub'} target="_blank" rel="noopener noreferrer" class="inline-block">
-              <div class="flex -space-x-7">
-                {teamConfig.map((member) => {
-                  const bgColor = member.color === 'brand' ? 'bg-brand-500' : member.color === 'amber' ? 'bg-amber-500' : 'bg-emerald-500';
-                  return (
-                    <div
-                      class={cn('w-10 h-10 rounded-full overflow-hidden text-white flex items-center justify-center ring-2 ring-background font-medium text-sm shrink-0', bgColor)}
-                    >
-                      {member.letter}
-                    </div>
-                  );
-                })}
-                {avatarConfig ? (
+            {avatarConfig?.url && (
+              <a href={avatarConfig.url} target="_blank" rel="noopener noreferrer" class="inline-block">
+                <div class="flex -space-x-7">
+                  {teamConfig.map((member) => {
+                    const bgColor = member.color === 'brand' ? 'bg-brand-500' : member.color === 'amber' ? 'bg-amber-500' : 'bg-emerald-500';
+                    return (
+                      <div
+                        class={cn('w-10 h-10 rounded-full overflow-hidden text-white flex items-center justify-center ring-2 ring-background font-medium text-sm shrink-0', bgColor)}
+                      >
+                        {member.letter}
+                      </div>
+                    );
+                  })}
                   <img
                     src={avatarConfig.src}
                     alt={t('pages.community.expertise.avatarAlt', locale)}
                     class="w-10 h-10 rounded-full object-cover ring-2 ring-background shrink-0"
                   />
-                ) : null}
-              </div>
-            </a>
+                </div>
+              </a>
+            )}
           </Card>
         ) : null}
       </div>
