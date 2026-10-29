@@ -584,28 +584,28 @@
       "faq": {
         "items": [
           {
-            "question": "Who maintains Me2eM?",
-            "answer": ""
+            "question": "Кто поддерживает Me2eM?",
+            "answer": "Протокол авторизован и поддерживается <a href=\"https://selub.github.io\" target=\"_blank\" rel=\"noopener noreferrer\">Сергеем Любимовым</a>, который также поддерживает этот сайт."
           },
           {
-            "question": "Why is the protocol name capitalised the way it is?",
-            "answer": ""
+            "question": "Почему название протокола написано именно так?",
+            "answer": "\"Me2eM\" — единственно правильная форма в тексте для людей. Строчный вариант зарезервирован для машинных идентификаторов (код, URL, пакеты). Бренд не склоняется — «правило iPhone»."
           },
           {
-            "question": "Where is the source code?",
-            "answer": ""
+            "question": "Где исходный код?",
+            "answer": "Исходный код протокола на <a href=\"https://github.com/me2em-org/me2em-protocol\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a> под лицензией Apache 2.0."
           },
           {
-            "question": "Where is the documentation?",
-            "answer": ""
+            "question": "Где документация?",
+            "answer": "Вся документация на <a href=\"/docs\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">/docs</a> — руководства, справочники API, глоссарий и quick start."
           },
           {
-            "question": "How do I report a vulnerability?",
-            "answer": ""
+            "question": "Как сообщить об уязвимости?",
+            "answer": "Напишите на <a href=\"mailto:security@me2em.com\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">security@me2em.com</a> — это единственный приватный канал. См. <a href=\"https://github.com/me2em-org/me2em-protocol/blob/main/SECURITY.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">SECURITY.md</a> в репозитории протокола."
           },
           {
-            "question": "How can I contribute?",
-            "answer": ""
+            "question": "Как внести вклад?",
+            "answer": "См. <a href=\"https://github.com/me2em-org/me2em-protocol/blob/main/CONTRIBUTING.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">CONTRIBUTING.md</a> в репозитории протокола — правила для issue, PR и обсуждений."
           }
         ]
       }

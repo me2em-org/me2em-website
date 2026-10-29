@@ -584,28 +584,28 @@
       "faq": {
         "items": [
           {
-            "question": "Who maintains Me2eM?",
-            "answer": ""
+            "question": "谁维护 Me2eM？",
+            "answer": "该协议由 <a href=\"https://selub.github.io\" target=\"_blank\" rel=\"noopener noreferrer\">Serge Lubimov</a> 编写和维护，他也是本网站的维护者。"
           },
           {
-            "question": "Why is the protocol name capitalised the way it is?",
-            "answer": ""
+            "question": "为什么协议名称这样大小写？",
+            "answer": "\"Me2eM\" 是面向人类文本中唯一正确的形式。全小写变体保留用于机器标识符（代码、URL、包）。品牌不进行变格——「iPhone 规则」。"
           },
           {
-            "question": "Where is the source code?",
-            "answer": ""
+            "question": "源代码在哪里？",
+            "answer": "协议源代码在 <a href=\"https://github.com/me2em-org/me2em-protocol\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a> 上，采用 Apache 2.0 许可证。"
           },
           {
-            "question": "Where is the documentation?",
-            "answer": ""
+            "question": "文档在哪里？",
+            "answer": "所有文档都在 <a href=\"/docs\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">/docs</a>——指南、API参考、术语表和quick start。"
           },
           {
-            "question": "How do I report a vulnerability?",
-            "answer": ""
+            "question": "如何报告漏洞？",
+            "answer": "发送邮件至 <a href=\"mailto:security@me2em.com\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">security@me2em.com</a>——这是唯一的私有渠道。参见协议仓库中的 <a href=\"https://github.com/me2em-org/me2em-protocol/blob/main/SECURITY.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">SECURITY.md</a>。"
           },
           {
-            "question": "How can I contribute?",
-            "answer": ""
+            "question": "如何贡献？",
+            "answer": "参见协议仓库中的 <a href=\"https://github.com/me2em-org/me2em-protocol/blob/main/CONTRIBUTING.md\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline underline-offset-2 decoration-brand-500 hover:text-brand-400 transition-colors\">CONTRIBUTING.md</a>——关于提交issue、创建PR和参与讨论的指南。"
           }
         ]
       }
