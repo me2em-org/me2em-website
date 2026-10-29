@@ -191,17 +191,20 @@
           {
             "label": "Email",
             "note": "security@me2em.com",
-            "href": "mailto:security@me2em.com"
+            "href": "mailto:security@me2em.com",
+            "icon": "mail"
           },
           {
             "label": "Telegram",
             "note": "社区和快速问题",
-            "href": "https://t.me/me2em_protocol"
+            "href": "https://t.me/me2em_protocol",
+            "icon": "send"
           },
           {
             "label": "文档",
             "note": "指南、API参考、术语表",
-            "href": "/docs"
+            "href": "/docs",
+            "icon": "book-open"
           }
         ],
         "more": "所有渠道 → Community"

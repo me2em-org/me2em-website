@@ -191,17 +191,20 @@
           {
             "label": "Email",
             "note": "security@me2em.com",
-            "href": "mailto:security@me2em.com"
+            "href": "mailto:security@me2em.com",
+            "icon": "mail"
           },
           {
             "label": "Telegram",
             "note": "Сообщество и быстрые вопросы",
-            "href": "https://t.me/me2em_protocol"
+            "href": "https://t.me/me2em_protocol",
+            "icon": "send"
           },
           {
             "label": "Документация",
             "note": "Руководства, справочники API, глоссарий",
-            "href": "/docs"
+            "href": "/docs",
+            "icon": "book-open"
           }
         ],
         "more": "Все каналы → Community"

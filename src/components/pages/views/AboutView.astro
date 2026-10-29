@@ -133,7 +133,7 @@ const ctaChannels = tData('pages.about.cta.channels', locale) as Array<{ label: 
             >
               <div class="flex items-center gap-4">
                 <div class="w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500">
-                  <Icon name="arrow-up-right" size="sm" />
+                  <Icon name={ch.icon} size="sm" />
                 </div>
                 <div class="min-w-0 flex-1">
                   <p class="font-semibold text-sm text-foreground">{ch.label}</p>
