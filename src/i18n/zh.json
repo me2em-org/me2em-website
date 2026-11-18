@@ -166,7 +166,7 @@
         "badge": "关于",
         "titleLead": "我们的",
         "titleHighlight": "使命",
-        "description": "打造 AI 智能体、物联网设备和人类都喜欢使用的工具。我们的团队致力于创造卓越的体验。"
+        "description": "打造身份与资金共享同一颗种子的协议——适用于人、IoT 车队、AI 智能体以及它们调用的付费 API。"
       },
       "brand": {
         "title": "品牌规范",
@@ -225,11 +225,7 @@
           "Stateless会话。",
           "零存储。"
         ],
-        "typingWordsMobile": [
-          "一个短语。",
-          "多个Handle。",
-          "无状态。"
-        ],
+        "typingWordsMobile": ["一个短语。", "多个Handle。", "无状态。"],
         "description": "实时协议演示：在你的浏览器中生成一个真实的种子短语，观察它派生Handle，并看到一个身份服务于人类、设备和AI代理——任何服务器上都没有个人数据字节。"
       },
       "sandboxSeed": {
@@ -280,7 +276,9 @@
         "jumpLabels": [
           "@me2em/core",
           "@me2em/crypto",
-          "@me2em/react"
+          "@me2em/react",
+          "@me2em/x402",
+          "@me2em/solana"
         ]
       },
       "design": {
@@ -293,7 +291,7 @@
         "included": [
           {
             "lead": "从seed派生的Identity",
-            "text": "来自32字节或12/24词短语——永远不变，不存储在任何地方。"
+            "text": "来自 64 字节种子或 12/24 词 BIP39 短语——永远不变，不存储在任何地方。"
           },
           {
             "lead": "隔离的Handles",
@@ -378,8 +376,8 @@
       },
       "process": {
         "badge": "工作原理",
-        "heading": "从seed到已验证的会话",
-        "lead": "四个步骤——在每个场景中相同，从消息传递到充电网络。",
+        "heading": "从种子到已验证的会话——再到已结算的支付",
+        "lead": "五个步骤——在每个场景中相同，从消息传递到充电网络再到付费 API。",
         "steps": [
           {
             "title": "写下seed",
@@ -396,6 +394,10 @@
           {
             "title": "验证和撤销",
             "description": "任何第三方仅用根公钥验证。一个撤销的jti立即禁用整个分支。"
+          },
+          {
+            "title": "支付与结算",
+            "description": "同一颗种子派生确定性的 Solana 钱包。402 响应携带 PaymentRequest；客户端签一次、重放，facilitator 在链上结算。买方用卖方的公共根验证——无需账本。"
           }
         ]
       },
@@ -435,6 +437,26 @@
           {
             "term": "Ephemeral material",
             "definition": "带TTL和旋转的材料（SPK/OTK、缓存密钥、会话令牌）。"
+          },
+          {
+            "term": "PaymentRequest",
+            "definition": "链无关的支付契约：金额、收款钱包、引用、过期时间。通过 x402 v2 传输。"
+          },
+          {
+            "term": "PaymentAdapter",
+            "definition": "对应精确 CAIP-2 链的一个实现：对该链进行 pay 和 verifyPayment。"
+          },
+          {
+            "term": "WalletBinding",
+            "definition": "Handle 与其派生钱包之间的曲线上的链接——无需账本即可验证。"
+          },
+          {
+            "term": "Settlement",
+            "definition": "PaymentRequest 的链上执行，由 facilitator 确认，双方均可验证。"
+          },
+          {
+            "term": "Facilitator",
+            "definition": "验证签名支付并在链上结算的服务——x402 v2 的对手方。"
           }
         ]
       },
@@ -461,7 +483,7 @@
               },
               {
                 "question": "是否生产就绪？",
-                "answer": "包处于alpha阶段（core 0.7、crypto 0.1、react 0.1），正朝向v1.0 API冻结。今天用于评估和原型很好；在生产中固定版本并预期变化。"
+                "answer": "包处于 release candidate 阶段——core 1.0.0-rc.7、crypto 1.1.0-rc.2、react 1.0.0-rc.4、x402 1.0.0-rc.1、solana 1.1.0-rc.1——正朝向 v1.0 API 冻结。今天用于评估和原型很好；在生产中固定版本并预期变化。"
               }
             ]
           },
@@ -511,10 +533,72 @@
       "cta": {
         "badge": "开始使用",
         "heading": "几分钟内完成你的第一个会话",
-        "description": "安装一个包，派生一个Handle，并验证一个stateless会话——quick start贯穿所有三个包。",
+        "description": "安装一个包，派生一个 Handle，验证一个 stateless 会话——并结算一笔支付。快速入门贯穿所有五个软件包。",
         "primary": "开始",
         "secondary": "在npm上浏览",
         "tertiary": "在GitHub上标星"
+      },
+      "payments": {
+        "badge": "@me2em/x402",
+        "heading": "x402 v2 支付传输",
+        "paragraphs": [
+          "机器间支付的线路层：base64 头部编解码器，锚定上游 x402 v2 golden 向量；感知支付的 fetch 客户端，把 402 变成一次签名重试。",
+          "是传输而非策略：谁付由证明决定，付多少由 PaymentRequest 决定，如何执行由链适配器决定，谁确认由 facilitator 决定。Me2eM extra.me2em 扩展走同一条线路——每个支付工件上都有身份元数据。"
+        ],
+        "included": [
+          {
+            "lead": "头部编解码器",
+            "text": "PAYMENT-REQUIRED / PAYMENT-SIGNATURE / PAYMENT-RESPONSE——base64，锚定 golden 向量。"
+          },
+          {
+            "lead": "感知支付的 fetch",
+            "text": "createPaymentFetch：402 → 恰好签一次 → 重放。绝不付两次。"
+          },
+          {
+            "lead": "服务端辅助函数",
+            "text": "paymentRequiredResponse、readPaymentHeader、settlementHeader——三次调用完成 402 握手。"
+          },
+          {
+            "lead": "extra.me2em",
+            "text": "withMe2emExtra / readMe2emExtra——x402 线路上的 Me2eM 身份元数据。"
+          },
+          {
+            "lead": "facilitator 契约",
+            "text": "FacilitatorClient 接口，外加可选的 B402 facilitator（@experimental）。"
+          }
+        ],
+        "ctaLabel": "阅读 x402 指南"
+      },
+      "chain": {
+        "badge": "@me2em/solana",
+        "heading": "Solana 链适配器",
+        "paragraphs": [
+          "支付栈中的第一条链：确定性钱包树，从与 Identity 相同的 64 字节种子派生——一个种子短语同时承载\"你是谁\"和\"你的 SOL 在哪里\"。",
+          "验证是 fail-closed 且在链侧：结算按规范顺序检查——未找到、引用错误、已过期、重放、收款方错误、付款不足。x402 签名器天生离线：blockhash 通过注入提供，从不获取。"
+        ],
+        "included": [
+          {
+            "lead": "钱包树",
+            "text": "SolanaWalletTree.fromSeed——基于 Identity 种子的 m/44'/501'/{i}'/0' SLIP-0010；nextPaymentIndex 分配。"
+          },
+          {
+            "lead": "CAIP-2 适配器",
+            "text": "SolanaWalletAdapter + SolanaPaymentAdapter 对应精确链；registerSolanaAdapters 一次调用。"
+          },
+          {
+            "lead": "链上验证",
+            "text": "verifyPayment 按规范失败顺序；verifyWalletBinding 在曲线上验证。"
+          },
+          {
+            "lead": "程序化支付",
+            "text": "仅 SOL 支付，每次调用传入种子，引用随交易携带。"
+          },
+          {
+            "lead": "离线 x402 签名器",
+            "text": "SolanaX402Signer——legacy-transfer 签名，blockhash 通过注入提供。"
+          }
+        ],
+        "ctaLabel": "阅读 Solana 指南"
       }
     },
     "community": {
@@ -627,7 +711,7 @@
         "titleLine1": "Me2eM —",
         "titleLine2": "网页设计师",
         "titleLine3": "& 开发者",
-        "description": "基于Ed25519的去中心化身份和授权协议——适用于人、IoT和AI代理。没有可以被盗的用户数据库和个人数据。",
+        "description": "基于 Ed25519 的去中心化身份、授权和支付协议——适用于人、IoT 和 AI 代理。没有可以被盗的用户数据库和个人数据。",
         "descriptionMobile": "基于Ed25519的去中心化身份协议——适用于人、IoT和AI代理。",
         "github": "在GitHub上获取",
         "getStarted": "开始使用"
@@ -635,12 +719,12 @@
       "intro": {
         "badge": "协议",
         "heading": "整个想法，一段话说完",
-        "body": "Me2eM是一个基于Ed25519加密和标准密钥协商原语的去中心化身份和授权协议。无需注册，无需存储密码：人、设备或AI代理由从单个种子短语在本地派生的密钥表示。每个上下文保持自己的隔离身份，访问通过签名证明进行委托和撤销，服务器通过一次签名检查确认会话——无服务器认证，最小延迟，最小化或完全消除你需要运行和保护的数据库。Me2eM适用于安全地变成多人的单一用户：单独的配置文件（工作、家庭、健身房）、IoT设备和无人机层次结构、签名授权下的自主AI代理、E2EE加密通道和第三方服务的确定性密码。"
+        "body": "Me2eM 是一个基于 Ed25519 加密和标准密钥协商原语的去中心化身份、授权和支付协议。无需注册，无需存储密码：人、设备或 AI 代理由从单个种子短语在本地派生的密钥表示。每个上下文保持自己的隔离身份，访问通过签名证明进行委托和撤销，服务器通过一次签名检查确认会话——无服务器认证，最小延迟，最小化或完全消除你需要运行和保护的数据库。同一颗种子还派生确定性的 Solana 钱包，因此一个身份可以支付：x402 v2 通过普通 HTTP 承载签名的支付工件，facilitator 在链上结算。Me2eM 适用于安全地变成多人的单一用户：单独的配置文件（工作、家庭、健身房）、IoT 设备和无人机层次结构、签名授权下的自主 AI 代理、E2EE 加密通道、第三方服务的确定性密码，以及链上结算的付费 API 调用。"
       },
       "packages": {
         "badge": "软件包",
-        "heading": "三个软件包，一个种子",
-        "lead": "一切从同一个Ed25519根派生——从核心开始，按需添加加密和UI。",
+        "heading": "五个软件包，一个种子",
+        "lead": "一切从同一个 Ed25519 根派生——从核心开始，按需添加加密、UI 和支付。",
         "learnMore": "阅读文档",
         "cards": [
           {
@@ -657,13 +741,23 @@
             "icon": "atom",
             "title": "@me2em/react",
             "description": "Me2eM 协议的 React 绑定：身份生命周期钩子、种子短语 UX 组件、会话管理和加密的 per-identity 上下文缓存。"
+          },
+          {
+            "icon": "credit-card",
+            "title": "@me2em/x402",
+            "description": "x402 v2 支付传输：base64 头部编解码器、感知支付的 fetch 客户端（402 → 签一次 → 重放，绝不付两次）、服务端辅助函数和 Me2eM extra.me2em 扩展。是传输而非策略——谁付由证明决定，如何结算由适配器决定。"
+          },
+          {
+            "icon": "wallet",
+            "title": "@me2em/solana",
+            "description": "Solana 链适配器：基于 SLIP-0010（m/44'/501'/{i}'/0'）的确定性钱包树，从与 Identity 相同的 64 字节种子派生，按规范失败顺序进行链上支付验证、程序化支付，以及离线 x402 PaymentSigner。"
           }
         ]
       },
       "workWithMe": {
         "badge": "功能",
         "heading": "保证——加密的",
-        "lead": "协议的八个属性——数学，而非承诺。",
+        "lead": "协议的九个属性——数学，而非承诺。",
         "cards": [
           {
             "icon": "sprout",
@@ -704,6 +798,11 @@
             "icon": "ban",
             "title": "可撤销",
             "description": "一个撤销的证明禁用整个分支——当前和未来的会话，即时生效。"
+          },
+          {
+            "icon": "plug-zap",
+            "title": "链无关支付",
+            "description": "Handle 是买方，经证明的实体是卖方。x402 v2 通过普通 HTTP 承载签名的支付工件；Solana 率先上线，适配器按链接入。"
           }
         ],
         "cta": "阅读文档"
@@ -754,7 +853,7 @@
       "cta": {
         "badge": "聊聊",
         "heading": "聊聊你需要什么",
-        "description": "第一次谈话免费且信息丰富，无任何义务。从第一次对话到最后交付，都是我。",
+        "description": "从第一次种子短语到已验证的会话——再到你的第一笔支付。快速入门贯穿所有五个软件包。",
         "primary": "发送消息",
         "secondary": "更多关于我"
       }
