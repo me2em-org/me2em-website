@@ -1,0 +1,72 @@
+---
+title: "付费 API 与代理商务"
+locale: zh
+description: "基于同一 seed 派生身份的机器间微支付：Handle 购买、经认证的实体出售、x402 v2 承载已签名工件，facilitator 在 Solana 上完成结算。"
+icon: "credit-card"
+tags: ["payments", "x402", "solana", "agents", "stateless"]
+featured: true
+order: 10
+uc: "UC-7"
+url: "https://github.com/me2em-org/me2em-protocol/blob/main/packages/x402/README.md"
+services: ["@me2em/core 1.0.0-rc.7", "@me2em/x402 1.0.0-rc.1", "@me2em/solana 1.1.0-rc.1"]
+meta: ["一个 seed——身份与钱包", "402 → 签一次 → 重试", "Solana 先行，适配器可插拔", "链上验证，无账本"]
+draft: false
+---
+
+## 你可以构建什么
+
+一个买家是机器的付费 API：AI 代理调用你的端点，收到带价格的 HTTP 402，只签一次支付并重试——facilitator 在链上完成结算，响应随之到达。买家是绑定了钱包的 Handle，卖家是经认证的实体；双方都不需要计费账户、银行卡或用户数据库。
+
+## 它是如何工作的
+
+派生 Identity 的同一个 64 字节 seed 也派生出确定性 Solana 钱包（`m/44'/501'/{i}'/0'`，SLIP-0010）。x402 v2 线格式通过普通 HTTP 承载已签名工件：402 中的 `PAYMENT-REQUIRED`、重试中的 `PAYMENT-SIGNATURE`、成功时的 `PAYMENT-RESPONSE`。买家用卖家的公钥根在链上验证结算——无需信任任何账本。
+
+```mermaid
+sequenceDiagram
+    participant A as AI 代理 (Handle)
+    participant S as 卖家 API
+    participant F as Facilitator
+    participant C as Solana
+    A->>S: GET /resource
+    S-->>A: 402 + PAYMENT-REQUIRED
+    A->>A: 签一次 (离线签名器)
+    A->>S: GET /resource + PAYMENT-SIGNATURE
+    S->>F: verify & settle
+    F->>C: 链上结算
+    F-->>S: PAYMENT-RESPONSE
+    S-->>A: 200 + resource
+```
+
+```typescript
+import { SolanaWalletTree, SolanaX402Signer } from '@me2em/solana';
+import { createPaymentFetch, readSettlement } from '@me2em/x402';
+
+const tree = SolanaWalletTree.fromSeed(seed); // 与 Identity.fromSeed 相同的 seed
+const signer = new SolanaX402Signer({ wallet: tree.wallet(0) });
+const pay = createPaymentFetch({ signer });
+
+const res = await pay('https://api.example.com/resource');
+// 402 → 已签名重试 → 200；facilitator 已在链上结算
+const settlement = readSettlement(res.headers);
+```
+
+## 优势
+
+- **一个 seed，两种角色。** 身份和钱包派生自同一个 64 字节 seed——无需单独配置或丢失钱包。
+- **无状态商务。** 没有计费账户、没有账本：买家用卖家的公钥根验证，链即记录。
+- **只签一次，绝不付两次。** 支付客户端对每个 402 恰好签一次；交易中的 reference 防止重放。
+- **按契约链无关。** `PaymentRequest` 与 `PaymentAdapter` 与链无关；Solana 先行，其他链按 CAIP-2 接入。
+- **离线签名器。** x402 签名器从不获取 blockhash——它由外部注入，签名路径保持确定性且可测试。
+
+## 权衡
+
+- **目前仅限 Solana。** 其他链需要各自的 `PaymentAdapter`；契约已就绪，适配器尚未实现。
+- **仅 SOL 支付。** `pay` 以 SOL 结算；稳定币或多代币结算尚未接入。
+- **Release candidates。** 支付包为 pre-1.0；请固定版本并预期 API 变化。
+
+## 参考
+
+- [协议 README 中的 Payment Layer](https://github.com/me2em-org/me2em-protocol/blob/main/README.md#-payment-layer)
+- [@me2em/x402 包指南](https://github.com/me2em-org/me2em-protocol/blob/main/packages/x402/README.md)
+- [@me2em/solana 包指南](https://github.com/me2em-org/me2em-protocol/blob/main/packages/solana/README.md)
+- API 参考：[x402.me2em.com](https://x402.me2em.com) 和 [solana.me2em.com](https://solana.me2em.com)

@@ -166,7 +166,7 @@
         "badge": "About",
         "titleLead": "We're on a",
         "titleHighlight": "mission",
-        "description": "Building the tool AI agents, IoT devices and human love to use. Our team is dedicated to creating exceptional experiences."
+        "description": "Building the protocol where identity and money share one seed — for people, IoT fleets, AI agents, and the paid APIs they call."
       },
       "brand": {
         "title": "Brand canon",
@@ -280,7 +280,9 @@
         "jumpLabels": [
           "@me2em/core",
           "@me2em/crypto",
-          "@me2em/react"
+          "@me2em/react",
+          "@me2em/x402",
+          "@me2em/solana"
         ]
       },
       "design": {
@@ -293,7 +295,7 @@
         "included": [
           {
             "lead": "A seed-derived Identity",
-            "text": "from 32 bytes or a 12/24-word phrase — constant forever, stored nowhere."
+            "text": "from a 64-byte seed or a 12/24-word BIP39 phrase — constant forever, stored nowhere."
           },
           {
             "lead": "Isolated Handles",
@@ -376,10 +378,72 @@
         ],
         "ctaLabel": "Try the React SDK"
       },
+      "payments": {
+        "badge": "@me2em/x402",
+        "heading": "x402 v2 payment transport",
+        "paragraphs": [
+          "The wire layer of machine-to-machine payments: a base64 header codec pinned to the upstream x402 v2 golden vectors, and a payment-aware fetch client that turns a 402 into one signed retry.",
+          "Transport, not policy: who pays is decided by attestation, how much by the PaymentRequest, how it executes by a chain adapter, and who confirms by the facilitator. The Me2eM extra.me2em extension rides the same wire — identity metadata on every payment artifact."
+        ],
+        "included": [
+          {
+            "lead": "Header codec",
+            "text": "PAYMENT-REQUIRED / PAYMENT-SIGNATURE / PAYMENT-RESPONSE — base64, golden-vector pinned."
+          },
+          {
+            "lead": "Payment-aware fetch",
+            "text": "createPaymentFetch: 402 → sign exactly once → replay. Never pays twice."
+          },
+          {
+            "lead": "Server helpers",
+            "text": "paymentRequiredResponse, readPaymentHeader, settlementHeader — the 402 handshake in three calls."
+          },
+          {
+            "lead": "extra.me2em",
+            "text": "withMe2emExtra / readMe2emExtra — Me2eM identity metadata on the x402 wire."
+          },
+          {
+            "lead": "Facilitator contract",
+            "text": "FacilitatorClient interface plus an opt-in B402 facilitator (@experimental)."
+          }
+        ],
+        "ctaLabel": "Read the x402 guide"
+      },
+      "chain": {
+        "badge": "@me2em/solana",
+        "heading": "Solana chain adapter",
+        "paragraphs": [
+          "The first chain in the payment stack: deterministic wallet trees derived from the same 64-byte seed as your Identity, so one seed phrase carries both who you are and where your SOL lives.",
+          "Verification is fail-closed and chain-side: a settlement is checked in the normative order — not found, wrong reference, expired, replayed, wrong recipient, underpaid. The x402 signer is offline by construction: the blockhash is injected, never fetched."
+        ],
+        "included": [
+          {
+            "lead": "Wallet tree",
+            "text": "SolanaWalletTree.fromSeed — m/44'/501'/{i}'/0' SLIP-0010 over the Identity seed; nextPaymentIndex allocation."
+          },
+          {
+            "lead": "CAIP-2 adapters",
+            "text": "SolanaWalletAdapter + SolanaPaymentAdapter per exact chain; registerSolanaAdapters in one call."
+          },
+          {
+            "lead": "On-chain verification",
+            "text": "verifyPayment in the normative failure order; on-curve verifyWalletBinding."
+          },
+          {
+            "lead": "Programmatic pay",
+            "text": "SOL-only pay, seed per call, reference rides the transaction."
+          },
+          {
+            "lead": "Offline x402 signer",
+            "text": "SolanaX402Signer — legacy-transfer signing with blockhash by injection."
+          }
+        ],
+        "ctaLabel": "Read the Solana guide"
+      },
       "process": {
         "badge": "How it works",
-        "heading": "From seed to verified session",
-        "lead": "Four steps — the same in every scenario, from a messenger to a charging network.",
+        "heading": "From seed to verified session — and settled payment",
+        "lead": "Five steps — the same in every scenario, from a messenger to a charging network to a paid API.",
         "steps": [
           {
             "title": "Write the seed",
@@ -396,6 +460,10 @@
           {
             "title": "Verify & revoke",
             "description": "Any third party verifies with the root public key alone. One revoked jti disables an entire branch — instantly."
+          },
+          {
+            "title": "Pay & settle",
+            "description": "The same seed derives a deterministic Solana wallet. A 402 response carries the PaymentRequest; the client signs once, replays, and the facilitator settles on-chain. The buyer verifies with the seller's public root — no ledger."
           }
         ]
       },
@@ -435,6 +503,26 @@
           {
             "term": "Ephemeral material",
             "definition": "TTL-bound rotating material (SPK/OTK, cache keys, session tokens)."
+          },
+          {
+            "term": "PaymentRequest",
+            "definition": "A chain-agnostic payment contract: amount, recipient wallet, reference, expiry. Transported over x402 v2."
+          },
+          {
+            "term": "PaymentAdapter",
+            "definition": "One implementation per exact CAIP-2 chain: pay and verifyPayment against the chain."
+          },
+          {
+            "term": "WalletBinding",
+            "definition": "The on-curve link between a Handle and its derived wallet — verified without a ledger."
+          },
+          {
+            "term": "Settlement",
+            "definition": "The on-chain execution of a PaymentRequest, confirmed by the facilitator and verifiable by either party."
+          },
+          {
+            "term": "Facilitator",
+            "definition": "The service that verifies a signed payment and settles it on-chain — the x402 v2 counterparty."
           }
         ]
       },
@@ -461,7 +549,7 @@
               },
               {
                 "question": "Is it production-ready?",
-                "answer": "The packages are alpha (core 0.7, crypto 0.1, react 0.1), moving toward a v1.0 API freeze. Fine for evaluation and prototypes today; pin versions and expect changes in production."
+                "answer": "The packages are release candidates — core 1.0.0-rc.7, crypto 1.1.0-rc.2, react 1.0.0-rc.4, x402 1.0.0-rc.1, solana 1.1.0-rc.1 — moving toward a v1.0 API freeze. Fine for evaluation and prototypes today; pin versions and expect changes in production."
               }
             ]
           },
@@ -511,7 +599,7 @@
       "cta": {
         "badge": "Get started",
         "heading": "Your first session in minutes",
-        "description": "Install a package, derive a Handle, and verify a stateless session — the quick start runs across all three packages.",
+        "description": "Install a package, derive a Handle, verify a stateless session — and settle a payment. The quick start runs across all five packages.",
         "primary": "Get started",
         "secondary": "Browse on npm",
         "tertiary": "Star on GitHub"
@@ -627,7 +715,7 @@
         "titleLine1": "Me2eM",
         "titleLine2": "identity protocol.",
         "titleLine3": "One Identity → Many Handles → Stateless Sessions",
-        "description": "A decentralized, seed-derived identity and authorization protocol built on Ed25519 — for people, IoT fleets and AI agents. No user database, no personal data to leak.",
+        "description": "A decentralized, seed-derived identity, authorization and payment protocol built on Ed25519 — for people, IoT fleets and AI agents. No user database, no personal data to leak.",
         "descriptionMobile": "A decentralized, seed-derived identity protocol on Ed25519 — for people, IoT fleets and AI agents.",
         "github": "View on GitHub",
         "getStarted": "Get started"
@@ -635,12 +723,12 @@
       "intro": {
         "badge": "The protocol",
         "heading": "The whole idea in one paragraph",
-        "body": "Me2eM is a decentralized identity and authorization protocol built on Ed25519 cryptography and standard key-agreement primitives. Nothing to register, no passwords to store: a person, a device, or an AI agent is represented by keys derived locally from a single seed phrase. Every context keeps its own isolated identity, access is delegated and revoked through signed attestations, and servers confirm a session with a single signature check — serverless authentication with minimal latency that minimizes, or removes entirely, the database you have to run and protect. Me2eM is for one user who safely becomes many: separate profiles (work, home, the gym), hierarchies of IoT devices and drones, autonomous AI agents under signed mandates, E2EE-encrypted channels, and deterministic passwords for third-party services."
+        "body": "Me2eM is a decentralized identity, authorization and payment protocol built on Ed25519 cryptography and standard key-agreement primitives. Nothing to register, no passwords to store: a person, a device, or an AI agent is represented by keys derived locally from a single seed phrase. Every context keeps its own isolated identity, access is delegated and revoked through signed attestations, and servers confirm a session with a single signature check — serverless authentication with minimal latency that minimizes, or removes entirely, the database you have to run and protect. The same seed also derives a deterministic Solana wallet, so one identity can pay: x402 v2 carries signed payment artifacts over plain HTTP, and the facilitator settles on-chain. Me2eM is for one user who safely becomes many: separate profiles (work, home, the gym), hierarchies of IoT devices and drones, autonomous AI agents under signed mandates, E2EE-encrypted channels, deterministic passwords for third-party services, and paid API calls that settle on-chain."
       },
       "packages": {
         "badge": "Packages",
-        "heading": "Three packages, one seed",
-        "lead": "Everything derives from the same Ed25519 root — start with the core, add encryption and UI when you need them.",
+        "heading": "Five packages, one seed",
+        "lead": "Everything derives from the same Ed25519 root — start with the core, add encryption, UI, and payments when you need them.",
         "learnMore": "Read the docs",
         "cards": [
           {
@@ -657,13 +745,23 @@
             "icon": "atom",
             "title": "@me2em/react",
             "description": "React bindings for the Me2eM protocol: identity lifecycle hooks, seed-phrase UX components, session management, and an encrypted per-identity context cache."
+          },
+          {
+            "icon": "credit-card",
+            "title": "@me2em/x402",
+            "description": "x402 v2 payment transport: the base64 header codec, a payment-aware fetch client (402 → sign once → replay, never pays twice), server helpers, and the Me2eM extra.me2em extension. Transport, not policy — who pays is decided by attestation, how it settles by an adapter."
+          },
+          {
+            "icon": "wallet",
+            "title": "@me2em/solana",
+            "description": "Solana chain adapter: deterministic wallet trees over SLIP-0010 (m/44'/501'/{i}'/0') derived from the same 64-byte seed as your Identity, on-chain payment verification in the normative failure order, programmatic pay, and the offline x402 PaymentSigner."
           }
         ]
       },
       "workWithMe": {
         "badge": "Features",
         "heading": "Guaranteed by cryptography",
-        "lead": "Eight properties of the protocol — math, not promises.",
+        "lead": "Nine properties of the protocol — math, not promises.",
         "cards": [
           {
             "icon": "sprout",
@@ -704,6 +802,11 @@
             "icon": "ban",
             "title": "Revocable",
             "description": "One revoked attestation disables an entire branch — current and future sessions, instantly."
+          },
+          {
+            "icon": "plug-zap",
+            "title": "Chain-agnostic payments",
+            "description": "A Handle is a buyer, an attested entity is a seller. x402 v2 carries signed payment artifacts over plain HTTP; Solana ships first, adapters plug in per chain."
           }
         ],
         "cta": "Read the docs"
@@ -754,7 +857,7 @@
       "cta": {
         "badge": "Start building",
         "heading": "Build on your own seed",
-        "description": "From first seed phrase to verified session — the quick start covers all three packages, end to end.",
+        "description": "From first seed phrase to verified session — and to your first payment. The quick start covers all five packages, end to end.",
         "primary": "Read the docs",
         "secondary": "View on GitHub"
       }

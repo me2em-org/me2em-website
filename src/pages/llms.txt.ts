@@ -87,8 +87,11 @@ export const GET: APIRoute = async ({ site }) => {
     `- Verification modes: verifyStateless for backends that hold the root key;`,
     `  verifyAttested for everyone else — grants enforced at verification time, with`,
     `  the root public key only.`,
-    `- Packages: @me2em/core, @me2em/crypto, @me2em/react on npm — alpha, moving`,
-    `  toward a v1.0 API freeze.`,
+    `- Payment layer: the same seed derives a deterministic Solana wallet; x402 v2`,
+    `  carries signed payment artifacts over plain HTTP (402 → sign once → replay),`,
+    `  the facilitator settles on-chain, and either party verifies chain-side.`,
+    `- Packages: @me2em/core, @me2em/crypto, @me2em/react, @me2em/x402, @me2em/solana`,
+    `  on npm — release candidates, moving toward a v1.0 API freeze.`,
     `- License: Apache-2.0, free and open source.`,
   );
 

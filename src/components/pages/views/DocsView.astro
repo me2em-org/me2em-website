@@ -63,6 +63,8 @@ const hero = tData<{ badge: string; titleLead: string; titleHighlight: string; d
 const design = tData<Package>('pages.docs.design', locale)!;
 const development = tData<Package>('pages.docs.development', locale)!;
 const performance = tData<Package>('pages.docs.performance', locale)!;
+const payments = tData<Package>('pages.docs.payments', locale)!;
+const chain = tData<Package>('pages.docs.chain', locale)!;
 const glossary = tData<{ badge: string; heading: string; lead: string; terms: GlossaryTerm[] }>(
   'pages.docs.glossary',
   locale
@@ -94,6 +96,8 @@ const tutorialsUrl = localizedPath( '/blog/tag/tutorial', locale)
 const CORE_DOCS_URL = 'https://core.me2em.com';
 const CRYPTO_DOCS_URL = 'https://crypto.me2em.com';
 const REACT_DOCS_URL = 'https://react.me2em.com';
+const X402_DOCS_URL = 'https://x402.me2em.com';
+const SOLANA_DOCS_URL = 'https://solana.me2em.com';
 const NPM_ORG_URL = 'https://www.npmjs.com/org/me2em';
 const GITHUB_URL = 'https://github.com/me2em-org/me2em-protocol';
 
@@ -136,6 +140,14 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
       </Button>
       <Button size="lg" href="#performance" variant="outline">
         {hero.jumpLabels[2]}
+        <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
+      </Button>
+      <Button size="lg" href="#payments" variant="outline">
+        {hero.jumpLabels[3]}
+        <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
+      </Button>
+      <Button size="lg" href="#chain" variant="outline">
+        {hero.jumpLabels[4]}
         <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
       </Button>
     </Fragment>
@@ -302,6 +314,118 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
         <div class="flex justify-center sm:hidden glitch:hidden" data-reveal data-reveal-delay="2">
           <Button variant="brand-outline" size="sm" href={REACT_DOCS_URL} target="_blank" rel="noopener noreferrer">
             {performance.ctaLabel}
+            <Icon name="arrow-right" size="sm" />
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Payments -->
+  <section id="payments" class="py-[var(--space-section-md)] bg-background border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
+        <!-- Text -->
+        <div class="flex flex-col gap-4 sm:items-center sm:text-center glitch:order-2 glitch:items-start glitch:text-left" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
+          <div class="flex flex-col gap-6 sm:items-center glitch:items-start">
+            <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
+              <Icon name="credit-card" size="sm" />
+              {payments.badge}
+            </Badge>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+              {payments.heading}
+            </h2>
+          </div>
+          {payments.paragraphs.map((paragraph) => (
+            <p class="text-lg text-foreground-muted leading-relaxed sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+              {paragraph}
+            </p>
+          ))}
+          <Button variant="brand-outline" size="sm" class="self-start sm:self-center glitch:self-start mt-2 hidden sm:inline-flex glitch:inline-flex" href={X402_DOCS_URL} target="_blank" rel="noopener noreferrer">
+            {payments.ctaLabel}
+            <Icon name="arrow-right" size="sm" />
+          </Button>
+        </div>
+        <!-- Card -->
+        <div class="sm:max-w-xl sm:mx-auto glitch:order-1 glitch:max-w-none glitch:mx-0" data-reveal data-reveal-ease="smooth">
+          <Card variant="elevated" padding="lg" class="h-full flex flex-col justify-center">
+            <div class="flex items-center gap-3 pb-4 mb-4 border-b border-border sm:justify-center glitch:justify-start">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="credit-card" size="md" />
+              </div>
+              <h3 class="font-display text-base font-semibold text-foreground">{includedLabel}</h3>
+            </div>
+            <ul class="flex flex-col gap-3">
+              {payments.included.map((item) => (
+                <li class="flex items-start gap-3">
+                  <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                  <p class="text-sm text-foreground-muted leading-relaxed">
+                    <span class="font-semibold text-foreground">{item.lead}</span> — {item.text}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        </div>
+        <div class="flex justify-center sm:hidden glitch:hidden" data-reveal data-reveal-delay="2">
+          <Button variant="brand-outline" size="sm" href={X402_DOCS_URL} target="_blank" rel="noopener noreferrer">
+            {payments.ctaLabel}
+            <Icon name="arrow-right" size="sm" />
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chain -->
+  <section id="chain" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
+        <!-- Text -->
+        <div class="flex flex-col gap-4 sm:items-center sm:text-center glitch:items-start glitch:text-left" data-reveal data-reveal-ease="smooth">
+          <div class="flex flex-col gap-6 sm:items-center glitch:items-start">
+            <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
+              <Icon name="wallet" size="sm" />
+              {chain.badge}
+            </Badge>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
+              {chain.heading}
+            </h2>
+          </div>
+          {chain.paragraphs.map((paragraph) => (
+            <p class="text-lg text-foreground-muted leading-relaxed sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0">
+              {paragraph}
+            </p>
+          ))}
+          <Button variant="brand-outline" size="sm" class="self-start sm:self-center glitch:self-start mt-2 hidden sm:inline-flex glitch:inline-flex" href={SOLANA_DOCS_URL} target="_blank" rel="noopener noreferrer">
+            {chain.ctaLabel}
+            <Icon name="arrow-right" size="sm" />
+          </Button>
+        </div>
+        <!-- Card -->
+        <div class="sm:max-w-xl sm:mx-auto glitch:max-w-none glitch:mx-0" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
+          <Card variant="elevated" padding="lg" class="h-full flex flex-col justify-center">
+            <div class="flex items-center gap-3 pb-4 mb-4 border-b border-border sm:justify-center glitch:justify-start">
+              <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
+                <Icon name="wallet" size="md" />
+              </div>
+              <h3 class="font-display text-base font-semibold text-foreground">{includedLabel}</h3>
+            </div>
+            <ul class="flex flex-col gap-3">
+              {chain.included.map((item) => (
+                <li class="flex items-start gap-3">
+                  <Icon name="check" size="sm" class="text-brand-500 shrink-0 mt-1" />
+                  <p class="text-sm text-foreground-muted leading-relaxed">
+                    <span class="font-semibold text-foreground">{item.lead}</span> — {item.text}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        </div>
+        <div class="flex justify-center sm:hidden glitch:hidden" data-reveal data-reveal-delay="2">
+          <Button variant="brand-outline" size="sm" href={SOLANA_DOCS_URL} target="_blank" rel="noopener noreferrer">
+            {chain.ctaLabel}
             <Icon name="arrow-right" size="sm" />
           </Button>
         </div>

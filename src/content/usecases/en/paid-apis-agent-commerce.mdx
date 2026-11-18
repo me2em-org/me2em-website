@@ -1,0 +1,72 @@
+---
+title: "Paid APIs & Agent Commerce"
+locale: en
+description: "Machine-to-machine micropayments on the same seed-derived identity: a Handle buys, an attested entity sells, x402 v2 carries the signed artifacts, and the facilitator settles on Solana."
+icon: "credit-card"
+tags: ["payments", "x402", "solana", "agents", "stateless"]
+featured: true
+order: 10
+uc: "UC-7"
+url: "https://github.com/me2em-org/me2em-protocol/blob/main/packages/x402/README.md"
+services: ["@me2em/core 1.0.0-rc.7", "@me2em/x402 1.0.0-rc.1", "@me2em/solana 1.1.0-rc.1"]
+meta: ["One seed — identity and wallet", "402 → sign once → replay", "Solana ships first, adapters plug in", "Verified chain-side, no ledger"]
+draft: false
+---
+
+## What you can build
+
+A paid API where the buyer is a machine: an AI agent calls your endpoint, receives an HTTP 402 with the price, signs the payment once, and retries — the facilitator settles on-chain and the response arrives. The buyer is a Handle with a bound wallet, the seller is an attested entity; neither side needs a billing account, a card, or a user database.
+
+## How it works
+
+The same 64-byte seed that derives the Identity also derives a deterministic Solana wallet (`m/44'/501'/{i}'/0'`, SLIP-0010). The x402 v2 wire format carries the signed artifacts over plain HTTP: `PAYMENT-REQUIRED` on the 402, `PAYMENT-SIGNATURE` on the retry, `PAYMENT-RESPONSE` on success. The buyer verifies the settlement chain-side with the seller's public root — no ledger to trust.
+
+```mermaid
+sequenceDiagram
+    participant A as AI agent (Handle)
+    participant S as Seller API
+    participant F as Facilitator
+    participant C as Solana
+    A->>S: GET /resource
+    S-->>A: 402 + PAYMENT-REQUIRED
+    A->>A: sign once (offline signer)
+    A->>S: GET /resource + PAYMENT-SIGNATURE
+    S->>F: verify & settle
+    F->>C: on-chain settlement
+    F-->>S: PAYMENT-RESPONSE
+    S-->>A: 200 + resource
+```
+
+```typescript
+import { SolanaWalletTree, SolanaX402Signer } from '@me2em/solana';
+import { createPaymentFetch, readSettlement } from '@me2em/x402';
+
+const tree = SolanaWalletTree.fromSeed(seed); // the same seed as Identity.fromSeed
+const signer = new SolanaX402Signer({ wallet: tree.wallet(0) });
+const pay = createPaymentFetch({ signer });
+
+const res = await pay('https://api.example.com/resource');
+// 402 → signed retry → 200; the facilitator settled on-chain
+const settlement = readSettlement(res.headers);
+```
+
+## Benefits
+
+- **One seed, two roles.** Identity and wallet derive from the same 64-byte seed — no separate wallet to provision or lose.
+- **Stateless commerce.** No billing accounts, no ledgers: the buyer verifies with the seller's public root, the chain is the record.
+- **Sign once, never twice.** The payment client signs exactly once per 402; replay is guarded by the reference in the transaction.
+- **Chain-agnostic by contract.** `PaymentRequest` and `PaymentAdapter` are chain-agnostic; Solana ships first, other chains plug in per CAIP-2.
+- **Offline signer.** The x402 signer never fetches a blockhash — it is injected, so the signing path stays deterministic and testable.
+
+## Trade-offs
+
+- **Solana only, for now.** Other chains need their own `PaymentAdapter`; the contracts are ready, the adapters are not.
+- **SOL-only payments.** `pay` settles in SOL; stablecoin or multi-token settlement is not wired yet.
+- **Release candidates.** The payment packages are pre-1.0; pin versions and expect API changes.
+
+## References
+
+- [Payment Layer in the protocol README](https://github.com/me2em-org/me2em-protocol/blob/main/README.md#-payment-layer)
+- [@me2em/x402 package guide](https://github.com/me2em-org/me2em-protocol/blob/main/packages/x402/README.md)
+- [@me2em/solana package guide](https://github.com/me2em-org/me2em-protocol/blob/main/packages/solana/README.md)
+- API references at [x402.me2em.com](https://x402.me2em.com) and [solana.me2em.com](https://solana.me2em.com)
