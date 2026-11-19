@@ -12,6 +12,8 @@
  *   vertically centered.
  *
  * Pass `icon` for an icon tile or `number` for a numbered step tile.
+ * Pass a named `logo` slot (e.g. a package mark) to replace the brand icon —
+ * the slot wins when both are provided.
  * Pass `href` to render the whole tile as a link.
  */
 import type { HTMLAttributes } from 'astro/types';
@@ -47,6 +49,7 @@ const {
 const Element = href ? 'a' : 'div';
 const TitleTag = titleTag;
 const hasBody = Astro.slots.has('default');
+const hasLogoSlot = Astro.slots.has('logo');
 ---
 
 <Element
@@ -54,7 +57,7 @@ const hasBody = Astro.slots.has('default');
   href={href}
   {...attrs}
 >
-  {icon && <Icon name={icon} class="w-10 h-10 text-brand-500" />}
+  {hasLogoSlot ? <slot name="logo" /> : icon && <Icon name={icon} class="w-10 h-10 text-brand-500" />}
   {number !== undefined && (
     <span class="font-display text-3xl font-bold text-brand-500 leading-none">{number}</span>
   )}

@@ -17,6 +17,7 @@ import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import Card from '@/components/ui/data-display/Card/Card.astro';
 import ProofTile from '@/components/ui/data-display/ProofTile/ProofTile.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import PackageLogo from './PackageLogo.astro';
 import BlogCard from '@/components/blog/BlogCard.astro';
 import CtaBand from '@/components/patterns/CtaBand.astro';
 import StackMarquee from '@/components/landing/StackMarquee.astro';
@@ -106,6 +107,15 @@ const packagesSection = tData<{ badge: string; heading: string; lead: string; le
   'pages.home.packages',
   locale
 )!;
+// Card icons come from the dictionary (the same names in en/ru/zh); a card
+// that describes a package gets the package mark instead of the generic icon.
+const packageMarks: Record<string, string> = {
+  layout: 'core',
+  code: 'crypto',
+  atom: 'react',
+  'credit-card': 'x402',
+  wallet: 'solana',
+};
 const portfolio = tData<{ badge: string; heading: string; lead: string; viewAll: string }>('pages.home.portfolio', locale)!;
 const tutorials = tData<{
   badge: string;
@@ -259,6 +269,11 @@ const tutorialsPara1 = t('pages.home.tutorials.para1', locale);
             data-reveal
             data-reveal-delay={i || undefined}
           >
+            {packageMarks[card.icon] && (
+              <Fragment slot="logo">
+                <PackageLogo name={packageMarks[card.icon]} class="h-10 w-10" />
+              </Fragment>
+            )}
             {card.description}
           </ProofTile>
         ))}
