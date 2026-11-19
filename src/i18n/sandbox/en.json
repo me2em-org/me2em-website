@@ -49,10 +49,66 @@
       "bornText": "The entire key hierarchy derives deterministically from these 12 words: Identity → Handle → SubHandle. Zero bytes on the server.",
       "createdSequence": "What just happened: you generated 128 bits of entropy in your browser — it derived your root Identity — you proved you hold the paper — your world exists. Nowhere along the way was a single byte stored on a server.",
       "nextLabel": "Next step of the sandbox",
-      "nextHuman": "Human: work, family, fitness club",
-      "nextIot": "Satellite: selling capacity",
-      "nextAgent": "AI agent: mandate and revocation",
       "restart": "Start over (the seed will vanish)"
+    },
+    "log": {
+      "title": "Crypto Operation Log",
+      "empty": "No operations yet. Run a scenario to see the log."
+    },
+    "tabs": {
+      "ready": "Your Identity is ready. Pick a scenario to run a live protocol flow — real keys, real derivations, no mocks.",
+      "hint": "Each scenario runs real protocol code — no mocks."
+    },
+    "scenarios": {
+      "human": {
+        "tab": "Human",
+        "tabDesc": "Work · Family · Gym",
+        "title": "Multi-Context Identity",
+        "description": "One root Identity → isolated Handles, created one at a time. Each context gets its own profile, keypair, and Solana wallet — no shared credentials.",
+        "cta": {
+          "work": "1 · Create work handle",
+          "family": "2 · Create family handle",
+          "gym": "3 · Create gym handle"
+        },
+        "noteFamily": "✓ Work handle ready. Deriving one handle reveals nothing about the others — the family context is a fresh keypair from the same seed.",
+        "noteGym": "✓ Family handle ready. One more derivation and you have a fully separate sports identity.",
+        "footerRoot": "Root public key:",
+        "footerDone": "All three contexts derived — same seed, same order of derivation paths, zero shared credentials between them.",
+        "labels": {
+          "handleId": "Handle ID",
+          "publicKey": "Public Key",
+          "privateKey": "Private Key — never published",
+          "wallet": "Solana Wallet — derived from the same seed",
+          "address": "Address",
+          "walletPrivateKey": "Wallet Private Key (base58)",
+          "passwordFor": "Password for \"{value}\"",
+          "channelKeyFor": "Channel Key for E2EE \"{value}\"",
+          "copyValue": "Copy value",
+          "toggleKeys": "Toggle private keys",
+          "expand": "+",
+          "collapse": "−"
+        }
+      },
+      "satellite": {
+        "tab": "Satellite",
+        "tabDesc": "Tasking marketplace"
+      },
+      "agent": {
+        "tab": "AI Agent",
+        "tabDesc": "Mandate & revocation"
+      },
+      "sso": {
+        "tab": "Multi-App SSO",
+        "tabDesc": "One seed, every app"
+      },
+      "ev": {
+        "tab": "EV Stations",
+        "tabDesc": "Offline IoT hierarchy"
+      },
+      "commerce": {
+        "tab": "Agent Commerce",
+        "tabDesc": "Paid APIs · x402"
+      }
     }
   }
 }

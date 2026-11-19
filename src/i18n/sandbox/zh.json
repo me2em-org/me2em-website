@@ -49,10 +49,66 @@
       "bornText": "整个密钥层次结构从这12个词中确定性地派生：Identity → Handle → SubHandle。服务器上零字节。",
       "createdSequence": "刚刚发生了什么：你在浏览器中生成了128位熵——它派生了你的根Identity——你证明你持有纸张——你的世界存在。在任何地方都没有一个字节存储在服务器上。",
       "nextLabel": "沙盒的下一步",
-      "nextHuman": "人类：工作、家庭、健身房",
-      "nextIot": "卫星：出售资源",
-      "nextAgent": "AI代理：授权和撤销",
       "restart": "重新开始（seed将消失）"
+    },
+    "log": {
+      "title": "加密操作日志",
+      "empty": "暂无操作记录。运行一个场景即可查看日志。"
+    },
+    "tabs": {
+      "ready": "您的 Identity 已就绪。选择一个场景，运行真实的协议流程——真实密钥、真实推导、没有模拟。",
+      "hint": "每个场景都运行真实的协议代码——没有模拟。"
+    },
+    "scenarios": {
+      "human": {
+        "tab": "人类",
+        "tabDesc": "工作 · 家庭 · 健身房",
+        "title": "多上下文身份",
+        "description": "一个根 Identity → 隔离的 Handle，逐个创建。每个上下文拥有自己的资料、密钥对和 Solana 钱包——零共享凭据。",
+        "cta": {
+          "work": "1 · 创建工作 Handle",
+          "family": "2 · 创建家庭 Handle",
+          "gym": "3 · 创建健身 Handle"
+        },
+        "noteFamily": "✓ 工作 Handle 已就绪。推导一个 Handle 不会泄露其他任何 Handle——家庭上下文是从同一助记词推出的全新密钥对。",
+        "noteGym": "✓ 家庭 Handle 已就绪。再推导一次，您就拥有完全独立的运动身份。",
+        "footerRoot": "根公钥：",
+        "footerDone": "三个上下文全部推导完成——同一助记词、相同的推导路径顺序、上下文之间零共享凭据。",
+        "labels": {
+          "handleId": "Handle ID",
+          "publicKey": "公钥",
+          "privateKey": "私钥——永不公开",
+          "wallet": "Solana 钱包——从同一助记词推导",
+          "address": "地址",
+          "walletPrivateKey": "钱包私钥（base58）",
+          "passwordFor": "「{value}」的密码",
+          "channelKeyFor": "E2EE「{value}」的通道密钥",
+          "copyValue": "复制值",
+          "toggleKeys": "显示或隐藏私钥",
+          "expand": "+",
+          "collapse": "−"
+        }
+      },
+      "satellite": {
+        "tab": "卫星",
+        "tabDesc": "任务市场"
+      },
+      "agent": {
+        "tab": "AI 智能体",
+        "tabDesc": "授权与撤销"
+      },
+      "sso": {
+        "tab": "多应用 SSO",
+        "tabDesc": "一个助记词，所有应用"
+      },
+      "ev": {
+        "tab": "EV 充电站",
+        "tabDesc": "离线 IoT 层级"
+      },
+      "commerce": {
+        "tab": "智能体商务",
+        "tabDesc": "付费 API · x402"
+      }
     }
   }
 }

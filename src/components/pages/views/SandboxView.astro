@@ -17,7 +17,8 @@ import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import { Hero } from '@/components/hero';
 import TypingEffect from '@/components/ui/TypingEffect.astro';
 import { t, tData, defaultLocale } from '@/i18n';
-import SandboxSeedIsland, { type SeedCopy } from '@/components/sandbox/SeedIsland';
+import SandboxExperience from '@/components/sandbox/SandboxExperience';
+import type { SandboxCopy } from '@/components/sandbox/copy';
 
 interface Props {
   /** Locale whose copy this page renders. Defaults to the site default. */
@@ -34,7 +35,9 @@ const hero = tData<{
   typingWordsMobile: string[];
   description: string;
 }>('sandbox.hero', locale)!;
-const sandboxSeed = tData<SeedCopy>('sandbox.sandboxSeed', locale)!;
+// The whole sandbox copy subtree for this locale (log panel, scenario tabs,
+// per-scenario copy) goes to the client island as one prop.
+const sandboxCopy = tData<SandboxCopy>('sandbox', locale)!;
 ---
 <PageLayout
   title={t('sandbox.meta.title', locale)}
@@ -68,18 +71,18 @@ const sandboxSeed = tData<SeedCopy>('sandbox.sandboxSeed', locale)!;
         <div class="flex flex-col items-center gap-6">
           <Badge variant="brand" pill>
             <Icon name="sparkles" size="sm" />
-            {sandboxSeed.badge}
+            {sandboxCopy.sandboxSeed.badge}
           </Badge>
           <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground text-balance">
-            {sandboxSeed.heading}
+            {sandboxCopy.sandboxSeed.heading}
           </h2>
         </div>
         <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
-          {sandboxSeed.lead}
+          {sandboxCopy.sandboxSeed.lead}
         </p>
       </div>
 
-      <SandboxSeedIsland client:load seed={sandboxSeed} />
+      <SandboxExperience client:load copy={sandboxCopy} />
     </div>
   </section>
 </PageLayout>

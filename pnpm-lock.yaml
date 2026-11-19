@@ -62,6 +62,9 @@ importers:
       '@me2em/x402':
         specifier: 1.0.0-rc.1
         version: 1.0.0-rc.1(@me2em/core@1.0.0-rc.8)
+      '@scure/base':
+        specifier: ^2.4.0
+        version: 2.4.0
       astro:
         specifier: 7.3.1
         version: 7.3.1(@astrojs/markdown-remark@7.3.1)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@netlify/blobs@10.7.9)(@types/node@22.19.7)(@vercel/functions@3.4.3)(jiti@2.7.0)(yaml@2.9.0)
