@@ -20,6 +20,9 @@ import { join, relative } from 'node:path';
 import en from '../i18n/en.json';
 import ru from '../i18n/ru.json';
 import zh from '../i18n/zh.json';
+import sandboxEn from '../i18n/sandbox/en.json';
+import sandboxRu from '../i18n/sandbox/ru.json';
+import sandboxZh from '../i18n/sandbox/zh.json';
 
 const ROOT = process.cwd();
 const SCANNED = ['src/components', 'src/layouts'];
@@ -118,6 +121,27 @@ describe('every locale carries every key', () => {
 
     it(`${name}.json has no key that en.json does not`, () => {
       const expected = new Set(flatten(en));
+      expect(flatten(dictionary).filter((key) => !expected.has(key))).toEqual([]);
+    });
+  }
+});
+
+describe('sandbox module: every locale carries every key', () => {
+  // The Sandbox copy lives in its own per-locale module
+  // (`src/i18n/sandbox/<locale>.json`, merged into the dictionaries by
+  // `src/i18n/index.ts`). It must obey the same parity rules as the
+  // site-wide dictionaries.
+  const locales = { ru: sandboxRu, zh: sandboxZh };
+
+  for (const [name, dictionary] of Object.entries(locales)) {
+    it(`sandbox/${name}.json has no key missing against sandbox/en.json`, () => {
+      const expected = flatten(sandboxEn);
+      const actual = new Set(flatten(dictionary));
+      expect(expected.filter((key) => !actual.has(key))).toEqual([]);
+    });
+
+    it(`sandbox/${name}.json has no key that sandbox/en.json does not`, () => {
+      const expected = new Set(flatten(sandboxEn));
       expect(flatten(dictionary).filter((key) => !expected.has(key))).toEqual([]);
     });
   }

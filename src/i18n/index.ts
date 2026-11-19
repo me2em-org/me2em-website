@@ -23,6 +23,47 @@ const dictionaries: Record<string, Dictionary> = Object.fromEntries(
   }),
 );
 
+// The Sandbox page keeps its copy in a dedicated module per locale
+// (`src/i18n/sandbox/<locale>.json`, one top-level `sandbox` namespace) so the
+// interactive sandbox — the seed step plus a growing set of scenarios — does
+// not swell the site-wide dictionaries. Each module is deep-merged into its
+// locale dictionary here, which means every consumer keeps reading keys
+// through the same `t()` / `tData()` dotted paths (`sandbox.hero.*` …). A
+// locale without a module file (or a module missing a key) falls back to the
+// default locale at query time, exactly like any untranslated key.
+const sandboxModules = import.meta.glob<{ default: Record<string, unknown> }>(
+  './sandbox/*.json',
+  { eager: true },
+);
+
+for (const [filePath, mod] of Object.entries(sandboxModules)) {
+  const locale = filePath.slice(filePath.lastIndexOf('/') + 1).replace(/\.json$/, '');
+  const dict = dictionaries[locale];
+  if (!dict) continue;
+  deepMerge(dict as unknown as Record<string, unknown>, mod.default);
+}
+
+function deepMerge(
+  target: Record<string, unknown>,
+  source: Record<string, unknown>,
+): void {
+  for (const [key, value] of Object.entries(source)) {
+    const current = target[key];
+    if (
+      value !== null &&
+      typeof value === 'object' &&
+      !Array.isArray(value) &&
+      current !== null &&
+      typeof current === 'object' &&
+      !Array.isArray(current)
+    ) {
+      deepMerge(current as Record<string, unknown>, value as Record<string, unknown>);
+    } else {
+      target[key] = value;
+    }
+  }
+}
+
 export const defaultLocale: Locale = i18nConfig.defaultLocale;
 
 export function isEnabled(): boolean {

@@ -210,58 +210,6 @@
         "more": "所有渠道 → Community"
       }
     },
-    "sandbox": {
-      "meta": {
-        "title": "沙盒",
-        "description": "Me2eM协议沙盒：真实的种子短语、派生的Handle、stateless会话——全部在你的浏览器中运行。"
-      },
-      "hero": {
-        "badge": "沙盒",
-        "titleLead": "Me2eM —",
-        "typingWords": [
-          "一个种子短语。",
-          "多个Handle。",
-          "隔离的上下文。",
-          "Stateless会话。",
-          "零存储。"
-        ],
-        "typingWordsMobile": ["一个短语。", "多个Handle。", "无状态。"],
-        "description": "实时协议演示：在你的浏览器中生成一个真实的种子短语，观察它派生Handle，并看到一个身份服务于人类、设备和AI代理——任何服务器上都没有个人数据字节。"
-      },
-      "sandboxSeed": {
-        "badge": "步骤1——诞生",
-        "heading": "创建你的数字世界",
-        "lead": "真正的加密，直接在浏览器中：12个词，不在其他地方存在。",
-        "ctaStart": "生成种子短语",
-        "generating": "派生根…",
-        "disclaimer": "⚠️ 演示：这个短语是真正的加密，但它与任何东西都不相连。它只存在于这个页面上，当你离开时就会消失。不要把它当作真正的钱包使用。",
-        "copied": "已复制到剪贴板。这是为了测试方便。在现实生活中，你必须将seed写在纸上并存放在保险箱中（或使用类似Ledger的设备生成seed）。下面我们将模拟你的纸张。点击「隐藏」——seed将被永久地从计算机内存中擦除。没有人能够恢复它。",
-        "panelHidden": "Seed已生成。这是你最主要的秘密。点击「显示」按钮来查看它。",
-        "panelRevealed": "种子短语是打包成易记单词的128位熵。整个密钥层次结构从中确定性地派生：Identity → Handle → SubHandle——相同的种子在任何设备上产生相同的密钥。暴力破解是不可能的：即使每秒一万亿次猜测——也需要数十亿年。点击：复制全部",
-        "revealButton": "显示",
-        "hideButton": "隐藏",
-        "copyAllButton": "复制全部",
-        "paperTitle": "你的纸张文件",
-        "paperPasteHint": "将剪贴板中的seed粘贴到这里。",
-        "paperNote": "Seed必须离线存储：纸质——是；截图、云笔记、密码管理器——否。电子副本是攻击面。如果这些词泄露，你的身份也会泄露。",
-        "verifyPrompt": "输入你的种子短语中的{a}、{b}和{c}词",
-        "verifyWordLabel": "12个词中的第{n}个",
-        "verifyPlaceholder": "???",
-        "verifyConfirm": "确认身份",
-        "verifyError": "这些词与你的种子短语不匹配。检查你的笔记。",
-        "verifySeeAgain": "我需要再次查看种子短语",
-        "paperMissing": "你还没有写下seed。返回并将seed复制到纸上——未记录的seed无法保存。",
-        "paperBadgeHint": "点击纸张上的一个词来填充字段。",
-        "bornTitle": "🌱 你的数字世界已创建",
-        "bornText": "整个密钥层次结构从这12个词中确定性地派生：Identity → Handle → SubHandle。服务器上零字节。",
-        "createdSequence": "刚刚发生了什么：你在浏览器中生成了128位熵——它派生了你的根Identity——你证明你持有纸张——你的世界存在。在任何地方都没有一个字节存储在服务器上。",
-        "nextLabel": "沙盒的下一步",
-        "nextHuman": "人类：工作、家庭、健身房",
-        "nextIot": "卫星：出售资源",
-        "nextAgent": "AI代理：授权和撤销",
-        "restart": "重新开始（seed将消失）"
-      }
-    },
     "docs": {
       "meta": {
         "title": "文档",

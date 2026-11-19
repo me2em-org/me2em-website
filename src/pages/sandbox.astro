@@ -4,7 +4,8 @@ import { defaultLocale } from '@/i18n';
 
 // The Sandbox page for the default locale. Additional locales are served by
 // `src/pages/[locale]/sandbox.astro`, which renders the same view. All copy
-// is read from the `pages.sandbox.*` keys in `src/i18n/<locale>.json`.
+// is read from the `sandbox.*` keys of the sandbox module
+// `src/i18n/sandbox/<locale>.json`.
 ---
 
 <SandboxView locale={defaultLocale} />
