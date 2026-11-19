@@ -81,7 +81,7 @@
     "carouselChooseSlide": "Choose slide",
     "carouselNextSlide": "Next slide",
     "metaTitle": "Use cases",
-    "metaDescription": "Documented scenarios on the Me2eM protocol — AI agent delegation, IoT hierarchies, multi-context identity, and SSO without a user database.",
+    "metaDescription": "Documented scenarios on the Me2eM protocol — AI agent delegation, IoT hierarchies, multi-context identity, and signature-based SSO.",
     "heroBadge": "Use cases",
     "heroDescription": "The same primitives, read through different domains.",
     "allUsecases": "All use cases",
@@ -652,14 +652,14 @@
     "home": {
       "meta": {
         "title": "Seed-Derived Identity Protocol",
-        "description": "One seed phrase, many isolated Handles, stateless sessions and delegatable trust. A decentralized identity protocol on Ed25519 — with no user database to leak."
+        "description": "One seed phrase, many isolated Handles, stateless sessions and delegatable trust. A decentralized identity protocol on Ed25519."
       },
       "hero": {
         "badge": "Open source · Apache-2.0",
         "titleLine1": "Me2eM",
         "titleLine2": "identity protocol.",
         "titleLine3": "One Identity → Many Handles → Stateless Sessions",
-        "description": "A decentralized, seed-derived identity, authorization and payment protocol built on Ed25519 — for people, IoT fleets and AI agents. No user database, no personal data to leak.",
+        "description": "A decentralized, seed-derived identity, authorization and payment protocol built on Ed25519 — one seed phrase grows into many isolated identities for people, IoT fleets and AI agents.",
         "descriptionMobile": "A decentralized, seed-derived identity protocol on Ed25519 — for people, IoT fleets and AI agents.",
         "github": "View on GitHub",
         "getStarted": "Get started"
@@ -667,7 +667,7 @@
       "intro": {
         "badge": "The protocol",
         "heading": "The whole idea in one paragraph",
-        "body": "Me2eM is a decentralized identity, authorization and payment protocol built on Ed25519 cryptography and standard key-agreement primitives. Nothing to register, no passwords to store: a person, a device, or an AI agent is represented by keys derived locally from a single seed phrase. Every context keeps its own isolated identity, access is delegated and revoked through signed attestations, and servers confirm a session with a single signature check — serverless authentication with minimal latency that minimizes, or removes entirely, the database you have to run and protect. The same seed also derives a deterministic Solana wallet, so one identity can pay: x402 v2 carries signed payment artifacts over plain HTTP, and the facilitator settles on-chain. Me2eM is for one user who safely becomes many: separate profiles (work, home, the gym), hierarchies of IoT devices and drones, autonomous AI agents under signed mandates, E2EE-encrypted channels, deterministic passwords for third-party services, and paid API calls that settle on-chain."
+        "body": "Me2eM grows one seed phrase into as many separate identities as you need: one for every app, device and AI agent, each derived on your own device. Access is delegated and revoked with a signature, and signing in takes the server a single signature check. The same seed derives a Solana wallet, so any identity can pay for what it uses — API calls settle on-chain. One user, safely many: separate profiles for work and home, fleets of devices and drones, and AI agents that act only within the permissions you signed for them."
       },
       "packages": {
         "badge": "Packages",
