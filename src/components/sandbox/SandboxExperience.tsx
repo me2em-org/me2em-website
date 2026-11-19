@@ -21,6 +21,13 @@ import type { Identity } from '@me2em/core';
 import SeedIsland from './SeedIsland';
 import Logger from './Logger';
 import ScenarioHuman from './ScenarioHuman';
+import ScenarioAgent from './ScenarioAgent';
+import ScenarioSatellite from './ScenarioSatellite';
+import ScenarioEv from './ScenarioEv';
+import ScenarioSso from './ScenarioSso';
+import ScenarioCommerce from './ScenarioCommerce';
+import { runAgentScenario } from '@/lib/sandbox/agent';
+import { useScenario } from '@/lib/sandbox/useScenario';
 import type { SandboxCopy, ScenarioId, ScenarioTab } from './copy';
 
 const SCENARIO_ICONS: Record<ScenarioId, LucideIcon> = {
@@ -43,16 +50,25 @@ export default function SandboxExperience({ copy }: { copy: SandboxCopy }) {
   const [session, setSession] = useState<SandboxSession | null>(null);
   const [activeScenario, setActiveScenario] = useState<ScenarioId | null>(null);
 
+  // The agent scenario is a one-shot run; every other scenario manages its
+  // own staged interactions inside its component.
+  const agentScenario = useScenario(() => runAgentScenario(session!.identity));
+
   const handleIdentityReady = useCallback((identity: Identity, seedBytes: Uint8Array) => {
     setSession({ identity, seedBytes });
   }, []);
 
-  const handleScenarioSelect = useCallback((id: ScenarioId) => {
-    setActiveScenario(id);
-    document
-      .getElementById('sandbox-scenario')
-      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, []);
+  const handleScenarioSelect = useCallback(
+    (id: ScenarioId) => {
+      setActiveScenario(id);
+      if (id === 'agent' && session) agentScenario.run().catch(() => {});
+      document
+        .getElementById('sandbox-scenario')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [session],
+  );
 
   const scenarioTabs: ScenarioTab[] = SCENARIO_ORDER.map((id) => {
     const Icon = SCENARIO_ICONS[id];
@@ -84,6 +100,33 @@ export default function SandboxExperience({ copy }: { copy: SandboxCopy }) {
                   identity={session.identity}
                   seedBytes={session.seedBytes}
                   copy={copy.scenarios.human}
+                />
+              )}
+              {activeScenario === 'satellite' && (
+                <ScenarioSatellite
+                  identity={session.identity}
+                  seedBytes={session.seedBytes}
+                  copy={copy.scenarios.satellite}
+                />
+              )}
+              {activeScenario === 'agent' && (
+                <ScenarioAgent
+                  result={agentScenario.result}
+                  loading={agentScenario.loading}
+                  copy={copy.scenarios.agent}
+                />
+              )}
+              {activeScenario === 'sso' && (
+                <ScenarioSso identity={session.identity} copy={copy.scenarios.sso} />
+              )}
+              {activeScenario === 'ev' && (
+                <ScenarioEv identity={session.identity} copy={copy.scenarios.ev} />
+              )}
+              {activeScenario === 'commerce' && (
+                <ScenarioCommerce
+                  identity={session.identity}
+                  seedBytes={session.seedBytes}
+                  copy={copy.scenarios.commerce}
                 />
               )}
             </div>

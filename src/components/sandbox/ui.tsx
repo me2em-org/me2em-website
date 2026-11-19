@@ -59,6 +59,61 @@ export function KeyRow({
   );
 }
 
+/** Key/value row without a copy button (labels and short values). */
+export function KvRow({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="flex flex-col gap-0.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+      <span className="text-xs text-foreground-muted">{label}</span>
+      <span className="min-w-0 text-xs text-foreground break-words">{children}</span>
+    </div>
+  );
+}
+
+export function OkBadge({ children }: { children: ReactNode }) {
+  return (
+    <span className="inline-flex items-center gap-1 rounded-full border border-success/30 bg-success/10 px-2 py-0.5 text-xs text-success-strong">
+      {children}
+    </span>
+  );
+}
+
+export function WarnBadge({ children }: { children: ReactNode }) {
+  return (
+    <span className="inline-flex items-center gap-1 rounded-full border border-warning/40 bg-warning/10 px-2 py-0.5 text-xs text-warning-strong">
+      {children}
+    </span>
+  );
+}
+
+export function ScopeChip({ children }: { children: ReactNode }) {
+  return (
+    <span className="rounded-full border border-border bg-background-tertiary px-2 py-0.5 font-mono text-xs text-foreground-muted">
+      {children}
+    </span>
+  );
+}
+
+/** Bordered card with an icon heading — the scenario building block. */
+export function Card({
+  title,
+  icon,
+  children,
+}: {
+  title: ReactNode;
+  icon: ReactNode;
+  children: ReactNode;
+}) {
+  return (
+    <div className="flex flex-col gap-2.5 rounded-xl border border-border bg-background-secondary p-4">
+      <h4 className="flex items-center gap-2 text-sm font-semibold text-foreground">
+        <span className="text-brand-500 [&>svg]:shrink-0">{icon}</span>
+        {title}
+      </h4>
+      {children}
+    </div>
+  );
+}
+
 export function KeyGroup({ children }: { children: ReactNode }) {
   return (
     <div className="flex flex-col gap-2 rounded-lg border border-border bg-background-tertiary/50 p-3">
