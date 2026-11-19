@@ -66,7 +66,8 @@ export default function SandboxExperience({ copy }: { copy: SandboxCopy }) {
         .getElementById('sandbox-scenario')
         ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Only `session` needs to rebind: agentScenario is a per-session hook
+    // created alongside the session, not a dependency of this callback.
     [session],
   );
 

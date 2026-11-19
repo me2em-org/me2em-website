@@ -155,8 +155,8 @@ function parseLegacyTransfer(tx: Uint8Array): ParsedTransfer {
   o += 2; // numReadonlySigned, numReadonlyUnsigned
   const keyBytes: Uint8Array[] = [];
   const keys: string[] = [];
-  let n: number;
-  [n, o] = readCompactU16(msg, o);
+  const [n, o1] = readCompactU16(msg, o);
+  o = o1;
   for (let i = 0; i < n; i++) {
     keyBytes.push(msg.slice(o, o + 32));
     keys.push(base58.encode(msg.subarray(o, o + 32)));
@@ -164,8 +164,8 @@ function parseLegacyTransfer(tx: Uint8Array): ParsedTransfer {
   }
   const blockhash = base58.encode(msg.subarray(o, o + 32));
   o += 32;
-  let ixCount: number;
-  [ixCount, o] = readCompactU16(msg, o);
+  const [ixCount, o2] = readCompactU16(msg, o);
+  o = o2;
   for (let i = 0; i < ixCount; i++) {
     const progIdx = msg[o++];
     let ac: number;
