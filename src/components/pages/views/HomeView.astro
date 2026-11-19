@@ -108,7 +108,8 @@ const packagesSection = tData<{ badge: string; heading: string; lead: string; le
   locale
 )!;
 // Card icons come from the dictionary (the same names in en/ru/zh); a card
-// that describes a package gets the package mark instead of the generic icon.
+// that describes a package gets the package mark instead of the generic icon
+// and links to the package's section on /docs.
 const packageMarks: Record<string, string> = {
   layout: 'core',
   code: 'crypto',
@@ -263,7 +264,7 @@ const tutorialsPara1 = t('pages.home.tutorials.para1', locale);
       <div class="grid gap-6 sm:grid-cols-3">
         {packagesSection.cards.map((card, i) => (
           <ProofTile
-            href={docsUrl}
+            href={packageMarks[card.icon] ? `${docsUrl}#${packageMarks[card.icon]}` : docsUrl}
             icon={card.icon}
             title={card.title}
             data-reveal

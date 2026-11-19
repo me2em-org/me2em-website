@@ -135,27 +135,27 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
           names overflow a single centered flex row. Mobile keeps the stacked
           full-width buttons; the last row centres its single button. */}
       <div class="grid w-full grid-cols-1 gap-4 sm:max-w-xl sm:grid-cols-2">
-        <Button size="lg" href="#design" variant="outline">
+        <Button size="lg" href="#core" variant="outline">
           <PackageLogo name="core" />
           {hero.jumpLabels[0]}
           <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
         </Button>
-        <Button size="lg" href="#development" variant="outline">
+        <Button size="lg" href="#crypto" variant="outline">
           <PackageLogo name="crypto" />
           {hero.jumpLabels[1]}
           <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
         </Button>
-        <Button size="lg" href="#performance" variant="outline">
+        <Button size="lg" href="#react" variant="outline">
           <PackageLogo name="react" />
           {hero.jumpLabels[2]}
           <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
         </Button>
-        <Button size="lg" href="#payments" variant="outline">
+        <Button size="lg" href="#x402" variant="outline">
           <PackageLogo name="x402" />
           {hero.jumpLabels[3]}
           <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
         </Button>
-        <Button size="lg" href="#chain" variant="outline" class="sm:col-span-2 sm:justify-self-center">
+        <Button size="lg" href="#solana" variant="outline" class="sm:col-span-2 sm:justify-self-center">
           <PackageLogo name="solana" />
           {hero.jumpLabels[4]}
           <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
@@ -164,8 +164,8 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
     </Fragment>
   </Hero>
 
-  <!-- Design -->
-  <section id="design" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+  <!-- @me2em/core -->
+  <section id="core" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
         <!-- Text -->
@@ -220,8 +220,8 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
     </div>
   </section>
 
-  <!-- Development -->
-  <section id="development" class="py-[var(--space-section-md)] bg-background border-t border-border">
+  <!-- @me2em/crypto -->
+  <section id="crypto" class="py-[var(--space-section-md)] bg-background border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
         <!-- Text -->
@@ -276,8 +276,8 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
     </div>
   </section>
 
-  <!-- Performance -->
-  <section id="performance" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+  <!-- @me2em/react -->
+  <section id="react" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
         <!-- Text -->
@@ -332,8 +332,8 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
     </div>
   </section>
 
-  <!-- Payments -->
-  <section id="payments" class="py-[var(--space-section-md)] bg-background border-t border-border">
+  <!-- @me2em/x402 -->
+  <section id="x402" class="py-[var(--space-section-md)] bg-background border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
         <!-- Text -->
@@ -388,8 +388,8 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
     </div>
   </section>
 
-  <!-- Chain -->
-  <section id="chain" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+  <!-- @me2em/solana -->
+  <section id="solana" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
         <!-- Text -->
@@ -609,7 +609,7 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
         {cta.description}
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button size="lg" href="#design">
+        <Button size="lg" href="#core">
           {cta.primary}
           <Icon name="rocket" size="sm" />
         </Button>
@@ -667,7 +667,7 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
 
 <script is:inline>
   /* When a hero section button is clicked — or the page is opened directly on
-      one of those sections (e.g. /docs#development) — the destination (and
+      one of those sections (e.g. /docs#crypto) — the destination (and
      everything the jump scrolls past) is snapped to its revealed state before
      the scroll lands, so cards don't slide in mid-jump. Sections below the
      target stay observed, so natural scrolling still animates normally. */
