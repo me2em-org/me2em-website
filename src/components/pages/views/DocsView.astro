@@ -16,6 +16,7 @@ import ProofTile from '@/components/ui/data-display/ProofTile/ProofTile.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
 import CtaBand from '@/components/patterns/CtaBand.astro';
+import PackageLogo from './PackageLogo.astro';
 import { t, tData, defaultLocale, localizedPath } from '@/i18n';
 import { createFAQSchema } from '@/lib/schema';
 
@@ -131,22 +132,27 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
 
     <Fragment slot="actions">
       <Button size="lg" href="#design" variant="outline">
+        <PackageLogo name="core" />
         {hero.jumpLabels[0]}
         <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
       </Button>
       <Button size="lg" href="#development" variant="outline">
+        <PackageLogo name="crypto" />
         {hero.jumpLabels[1]}
         <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
       </Button>
       <Button size="lg" href="#performance" variant="outline">
+        <PackageLogo name="react" />
         {hero.jumpLabels[2]}
         <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
       </Button>
       <Button size="lg" href="#payments" variant="outline">
+        <PackageLogo name="x402" />
         {hero.jumpLabels[3]}
         <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
       </Button>
       <Button size="lg" href="#chain" variant="outline">
+        <PackageLogo name="solana" />
         {hero.jumpLabels[4]}
         <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
       </Button>
