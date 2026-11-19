@@ -178,7 +178,7 @@ describe('i18n meta titles never embed the site name', () => {
     'usecases.tagMetaTitle',
     'errors.metaTitle',
     'pages.home.meta.title',
-    'pages.sandbox.meta.title',
+    'sandbox.meta.title',
     'pages.docs.meta.title',
     'pages.community.meta.title',
   ];

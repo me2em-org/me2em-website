@@ -36,6 +36,7 @@ Do not write a component count you have not counted from this file.
 | Languages | `src/config/i18n.config.ts` |
 | Cookie-consent behaviour | `src/config/consent.config.ts` |
 | Any interface text, including `aria-label`, `alt`, `placeholder` and `title` | `src/i18n/en.json` (and other locales) |
+| Sandbox page copy (seed step, scenarios) | `src/i18n/sandbox/en.json` (and other locales) — a dedicated module merged into the dictionaries by `src/i18n/index.ts` |
 | A blog post | a new `.mdx` file in `src/content/blog/<locale>/` |
 | A project | a new `.mdx` file in `src/content/projects/<locale>/` |
 | Colours | `src/styles/themes/*.css` — eight themes, tokens only |
@@ -62,7 +63,9 @@ than a feature the theme carries and nobody maintains.
   `src/styles/`. Never hard-code a hex value — it will not follow the colour
   theme, and it will fail the contrast checks.
 - **Every locale file stays in step.** Adding a key to `en.json` means adding it
-  to every other locale, or that language falls back mid-page.
+  to every other locale, or that language falls back mid-page. The same holds
+  for the sandbox module (`src/i18n/sandbox/<locale>.json`); a test enforces
+  both.
 - **Motion respects `prefers-reduced-motion`.** Anything animated must stop for
   visitors who ask it to.
 - **Images go through `astro:assets`.** Use the `<Image>` component so sizes and

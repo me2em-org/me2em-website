@@ -3,9 +3,9 @@
  * SandboxView — the Sandbox page body.
  *
  * Shared by the default-locale route (`/sandbox`) and the locale-prefixed route
- * (`/<locale>/sandbox`). All copy is read from the `pages.sandbox.*` keys in the
- * locale dictionaries (`src/i18n/<locale>.json`) via `t()` / `tData()`, so
- * translating the page is a matter of editing JSON — no markup changes — and
+ * (`/<locale>/sandbox`). All copy is read from the `sandbox.*` keys of the
+ * sandbox i18n module (`src/i18n/sandbox/<locale>.json`) via `t()` / `tData()`,
+ * so translating the page is a matter of editing JSON — no markup changes — and
  * any untranslated key falls back to the default locale automatically.
  *
  * Rendering with the default locale produces the same markup the page had
@@ -17,7 +17,8 @@ import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import { Hero } from '@/components/hero';
 import TypingEffect from '@/components/ui/TypingEffect.astro';
 import { t, tData, defaultLocale } from '@/i18n';
-import SandboxSeedIsland, { type SeedCopy } from '@/components/sandbox/SeedIsland';
+import SandboxExperience from '@/components/sandbox/SandboxExperience';
+import type { SandboxCopy } from '@/components/sandbox/copy';
 
 interface Props {
   /** Locale whose copy this page renders. Defaults to the site default. */
@@ -33,12 +34,14 @@ const hero = tData<{
   /** Shorter set for phones (below sm), dropping the one word wide enough to clip at the hero size. */
   typingWordsMobile: string[];
   description: string;
-}>('pages.sandbox.hero', locale)!;
-const sandboxSeed = tData<SeedCopy>('pages.sandbox.sandboxSeed', locale)!;
+}>('sandbox.hero', locale)!;
+// The whole sandbox copy subtree for this locale (log panel, scenario tabs,
+// per-scenario copy) goes to the client island as one prop.
+const sandboxCopy = tData<SandboxCopy>('sandbox', locale)!;
 ---
 <PageLayout
-  title={t('pages.sandbox.meta.title', locale)}
-  description={t('pages.sandbox.meta.description', locale)}
+  title={t('sandbox.meta.title', locale)}
+  description={t('sandbox.meta.description', locale)}
   footerBackground="secondary"
 >
   <Hero layout="centered" size="sm" class="isolate pb-[var(--space-section-md)]" showHeroHalo>
@@ -68,18 +71,18 @@ const sandboxSeed = tData<SeedCopy>('pages.sandbox.sandboxSeed', locale)!;
         <div class="flex flex-col items-center gap-6">
           <Badge variant="brand" pill>
             <Icon name="sparkles" size="sm" />
-            {sandboxSeed.badge}
+            {sandboxCopy.sandboxSeed.badge}
           </Badge>
           <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground text-balance">
-            {sandboxSeed.heading}
+            {sandboxCopy.sandboxSeed.heading}
           </h2>
         </div>
         <p class="text-lg text-foreground-muted max-w-2xl mx-auto text-balance">
-          {sandboxSeed.lead}
+          {sandboxCopy.sandboxSeed.lead}
         </p>
       </div>
 
-      <SandboxSeedIsland client:load seed={sandboxSeed} />
+      <SandboxExperience client:load copy={sandboxCopy} />
     </div>
   </section>
 </PageLayout>

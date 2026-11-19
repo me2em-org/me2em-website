@@ -16,6 +16,7 @@ import ProofTile from '@/components/ui/data-display/ProofTile/ProofTile.astro';
 import Button from '@/components/ui/form/Button/Button.astro';
 import { Hero } from '@/components/hero';
 import CtaBand from '@/components/patterns/CtaBand.astro';
+import PackageLogo from './PackageLogo.astro';
 import { t, tData, defaultLocale, localizedPath } from '@/i18n';
 import { createFAQSchema } from '@/lib/schema';
 
@@ -130,38 +131,48 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
     </p>
 
     <Fragment slot="actions">
-      <Button size="lg" href="#design" variant="outline">
-        {hero.jumpLabels[0]}
-        <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
-      </Button>
-      <Button size="lg" href="#development" variant="outline">
-        {hero.jumpLabels[1]}
-        <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
-      </Button>
-      <Button size="lg" href="#performance" variant="outline">
-        {hero.jumpLabels[2]}
-        <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
-      </Button>
-      <Button size="lg" href="#payments" variant="outline">
-        {hero.jumpLabels[3]}
-        <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
-      </Button>
-      <Button size="lg" href="#chain" variant="outline">
-        {hero.jumpLabels[4]}
-        <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
-      </Button>
+      {/* Two per row from sm up: once the marks widen the buttons, the five
+          names overflow a single centered flex row. Mobile keeps the stacked
+          full-width buttons; the last row centres its single button. */}
+      <div class="grid w-full grid-cols-1 gap-4 sm:max-w-xl sm:grid-cols-2">
+        <Button size="lg" href="#core" variant="outline">
+          <PackageLogo name="core" />
+          {hero.jumpLabels[0]}
+          <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
+        </Button>
+        <Button size="lg" href="#crypto" variant="outline">
+          <PackageLogo name="crypto" />
+          {hero.jumpLabels[1]}
+          <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
+        </Button>
+        <Button size="lg" href="#react" variant="outline">
+          <PackageLogo name="react" />
+          {hero.jumpLabels[2]}
+          <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
+        </Button>
+        <Button size="lg" href="#x402" variant="outline">
+          <PackageLogo name="x402" />
+          {hero.jumpLabels[3]}
+          <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
+        </Button>
+        <Button size="lg" href="#solana" variant="outline" class="sm:col-span-2 sm:justify-self-center">
+          <PackageLogo name="solana" />
+          {hero.jumpLabels[4]}
+          <Icon name="arrow-down" size="sm" class="hero-jump-arrow" />
+        </Button>
+      </div>
     </Fragment>
   </Hero>
 
-  <!-- Design -->
-  <section id="design" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+  <!-- @me2em/core -->
+  <section id="core" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
         <!-- Text -->
         <div class="flex flex-col gap-4 sm:items-center sm:text-center glitch:items-start glitch:text-left" data-reveal data-reveal-ease="smooth">
           <div class="flex flex-col gap-6 sm:items-center glitch:items-start">
             <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
-              <Icon name="layout" size="sm" />
+              <PackageLogo name="core" />
               {design.badge}
             </Badge>
             <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
@@ -183,7 +194,7 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
           <Card variant="elevated" padding="lg" class="h-full flex flex-col justify-center">
             <div class="flex items-center gap-3 pb-4 mb-4 border-b border-border sm:justify-center glitch:justify-start">
               <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                <Icon name="layout" size="md" />
+                <PackageLogo name="core" class="h-5 w-5" />
               </div>
               <h3 class="font-display text-base font-semibold text-foreground">{includedLabel}</h3>
             </div>
@@ -209,15 +220,15 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
     </div>
   </section>
 
-  <!-- Development -->
-  <section id="development" class="py-[var(--space-section-md)] bg-background border-t border-border">
+  <!-- @me2em/crypto -->
+  <section id="crypto" class="py-[var(--space-section-md)] bg-background border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
         <!-- Text -->
         <div class="flex flex-col gap-4 sm:items-center sm:text-center glitch:order-2 glitch:items-start glitch:text-left" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
           <div class="flex flex-col gap-6 sm:items-center glitch:items-start">
             <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
-              <Icon name="code" size="sm" />
+              <PackageLogo name="crypto" />
               {development.badge}
             </Badge>
             <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
@@ -239,7 +250,7 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
           <Card variant="elevated" padding="lg" class="h-full flex flex-col justify-center">
             <div class="flex items-center gap-3 pb-4 mb-4 border-b border-border sm:justify-center glitch:justify-start">
               <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                <Icon name="code" size="md" />
+                <PackageLogo name="crypto" class="h-5 w-5" />
               </div>
               <h3 class="font-display text-base font-semibold text-foreground">{includedLabel}</h3>
             </div>
@@ -265,15 +276,15 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
     </div>
   </section>
 
-  <!-- Performance -->
-  <section id="performance" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+  <!-- @me2em/react -->
+  <section id="react" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
         <!-- Text -->
         <div class="flex flex-col gap-4 sm:items-center sm:text-center glitch:items-start glitch:text-left" data-reveal data-reveal-ease="smooth">
           <div class="flex flex-col gap-6 sm:items-center glitch:items-start">
             <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
-              <Icon name="zap" size="sm" />
+              <PackageLogo name="react" />
               {performance.badge}
             </Badge>
             <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
@@ -295,7 +306,7 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
           <Card variant="elevated" padding="lg" class="h-full flex flex-col justify-center">
             <div class="flex items-center gap-3 pb-4 mb-4 border-b border-border sm:justify-center glitch:justify-start">
               <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                <Icon name="zap" size="md" />
+                <PackageLogo name="react" class="h-5 w-5" />
               </div>
               <h3 class="font-display text-base font-semibold text-foreground">{includedLabel}</h3>
             </div>
@@ -321,15 +332,15 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
     </div>
   </section>
 
-  <!-- Payments -->
-  <section id="payments" class="py-[var(--space-section-md)] bg-background border-t border-border">
+  <!-- @me2em/x402 -->
+  <section id="x402" class="py-[var(--space-section-md)] bg-background border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
         <!-- Text -->
         <div class="flex flex-col gap-4 sm:items-center sm:text-center glitch:order-2 glitch:items-start glitch:text-left" data-reveal data-reveal-delay="1" data-reveal-ease="smooth">
           <div class="flex flex-col gap-6 sm:items-center glitch:items-start">
             <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
-              <Icon name="credit-card" size="sm" />
+              <PackageLogo name="x402" />
               {payments.badge}
             </Badge>
             <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
@@ -351,7 +362,7 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
           <Card variant="elevated" padding="lg" class="h-full flex flex-col justify-center">
             <div class="flex items-center gap-3 pb-4 mb-4 border-b border-border sm:justify-center glitch:justify-start">
               <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                <Icon name="credit-card" size="md" />
+                <PackageLogo name="x402" class="h-5 w-5" />
               </div>
               <h3 class="font-display text-base font-semibold text-foreground">{includedLabel}</h3>
             </div>
@@ -377,15 +388,15 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
     </div>
   </section>
 
-  <!-- Chain -->
-  <section id="chain" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
+  <!-- @me2em/solana -->
+  <section id="solana" class="py-[var(--space-section-md)] bg-background-secondary border-t border-border">
     <div class="mx-auto max-w-6xl px-6">
       <div class="grid gap-10 glitch:grid-cols-2 glitch:gap-12 glitch:items-start">
         <!-- Text -->
         <div class="flex flex-col gap-4 sm:items-center sm:text-center glitch:items-start glitch:text-left" data-reveal data-reveal-ease="smooth">
           <div class="flex flex-col gap-6 sm:items-center glitch:items-start">
             <Badge variant="brand" pill class="self-start sm:self-center glitch:self-start">
-              <Icon name="wallet" size="sm" />
+              <PackageLogo name="solana" />
               {chain.badge}
             </Badge>
             <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground">
@@ -407,7 +418,7 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
           <Card variant="elevated" padding="lg" class="h-full flex flex-col justify-center">
             <div class="flex items-center gap-3 pb-4 mb-4 border-b border-border sm:justify-center glitch:justify-start">
               <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 flex items-center justify-center text-brand-500 shrink-0">
-                <Icon name="wallet" size="md" />
+                <PackageLogo name="solana" class="h-5 w-5" />
               </div>
               <h3 class="font-display text-base font-semibold text-foreground">{includedLabel}</h3>
             </div>
@@ -598,7 +609,7 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
         {cta.description}
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button size="lg" href="#design">
+        <Button size="lg" href="#core">
           {cta.primary}
           <Icon name="rocket" size="sm" />
         </Button>
@@ -656,7 +667,7 @@ const caseCardIdle = `${caseCardBase} cursor-default`;
 
 <script is:inline>
   /* When a hero section button is clicked — or the page is opened directly on
-      one of those sections (e.g. /docs#development) — the destination (and
+      one of those sections (e.g. /docs#crypto) — the destination (and
      everything the jump scrolls past) is snapped to its revealed state before
      the scroll lands, so cards don't slide in mid-jump. Sections below the
      target stay observed, so natural scrolling still animates normally. */

@@ -81,7 +81,7 @@
     "carouselChooseSlide": "选择幻灯片",
     "carouselNextSlide": "下一张幻灯片",
     "metaTitle": "使用场景",
-    "metaDescription": "已记录的Me2eM协议场景——AI代理委托、IoT设备层级、多上下文身份和无用户数据库的SSO。",
+    "metaDescription": "已记录的Me2eM协议场景——AI代理委托、IoT设备层级、多上下文身份和基于签名的SSO。",
     "heroBadge": "使用场景",
     "heroDescription": "相同的原语——通过不同领域阅读。",
     "allUsecases": "所有使用场景",
@@ -208,58 +208,6 @@
           }
         ],
         "more": "所有渠道 → Community"
-      }
-    },
-    "sandbox": {
-      "meta": {
-        "title": "沙盒",
-        "description": "Me2eM协议沙盒：真实的种子短语、派生的Handle、stateless会话——全部在你的浏览器中运行。"
-      },
-      "hero": {
-        "badge": "沙盒",
-        "titleLead": "Me2eM —",
-        "typingWords": [
-          "一个种子短语。",
-          "多个Handle。",
-          "隔离的上下文。",
-          "Stateless会话。",
-          "零存储。"
-        ],
-        "typingWordsMobile": ["一个短语。", "多个Handle。", "无状态。"],
-        "description": "实时协议演示：在你的浏览器中生成一个真实的种子短语，观察它派生Handle，并看到一个身份服务于人类、设备和AI代理——任何服务器上都没有个人数据字节。"
-      },
-      "sandboxSeed": {
-        "badge": "步骤1——诞生",
-        "heading": "创建你的数字世界",
-        "lead": "真正的加密，直接在浏览器中：12个词，不在其他地方存在。",
-        "ctaStart": "生成种子短语",
-        "generating": "派生根…",
-        "disclaimer": "⚠️ 演示：这个短语是真正的加密，但它与任何东西都不相连。它只存在于这个页面上，当你离开时就会消失。不要把它当作真正的钱包使用。",
-        "copied": "已复制到剪贴板。这是为了测试方便。在现实生活中，你必须将seed写在纸上并存放在保险箱中（或使用类似Ledger的设备生成seed）。下面我们将模拟你的纸张。点击「隐藏」——seed将被永久地从计算机内存中擦除。没有人能够恢复它。",
-        "panelHidden": "Seed已生成。这是你最主要的秘密。点击「显示」按钮来查看它。",
-        "panelRevealed": "种子短语是打包成易记单词的128位熵。整个密钥层次结构从中确定性地派生：Identity → Handle → SubHandle——相同的种子在任何设备上产生相同的密钥。暴力破解是不可能的：即使每秒一万亿次猜测——也需要数十亿年。点击：复制全部",
-        "revealButton": "显示",
-        "hideButton": "隐藏",
-        "copyAllButton": "复制全部",
-        "paperTitle": "你的纸张文件",
-        "paperPasteHint": "将剪贴板中的seed粘贴到这里。",
-        "paperNote": "Seed必须离线存储：纸质——是；截图、云笔记、密码管理器——否。电子副本是攻击面。如果这些词泄露，你的身份也会泄露。",
-        "verifyPrompt": "输入你的种子短语中的{a}、{b}和{c}词",
-        "verifyWordLabel": "12个词中的第{n}个",
-        "verifyPlaceholder": "???",
-        "verifyConfirm": "确认身份",
-        "verifyError": "这些词与你的种子短语不匹配。检查你的笔记。",
-        "verifySeeAgain": "我需要再次查看种子短语",
-        "paperMissing": "你还没有写下seed。返回并将seed复制到纸上——未记录的seed无法保存。",
-        "paperBadgeHint": "点击纸张上的一个词来填充字段。",
-        "bornTitle": "🌱 你的数字世界已创建",
-        "bornText": "整个密钥层次结构从这12个词中确定性地派生：Identity → Handle → SubHandle。服务器上零字节。",
-        "createdSequence": "刚刚发生了什么：你在浏览器中生成了128位熵——它派生了你的根Identity——你证明你持有纸张——你的世界存在。在任何地方都没有一个字节存储在服务器上。",
-        "nextLabel": "沙盒的下一步",
-        "nextHuman": "人类：工作、家庭、健身房",
-        "nextIot": "卫星：出售资源",
-        "nextAgent": "AI代理：授权和撤销",
-        "restart": "重新开始（seed将消失）"
       }
     },
     "docs": {
@@ -704,14 +652,14 @@
     "home": {
       "meta": {
         "title": "基于种子短语的身份协议",
-        "description": "一个种子短语、多个隔离Handle、stateless会话和可委托信任。基于Ed25519的去中心化身份协议——没有可以被盗的用户数据库。"
+        "description": "一个种子短语、多个隔离Handle、stateless会话和可委托信任。基于Ed25519的去中心化身份协议。"
       },
       "hero": {
         "badge": "接受新项目",
         "titleLine1": "Me2eM —",
         "titleLine2": "网页设计师",
         "titleLine3": "& 开发者",
-        "description": "基于 Ed25519 的去中心化身份、授权和支付协议——适用于人、IoT 和 AI 代理。没有可以被盗的用户数据库和个人数据。",
+        "description": "基于 Ed25519 的去中心化身份、授权和支付协议——一颗种子短语扩展出众多隔离身份，适用于人、IoT 和 AI 代理。",
         "descriptionMobile": "基于Ed25519的去中心化身份协议——适用于人、IoT和AI代理。",
         "github": "在GitHub上获取",
         "getStarted": "开始使用"
@@ -719,7 +667,7 @@
       "intro": {
         "badge": "协议",
         "heading": "整个想法，一段话说完",
-        "body": "Me2eM 是一个基于 Ed25519 加密和标准密钥协商原语的去中心化身份、授权和支付协议。无需注册，无需存储密码：人、设备或 AI 代理由从单个种子短语在本地派生的密钥表示。每个上下文保持自己的隔离身份，访问通过签名证明进行委托和撤销，服务器通过一次签名检查确认会话——无服务器认证，最小延迟，最小化或完全消除你需要运行和保护的数据库。同一颗种子还派生确定性的 Solana 钱包，因此一个身份可以支付：x402 v2 通过普通 HTTP 承载签名的支付工件，facilitator 在链上结算。Me2eM 适用于安全地变成多人的单一用户：单独的配置文件（工作、家庭、健身房）、IoT 设备和无人机层次结构、签名授权下的自主 AI 代理、E2EE 加密通道、第三方服务的确定性密码，以及链上结算的付费 API 调用。"
+        "body": "Me2eM 把一颗种子短语扩展成你需要的任意多个独立身份：每个应用、设备和 AI 代理各一个，全部在你的设备上派生。权限用签名授予和撤销，登录对服务器而言只是一次签名检查。同一颗种子还派生 Solana 钱包，任何身份都能为自己使用的东西付款——API 调用在链上结算。一个用户，安全地成为多个：工作和家庭各有独立的身份，成群的设备和无人机，以及只在签名授权范围内行动的 AI 代理。"
       },
       "packages": {
         "badge": "软件包",

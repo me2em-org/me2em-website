@@ -3,6 +3,9 @@ import {
   Me2emProvider,
   useCreateIdentity,
 } from '@me2em/react';
+import { get64ByteSeedFromMnemonic, type Identity } from '@me2em/core';
+import { logger } from '@/lib/sandbox/logger';
+import type { ScenarioId, ScenarioTab } from './copy';
 
 /**
  * Parse raw paper text into a list of words, stripping numbered prefixes
@@ -60,9 +63,6 @@ export interface SeedCopy {
   bornText: string;
   createdSequence: string;
   nextLabel: string;
-  nextHuman: string;
-  nextIot: string;
-  nextAgent: string;
   restart: string;
 }
 
@@ -452,13 +452,26 @@ function VerifyForm({
   );
 }
 
-function SeedIslandInner({ seed: seedCopy }: { seed: SeedCopy }) {
-  const { status: hookStatus, seedWords, generate, reset, confirmWords } = useCreateIdentity();
+function SeedIslandInner({
+  seed: seedCopy,
+  scenarioTabs,
+  activeScenario,
+  onScenarioSelect,
+  onIdentityReady,
+}: {
+  seed: SeedCopy;
+  scenarioTabs: ScenarioTab[];
+  activeScenario: ScenarioId | null;
+  onScenarioSelect: (id: ScenarioId) => void;
+  onIdentityReady: (identity: Identity, seedBytes: Uint8Array) => void;
+}) {
+  const { status: hookStatus, seedWords, identity, generate, reset, confirmWords } = useCreateIdentity();
   const [state, dispatch] = useReducer(sandboxReducer, initialState);
   const [generatedWords, setGeneratedWords] = useState<string[] | null>(null);
   const [paperText, setPaperText] = useState('');
   const copyRef = useRef(false);
   const confirmCalledRef = useRef(false);
+  const identityReadyRef = useRef(false);
 
   const handlePaperChange = useCallback((v: string) => setPaperText(v), []);
 
@@ -486,6 +499,8 @@ function SeedIslandInner({ seed: seedCopy }: { seed: SeedCopy }) {
       setGeneratedWords(seedWords);
       dispatch({ type: 'phraseGenerated' });
       copyRef.current = false;
+      logger.setScenario('seed');
+      logger.success('Seed phrase generated', seedWords.join(' '));
     }
   }, [hookStatus, seedWords]);
 
@@ -496,9 +511,42 @@ function SeedIslandInner({ seed: seedCopy }: { seed: SeedCopy }) {
     }
   }, [hookStatus]);
 
+  // Once the hook has confirmed the words (root Identity ready), derive the
+  // raw 64-byte seed from the phrase and hand both to the parent so the
+  // scenario stage can run real protocol flows.
+  useEffect(() => {
+    if (
+      (hookStatus === 'ready' || hookStatus === 'verified') &&
+      identity &&
+      generatedWords &&
+      !identityReadyRef.current
+    ) {
+      identityReadyRef.current = true;
+      (async () => {
+        try {
+          logger.setScenario('seed');
+          logger.info('Deriving 64-byte BIP39 seed (PBKDF2-HMAC-SHA512)…');
+          const seedBytes = await get64ByteSeedFromMnemonic(generatedWords);
+          logger.info('Creating root Identity from 64-byte seed…');
+          const pubHex = Array.from(identity.getPublicKey())
+            .map((b) => b.toString(16).padStart(2, '0'))
+            .join('');
+          logger.success('Identity created', `pub: ${pubHex.slice(0, 16)}…`);
+          onIdentityReady(identity, seedBytes);
+        } catch (e: unknown) {
+          const msg = e instanceof Error ? e.message : String(e);
+          logger.error('Identity creation failed', msg);
+          identityReadyRef.current = false;
+        }
+      })();
+    }
+  }, [hookStatus, identity, generatedWords, onIdentityReady]);
+
   const handleGenerate = useCallback(() => {
     dispatch({ type: 'startGenerating' });
     confirmCalledRef.current = false;
+    logger.setScenario('seed');
+    logger.info('Generating 12-word BIP39 seed phrase…');
     generate();
   }, [generate]);
 
@@ -541,6 +589,7 @@ function SeedIslandInner({ seed: seedCopy }: { seed: SeedCopy }) {
     setPaperText('');
     copyRef.current = false;
     confirmCalledRef.current = false;
+    identityReadyRef.current = false;
   }, [reset]);
 
   const panel = panelState(state.status);
@@ -584,47 +633,33 @@ function SeedIslandInner({ seed: seedCopy }: { seed: SeedCopy }) {
 
           <div className="flex flex-col items-center gap-4 w-full">
             <span className="text-sm font-bold text-brand-500">{seedCopy.nextLabel}</span>
-            <div className="grid gap-4 sm:grid-cols-3 w-full">
-              <div aria-disabled="true" className="flex flex-col items-center gap-3 text-center rounded-xl border border-border bg-background-tertiary p-5 opacity-60 cursor-not-allowed">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 text-brand-500 shrink-0">
-                  <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M18 21a8 8 0 0 0-16 0" />
-                    <circle cx="12" cy="11" r="5" />
-                  </svg>
-                </span>
-                <h3 className="font-display text-base font-semibold text-foreground">
-                  {seedCopy.nextHuman}
-                </h3>
-              </div>
-              <div aria-disabled="true" className="flex flex-col items-center gap-3 text-center rounded-xl border border-border bg-background-tertiary p-5 opacity-60 cursor-not-allowed">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 text-brand-500 shrink-0">
-                  <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M13 7 9 3 5 7l4 4" />
-                    <path d="m17 11 4 4-4 4-4-4" />
-                    <path d="m8 12 4 4 6-6-4-4Z" />
-                    <path d="m16 8 3-3" />
-                    <path d="M9 21a6 6 0 0 0-6-6" />
-                  </svg>
-                </span>
-                <h3 className="font-display text-base font-semibold text-foreground">
-                  {seedCopy.nextIot}
-                </h3>
-              </div>
-              <div aria-disabled="true" className="flex flex-col items-center gap-3 text-center rounded-xl border border-border bg-background-tertiary p-5 opacity-60 cursor-not-allowed">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 text-brand-500 shrink-0">
-                  <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 8V4H8" />
-                    <rect width="16" height="12" x="4" y="8" rx="2" />
-                    <path d="M2 14h2" />
-                    <path d="M20 14h2" />
-                    <path d="M15 13v2" />
-                    <path d="M9 13v2" />
-                  </svg>
-                </span>
-                <h3 className="font-display text-base font-semibold text-foreground">
-                  {seedCopy.nextAgent}
-                </h3>
-              </div>
+            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 w-full">
+              {scenarioTabs.map((tab) => {
+                const isActive = activeScenario === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    onClick={() => onScenarioSelect(tab.id)}
+                    aria-pressed={isActive}
+                    className={`flex flex-col items-center gap-3 text-center rounded-xl border p-5 transition-colors ${
+                      isActive
+                        ? 'border-brand-500 bg-brand-500/5'
+                        : 'border-border bg-background-tertiary hover:border-brand-500'
+                    }`}
+                  >
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500/20 to-brand-500/5 text-brand-500 shrink-0">
+                      {tab.icon}
+                    </span>
+                    <span className="flex flex-col items-center gap-1">
+                      <span className="font-display text-base font-semibold text-foreground">
+                        {tab.tab}
+                      </span>
+                      <span className="text-xs text-foreground-muted">{tab.tabDesc}</span>
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
@@ -643,12 +678,30 @@ function SeedIslandInner({ seed: seedCopy }: { seed: SeedCopy }) {
 
 let nextKey = 0;
 
-export default function SeedIsland({ seed }: { seed: SeedCopy }) {
+export default function SeedIsland({
+  seed,
+  scenarioTabs,
+  activeScenario,
+  onScenarioSelect,
+  onIdentityReady,
+}: {
+  seed: SeedCopy;
+  scenarioTabs: ScenarioTab[];
+  activeScenario: ScenarioId | null;
+  onScenarioSelect: (id: ScenarioId) => void;
+  onIdentityReady: (identity: Identity, seedBytes: Uint8Array) => void;
+}) {
   const [key] = useState(++nextKey);
 
   return (
     <Me2emProvider key={key}>
-      <SeedIslandInner seed={seed} />
+      <SeedIslandInner
+        seed={seed}
+        scenarioTabs={scenarioTabs}
+        activeScenario={activeScenario}
+        onScenarioSelect={onScenarioSelect}
+        onIdentityReady={onIdentityReady}
+      />
     </Me2emProvider>
   );
 }
